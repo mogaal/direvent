@@ -1,0 +1,9 @@
+[Unit]
+Description=monitors events in the file system directories
+Documentation=man:direvent(1p)
+
+[Service]
+ExecStart=/usr/bin/direvent --foreground
+
+[Install]
+WantedBy=multi-user.target

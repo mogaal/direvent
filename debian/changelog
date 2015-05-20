@@ -1,0 +1,5 @@
+direvent (5.0.90-1) unstable; urgency=low
+
+  * Initial release (Closes: #760693).
+
+ -- Alejandro Garrido Mota <alejandro@debian.org>  Wed, 20 May 2015 18:41:44 +0100
