@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -23,6 +23,7 @@
 #include "grecs.h"
 #include "wordsplit.h"
 #include <fnmatch.h>
+#include <stdlib.h>
 
 static int
 _grecs_list_eq(struct grecs_value *a, struct grecs_value *b)
@@ -177,7 +178,7 @@ grecs_match_buf_create(int argc, char **argv, struct grecs_value **labelv)
 			
 			for (j = i + 1;
 			     j < buf->argc && ISWC(buf->argv[j], '*'); j++) {
-				free(buf->argv[j]);
+			        free(buf->argv[j]);
 				grecs_value_free_content(buf->labelv[i]);
 			}
 			j -= i;
@@ -548,7 +549,7 @@ grecs_match_next(struct grecs_match_buf *buf)
 {
 	if (!buf)
 		return NULL;
-	while (buf->node = grecs_next_node(buf->node))
+	while ((buf->node = grecs_next_node(buf->node)))
 		if (grecs_match(buf))
 			break;
 	return buf->node;

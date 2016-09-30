@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -20,6 +20,7 @@
 #include <grecs.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 #include "gitid.h"
 
 const char *grecs_vcs_id = "$Id: " GRECS_GIT_ID " $";

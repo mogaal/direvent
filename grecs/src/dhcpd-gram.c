@@ -69,7 +69,7 @@
 #line 1 "dhcpd-gram.y"
 
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -88,7 +88,6 @@
 # include <config.h>
 #endif
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <dhcpd-gram.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -103,10 +102,24 @@ extern int grecs_dhcpd_flex_debug;
 extern int grecs_dhcpd_new_source(const char *name, grecs_locus_t *loc);
 extern void grecs_dhcpd_close_sources(void);
 
+extern void grecs_dhcpd_begin_bool(void);
+extern void grecs_dhcpd_begin_expr(void);
+
+/* NOTE: STRING must be allocated */
+static grecs_value_t *
+make_string_value(char *string)
+{
+	grecs_value_t *val;
+	val = grecs_malloc(sizeof(val[0]));
+	val->type = GRECS_TYPE_STRING;
+	val->v.string = string;
+	return val;
+}
+
 
 
 /* Line 268 of yacc.c  */
-#line 110 "dhcpd-gram.c"
+#line 123 "dhcpd-gram.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -141,13 +154,21 @@ extern void grecs_dhcpd_close_sources(void);
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum grecs_dhcpdtokentype {
-     DHCPD_STRING = 258,
-     DHCPD_IDENT = 259
+     DHCPD_IF = 258,
+     DHCPD_ELSIF = 259,
+     DHCPD_EXPR = 260,
+     DHCPD_ELSE = 261,
+     DHCPD_STRING = 262,
+     DHCPD_IDENT = 263
    };
 #endif
 /* Tokens.  */
-#define DHCPD_STRING 258
-#define DHCPD_IDENT 259
+#define DHCPD_IF 258
+#define DHCPD_ELSIF 259
+#define DHCPD_EXPR 260
+#define DHCPD_ELSE 261
+#define DHCPD_STRING 262
+#define DHCPD_IDENT 263
 
 
 
@@ -157,7 +178,7 @@ typedef union YYSTYPE
 {
 
 /* Line 295 of yacc.c  */
-#line 42 "dhcpd-gram.y"
+#line 55 "dhcpd-gram.y"
 
 	char *string;
 	grecs_value_t svalue, *pvalue;
@@ -169,7 +190,7 @@ typedef union YYSTYPE
 
 
 /* Line 295 of yacc.c  */
-#line 173 "dhcpd-gram.c"
+#line 194 "dhcpd-gram.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define grecs_dhcpdstype YYSTYPE /* obsolescent; will be withdrawn */
@@ -194,7 +215,7 @@ typedef struct YYLTYPE
 
 
 /* Line 345 of yacc.c  */
-#line 198 "dhcpd-gram.c"
+#line 219 "dhcpd-gram.c"
 
 #ifdef short
 # undef short
@@ -414,22 +435,22 @@ union grecs_dhcpdalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  18
+#define YYFINAL  22
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   25
+#define YYLAST   39
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  9
+#define YYNTOKENS  14
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  14
+#define YYNNTS  23
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  24
+#define YYNRULES  38
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  32
+#define YYNSTATES  59
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   259
+#define YYMAXUTOK   263
 
 #define YYTRANSLATE(YYX)						\
   ((unsigned int) (YYX) <= YYMAXUTOK ? grecs_dhcpdtranslate[YYX] : YYUNDEFTOK)
@@ -441,28 +462,29 @@ static const grecs_dhcpdtype_uint8 grecs_dhcpdtranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     8,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     5,
+       2,     2,     2,     2,    13,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     9,
+       2,    10,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,    11,     2,    12,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     6,     2,     7,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     1,     2,     3,     4
+       2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
+       5,     6,     7,     8
 };
 
 #if YYDEBUG
@@ -471,27 +493,34 @@ static const grecs_dhcpdtype_uint8 grecs_dhcpdtranslate[] =
 static const grecs_dhcpdtype_uint8 grecs_dhcpdprhs[] =
 {
        0,     0,     3,     5,     6,     8,    10,    13,    15,    17,
-      21,    24,    31,    32,    34,    35,    37,    39,    41,    44,
-      46,    48,    50,    52,    56
+      19,    23,    24,    30,    33,    40,    41,    43,    44,    46,
+      48,    50,    53,    55,    57,    59,    61,    65,    69,    77,
+      79,    81,    82,    84,    86,    89,    95,    96,    98
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const grecs_dhcpdtype_int8 grecs_dhcpdrhs[] =
 {
-      10,     0,    -1,    11,    -1,    -1,    12,    -1,    13,    -1,
-      12,    13,    -1,    14,    -1,    15,    -1,     4,    18,     5,
-      -1,    21,     5,    -1,     4,    17,     6,    11,     7,    16,
-      -1,    -1,     5,    -1,    -1,    18,    -1,    19,    -1,    20,
-      -1,    19,    20,    -1,    21,    -1,    22,    -1,     3,    -1,
-       4,    -1,     3,     8,     3,    -1,    22,     8,     3,    -1
+      15,     0,    -1,    16,    -1,    -1,    17,    -1,    18,    -1,
+      17,    18,    -1,    19,    -1,    21,    -1,    29,    -1,     8,
+      24,     9,    -1,    -1,     8,    10,    20,     5,     9,    -1,
+      27,     9,    -1,     8,    23,    11,    16,    12,    22,    -1,
+      -1,     9,    -1,    -1,    24,    -1,    25,    -1,    26,    -1,
+      25,    26,    -1,    27,    -1,    28,    -1,     7,    -1,     8,
+      -1,     7,    13,     7,    -1,    28,    13,     7,    -1,    30,
+       5,    11,    16,    12,    32,    35,    -1,     3,    -1,     4,
+      -1,    -1,    33,    -1,    34,    -1,    33,    34,    -1,    31,
+       5,    11,    16,    12,    -1,    -1,    36,    -1,     6,    11,
+      16,    12,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
-static const grecs_dhcpdtype_uint8 grecs_dhcpdrline[] =
+static const grecs_dhcpdtype_uint16 grecs_dhcpdrline[] =
 {
-       0,    61,    61,    71,    74,    80,    84,    96,    97,   100,
-     114,   123,   134,   135,   139,   142,   145,   169,   174,   180,
-     186,   194,   195,   198,   214
+       0,    77,    77,    87,    90,    96,   100,   112,   113,   114,
+     117,   131,   131,   139,   148,   159,   160,   164,   167,   170,
+     194,   199,   205,   211,   219,   220,   223,   239,   250,   271,
+     277,   284,   287,   290,   294,   306,   322,   325,   328
 };
 #endif
 
@@ -500,10 +529,12 @@ static const grecs_dhcpdtype_uint8 grecs_dhcpdrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const grecs_dhcpdtname[] =
 {
-  "$end", "error", "$undefined", "DHCPD_STRING", "DHCPD_IDENT", "';'",
-  "'{'", "'}'", "','", "$accept", "input", "maybe_stmtlist", "stmtlist",
-  "stmt", "simple", "block", "opt_semi", "tag", "vallist", "vlist",
-  "value", "string", "strlist", YY_NULL
+  "$end", "error", "$undefined", "DHCPD_IF", "DHCPD_ELSIF", "DHCPD_EXPR",
+  "DHCPD_ELSE", "DHCPD_STRING", "DHCPD_IDENT", "';'", "'='", "'{'", "'}'",
+  "','", "$accept", "input", "maybe_stmtlist", "stmtlist", "stmt",
+  "simple", "$@1", "block", "opt_semi", "tag", "vallist", "vlist", "value",
+  "string", "strlist", "cond", "if", "elsif", "opt_elsifchain",
+  "elsifchain", "elsifcond", "opt_elsecond", "elsecond", YY_NULL
 };
 #endif
 
@@ -512,24 +543,27 @@ static const char *const grecs_dhcpdtname[] =
    token YYLEX-NUM.  */
 static const grecs_dhcpdtype_uint16 grecs_dhcpdtoknum[] =
 {
-       0,   256,   257,   258,   259,    59,   123,   125,    44
+       0,   256,   257,   258,   259,   260,   261,   262,   263,    59,
+      61,   123,   125,    44
 };
 # endif
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const grecs_dhcpdtype_uint8 grecs_dhcpdr1[] =
 {
-       0,     9,    10,    11,    11,    12,    12,    13,    13,    14,
-      14,    15,    16,    16,    17,    17,    18,    19,    19,    20,
-      20,    21,    21,    22,    22
+       0,    14,    15,    16,    16,    17,    17,    18,    18,    18,
+      19,    20,    19,    19,    21,    22,    22,    23,    23,    24,
+      25,    25,    26,    26,    27,    27,    28,    28,    29,    30,
+      31,    32,    32,    33,    33,    34,    35,    35,    36
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const grecs_dhcpdtype_uint8 grecs_dhcpdr2[] =
 {
-       0,     2,     1,     0,     1,     1,     2,     1,     1,     3,
-       2,     6,     0,     1,     0,     1,     1,     1,     2,     1,
-       1,     1,     1,     3,     3
+       0,     2,     1,     0,     1,     1,     2,     1,     1,     1,
+       3,     0,     5,     2,     6,     0,     1,     0,     1,     1,
+       1,     2,     1,     1,     1,     1,     3,     3,     7,     1,
+       1,     0,     1,     1,     2,     5,     0,     1,     4
 };
 
 /* YYDEFACT[STATE-NAME] -- Default reduction number in state STATE-NUM.
@@ -537,69 +571,79 @@ static const grecs_dhcpdtype_uint8 grecs_dhcpdr2[] =
    means the default is an error.  */
 static const grecs_dhcpdtype_uint8 grecs_dhcpddefact[] =
 {
-       3,    21,    14,     0,     2,     4,     5,     7,     8,     0,
-      21,    22,     0,    15,    16,    17,    19,    20,     1,     6,
-      10,     0,     3,     9,    18,     0,    23,     0,    24,    12,
-      13,    11
+       3,    29,    24,    17,     0,     2,     4,     5,     7,     8,
+       0,     9,     0,    24,    25,    11,     0,    18,    19,    20,
+      22,    23,     1,     6,    13,     0,     0,     0,     3,    10,
+      21,     0,     3,    26,     0,     0,    27,     0,    12,    15,
+      31,    16,    14,    30,     0,    36,    32,    33,     0,     0,
+      28,    37,    34,     3,     3,     0,     0,    35,    38
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const grecs_dhcpdtype_int8 grecs_dhcpddefgoto[] =
 {
-      -1,     3,     4,     5,     6,     7,     8,    31,    12,    13,
-      14,    15,     9,    17
+      -1,     4,     5,     6,     7,     8,    27,     9,    42,    16,
+      17,    18,    19,    10,    21,    11,    12,    44,    45,    46,
+      47,    50,    51
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -4
+#define YYPACT_NINF -29
 static const grecs_dhcpdtype_int8 grecs_dhcpdpact[] =
 {
-       2,    -4,    -1,     1,    -4,     2,    -4,    -4,    -4,     5,
-       3,    -4,     7,     9,     4,    -4,    -4,     8,    -4,    -4,
-      -4,     6,     2,    -4,    -4,    12,    -4,    10,    -4,    13,
-      -4,    -4
+      -1,   -29,   -29,     1,     3,   -29,    -1,   -29,   -29,   -29,
+      -4,   -29,     9,     2,   -29,   -29,     6,    10,     5,   -29,
+     -29,     7,   -29,   -29,   -29,    11,    14,    13,    -1,   -29,
+     -29,    16,    -1,   -29,    15,    17,   -29,    18,   -29,    19,
+      23,   -29,   -29,   -29,    26,    27,    23,   -29,    21,    24,
+     -29,   -29,   -29,    -1,    -1,    22,    25,   -29,   -29
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const grecs_dhcpdtype_int8 grecs_dhcpdpgoto[] =
 {
-      -4,    -4,    -3,    -4,    15,    -4,    -4,    -4,    -4,    -4,
-      -4,    11,    -2,    -4
+     -29,   -29,   -28,   -29,    30,   -29,   -29,   -29,   -29,   -29,
+     -29,   -29,    20,    -2,   -29,   -29,   -29,   -29,   -29,   -29,
+      -7,   -29,   -29
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
    positive, shift that token.  If negative, reduce the rule which
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
-#define YYTABLE_NINF -23
+#define YYTABLE_NINF -26
 static const grecs_dhcpdtype_int8 grecs_dhcpdtable[] =
 {
-      16,    18,    10,    11,   -22,     1,     2,    10,    11,    26,
-      20,    21,    16,    22,    23,    28,    25,    29,    30,    27,
-      19,     0,     0,     0,     0,    24
+      35,    20,     1,    22,    37,    24,     2,     3,    13,    14,
+     -25,    15,    13,    14,    25,    26,    20,    28,    34,    29,
+      31,    33,    32,    36,    38,    55,    56,    43,    41,    39,
+      40,    48,    53,    49,    57,    54,    23,    58,    30,    52
 };
 
 #define grecs_dhcpdpact_value_is_default(grecs_dhcpdstate) \
-  ((grecs_dhcpdstate) == (-4))
+  ((grecs_dhcpdstate) == (-29))
 
 #define grecs_dhcpdtable_value_is_error(grecs_dhcpdtable_value) \
   YYID (0)
 
-static const grecs_dhcpdtype_int8 grecs_dhcpdcheck[] =
+static const grecs_dhcpdtype_uint8 grecs_dhcpdcheck[] =
 {
-       2,     0,     3,     4,     5,     3,     4,     3,     4,     3,
-       5,     8,    14,     6,     5,     3,     8,     7,     5,    22,
-       5,    -1,    -1,    -1,    -1,    14
+      28,     3,     3,     0,    32,     9,     7,     8,     7,     8,
+       9,    10,     7,     8,     5,    13,    18,    11,     5,     9,
+      13,     7,    11,     7,     9,    53,    54,     4,     9,    12,
+      12,     5,    11,     6,    12,    11,     6,    12,    18,    46
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const grecs_dhcpdtype_uint8 grecs_dhcpdstos[] =
 {
-       0,     3,     4,    10,    11,    12,    13,    14,    15,    21,
-       3,     4,    17,    18,    19,    20,    21,    22,     0,    13,
-       5,     8,     6,     5,    20,     8,     3,    11,     3,     7,
-       5,    16
+       0,     3,     7,     8,    15,    16,    17,    18,    19,    21,
+      27,    29,    30,     7,     8,    10,    23,    24,    25,    26,
+      27,    28,     0,    18,     9,     5,    13,    20,    11,     9,
+      26,    13,    11,     7,     5,    16,     7,    16,     9,    12,
+      12,     9,    22,     4,    31,    32,    33,    34,     5,     6,
+      35,    36,    34,    11,    11,    16,    16,    12,    12
 };
 
 #define grecs_dhcpderrok		(grecs_dhcpderrstatus = 0)
@@ -1483,7 +1527,7 @@ grecs_dhcpdreduce:
         case 2:
 
 /* Line 1810 of yacc.c  */
-#line 62 "dhcpd-gram.y"
+#line 78 "dhcpd-gram.y"
     {
 		  parse_tree = grecs_node_create(grecs_node_root, &(grecs_dhcpdlsp[(1) - (1)]));
 		  parse_tree->v.texttab = grecs_text_table();
@@ -1494,7 +1538,7 @@ grecs_dhcpdreduce:
   case 3:
 
 /* Line 1810 of yacc.c  */
-#line 71 "dhcpd-gram.y"
+#line 87 "dhcpd-gram.y"
     {
 		  (grecs_dhcpdval.node) = NULL;
 	  }
@@ -1503,7 +1547,7 @@ grecs_dhcpdreduce:
   case 4:
 
 /* Line 1810 of yacc.c  */
-#line 75 "dhcpd-gram.y"
+#line 91 "dhcpd-gram.y"
     {
 		  (grecs_dhcpdval.node) = (grecs_dhcpdvsp[(1) - (1)].node_list).head;
 	  }
@@ -1512,7 +1556,7 @@ grecs_dhcpdreduce:
   case 5:
 
 /* Line 1810 of yacc.c  */
-#line 81 "dhcpd-gram.y"
+#line 97 "dhcpd-gram.y"
     {
 		  (grecs_dhcpdval.node_list).head = (grecs_dhcpdval.node_list).tail = (grecs_dhcpdvsp[(1) - (1)].node);
 	  }
@@ -1521,7 +1565,7 @@ grecs_dhcpdreduce:
   case 6:
 
 /* Line 1810 of yacc.c  */
-#line 85 "dhcpd-gram.y"
+#line 101 "dhcpd-gram.y"
     {
 		  if ((grecs_dhcpdvsp[(2) - (2)].node)) {
 			  if (!(grecs_dhcpdvsp[(1) - (2)].node_list).head)
@@ -1533,10 +1577,10 @@ grecs_dhcpdreduce:
 	  }
     break;
 
-  case 9:
+  case 10:
 
 /* Line 1810 of yacc.c  */
-#line 101 "dhcpd-gram.y"
+#line 118 "dhcpd-gram.y"
     {
 		  if (strcmp((grecs_dhcpdvsp[(1) - (3)].string), "include") == 0 &&
 		      (grecs_dhcpdvsp[(2) - (3)].pvalue)->type == GRECS_TYPE_STRING) {
@@ -1552,10 +1596,30 @@ grecs_dhcpdreduce:
 	  }
     break;
 
-  case 10:
+  case 11:
 
 /* Line 1810 of yacc.c  */
-#line 115 "dhcpd-gram.y"
+#line 131 "dhcpd-gram.y"
+    { grecs_dhcpd_begin_expr(); }
+    break;
+
+  case 12:
+
+/* Line 1810 of yacc.c  */
+#line 132 "dhcpd-gram.y"
+    {
+		  (grecs_dhcpdval.node) = grecs_node_create_points(grecs_node_stmt,
+						(grecs_dhcpdlsp[(1) - (5)]).beg, (grecs_dhcpdlsp[(5) - (5)]).end);
+		  (grecs_dhcpdval.node)->ident = (grecs_dhcpdvsp[(1) - (5)].string);
+		  (grecs_dhcpdval.node)->idloc = (grecs_dhcpdlsp[(1) - (5)]);
+		  (grecs_dhcpdval.node)->v.value = make_string_value((grecs_dhcpdvsp[(4) - (5)].string));
+	  }
+    break;
+
+  case 13:
+
+/* Line 1810 of yacc.c  */
+#line 140 "dhcpd-gram.y"
     {
 		  (grecs_dhcpdval.node) = grecs_node_create(grecs_node_stmt, &(grecs_dhcpdlsp[(1) - (2)]));
 		  (grecs_dhcpdval.node)->ident = (grecs_dhcpdvsp[(1) - (2)].string);
@@ -1564,10 +1628,10 @@ grecs_dhcpdreduce:
 	  }
     break;
 
-  case 11:
+  case 14:
 
 /* Line 1810 of yacc.c  */
-#line 124 "dhcpd-gram.y"
+#line 149 "dhcpd-gram.y"
     {
 		  (grecs_dhcpdval.node) = grecs_node_create_points(grecs_node_block,
 						(grecs_dhcpdlsp[(1) - (6)]).beg, (grecs_dhcpdlsp[(5) - (6)]).end);
@@ -1578,19 +1642,19 @@ grecs_dhcpdreduce:
 	  }
     break;
 
-  case 14:
+  case 17:
 
 /* Line 1810 of yacc.c  */
-#line 139 "dhcpd-gram.y"
+#line 164 "dhcpd-gram.y"
     {
 		  (grecs_dhcpdval.pvalue) = NULL;
 	  }
     break;
 
-  case 16:
+  case 19:
 
 /* Line 1810 of yacc.c  */
-#line 146 "dhcpd-gram.y"
+#line 171 "dhcpd-gram.y"
     {
 		  size_t n;
 		  
@@ -1614,29 +1678,29 @@ grecs_dhcpdreduce:
 	  }
     break;
 
-  case 17:
+  case 20:
 
 /* Line 1810 of yacc.c  */
-#line 170 "dhcpd-gram.y"
+#line 195 "dhcpd-gram.y"
     {
 		  (grecs_dhcpdval.list) = grecs_value_list_create();
 		  grecs_list_append((grecs_dhcpdval.list), grecs_value_ptr_from_static(&(grecs_dhcpdvsp[(1) - (1)].svalue)));
 	  }
     break;
 
-  case 18:
+  case 21:
 
 /* Line 1810 of yacc.c  */
-#line 175 "dhcpd-gram.y"
+#line 200 "dhcpd-gram.y"
     {
 		  grecs_list_append((grecs_dhcpdvsp[(1) - (2)].list), grecs_value_ptr_from_static(&(grecs_dhcpdvsp[(2) - (2)].svalue)));
 	  }
     break;
 
-  case 19:
+  case 22:
 
 /* Line 1810 of yacc.c  */
-#line 181 "dhcpd-gram.y"
+#line 206 "dhcpd-gram.y"
     {
 		  (grecs_dhcpdval.svalue).type = GRECS_TYPE_STRING;
 		  (grecs_dhcpdval.svalue).locus = (grecs_dhcpdlsp[(1) - (1)]);
@@ -1644,10 +1708,10 @@ grecs_dhcpdreduce:
 	  }
     break;
 
-  case 20:
+  case 23:
 
 /* Line 1810 of yacc.c  */
-#line 187 "dhcpd-gram.y"
+#line 212 "dhcpd-gram.y"
     {
 		  (grecs_dhcpdval.svalue).type = GRECS_TYPE_LIST;
 		  (grecs_dhcpdval.svalue).locus = (grecs_dhcpdlsp[(1) - (1)]);
@@ -1655,10 +1719,10 @@ grecs_dhcpdreduce:
 	  }
     break;
 
-  case 23:
+  case 26:
 
 /* Line 1810 of yacc.c  */
-#line 199 "dhcpd-gram.y"
+#line 224 "dhcpd-gram.y"
     {
 		  grecs_value_t val;
 
@@ -1676,10 +1740,10 @@ grecs_dhcpdreduce:
 	  }
     break;
 
-  case 24:
+  case 27:
 
 /* Line 1810 of yacc.c  */
-#line 215 "dhcpd-gram.y"
+#line 240 "dhcpd-gram.y"
     {
 		  grecs_value_t val;
 
@@ -1690,10 +1754,130 @@ grecs_dhcpdreduce:
 	  }
     break;
 
+  case 28:
+
+/* Line 1810 of yacc.c  */
+#line 251 "dhcpd-gram.y"
+    {
+		  (grecs_dhcpdval.node) = grecs_node_create_points(grecs_node_block,
+						(grecs_dhcpdlsp[(1) - (7)]).beg, (grecs_dhcpdlsp[(7) - (7)]).end);
+		  
+		  grecs_line_begin();
+		  grecs_line_add("if", 2);
+
+		  (grecs_dhcpdval.node)->ident = grecs_line_finish();
+		  (grecs_dhcpdval.node)->idloc = (grecs_dhcpdlsp[(1) - (7)]);
+		  
+		  (grecs_dhcpdval.node)->v.value = make_string_value ((grecs_dhcpdvsp[(2) - (7)].string));
+		  grecs_node_bind((grecs_dhcpdval.node), (grecs_dhcpdvsp[(4) - (7)].node), 1);
+
+		  if ((grecs_dhcpdvsp[(6) - (7)].node_list).head) {
+			  grecs_node_bind((grecs_dhcpdvsp[(6) - (7)].node_list).tail, (grecs_dhcpdvsp[(7) - (7)].node), 0);
+			  grecs_node_bind((grecs_dhcpdval.node), (grecs_dhcpdvsp[(6) - (7)].node_list).head, 0);
+		  }
+	  }
+    break;
+
+  case 29:
+
+/* Line 1810 of yacc.c  */
+#line 272 "dhcpd-gram.y"
+    {
+		  grecs_dhcpd_begin_bool();
+	  }
+    break;
+
+  case 30:
+
+/* Line 1810 of yacc.c  */
+#line 278 "dhcpd-gram.y"
+    {
+		  grecs_dhcpd_begin_bool();
+	  }
+    break;
+
+  case 31:
+
+/* Line 1810 of yacc.c  */
+#line 284 "dhcpd-gram.y"
+    {
+		  (grecs_dhcpdval.node_list).head = (grecs_dhcpdval.node_list).tail = NULL;
+	  }
+    break;
+
+  case 33:
+
+/* Line 1810 of yacc.c  */
+#line 291 "dhcpd-gram.y"
+    {
+		  (grecs_dhcpdval.node_list).head = (grecs_dhcpdval.node_list).tail = (grecs_dhcpdvsp[(1) - (1)].node);
+	  }
+    break;
+
+  case 34:
+
+/* Line 1810 of yacc.c  */
+#line 295 "dhcpd-gram.y"
+    {
+		  if ((grecs_dhcpdvsp[(2) - (2)].node)) {
+			  if (!(grecs_dhcpdvsp[(1) - (2)].node_list).head)
+				  (grecs_dhcpdvsp[(1) - (2)].node_list).head = (grecs_dhcpdvsp[(1) - (2)].node_list).tail = (grecs_dhcpdvsp[(2) - (2)].node);
+			  else
+				  grecs_node_bind((grecs_dhcpdvsp[(1) - (2)].node_list).tail, (grecs_dhcpdvsp[(2) - (2)].node), 0);
+		  }
+		  (grecs_dhcpdval.node_list) = (grecs_dhcpdvsp[(1) - (2)].node_list);
+	  }
+    break;
+
+  case 35:
+
+/* Line 1810 of yacc.c  */
+#line 307 "dhcpd-gram.y"
+    {
+		  (grecs_dhcpdval.node) = grecs_node_create_points(grecs_node_block,
+						(grecs_dhcpdlsp[(1) - (5)]).beg, (grecs_dhcpdlsp[(5) - (5)]).end);
+		  
+		  grecs_line_begin();
+		  grecs_line_add("elsif", 5);
+
+		  (grecs_dhcpdval.node)->ident = grecs_line_finish();
+		  (grecs_dhcpdval.node)->idloc = (grecs_dhcpdlsp[(1) - (5)]);
+		  (grecs_dhcpdval.node)->v.value = make_string_value ((grecs_dhcpdvsp[(2) - (5)].string));
+		  grecs_node_bind((grecs_dhcpdval.node), (grecs_dhcpdvsp[(4) - (5)].node), 1);
+	  }
+    break;
+
+  case 36:
+
+/* Line 1810 of yacc.c  */
+#line 322 "dhcpd-gram.y"
+    {
+		  (grecs_dhcpdval.node) = NULL;
+	  }
+    break;
+
+  case 38:
+
+/* Line 1810 of yacc.c  */
+#line 329 "dhcpd-gram.y"
+    {
+		  (grecs_dhcpdval.node) = grecs_node_create_points(grecs_node_block,
+						(grecs_dhcpdlsp[(1) - (4)]).beg, (grecs_dhcpdlsp[(4) - (4)]).end);
+		  
+		  grecs_line_begin();
+		  grecs_line_add("else", 4);
+
+		  (grecs_dhcpdval.node)->ident = grecs_line_finish();
+		  (grecs_dhcpdval.node)->idloc = (grecs_dhcpdlsp[(1) - (4)]);
+		  (grecs_dhcpdval.node)->v.value = NULL;
+		  grecs_node_bind((grecs_dhcpdval.node), (grecs_dhcpdvsp[(3) - (4)].node), 1);
+	  }
+    break;
+
 
 
 /* Line 1810 of yacc.c  */
-#line 1697 "dhcpd-gram.c"
+#line 1881 "dhcpd-gram.c"
       default: break;
     }
   /* User semantic actions sometimes alter grecs_dhcpdchar, and that requires
@@ -1931,7 +2115,7 @@ grecs_dhcpdreturn:
 
 
 /* Line 2071 of yacc.c  */
-#line 225 "dhcpd-gram.y"
+#line 343 "dhcpd-gram.y"
 
 
 int

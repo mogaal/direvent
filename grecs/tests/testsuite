@@ -588,38 +588,109 @@ at_tested=''
 # As many question marks as there are digits in the last test group number.
 # Used to normalize the test group numbers so that `ls' lists them in
 # numerical order.
-at_format='??'
+at_format='???'
 # Description of all the test groups.
-at_help_all="1;format00.at:17;Default format;format format00;
-2;format01.at:17;Locus;format format01;
-3;format02.at:17;Custom delimiter;format format02;
-4;enum.at:17;Enumerate nodes;enum;
-5;peek00.at:17;Peek;peek peek00;
-6;peek01.at:17;Nested nodes;peek peek01;
-7;peek02.at:17;Block nodes;peek peek02;
-8;peek03.at:17;Nested blocks;peek peek03;
-9;glob00.at:17;Leading wildcard;peek peek04 glob glob00;
-10;glob01.at:17;Trailing wildcard;peek peek05 glob glob01;
-11;glob02.at:17;Intermediate wildcard;peek peek05 glob glob02;
-12;glob03.at:17;Multiple wildcards;peek peek06 glob glob03;
-13;glob04.at:17;Subtree - asterisk;peek peek07 glob glob04;
-14;glob05.at:17;Subtree - percent;peek peek08 glob glob05;
-15;reduce00.at:17;Simple statement;reduce reduce00;
-16;reduce01.at:17;Block statement;reduce reduce01;
-17;reduce02.at:17;Nested block statement;reduce reduce02;
-18;reduce03.at:17;Table driven reduction;reduce reduce03;
-19;sort00.at:17;Sort;sort sort00;
-20;sort01.at:17;Stable sort;sort sort01;
-21;join.at:17;Join;join;
-22;cfhelp.at:17;Help;help;
-23;set.at:17;Set values;set;
-24;vercmp.at:17;Version comparator;vercmp;
-25;grecs00.at:17;C comments in GRECS-style parser;parser grecs grecs00;
-26;empty.at:17;Empty input file;parser empty;
-27;locus00.at:17;Scalar value;locus scalar locus00;
-28;locus01.at:17;Multiline strings;locus multiline locus01;
-29;locus02.at:17;Adjacent quoted strings;locus adjacent locus02;
-30;path-locus.at:17;Path;locus path;
+at_help_all="1;wordsplit.at:58;simple input;wordsplit wsp wordsplit000 wsp000 wsp-simple;
+2;wordsplit.at:66;quoted space;wordsplit wsp wordsplit001 wsp000 wsp-quoted;
+3;wordsplit.at:72;tab character;wordsplit wsp wordsplit002 wsp000 wsp-tab;
+4;wordsplit.at:80;octal and hex escapes;wordsplit wsp wordsplit003 wsp000 wsp-escape wsp-escape000;
+5;wordsplit.at:86;octal and hex escapes 2;wordsplit wsp wordsplit004 wsp000 wsp-escape wsp-escape001;
+6;wordsplit.at:94;escape representation;wordsplit wsp wordsplit005 wsp000 wsp-escape wsp-escape002;
+7;wordsplit.at:105;append;wordsplit wsp wordsplit006 wsp000 wsp-append;
+8;wordsplit.at:127;dooffs;wordsplit wsp wordsplit007 wsp000 wsp-doofs;
+9;wordsplit.at:139;variable substitutions: single var;wordsplit wsp wordsplit008 wsp000 wsp-var wsp-var000;
+10;wordsplit.at:149;variable substitutions: concatenated vars;wordsplit wsp wordsplit009 wsp000 wsp-var wsp-var001;
+11;wordsplit.at:160;variable substitutions: field splitting;wordsplit wsp wordsplit010 wsp000 wsp-var wsp-var002;
+12;wordsplit.at:171;variable substitutions: double-quoted variable;wordsplit wsp wordsplit011 wsp000 wsp-var wsp-var003;
+13;wordsplit.at:181;variable substitutions: single-quoted variable;wordsplit wsp wordsplit012 wsp000 wsp-var wsp-var004;
+14;wordsplit.at:191;undefined variables 1;wordsplit wsp wordsplit013 wsp000 wsp-var wsp-var005;
+15;wordsplit.at:201;undefined variables 2;wordsplit wsp wordsplit014 wsp000 wsp-var wsp-var006;
+16;wordsplit.at:212;warn about undefined variables;wordsplit wsp wordsplit015 wsp000 wsp-var wsp-var007;
+17;wordsplit.at:220;bail out on undefined variables;wordsplit wsp wordsplit016 wsp000 wsp-var wsp-var008;
+18;wordsplit.at:227;disable variable expansion;wordsplit wsp wordsplit017 wsp000 wsp-var wsp-var009;
+19;wordsplit.at:235;K/V environment;wordsplit wsp wordsplit018 wsp000 wsp-var wsp-var010 wsp-env-kv wsp-env_kv;
+20;wordsplit.at:245;nosplit with expansion;wordsplit wsp wordsplit019 wsp000 wsp-var wsp-var011 wsp-var-nosplit;
+21;wordsplit.at:253;nosplit without expansion;wordsplit wsp wordsplit020 wsp000 wsp-var wsp-var012;
+22;wordsplit.at:261;default value (defined);wordsplit wsp wordsplit021 wsp000 wsp-var wsp-var013;
+23;wordsplit.at:269;default value;wordsplit wsp wordsplit022 wsp000 wsp-var wsp-var014;
+24;wordsplit.at:275;default value (defined);wordsplit wsp wordsplit023 wsp000 wsp-var wsp-var015;
+25;wordsplit.at:283;default value (:- null);wordsplit wsp wordsplit024 wsp000 wsp-var wsp-var016;
+26;wordsplit.at:291;default value (- null);wordsplit wsp wordsplit025 wsp000 wsp-var wsp-var017;
+27;wordsplit.at:298;default value (- null, unset);wordsplit wsp wordsplit026 wsp000 wsp-var wsp-var018;
+28;wordsplit.at:304;assign default values;wordsplit wsp wordsplit027 wsp000 wsp-var wsp-var019;
+29;wordsplit.at:313;default error message (var defined);wordsplit wsp wordsplit028 wsp000 wsp-var wsp-var020;
+30;wordsplit.at:323;default error message;wordsplit wsp wordsplit029 wsp000 wsp-var wsp-var021;
+31;wordsplit.at:330;custom error message (defined);wordsplit wsp wordsplit030 wsp000 wsp-var wsp-var022 wsp-custom-err wsp-custom-err00;
+32;wordsplit.at:340;custom error message;wordsplit wsp wordsplit031 wsp000 wsp-var wsp-var023 wsp-custom-err wsp-custom-err01;
+33;wordsplit.at:349;alternate value (defined);wordsplit wsp wordsplit032 wsp000 wsp-var wsp-var024 wsp-alt wsp-alt00;
+34;wordsplit.at:359;alternate value;wordsplit wsp wordsplit033 wsp000 wsp-var wsp-var025 wsp-alt wsp-alt01;
+35;wordsplit.at:368;getvar;wordsplit wsp wordsplit034 wsp000 wsp-var wsp-var026 wsp-getvar;
+36;wordsplit.at:381;getvar and env;wordsplit wsp wordsplit035 wsp000 wsp-var wsp-var027 wsp-getvar;
+37;wordsplit.at:396;getvar, alternate value;wordsplit wsp wordsplit036 wsp000 wsp-var wsp-var028 wsp-getvar;
+38;wordsplit.at:406;ignore quotes;wordsplit wsp wordsplit037 wsp000 wsp-ignore-quotes;
+39;wordsplit.at:415;custom delimiters (squeeze);wordsplit wsp wordsplit038 wsp000 wsp-delim wsp-delim000;
+40;wordsplit.at:426;custom delimiters (no squeeze);wordsplit wsp wordsplit039 wsp000 wsp-delim wsp-delim001;
+41;wordsplit.at:438;custom, with returned delimiters;wordsplit wsp wordsplit040 wsp000 wsp-delim wsp-delim002;
+42;wordsplit.at:453;custom, with returned & squeezed delimiters;wordsplit wsp wordsplit041 wsp000 wsp-delim wsp-delim003;
+43;wordsplit.at:471;sed expressions;wordsplit wsp wordsplit042 wsp000 wsp-sed wsp-sed000;
+44;wordsplit.at:481;C escapes on;wordsplit wsp wordsplit043 wsp000 wcp-c-escape;
+45;wordsplit.at:490;C escapes off;wordsplit wsp wordsplit044 wsp000 wcp-c-escape-off;
+46;wordsplit.at:499;ws elimination;wordsplit wsp wordsplit045 wsp000 wsp-ws-elim;
+47;wordsplit.at:508;ws elimination + return delim;wordsplit wsp wordsplit046 wsp000 wsp-ws-elim-ret;
+48;wordsplit.at:521;empty quotes;wordsplit wsp wordsplit047 wsp000 wsp-empty-quotes;
+49;wordsplit.at:527;delimiter following empty quotes;wordsplit wsp wordsplit048 wsp000;
+50;wordsplit.at:536;suppress ws trimming within quotes;wordsplit wsp wordsplit049 wsp000;
+51;wordsplit.at:548;unescape;wordsplit wsp wordsplit050 wsp000 wsp-unescape wsp-unescape-simple;
+52;wordsplit.at:558;unescape: word/quote;wordsplit wsp wordsplit051 wsp000 wsp-unescape wsp-unescape-word;
+53;wordsplit.at:571;dquote;wordsplit wsp wordsplit052 wsp000;
+54;wordsplit.at:580;squote;wordsplit wsp wordsplit053 wsp000;
+55;wordsplit.at:591;incremental;wordsplit wsp wordsplit054 wsp000 wsp-incr wsp-incr000;
+56;wordsplit.at:606;incremental append;wordsplit wsp wordsplit055 wsp000 wsp-incr wsp-incr001;
+57;wordsplit.at:624;incremental ws;wordsplit wsp wordsplit056 wsp000 wsp-incr wsp-incr002;
+58;wordsplit.at:643;simple command substitution;wordsplit wsp wsp-cmd wsp-cmd-1;
+59;wordsplit.at:662;quoted command substitution;wordsplit wsp wsp-cmd wsp-cmd-2;
+60;wordsplit.at:680;coalesced command substitution;wordsplit wsp wsp-cmd wsp-cmd-3;
+61;wordsplit.at:697;quoted coalesced command substitution;wordsplit wsp wsp-cmd wsp-cmd-4;
+62;wordsplit.at:713;variable and command substitution;wordsplit wsp wsp-var wsp-var24 wsp-cmd wsp-cmd-5;
+63;wordsplit.at:732;variable expansion and command substitution in quotes;wordsplit wsp wsp-var wsp-var25 wsp-cmd wsp-cmd-6;
+64;wordsplit.at:748;pathname expansion;wordsplit wsp wsp-path wsp-path-1;
+65;wordsplit.at:769;pathname expansion: no match;wordsplit wsp wsp-path wsp-path-2;
+66;wordsplit.at:788;pathname expansion: nullglob;wordsplit wsp wsp-path wsp-path-3;
+67;wordsplit.at:806;pathname expansion: failglob;wordsplit wsp wsp-path wsp-path-4;
+68;format00.at:17;Default format;format format00;
+69;format01.at:17;Locus;format format01;
+70;format02.at:17;Custom delimiter;format format02;
+71;enum.at:17;Enumerate nodes;enum;
+72;peek00.at:17;Peek;peek peek00;
+73;peek01.at:17;Nested nodes;peek peek01;
+74;peek02.at:17;Block nodes;peek peek02;
+75;peek03.at:17;Nested blocks;peek peek03;
+76;glob00.at:17;Leading wildcard;peek peek04 glob glob00;
+77;glob01.at:17;Trailing wildcard;peek peek05 glob glob01;
+78;glob02.at:17;Intermediate wildcard;peek peek05 glob glob02;
+79;glob03.at:17;Multiple wildcards;peek peek06 glob glob03;
+80;glob04.at:17;Subtree - asterisk;peek peek07 glob glob04;
+81;glob05.at:17;Subtree - percent;peek peek08 glob glob05;
+82;reduce00.at:17;Simple statement;reduce reduce00;
+83;reduce01.at:17;Block statement;reduce reduce01;
+84;reduce02.at:17;Nested block statement;reduce reduce02;
+85;reduce03.at:17;Table driven reduction;reduce reduce03;
+86;sort00.at:17;Sort;sort sort00;
+87;sort01.at:17;Stable sort;sort sort01;
+88;incl00.at:17;Include path;include incl00;
+89;incl01.at:17;Recursive inclusion;include incl01;
+90;incl02.at:17;Include once;include incl02;
+91;incl03.at:17;Wildcard inclusion;include incl03;
+92;join.at:17;Join;join;
+93;cfhelp.at:17;Help;help;
+94;set.at:17;Set values;set;
+95;vercmp.at:17;Version comparator;vercmp;
+96;grecs00.at:17;C comments in GRECS-style parser;parser grecs grecs00;
+97;empty.at:17;Empty input file;parser empty;
+98;locus00.at:17;Scalar value;locus scalar locus00;
+99;locus01.at:17;Multiline strings;locus multiline locus01;
+100;locus02.at:17;Adjacent quoted strings;locus adjacent locus02;
+101;path-locus.at:17;Path;locus path;
 "
 # List of the all the test groups.
 at_groups_all=`$as_echo "$at_help_all" | sed 's/;.*//'`
@@ -633,7 +704,7 @@ at_fn_validate_ranges ()
   for at_grp
   do
     eval at_value=\$$at_grp
-    if test $at_value -lt 1 || test $at_value -gt 30; then
+    if test $at_value -lt 1 || test $at_value -gt 101; then
       $as_echo "invalid test group: $at_value" >&2
       exit 1
     fi
@@ -932,7 +1003,7 @@ fi
 # List of tests.
 if $at_list_p; then
   cat <<_ATEOF || at_write_fail=1
-GNU Direvent 5.0.90 test suite test groups:
+GNU Direvent 5.1 test suite test groups:
 
  NUM: FILE-NAME:LINE     TEST-GROUP-NAME
       KEYWORDS
@@ -973,7 +1044,7 @@ _ATEOF
   exit $at_write_fail
 fi
 if $at_version_p; then
-  $as_echo "$as_me (GNU Direvent 5.0.90)" &&
+  $as_echo "$as_me (GNU Direvent 5.1)" &&
   cat <<\_ATEOF || at_write_fail=1
 
 Copyright (C) 2012 Free Software Foundation, Inc.
@@ -990,30 +1061,36 @@ case $at_groups in #(
   * ) at_print_banners=false ;;
 esac
 # Text for banner N, set to a single space once printed.
-# Banner 1. testsuite.at:50
+# Banner 1. wordsplit.at:17
 # Category starts at test group 1.
-at_banner_text_1="Formats"
-# Banner 2. testsuite.at:55
-# Category starts at test group 4.
-at_banner_text_2="Enumeration"
-# Banner 3. testsuite.at:58
-# Category starts at test group 5.
-at_banner_text_3="Peek a node"
-# Banner 4. testsuite.at:64
-# Category starts at test group 9.
-at_banner_text_4="Globbing"
-# Banner 5. testsuite.at:72
-# Category starts at test group 15.
-at_banner_text_5="Reduce"
-# Banner 6. testsuite.at:78
-# Category starts at test group 19.
-at_banner_text_6="Sort"
-# Banner 7. testsuite.at:101
-# Category starts at test group 21.
-at_banner_text_7="Other operatios"
-# Banner 8. testsuite.at:109
-# Category starts at test group 27.
-at_banner_text_8="Locations"
+at_banner_text_1="Wordsplit"
+# Banner 2. testsuite.at:52
+# Category starts at test group 68.
+at_banner_text_2="Formats"
+# Banner 3. testsuite.at:57
+# Category starts at test group 71.
+at_banner_text_3="Enumeration"
+# Banner 4. testsuite.at:60
+# Category starts at test group 72.
+at_banner_text_4="Peek a node"
+# Banner 5. testsuite.at:66
+# Category starts at test group 76.
+at_banner_text_5="Globbing"
+# Banner 6. testsuite.at:74
+# Category starts at test group 82.
+at_banner_text_6="Reduce"
+# Banner 7. testsuite.at:80
+# Category starts at test group 86.
+at_banner_text_7="Sort"
+# Banner 8. testsuite.at:84
+# Category starts at test group 88.
+at_banner_text_8="Include"
+# Banner 9. testsuite.at:114
+# Category starts at test group 92.
+at_banner_text_9="Other operatios"
+# Banner 10. testsuite.at:122
+# Category starts at test group 98.
+at_banner_text_10="Locations"
 
 # Take any -C into account.
 if $at_change_dir ; then
@@ -1173,13 +1250,13 @@ fi
 exec 5>>"$at_suite_log"
 
 # Banners and logs.
-$as_echo "## ------------------------------- ##
-## GNU Direvent 5.0.90 test suite. ##
-## ------------------------------- ##"
+$as_echo "## ---------------------------- ##
+## GNU Direvent 5.1 test suite. ##
+## ---------------------------- ##"
 {
-  $as_echo "## ------------------------------- ##
-## GNU Direvent 5.0.90 test suite. ##
-## ------------------------------- ##"
+  $as_echo "## ---------------------------- ##
+## GNU Direvent 5.1 test suite. ##
+## ---------------------------- ##"
   echo
 
   $as_echo "$as_me: command line was:"
@@ -2022,7 +2099,7 @@ _ASBOX
   $as_echo "Please send $at_msg and all information you think might help:
 
    To: <bug-direvent@gnu.org.ua>
-   Subject: [GNU Direvent 5.0.90] $as_me: $at_fail_list${at_fail_list:+ failed${at_xpass_list:+, }}$at_xpass_list${at_xpass_list:+ passed unexpectedly}
+   Subject: [GNU Direvent 5.1] $as_me: $at_fail_list${at_fail_list:+ failed${at_xpass_list:+, }}$at_xpass_list${at_xpass_list:+ passed unexpectedly}
 
 You may investigate any problem if you feel able to do so, in which
 case the test suite provides a good starting point.  Its output may
@@ -2037,11 +2114,2810 @@ exit 0
 ## Actual tests. ##
 ## ------------- ##
 #AT_START_1
-at_fn_group_banner 1 'format00.at:17' \
-  "Default format" "                                 " 1
+at_fn_group_banner 1 'wordsplit.at:58' \
+  "simple input" "                                   " 1
 at_xfail=no
 (
   $as_echo "1. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:58:
+ wsp  <<'EOT'
+1 2 3
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:58"
+( $at_check_trace;
+ wsp  <<'EOT'
+1 2 3
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: 1
+1: 2
+2: 3
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:58"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_1
+#AT_START_2
+at_fn_group_banner 2 'wordsplit.at:66' \
+  "quoted space" "                                   " 1
+at_xfail=no
+(
+  $as_echo "2. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:66:
+ wsp  <<'EOT'
+quoted\\ space
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:66"
+( $at_check_trace;
+ wsp  <<'EOT'
+quoted\ space
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: \"quoted space\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:66"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_2
+#AT_START_3
+at_fn_group_banner 3 'wordsplit.at:72' \
+  "tab character" "                                  " 1
+at_xfail=no
+(
+  $as_echo "3. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:72:
+ wsp  <<'EOT'
+a \"tab	character\"
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:72"
+( $at_check_trace;
+ wsp  <<'EOT'
+a "tab	character"
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 2
+0: a
+1: tab\\tcharacter
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:72"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_3
+#AT_START_4
+at_fn_group_banner 4 'wordsplit.at:80' \
+  "octal and hex escapes" "                          " 1
+at_xfail=no
+(
+  $as_echo "4. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:80:
+ wsp  <<'EOT'
+\\157\\143\\164\\141\\154\\40and\\x20\\x68\\x65\\x78
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:80"
+( $at_check_trace;
+ wsp  <<'EOT'
+\157\143\164\141\154\40and\x20\x68\x65\x78
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: \"octal and hex\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:80"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_4
+#AT_START_5
+at_fn_group_banner 5 'wordsplit.at:86' \
+  "octal and hex escapes 2" "                        " 1
+at_xfail=no
+(
+  $as_echo "5. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:86:
+ wsp  <<'EOT'
+\\157\\143\\164\\141\\154\\40 and \\x20\\x68\\x65\\x78
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:86"
+( $at_check_trace;
+ wsp  <<'EOT'
+\157\143\164\141\154\40 and \x20\x68\x65\x78
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: \"octal \"
+1: and
+2: \" hex\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:86"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_5
+#AT_START_6
+at_fn_group_banner 6 'wordsplit.at:94' \
+  "escape representation" "                          " 1
+at_xfail=no
+(
+  $as_echo "6. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:94:
+ wsp  <<'EOT'
+A\\x3-\\48\\39
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:94"
+( $at_check_trace;
+ wsp  <<'EOT'
+A\x3-\48\39
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: A\\003-\\0048\\0039
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:94"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_6
+#AT_START_7
+at_fn_group_banner 7 'wordsplit.at:105' \
+  "append" "                                         " 1
+at_xfail=no
+(
+  $as_echo "7. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:105:
+ wsp append <<'EOT'
+jeden dwa trzy
+cztery
+piec szesc
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:105"
+( $at_check_trace;
+ wsp append <<'EOT'
+jeden dwa trzy
+cztery
+piec szesc
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: jeden
+1: dwa
+2: trzy
+NF: 4
+0: jeden
+1: dwa
+2: trzy
+3: cztery
+NF: 6
+0: jeden
+1: dwa
+2: trzy
+3: cztery
+4: piec
+5: szesc
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:105"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_7
+#AT_START_8
+at_fn_group_banner 8 'wordsplit.at:127' \
+  "dooffs" "                                         " 1
+at_xfail=no
+(
+  $as_echo "8. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:127:
+ wsp dooffs 3 jeden dwa trzy <<'EOT'
+cztery piec
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:127"
+( $at_check_trace;
+ wsp dooffs 3 jeden dwa trzy <<'EOT'
+cztery piec
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 2 (3)
+(0): jeden
+(1): dwa
+(2): trzy
+3: cztery
+4: piec
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:127"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_8
+#AT_START_9
+at_fn_group_banner 9 'wordsplit.at:139' \
+  "variable substitutions: single var" "             " 1
+at_xfail=no
+(
+  $as_echo "9. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:139:
+FOO=bar wsp  <<'EOT'
+a \$FOO test
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:139"
+( $at_check_trace;
+FOO=bar wsp  <<'EOT'
+a $FOO test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: a
+1: bar
+2: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:139"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_9
+#AT_START_10
+at_fn_group_banner 10 'wordsplit.at:149' \
+  "variable substitutions: concatenated vars" "      " 1
+at_xfail=no
+(
+  $as_echo "10. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:149:
+FOO=str BAR=ing wsp  <<'EOT'
+a \$FOO\${BAR}ent test
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:149"
+( $at_check_trace;
+FOO=str BAR=ing wsp  <<'EOT'
+a $FOO${BAR}ent test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: a
+1: stringent
+2: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:149"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_10
+#AT_START_11
+at_fn_group_banner 11 'wordsplit.at:160' \
+  "variable substitutions: field splitting" "        " 1
+at_xfail=no
+(
+  $as_echo "11. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:160:
+FOO=\"variable substitution\" wsp  <<'EOT'
+a \$FOO test
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:160"
+( $at_check_trace;
+FOO="variable substitution" wsp  <<'EOT'
+a $FOO test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: a
+1: variable
+2: substitution
+3: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:160"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_11
+#AT_START_12
+at_fn_group_banner 12 'wordsplit.at:171' \
+  "variable substitutions: double-quoted variable" " " 1
+at_xfail=no
+(
+  $as_echo "12. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:171:
+FOO=\"variable substitution\" wsp  <<'EOT'
+a \"\$FOO\" test
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:171"
+( $at_check_trace;
+FOO="variable substitution" wsp  <<'EOT'
+a "$FOO" test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: a
+1: \"variable substitution\"
+2: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:171"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_12
+#AT_START_13
+at_fn_group_banner 13 'wordsplit.at:181' \
+  "variable substitutions: single-quoted variable" " " 1
+at_xfail=no
+(
+  $as_echo "13. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:181:
+FOO=\"variable substitution\" wsp  <<'EOT'
+a '\$FOO' test
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:181"
+( $at_check_trace;
+FOO="variable substitution" wsp  <<'EOT'
+a '$FOO' test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: a
+1: \$FOO
+2: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:181"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_13
+#AT_START_14
+at_fn_group_banner 14 'wordsplit.at:191' \
+  "undefined variables 1" "                          " 1
+at_xfail=no
+(
+  $as_echo "14. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:191:
+unset FOO; wsp  <<'EOT'
+a \$FOO test a\${FOO}b
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:191"
+( $at_check_trace;
+unset FOO; wsp  <<'EOT'
+a $FOO test a${FOO}b
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: a
+1: test
+2: ab
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:191"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_14
+#AT_START_15
+at_fn_group_banner 15 'wordsplit.at:201' \
+  "undefined variables 2" "                          " 1
+at_xfail=no
+(
+  $as_echo "15. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:201:
+unset FOO; wsp keepundef <<'EOT'
+a \$FOO test a\${FOO}b
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:201"
+( $at_check_trace;
+unset FOO; wsp keepundef <<'EOT'
+a $FOO test a${FOO}b
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: a
+1: \$FOO
+2: test
+3: a\${FOO}b
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:201"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_15
+#AT_START_16
+at_fn_group_banner 16 'wordsplit.at:212' \
+  "warn about undefined variables" "                 " 1
+at_xfail=no
+(
+  $as_echo "16. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:212:
+unset FOO; wsp warnundef <<'EOT'
+\$FOO
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:212"
+( $at_check_trace;
+unset FOO; wsp warnundef <<'EOT'
+$FOO
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+echo >>"$at_stderr"; $as_echo "warning: undefined variable \`FOO'
+" | \
+  $at_diff - "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 0
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:212"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_16
+#AT_START_17
+at_fn_group_banner 17 'wordsplit.at:220' \
+  "bail out on undefined variables" "                " 1
+at_xfail=no
+(
+  $as_echo "17. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:220:
+unset FOO; wsp undef <<'EOT'
+\$FOO
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:220"
+( $at_check_trace;
+unset FOO; wsp undef <<'EOT'
+$FOO
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+echo >>"$at_stderr"; $as_echo "undefined variable
+" | \
+  $at_diff - "$at_stderr" || at_failed=:
+at_fn_diff_devnull "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:220"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_17
+#AT_START_18
+at_fn_group_banner 18 'wordsplit.at:227' \
+  "disable variable expansion" "                     " 1
+at_xfail=no
+(
+  $as_echo "18. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:227:
+FOO=bar wsp novar <<'EOT'
+\$FOO
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:227"
+( $at_check_trace;
+FOO=bar wsp novar <<'EOT'
+$FOO
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: \$FOO
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:227"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_18
+#AT_START_19
+at_fn_group_banner 19 'wordsplit.at:235' \
+  "K/V environment" "                                " 1
+at_xfail=no
+(
+  $as_echo "19. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:235:
+FOO=bar BAZ=qux wsp env_kv <<'EOT'
+\$FOO a\$BAZ
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:235"
+( $at_check_trace;
+FOO=bar BAZ=qux wsp env_kv <<'EOT'
+$FOO a$BAZ
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 2
+0: bar
+1: aqux
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:235"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_19
+#AT_START_20
+at_fn_group_banner 20 'wordsplit.at:245' \
+  "nosplit with expansion" "                         " 1
+at_xfail=no
+(
+  $as_echo "20. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:245:
+FOO=\"variable expansion\" wsp nosplit <<'EOT'
+a \$FOO test
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:245"
+( $at_check_trace;
+FOO="variable expansion" wsp nosplit <<'EOT'
+a $FOO test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: \"a variable expansion test\\n\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:245"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_20
+#AT_START_21
+at_fn_group_banner 21 'wordsplit.at:253' \
+  "nosplit without expansion" "                      " 1
+at_xfail=no
+(
+  $as_echo "21. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:253:
+FOO=\"variable expansion\" wsp nosplit novar <<'EOT'
+a \$FOO test
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:253"
+( $at_check_trace;
+FOO="variable expansion" wsp nosplit novar <<'EOT'
+a $FOO test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: \"a \$FOO test\\n\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:253"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_21
+#AT_START_22
+at_fn_group_banner 22 'wordsplit.at:261' \
+  "default value (defined)" "                        " 1
+at_xfail=no
+(
+  $as_echo "22. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:261:
+FOO=qux wsp  <<'EOT'
+\${FOO:-bar}
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:261"
+( $at_check_trace;
+FOO=qux wsp  <<'EOT'
+${FOO:-bar}
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: qux
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:261"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_22
+#AT_START_23
+at_fn_group_banner 23 'wordsplit.at:269' \
+  "default value" "                                  " 1
+at_xfail=no
+(
+  $as_echo "23. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:269:
+ wsp  <<'EOT'
+\${FOO:-bar}
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:269"
+( $at_check_trace;
+ wsp  <<'EOT'
+${FOO:-bar}
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: bar
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:269"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_23
+#AT_START_24
+at_fn_group_banner 24 'wordsplit.at:275' \
+  "default value (defined)" "                        " 1
+at_xfail=no
+(
+  $as_echo "24. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:275:
+FOO=qux wsp  <<'EOT'
+\${FOO:-bar}
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:275"
+( $at_check_trace;
+FOO=qux wsp  <<'EOT'
+${FOO:-bar}
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: qux
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:275"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_24
+#AT_START_25
+at_fn_group_banner 25 'wordsplit.at:283' \
+  "default value (:- null)" "                        " 1
+at_xfail=no
+(
+  $as_echo "25. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:283:
+FOO= wsp  <<'EOT'
+\${FOO:-bar}
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:283"
+( $at_check_trace;
+FOO= wsp  <<'EOT'
+${FOO:-bar}
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: bar
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:283"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_25
+#AT_START_26
+at_fn_group_banner 26 'wordsplit.at:291' \
+  "default value (- null)" "                         " 1
+at_xfail=no
+(
+  $as_echo "26. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:291:
+FOO= wsp  <<'EOT'
+\${FOO-bar}
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:291"
+( $at_check_trace;
+FOO= wsp  <<'EOT'
+${FOO-bar}
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 0
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:291"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_26
+#AT_START_27
+at_fn_group_banner 27 'wordsplit.at:298' \
+  "default value (- null, unset)" "                  " 1
+at_xfail=no
+(
+  $as_echo "27. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:298:
+ wsp  <<'EOT'
+\${FOO-bar}
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:298"
+( $at_check_trace;
+ wsp  <<'EOT'
+${FOO-bar}
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: bar
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:298"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_27
+#AT_START_28
+at_fn_group_banner 28 'wordsplit.at:304' \
+  "assign default values" "                          " 1
+at_xfail=no
+(
+  $as_echo "28. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:304:
+ wsp  <<'EOT'
+\${FOO=bar}
+\$FOO
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:304"
+( $at_check_trace;
+ wsp  <<'EOT'
+${FOO=bar}
+$FOO
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: bar
+NF: 1
+0: bar
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:304"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_28
+#AT_START_29
+at_fn_group_banner 29 'wordsplit.at:313' \
+  "default error message (var defined)" "            " 1
+at_xfail=no
+(
+  $as_echo "29. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:313:
+FOO=bar wsp  <<'EOT'
+a \${FOO:?} test
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:313"
+( $at_check_trace;
+FOO=bar wsp  <<'EOT'
+a ${FOO:?} test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: a
+1: bar
+2: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:313"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_29
+#AT_START_30
+at_fn_group_banner 30 'wordsplit.at:323' \
+  "default error message" "                          " 1
+at_xfail=no
+(
+  $as_echo "30. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:323:
+ wsp  <<'EOT'
+\${FOO:?}
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:323"
+( $at_check_trace;
+ wsp  <<'EOT'
+${FOO:?}
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+echo >>"$at_stderr"; $as_echo "FOO: variable null or not set
+" | \
+  $at_diff - "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 0
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:323"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_30
+#AT_START_31
+at_fn_group_banner 31 'wordsplit.at:330' \
+  "custom error message (defined)" "                 " 1
+at_xfail=no
+(
+  $as_echo "31. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:330:
+FOO=bar wsp  <<'EOT'
+a \${FOO:?please define it} test
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:330"
+( $at_check_trace;
+FOO=bar wsp  <<'EOT'
+a ${FOO:?please define it} test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: a
+1: bar
+2: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:330"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_31
+#AT_START_32
+at_fn_group_banner 32 'wordsplit.at:340' \
+  "custom error message" "                           " 1
+at_xfail=no
+(
+  $as_echo "32. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:340:
+ wsp  <<'EOT'
+a \${FOO:?please define it} test
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:340"
+( $at_check_trace;
+ wsp  <<'EOT'
+a ${FOO:?please define it} test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+echo >>"$at_stderr"; $as_echo "FOO: please define it
+" | \
+  $at_diff - "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 2
+0: a
+1: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:340"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_32
+#AT_START_33
+at_fn_group_banner 33 'wordsplit.at:349' \
+  "alternate value (defined)" "                      " 1
+at_xfail=no
+(
+  $as_echo "33. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:349:
+FOO=bar wsp  <<'EOT'
+a \${FOO:+isset} test
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:349"
+( $at_check_trace;
+FOO=bar wsp  <<'EOT'
+a ${FOO:+isset} test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: a
+1: isset
+2: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:349"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_33
+#AT_START_34
+at_fn_group_banner 34 'wordsplit.at:359' \
+  "alternate value" "                                " 1
+at_xfail=no
+(
+  $as_echo "34. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:359:
+unset FOO; wsp  <<'EOT'
+a \${FOO:+isset} test
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:359"
+( $at_check_trace;
+unset FOO; wsp  <<'EOT'
+a ${FOO:+isset} test
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 2
+0: a
+1: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:359"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_34
+#AT_START_35
+at_fn_group_banner 35 'wordsplit.at:368' \
+  "getvar" "                                         " 1
+at_xfail=no
+(
+  $as_echo "35. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:368: unset foo; unset x
+ wsp foo=bar x=quux <<'EOT'
+begin \$foo \$x end
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:368"
+( $at_check_trace; unset foo; unset x
+ wsp foo=bar x=quux <<'EOT'
+begin $foo $x end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: begin
+1: bar
+2: quux
+3: end
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:368"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_35
+#AT_START_36
+at_fn_group_banner 36 'wordsplit.at:381' \
+  "getvar and env" "                                 " 1
+at_xfail=no
+(
+  $as_echo "36. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:381: unset foo; unset x
+TVAR=12 y=zwar wsp foo=bar x=quux y=xur <<'EOT'
+begin \$foo \$TVAR \$x \$y end
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:381"
+( $at_check_trace; unset foo; unset x
+TVAR=12 y=zwar wsp foo=bar x=quux y=xur <<'EOT'
+begin $foo $TVAR $x $y end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 6
+0: begin
+1: bar
+2: 12
+3: quux
+4: zwar
+5: end
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:381"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_36
+#AT_START_37
+at_fn_group_banner 37 'wordsplit.at:396' \
+  "getvar, alternate value" "                        " 1
+at_xfail=no
+(
+  $as_echo "37. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:396:
+ wsp foo=bar <<'EOT'
+a \${foo:+isset}
+EOT
+"
+at_fn_check_prepare_notrace 'a ${...} parameter expansion' "wordsplit.at:396"
+( $at_check_trace;
+ wsp foo=bar <<'EOT'
+a ${foo:+isset}
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 2
+0: a
+1: isset
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:396"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_37
+#AT_START_38
+at_fn_group_banner 38 'wordsplit.at:406' \
+  "ignore quotes" "                                  " 1
+at_xfail=no
+(
+  $as_echo "38. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:406:
+ wsp -quote <<'EOT'
+\"a text\"
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:406"
+( $at_check_trace;
+ wsp -quote <<'EOT'
+"a text"
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 2
+0: \"\\\"a\"
+1: \"text\\\"\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:406"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_38
+#AT_START_39
+at_fn_group_banner 39 'wordsplit.at:415' \
+  "custom delimiters (squeeze)" "                    " 1
+at_xfail=no
+(
+  $as_echo "39. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:415:
+ wsp delim : -ws trimnl <<'EOT'
+semicolon: separated::list: of :words
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:415"
+( $at_check_trace;
+ wsp delim : -ws trimnl <<'EOT'
+semicolon: separated::list: of :words
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 5
+0: semicolon
+1: \" separated\"
+2: list
+3: \" of \"
+4: words
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:415"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_39
+#AT_START_40
+at_fn_group_banner 40 'wordsplit.at:426' \
+  "custom delimiters (no squeeze)" "                 " 1
+at_xfail=no
+(
+  $as_echo "40. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:426:
+ wsp delim : -ws -squeeze_delims trimnl <<'EOT'
+semicolon: separated::list: of :words
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:426"
+( $at_check_trace;
+ wsp delim : -ws -squeeze_delims trimnl <<'EOT'
+semicolon: separated::list: of :words
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 6
+0: semicolon
+1: \" separated\"
+2: \"\"
+3: list
+4: \" of \"
+5: words
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:426"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_40
+#AT_START_41
+at_fn_group_banner 41 'wordsplit.at:438' \
+  "custom, with returned delimiters" "               " 1
+at_xfail=no
+(
+  $as_echo "41. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:438:
+ wsp delim : -ws trimnl return_delims <<'EOT'
+semicolon: separated::list: of :words
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:438"
+( $at_check_trace;
+ wsp delim : -ws trimnl return_delims <<'EOT'
+semicolon: separated::list: of :words
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 9
+0: semicolon
+1: :
+2: \" separated\"
+3: :
+4: list
+5: :
+6: \" of \"
+7: :
+8: words
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:438"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_41
+#AT_START_42
+at_fn_group_banner 42 'wordsplit.at:453' \
+  "custom, with returned & squeezed delimiters" "    " 1
+at_xfail=no
+(
+  $as_echo "42. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:453:
+ wsp delim : -ws trimnl return_delims -squeeze_delims <<'EOT'
+semicolon: separated::list: of :words
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:453"
+( $at_check_trace;
+ wsp delim : -ws trimnl return_delims -squeeze_delims <<'EOT'
+semicolon: separated::list: of :words
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 10
+0: semicolon
+1: :
+2: \" separated\"
+3: :
+4: :
+5: list
+6: :
+7: \" of \"
+8: :
+9: words
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:453"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_42
+#AT_START_43
+at_fn_group_banner 43 'wordsplit.at:471' \
+  "sed expressions" "                                " 1
+at_xfail=no
+(
+  $as_echo "43. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:471:
+ wsp sed <<'EOT'
+arg1 s/foo/bar/g;s/bar baz/quz quux/ arg2
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:471"
+( $at_check_trace;
+ wsp sed <<'EOT'
+arg1 s/foo/bar/g;s/bar baz/quz quux/ arg2
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: arg1
+1: \"s/foo/bar/g;s/bar baz/quz quux/\"
+2: arg2
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:471"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_43
+#AT_START_44
+at_fn_group_banner 44 'wordsplit.at:481' \
+  "C escapes on" "                                   " 1
+at_xfail=no
+(
+  $as_echo "44. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:481:
+ wsp cescapes <<'EOT'
+a\\ttab form\\ffeed and new\\nline
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:481"
+( $at_check_trace;
+ wsp cescapes <<'EOT'
+a\ttab form\ffeed and new\nline
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: a\\ttab
+1: form\\ffeed
+2: and
+3: new\\nline
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:481"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_44
+#AT_START_45
+at_fn_group_banner 45 'wordsplit.at:490' \
+  "C escapes off" "                                  " 1
+at_xfail=no
+(
+  $as_echo "45. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:490:
+ wsp -cescapes <<'EOT'
+a\\ttab form\\ffeed and new\\nline
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:490"
+( $at_check_trace;
+ wsp -cescapes <<'EOT'
+a\ttab form\ffeed and new\nline
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: attab
+1: formffeed
+2: and
+3: newnline
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:490"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_45
+#AT_START_46
+at_fn_group_banner 46 'wordsplit.at:499' \
+  "ws elimination" "                                 " 1
+at_xfail=no
+(
+  $as_echo "46. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:499:
+ wsp delim ' ()' ws return_delims <<'EOT'
+( list  items  )
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:499"
+( $at_check_trace;
+ wsp delim ' ()' ws return_delims <<'EOT'
+( list  items  )
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: (
+1: list
+2: items
+3: )
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:499"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_46
+#AT_START_47
+at_fn_group_banner 47 'wordsplit.at:508' \
+  "ws elimination + return delim" "                  " 1
+at_xfail=no
+(
+  $as_echo "47. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:508:
+ wsp -default novar nocmd delim \":,\" return_delims ws dquote <<'EOT'
+\"foo\" : \"bar\", \"quux\" : \"baaz\"
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:508"
+( $at_check_trace;
+ wsp -default novar nocmd delim ":," return_delims ws dquote <<'EOT'
+"foo" : "bar", "quux" : "baaz"
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 7
+0: foo
+1: :
+2: bar
+3: ,
+4: quux
+5: :
+6: baaz
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:508"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_47
+#AT_START_48
+at_fn_group_banner 48 'wordsplit.at:521' \
+  "empty quotes" "                                   " 1
+at_xfail=no
+(
+  $as_echo "48. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:521:
+ wsp delim : ws return_delims <<'EOT'
+t=\"\"
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:521"
+( $at_check_trace;
+ wsp delim : ws return_delims <<'EOT'
+t=""
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: t=
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:521"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_48
+#AT_START_49
+at_fn_group_banner 49 'wordsplit.at:527' \
+  "delimiter following empty quotes" "               " 1
+at_xfail=no
+(
+  $as_echo "49. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:527:
+ wsp delim : ws return_delims <<'EOT'
+t=\"\":r
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:527"
+( $at_check_trace;
+ wsp delim : ws return_delims <<'EOT'
+t="":r
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: t=
+1: :
+2: r
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:527"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_49
+#AT_START_50
+at_fn_group_banner 50 'wordsplit.at:536' \
+  "suppress ws trimming within quotes" "             " 1
+at_xfail=no
+(
+  $as_echo "50. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:536:
+ wsp default delim , ws return_delims <<'EOT'
+nocomponent,nonewline, formatfield=\"In message %{text}, \"
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:536"
+( $at_check_trace;
+ wsp default delim , ws return_delims <<'EOT'
+nocomponent,nonewline, formatfield="In message %{text}, "
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 5
+0: nocomponent
+1: ,
+2: nonewline
+3: ,
+4: \"formatfield=In message %{text}, \"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:536"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_50
+#AT_START_51
+at_fn_group_banner 51 'wordsplit.at:548' \
+  "unescape" "                                       " 1
+at_xfail=no
+(
+  $as_echo "51. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:548:
+ wsp -default novar nocmd quote escape ':+:\\\\\"\"' <<'EOT'
+\\Seen \"quote \\\"\" \"bs \\\\\"
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:548"
+( $at_check_trace;
+ wsp -default novar nocmd quote escape ':+:\\""' <<'EOT'
+\Seen "quote \"" "bs \\"
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: \\\\Seen
+1: \"quote \\\"\"
+2: \"bs \\\\\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:548"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_51
+#AT_START_52
+at_fn_group_banner 52 'wordsplit.at:558' \
+  "unescape: word/quote" "                           " 1
+at_xfail=no
+(
+  $as_echo "52. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:558:
+ wsp -default novar nocmd quote escape-word '\\\\\"\"' escape-quote ':+0x:\\\\\"\"' <<'EOT'
+\\Seen \"quote \\\"\" \"bs \\\\\" \"3\\x31 \\101\" 3\\x31 \\101
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:558"
+( $at_check_trace;
+ wsp -default novar nocmd quote escape-word '\\""' escape-quote ':+0x:\\""' <<'EOT'
+\Seen "quote \"" "bs \\" "3\x31 \101" 3\x31 \101
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 6
+0: Seen
+1: \"quote \\\"\"
+2: \"bs \\\\\"
+3: \"31 A\"
+4: 3x31
+5: 101
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:558"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_52
+#AT_START_53
+at_fn_group_banner 53 'wordsplit.at:571' \
+  "dquote" "                                         " 1
+at_xfail=no
+(
+  $as_echo "53. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:571:
+ wsp -default novar nocmd dquote <<'EOT'
+a \"quoted example\" isn't it
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:571"
+( $at_check_trace;
+ wsp -default novar nocmd dquote <<'EOT'
+a "quoted example" isn't it
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: a
+1: \"quoted example\"
+2: isn't
+3: it
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:571"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_53
+#AT_START_54
+at_fn_group_banner 54 'wordsplit.at:580' \
+  "squote" "                                         " 1
+at_xfail=no
+(
+  $as_echo "54. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:580:
+ wsp -default novar nocmd squote <<'EOT'
+a 'quoted example' isn\"t it
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:580"
+( $at_check_trace;
+ wsp -default novar nocmd squote <<'EOT'
+a 'quoted example' isn"t it
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: a
+1: \"quoted example\"
+2: \"isn\\\"t\"
+3: it
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:580"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_54
+#AT_START_55
+at_fn_group_banner 55 'wordsplit.at:591' \
+  "incremental" "                                    " 1
+at_xfail=no
+(
+  $as_echo "55. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:591:
+ wsp incremental <<'EOT'
+incremental \"input test\" line
+
+
+
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:591"
+( $at_check_trace;
+ wsp incremental <<'EOT'
+incremental "input test" line
+
+
+
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+echo >>"$at_stderr"; $as_echo "input exhausted
+" | \
+  $at_diff - "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: incremental
+NF: 1
+0: \"input test\"
+NF: 1
+0: line
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:591"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_55
+#AT_START_56
+at_fn_group_banner 56 'wordsplit.at:606' \
+  "incremental append" "                             " 1
+at_xfail=no
+(
+  $as_echo "56. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:606:
+ wsp incremental append <<'EOT'
+incremental \"input test\" line
+
+
+
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:606"
+( $at_check_trace;
+ wsp incremental append <<'EOT'
+incremental "input test" line
+
+
+
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+echo >>"$at_stderr"; $as_echo "input exhausted
+" | \
+  $at_diff - "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: incremental
+NF: 2
+0: incremental
+1: \"input test\"
+NF: 3
+0: incremental
+1: \"input test\"
+2: line
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:606"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_56
+#AT_START_57
+at_fn_group_banner 57 'wordsplit.at:624' \
+  "incremental ws" "                                 " 1
+at_xfail=no
+(
+  $as_echo "57. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:624:
+ wsp return_delims -squeeze_delims incremental ws <<'EOT'
+a   list  test
+
+
+
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:624"
+( $at_check_trace;
+ wsp return_delims -squeeze_delims incremental ws <<'EOT'
+a   list  test
+
+
+
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+echo >>"$at_stderr"; $as_echo "input exhausted
+" | \
+  $at_diff - "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: a
+NF: 1
+0: list
+NF: 1
+0: test
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:624"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_57
+#AT_START_58
+at_fn_group_banner 58 'wordsplit.at:643' \
+  "simple command substitution" "                    " 1
+at_xfail=no
+(
+  $as_echo "58. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:645:
+mkdir dir
+> dir/file
+
+wsp -nocmd <<'EOT'
+begin \$(find dir) end
+EOT
+"
+at_fn_check_prepare_notrace 'a $(...) command substitution' "wordsplit.at:645"
+( $at_check_trace;
+mkdir dir
+> dir/file
+
+wsp -nocmd <<'EOT'
+begin $(find dir) end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: begin
+1: dir
+2: dir/file
+3: end
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:645"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_58
+#AT_START_59
+at_fn_group_banner 59 'wordsplit.at:662' \
+  "quoted command substitution" "                    " 1
+at_xfail=no
+(
+  $as_echo "59. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:664:
+mkdir dir
+> dir/file
+
+wsp -nocmd <<'EOT'
+begin \"\$(find dir)\" end
+EOT
+"
+at_fn_check_prepare_notrace 'a $(...) command substitution' "wordsplit.at:664"
+( $at_check_trace;
+mkdir dir
+> dir/file
+
+wsp -nocmd <<'EOT'
+begin "$(find dir)" end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: begin
+1: \"dir dir/file\"
+2: end
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:664"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_59
+#AT_START_60
+at_fn_group_banner 60 'wordsplit.at:680' \
+  "coalesced command substitution" "                 " 1
+at_xfail=no
+(
+  $as_echo "60. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:682:
+mkdir dir
+> dir/file
+
+wsp -nocmd <<'EOT'
+begin(\$(find dir))end
+EOT
+"
+at_fn_check_prepare_notrace 'a $(...) command substitution' "wordsplit.at:682"
+( $at_check_trace;
+mkdir dir
+> dir/file
+
+wsp -nocmd <<'EOT'
+begin($(find dir))end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 2
+0: begin(dir
+1: dir/file)end
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:682"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_60
+#AT_START_61
+at_fn_group_banner 61 'wordsplit.at:697' \
+  "quoted coalesced command substitution" "          " 1
+at_xfail=no
+(
+  $as_echo "61. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:699:
+mkdir dir
+> dir/file
+
+wsp -nocmd <<'EOT'
+\"begin(\$(find dir))end\"
+EOT
+"
+at_fn_check_prepare_notrace 'a $(...) command substitution' "wordsplit.at:699"
+( $at_check_trace;
+mkdir dir
+> dir/file
+
+wsp -nocmd <<'EOT'
+"begin($(find dir))end"
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: \"begin(dir dir/file)end\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:699"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_61
+#AT_START_62
+at_fn_group_banner 62 'wordsplit.at:713' \
+  "variable and command substitution" "              " 1
+at_xfail=no
+(
+  $as_echo "62. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:715:
+mkdir dir
+> dir/file
+
+DIR=dir wsp -nocmd -novar<<'EOT'
+begin \$(find \$DIR) end
+EOT
+"
+at_fn_check_prepare_notrace 'a $(...) command substitution' "wordsplit.at:715"
+( $at_check_trace;
+mkdir dir
+> dir/file
+
+DIR=dir wsp -nocmd -novar<<'EOT'
+begin $(find $DIR) end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: begin
+1: dir
+2: dir/file
+3: end
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:715"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_62
+#AT_START_63
+at_fn_group_banner 63 'wordsplit.at:732' \
+  "variable expansion and command substitution in quotes" "" 1
+at_xfail=no
+(
+  $as_echo "63. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:734:
+mkdir dir
+> dir/file
+
+DIR=dir wsp -nocmd -novar<<'EOT'
+\"begin(\$(find \$DIR))end\"
+EOT
+"
+at_fn_check_prepare_notrace 'a $(...) command substitution' "wordsplit.at:734"
+( $at_check_trace;
+mkdir dir
+> dir/file
+
+DIR=dir wsp -nocmd -novar<<'EOT'
+"begin($(find $DIR))end"
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 1
+0: \"begin(dir dir/file)end\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:734"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_63
+#AT_START_64
+at_fn_group_banner 64 'wordsplit.at:748' \
+  "pathname expansion" "                             " 1
+at_xfail=no
+(
+  $as_echo "64. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:750:
+mkdir dir
+> dir/1.c
+> dir/2.c
+> dir/3.b
+
+wsp pathexpand<<'EOT'
+begin dir/*.c end
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:750"
+( $at_check_trace;
+mkdir dir
+> dir/1.c
+> dir/2.c
+> dir/3.b
+
+wsp pathexpand<<'EOT'
+begin dir/*.c end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 4
+0: begin
+1: dir/1.c
+2: dir/2.c
+3: end
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:750"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_64
+#AT_START_65
+at_fn_group_banner 65 'wordsplit.at:769' \
+  "pathname expansion: no match" "                   " 1
+at_xfail=no
+(
+  $as_echo "65. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:771:
+mkdir dir
+> dir/1.c
+> dir/2.b
+
+wsp pathexpand<<'EOT'
+begin dir/*.d end
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:771"
+( $at_check_trace;
+mkdir dir
+> dir/1.c
+> dir/2.b
+
+wsp pathexpand<<'EOT'
+begin dir/*.d end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 3
+0: begin
+1: dir/*.d
+2: end
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:771"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_65
+#AT_START_66
+at_fn_group_banner 66 'wordsplit.at:788' \
+  "pathname expansion: nullglob" "                   " 1
+at_xfail=no
+(
+  $as_echo "66. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:790:
+mkdir dir
+> dir/1.c
+> dir/2.b
+
+wsp pathexpand nullglob<<'EOT'
+begin dir/*.d end
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:790"
+( $at_check_trace;
+mkdir dir
+> dir/1.c
+> dir/2.b
+
+wsp pathexpand nullglob<<'EOT'
+begin dir/*.d end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo "NF: 2
+0: begin
+1: end
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:790"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_66
+#AT_START_67
+at_fn_group_banner 67 'wordsplit.at:806' \
+  "pathname expansion: failglob" "                   " 1
+at_xfail=no
+(
+  $as_echo "67. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+{ set +x
+$as_echo "$at_srcdir/wordsplit.at:808:
+mkdir dir
+> dir/1.c
+> dir/2.b
+
+wsp pathexpand failglob<<'EOT'
+begin dir/*.d end
+EOT
+"
+at_fn_check_prepare_notrace 'an embedded newline' "wordsplit.at:808"
+( $at_check_trace;
+mkdir dir
+> dir/1.c
+> dir/2.b
+
+wsp pathexpand failglob<<'EOT'
+begin dir/*.d end
+EOT
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+echo >>"$at_stderr"; $as_echo "no files match pattern dir/*.d
+" | \
+  $at_diff - "$at_stderr" || at_failed=:
+at_fn_diff_devnull "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/wordsplit.at:808"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_67
+#AT_START_68
+at_fn_group_banner 68 'format00.at:17' \
+  "Default format" "                                 " 2
+at_xfail=no
+(
+  $as_echo "68. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2079,13 +4955,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_1
-#AT_START_2
-at_fn_group_banner 2 'format01.at:17' \
-  "Locus" "                                          " 1
+#AT_STOP_68
+#AT_START_69
+at_fn_group_banner 69 'format01.at:17' \
+  "Locus" "                                          " 2
 at_xfail=no
 (
-  $as_echo "2. $at_setup_line: testing $at_desc ..."
+  $as_echo "69. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2123,13 +4999,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_2
-#AT_START_3
-at_fn_group_banner 3 'format02.at:17' \
-  "Custom delimiter" "                               " 1
+#AT_STOP_69
+#AT_START_70
+at_fn_group_banner 70 'format02.at:17' \
+  "Custom delimiter" "                               " 2
 at_xfail=no
 (
-  $as_echo "3. $at_setup_line: testing $at_desc ..."
+  $as_echo "70. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2167,13 +5043,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_3
-#AT_START_4
-at_fn_group_banner 4 'enum.at:17' \
-  "Enumerate nodes" "                                " 2
+#AT_STOP_70
+#AT_START_71
+at_fn_group_banner 71 'enum.at:17' \
+  "Enumerate nodes" "                                " 3
 at_xfail=no
 (
-  $as_echo "4. $at_setup_line: testing $at_desc ..."
+  $as_echo "71. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2217,13 +5093,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_4
-#AT_START_5
-at_fn_group_banner 5 'peek00.at:17' \
-  "Peek" "                                           " 3
+#AT_STOP_71
+#AT_START_72
+at_fn_group_banner 72 'peek00.at:17' \
+  "Peek" "                                           " 4
 at_xfail=no
 (
-  $as_echo "5. $at_setup_line: testing $at_desc ..."
+  $as_echo "72. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2248,13 +5124,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_5
-#AT_START_6
-at_fn_group_banner 6 'peek01.at:17' \
-  "Nested nodes" "                                   " 3
+#AT_STOP_72
+#AT_START_73
+at_fn_group_banner 73 'peek01.at:17' \
+  "Nested nodes" "                                   " 4
 at_xfail=no
 (
-  $as_echo "6. $at_setup_line: testing $at_desc ..."
+  $as_echo "73. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2295,13 +5171,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_6
-#AT_START_7
-at_fn_group_banner 7 'peek02.at:17' \
-  "Block nodes" "                                    " 3
+#AT_STOP_73
+#AT_START_74
+at_fn_group_banner 74 'peek02.at:17' \
+  "Block nodes" "                                    " 4
 at_xfail=no
 (
-  $as_echo "7. $at_setup_line: testing $at_desc ..."
+  $as_echo "74. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2327,13 +5203,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_7
-#AT_START_8
-at_fn_group_banner 8 'peek03.at:17' \
-  "Nested blocks" "                                  " 3
+#AT_STOP_74
+#AT_START_75
+at_fn_group_banner 75 'peek03.at:17' \
+  "Nested blocks" "                                  " 4
 at_xfail=no
 (
-  $as_echo "8. $at_setup_line: testing $at_desc ..."
+  $as_echo "75. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2377,13 +5253,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_8
-#AT_START_9
-at_fn_group_banner 9 'glob00.at:17' \
-  "Leading wildcard" "                               " 4
+#AT_STOP_75
+#AT_START_76
+at_fn_group_banner 76 'glob00.at:17' \
+  "Leading wildcard" "                               " 5
 at_xfail=no
 (
-  $as_echo "9. $at_setup_line: testing $at_desc ..."
+  $as_echo "76. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2410,13 +5286,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_9
-#AT_START_10
-at_fn_group_banner 10 'glob01.at:17' \
-  "Trailing wildcard" "                              " 4
+#AT_STOP_76
+#AT_START_77
+at_fn_group_banner 77 'glob01.at:17' \
+  "Trailing wildcard" "                              " 5
 at_xfail=no
 (
-  $as_echo "10. $at_setup_line: testing $at_desc ..."
+  $as_echo "77. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2443,13 +5319,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_10
-#AT_START_11
-at_fn_group_banner 11 'glob02.at:17' \
-  "Intermediate wildcard" "                          " 4
+#AT_STOP_77
+#AT_START_78
+at_fn_group_banner 78 'glob02.at:17' \
+  "Intermediate wildcard" "                          " 5
 at_xfail=no
 (
-  $as_echo "11. $at_setup_line: testing $at_desc ..."
+  $as_echo "78. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2474,13 +5350,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_11
-#AT_START_12
-at_fn_group_banner 12 'glob03.at:17' \
-  "Multiple wildcards" "                             " 4
+#AT_STOP_78
+#AT_START_79
+at_fn_group_banner 79 'glob03.at:17' \
+  "Multiple wildcards" "                             " 5
 at_xfail=no
 (
-  $as_echo "12. $at_setup_line: testing $at_desc ..."
+  $as_echo "79. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2535,13 +5411,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_12
-#AT_START_13
-at_fn_group_banner 13 'glob04.at:17' \
-  "Subtree - asterisk" "                             " 4
+#AT_STOP_79
+#AT_START_80
+at_fn_group_banner 80 'glob04.at:17' \
+  "Subtree - asterisk" "                             " 5
 at_xfail=no
 (
-  $as_echo "13. $at_setup_line: testing $at_desc ..."
+  $as_echo "80. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2585,13 +5461,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_13
-#AT_START_14
-at_fn_group_banner 14 'glob05.at:17' \
-  "Subtree - percent" "                              " 4
+#AT_STOP_80
+#AT_START_81
+at_fn_group_banner 81 'glob05.at:17' \
+  "Subtree - percent" "                              " 5
 at_xfail=no
 (
-  $as_echo "14. $at_setup_line: testing $at_desc ..."
+  $as_echo "81. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2635,13 +5511,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_14
-#AT_START_15
-at_fn_group_banner 15 'reduce00.at:17' \
-  "Simple statement" "                               " 5
+#AT_STOP_81
+#AT_START_82
+at_fn_group_banner 82 'reduce00.at:17' \
+  "Simple statement" "                               " 6
 at_xfail=no
 (
-  $as_echo "15. $at_setup_line: testing $at_desc ..."
+  $as_echo "82. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2672,13 +5548,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_15
-#AT_START_16
-at_fn_group_banner 16 'reduce01.at:17' \
-  "Block statement" "                                " 5
+#AT_STOP_82
+#AT_START_83
+at_fn_group_banner 83 'reduce01.at:17' \
+  "Block statement" "                                " 6
 at_xfail=no
 (
-  $as_echo "16. $at_setup_line: testing $at_desc ..."
+  $as_echo "83. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2722,13 +5598,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_16
-#AT_START_17
-at_fn_group_banner 17 'reduce02.at:17' \
-  "Nested block statement" "                         " 5
+#AT_STOP_83
+#AT_START_84
+at_fn_group_banner 84 'reduce02.at:17' \
+  "Nested block statement" "                         " 6
 at_xfail=no
 (
-  $as_echo "17. $at_setup_line: testing $at_desc ..."
+  $as_echo "84. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2783,13 +5659,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_17
-#AT_START_18
-at_fn_group_banner 18 'reduce03.at:17' \
-  "Table driven reduction" "                         " 5
+#AT_STOP_84
+#AT_START_85
+at_fn_group_banner 85 'reduce03.at:17' \
+  "Table driven reduction" "                         " 6
 at_xfail=no
 (
-  $as_echo "18. $at_setup_line: testing $at_desc ..."
+  $as_echo "85. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2834,13 +5710,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_18
-#AT_START_19
-at_fn_group_banner 19 'sort00.at:17' \
-  "Sort" "                                           " 6
+#AT_STOP_85
+#AT_START_86
+at_fn_group_banner 86 'sort00.at:17' \
+  "Sort" "                                           " 7
 at_xfail=no
 (
-  $as_echo "19. $at_setup_line: testing $at_desc ..."
+  $as_echo "86. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2898,13 +5774,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_19
-#AT_START_20
-at_fn_group_banner 20 'sort01.at:17' \
-  "Stable sort" "                                    " 6
+#AT_STOP_86
+#AT_START_87
+at_fn_group_banner 87 'sort01.at:17' \
+  "Stable sort" "                                    " 7
 at_xfail=no
 (
-  $as_echo "20. $at_setup_line: testing $at_desc ..."
+  $as_echo "87. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -2942,13 +5818,321 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_20
-#AT_START_21
-at_fn_group_banner 21 'join.at:17' \
-  "Join" "                                           " 7
+#AT_STOP_87
+#AT_START_88
+at_fn_group_banner 88 'incl00.at:17' \
+  "Include path" "                                   " 8
 at_xfail=no
 (
-  $as_echo "21. $at_setup_line: testing $at_desc ..."
+  $as_echo "88. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+
+{ set +x
+$as_echo "$at_srcdir/incl00.at:20:
+mkdir include
+cat >include/1.inc <<'_ATEOF'
+this true;
+_ATEOF
+
+
+cat >test.cf <<'_ATEOF'
+
+before 1;
+#include <1.inc>
+after 1;
+_ATEOF
+
+
+gcffmt -I\`pwd\`/include ./test.cf
+"
+at_fn_check_prepare_notrace 'a `...` command substitution' "incl00.at:20"
+( $at_check_trace;
+mkdir include
+cat >include/1.inc <<'_ATEOF'
+this true;
+_ATEOF
+
+
+cat >test.cf <<'_ATEOF'
+
+before 1;
+#include <1.inc>
+after 1;
+_ATEOF
+
+
+gcffmt -I`pwd`/include ./test.cf
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo ".before: \"1\"
+.this: \"true\"
+.after: \"1\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/incl00.at:20"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_88
+#AT_START_89
+at_fn_group_banner 89 'incl01.at:17' \
+  "Recursive inclusion" "                            " 8
+at_xfail=no
+(
+  $as_echo "89. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+
+{ set +x
+$as_echo "$at_srcdir/incl01.at:20:
+cat >a.inc <<'_ATEOF'
+this true;
+#include \"b.inc\"
+_ATEOF
+
+
+cat >b.inc <<'_ATEOF'
+#include \"a.inc\"
+_ATEOF
+
+
+cat >test.cf <<'_ATEOF'
+before 1;
+#include \"a.inc\"
+after 1;
+_ATEOF
+
+
+gcffmt ./test.cf
+"
+at_fn_check_prepare_notrace 'an embedded newline' "incl01.at:20"
+( $at_check_trace;
+cat >a.inc <<'_ATEOF'
+this true;
+#include "b.inc"
+_ATEOF
+
+
+cat >b.inc <<'_ATEOF'
+#include "a.inc"
+_ATEOF
+
+
+cat >test.cf <<'_ATEOF'
+before 1;
+#include "a.inc"
+after 1;
+_ATEOF
+
+
+gcffmt ./test.cf
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+echo >>"$at_stderr"; $as_echo "./b.inc:1: Recursive inclusion
+./test.cf:2: \`./a.inc' already included here
+" | \
+  $at_diff - "$at_stderr" || at_failed=:
+at_fn_diff_devnull "$at_stdout" || at_failed=:
+at_fn_check_status 1 $at_status "$at_srcdir/incl01.at:20"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_89
+#AT_START_90
+at_fn_group_banner 90 'incl02.at:17' \
+  "Include once" "                                   " 8
+at_xfail=no
+(
+  $as_echo "90. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+
+{ set +x
+$as_echo "$at_srcdir/incl02.at:20:
+cat >a.inc <<'_ATEOF'
+a true;
+_ATEOF
+
+
+cat >test1.cf <<'_ATEOF'
+before 1;
+#include \"a.inc\"
+#include \"a.inc\"
+after 1;
+_ATEOF
+
+
+cat >test2.cf <<'_ATEOF'
+before 1;
+#include_once \"a.inc\"
+#include_once \"a.inc\"
+after 1;
+_ATEOF
+
+
+gcffmt ./test1.cf
+echo ==
+gcffmt ./test2.cf
+"
+at_fn_check_prepare_notrace 'an embedded newline' "incl02.at:20"
+( $at_check_trace;
+cat >a.inc <<'_ATEOF'
+a true;
+_ATEOF
+
+
+cat >test1.cf <<'_ATEOF'
+before 1;
+#include "a.inc"
+#include "a.inc"
+after 1;
+_ATEOF
+
+
+cat >test2.cf <<'_ATEOF'
+before 1;
+#include_once "a.inc"
+#include_once "a.inc"
+after 1;
+_ATEOF
+
+
+gcffmt ./test1.cf
+echo ==
+gcffmt ./test2.cf
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo ".before: \"1\"
+.a: \"true\"
+.a: \"true\"
+.after: \"1\"
+==
+.before: \"1\"
+.a: \"true\"
+.after: \"1\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/incl02.at:20"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_90
+#AT_START_91
+at_fn_group_banner 91 'incl03.at:17' \
+  "Wildcard inclusion" "                             " 8
+at_xfail=no
+(
+  $as_echo "91. $at_setup_line: testing $at_desc ..."
+  $at_traceon
+
+
+
+{ set +x
+$as_echo "$at_srcdir/incl03.at:20:
+cat >i1.inc <<'_ATEOF'
+i1 included;
+_ATEOF
+
+
+cat >i2.inc <<'_ATEOF'
+i2 included;
+_ATEOF
+
+
+cat >i3.inc <<'_ATEOF'
+i3 included;
+_ATEOF
+
+
+cat >test.cf <<'_ATEOF'
+before 1;
+#include \"i*.inc\"
+after 1;
+_ATEOF
+
+
+gcffmt ./test.cf
+"
+at_fn_check_prepare_notrace 'an embedded newline' "incl03.at:20"
+( $at_check_trace;
+cat >i1.inc <<'_ATEOF'
+i1 included;
+_ATEOF
+
+
+cat >i2.inc <<'_ATEOF'
+i2 included;
+_ATEOF
+
+
+cat >i3.inc <<'_ATEOF'
+i3 included;
+_ATEOF
+
+
+cat >test.cf <<'_ATEOF'
+before 1;
+#include "i*.inc"
+after 1;
+_ATEOF
+
+
+gcffmt ./test.cf
+
+) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+at_status=$? at_failed=false
+$at_check_filter
+at_fn_diff_devnull "$at_stderr" || at_failed=:
+echo >>"$at_stdout"; $as_echo ".before: \"1\"
+.i1: \"included\"
+.i2: \"included\"
+.i3: \"included\"
+.after: \"1\"
+" | \
+  $at_diff - "$at_stdout" || at_failed=:
+at_fn_check_status 0 $at_status "$at_srcdir/incl03.at:20"
+$at_failed && at_fn_log_failure
+$at_traceon; }
+
+
+  set +x
+  $at_times_p && times >"$at_times_file"
+) 5>&1 2>&1 7>&- | eval $at_tee_pipe
+read at_status <"$at_status_file"
+#AT_STOP_91
+#AT_START_92
+at_fn_group_banner 92 'join.at:17' \
+  "Join" "                                           " 9
+at_xfail=no
+(
+  $as_echo "92. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3000,13 +6184,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_21
-#AT_START_22
-at_fn_group_banner 22 'cfhelp.at:17' \
-  "Help" "                                           " 7
+#AT_STOP_92
+#AT_START_93
+at_fn_group_banner 93 'cfhelp.at:17' \
+  "Help" "                                           " 9
 at_xfail=no
 (
-  $as_echo "22. $at_setup_line: testing $at_desc ..."
+  $as_echo "93. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3082,13 +6266,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_22
-#AT_START_23
-at_fn_group_banner 23 'set.at:17' \
-  "Set values" "                                     " 7
+#AT_STOP_93
+#AT_START_94
+at_fn_group_banner 94 'set.at:17' \
+  "Set values" "                                     " 9
 at_xfail=no
 (
-  $as_echo "23. $at_setup_line: testing $at_desc ..."
+  $as_echo "94. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3127,13 +6311,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_23
-#AT_START_24
-at_fn_group_banner 24 'vercmp.at:17' \
-  "Version comparator" "                             " 7
+#AT_STOP_94
+#AT_START_95
+at_fn_group_banner 95 'vercmp.at:17' \
+  "Version comparator" "                             " 9
 at_xfail=no
 (
-  $as_echo "24. $at_setup_line: testing $at_desc ..."
+  $as_echo "95. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3338,13 +6522,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_24
-#AT_START_25
-at_fn_group_banner 25 'grecs00.at:17' \
-  "C comments in GRECS-style parser" "               " 7
+#AT_STOP_95
+#AT_START_96
+at_fn_group_banner 96 'grecs00.at:17' \
+  "C comments in GRECS-style parser" "               " 9
 at_xfail=no
 (
-  $as_echo "25. $at_setup_line: testing $at_desc ..."
+  $as_echo "96. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3391,13 +6575,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_25
-#AT_START_26
-at_fn_group_banner 26 'empty.at:17' \
-  "Empty input file" "                               " 7
+#AT_STOP_96
+#AT_START_97
+at_fn_group_banner 97 'empty.at:17' \
+  "Empty input file" "                               " 9
 at_xfail=no
 (
-  $as_echo "26. $at_setup_line: testing $at_desc ..."
+  $as_echo "97. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3449,13 +6633,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_26
-#AT_START_27
-at_fn_group_banner 27 'locus00.at:17' \
-  "Scalar value" "                                   " 8
+#AT_STOP_97
+#AT_START_98
+at_fn_group_banner 98 'locus00.at:17' \
+  "Scalar value" "                                   " 10
 at_xfail=no
 (
-  $as_echo "27. $at_setup_line: testing $at_desc ..."
+  $as_echo "98. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3486,13 +6670,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_27
-#AT_START_28
-at_fn_group_banner 28 'locus01.at:17' \
-  "Multiline strings" "                              " 8
+#AT_STOP_98
+#AT_START_99
+at_fn_group_banner 99 'locus01.at:17' \
+  "Multiline strings" "                              " 10
 at_xfail=no
 (
-  $as_echo "28. $at_setup_line: testing $at_desc ..."
+  $as_echo "99. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3527,13 +6711,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_28
-#AT_START_29
-at_fn_group_banner 29 'locus02.at:17' \
-  "Adjacent quoted strings" "                        " 8
+#AT_STOP_99
+#AT_START_100
+at_fn_group_banner 100 'locus02.at:17' \
+  "Adjacent quoted strings" "                        " 10
 at_xfail=no
 (
-  $as_echo "29. $at_setup_line: testing $at_desc ..."
+  $as_echo "100. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3566,13 +6750,13 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_29
-#AT_START_30
-at_fn_group_banner 30 'path-locus.at:17' \
-  "Path" "                                           " 8
+#AT_STOP_100
+#AT_START_101
+at_fn_group_banner 101 'path-locus.at:17' \
+  "Path" "                                           " 10
 at_xfail=no
 (
-  $as_echo "30. $at_setup_line: testing $at_desc ..."
+  $as_echo "101. $at_setup_line: testing $at_desc ..."
   $at_traceon
 
 
@@ -3687,4 +6871,4 @@ $at_traceon; }
   $at_times_p && times >"$at_times_file"
 ) 5>&1 2>&1 7>&- | eval $at_tee_pipe
 read at_status <"$at_status_file"
-#AT_STOP_30
+#AT_STOP_101

@@ -15,7 +15,7 @@
 @SET_MAKE@
 
 # This file is part of grecs - Gray's Extensible Configuration System
-# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+# Copyright (C) 2007-2016 Sergey Poznyakoff
 #
 # Grecs is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -96,9 +96,13 @@ build_triplet = @build@
 host_triplet = @host@
 @GRECS_COND_META1_PARSER_TRUE@am__append_1 = ENABLE_META1_PARSER
 @GRECS_COND_BIND_PARSER_TRUE@am__append_2 = ENABLE_BIND_PARSER
-@GRECS_COND_GIT_PARSER_TRUE@am__append_3 = ENABLE_GIT_PARSER 
+@GRECS_COND_DHCPD_PARSER_TRUE@am__append_3 = ENABLE_DHCPD_PARSER
+@GRECS_COND_GIT_PARSER_TRUE@am__append_4 = ENABLE_GIT_PARSER 
+@GRECS_COND_JSON_TRUE@am__append_5 = ENABLE_JSON
 noinst_PROGRAMS = distck$(EXEEXT) gcffmt$(EXEEXT) gcfenum$(EXEEXT) \
-	gcfpeek$(EXEEXT) gcfset$(EXEEXT) gcfver$(EXEEXT)
+	gcfpeek$(EXEEXT) gcfset$(EXEEXT) gcfver$(EXEEXT) wsp$(EXEEXT) \
+	$(am__EXEEXT_1)
+@GRECS_COND_JSON_TRUE@am__append_6 = json
 subdir = grecs/tests
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(srcdir)/atlocal.in $(top_srcdir)/build-aux/depcomp
@@ -116,6 +120,7 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES = atlocal
 CONFIG_CLEAN_VPATH_FILES =
+@GRECS_COND_JSON_TRUE@am__EXEEXT_1 = json$(EXEEXT)
 PROGRAMS = $(noinst_PROGRAMS)
 distck_SOURCES = distck.c
 distck_OBJECTS = distck.$(OBJEXT)
@@ -142,6 +147,14 @@ gcfver_SOURCES = gcfver.c
 gcfver_OBJECTS = gcfver.$(OBJEXT)
 gcfver_LDADD = $(LDADD)
 gcfver_DEPENDENCIES = $(am__DEPENDENCIES_1)
+json_SOURCES = json.c
+json_OBJECTS = json.$(OBJEXT)
+json_LDADD = $(LDADD)
+json_DEPENDENCIES = $(am__DEPENDENCIES_1)
+wsp_SOURCES = wsp.c
+wsp_OBJECTS = wsp.$(OBJEXT)
+wsp_LDADD = $(LDADD)
+wsp_DEPENDENCIES = $(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -170,8 +183,10 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = distck.c gcfenum.c gcffmt.c gcfpeek.c gcfset.c gcfver.c
-DIST_SOURCES = distck.c gcfenum.c gcffmt.c gcfpeek.c gcfset.c gcfver.c
+SOURCES = distck.c gcfenum.c gcffmt.c gcfpeek.c gcfset.c gcfver.c \
+	json.c wsp.c
+DIST_SOURCES = distck.c gcfenum.c gcffmt.c gcfpeek.c gcfset.c gcfver.c \
+	json.c wsp.c
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -232,12 +247,14 @@ GRECS_INCLUDES = @GRECS_INCLUDES@
 GRECS_INCLUDE_DIR = @GRECS_INCLUDE_DIR@
 GRECS_LDADD = @GRECS_LDADD@
 GRECS_README = @GRECS_README@
+GRECS_SOCKADDR_LIST = @GRECS_SOCKADDR_LIST@
 GRECS_SRCDIR = @GRECS_SRCDIR@
 GRECS_SUBDIR = @GRECS_SUBDIR@
 GRECS_TESTDIR = @GRECS_TESTDIR@
 GRECS_TREE_API = @GRECS_TREE_API@
 GREP = @GREP@
 IFACE = @IFACE@
+INCLUDE_PATH_ARGS = @INCLUDE_PATH_ARGS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -344,12 +361,14 @@ EXTRA_DIST = \
  bind.int.conf\
  bind.ext.conf\
  bind.dlz\
+ dhcpd.conf\
  meta1.conf\
  git.conf
 
 DISTCLEANFILES = atconfig $(check_SCRIPTS)
 MAINTAINERCLEANFILES = Makefile.in $(TESTSUITE)
-PARSER_DEFS = $(am__append_1) $(am__append_2) $(am__append_3)
+PARSER_DEFS = $(am__append_1) $(am__append_2) $(am__append_3) \
+	$(am__append_4) $(am__append_5)
 
 #
 TESTSUITE_AT = \
@@ -367,13 +386,20 @@ TESTSUITE_AT = \
  glob05.at\
  grecs00.at\
  enum.at\
+ incl00.at\
+ incl01.at\
+ incl02.at\
+ incl03.at\
  join.at\
+ json00.at\
+ json01.at\
  locus00.at\
  locus01.at\
  locus02.at\
  locus-bind.at\
  locus-git.at\
  locus-meta1.at\
+ parser-dhcpd.at\
  parser-bind.at\
  parser-git.at\
  parser-meta1.at\
@@ -391,6 +417,7 @@ TESTSUITE_AT = \
  sort01.at\
  testsuite.at\
  vercmp.at\
+ wordsplit.at\
  @GRECS_DISTCK_AT@
 
 TESTSUITE = $(srcdir)/testsuite
@@ -462,6 +489,14 @@ gcfver$(EXEEXT): $(gcfver_OBJECTS) $(gcfver_DEPENDENCIES) $(EXTRA_gcfver_DEPENDE
 	@rm -f gcfver$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(gcfver_OBJECTS) $(gcfver_LDADD) $(LIBS)
 
+json$(EXEEXT): $(json_OBJECTS) $(json_DEPENDENCIES) $(EXTRA_json_DEPENDENCIES) 
+	@rm -f json$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(json_OBJECTS) $(json_LDADD) $(LIBS)
+
+wsp$(EXEEXT): $(wsp_OBJECTS) $(wsp_DEPENDENCIES) $(EXTRA_wsp_DEPENDENCIES) 
+	@rm -f wsp$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(wsp_OBJECTS) $(wsp_LDADD) $(LIBS)
+
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 
@@ -474,6 +509,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gcfpeek.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gcfset.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gcfver.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/json.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wsp.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

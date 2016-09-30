@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -61,7 +61,7 @@ grecs_list_insert_entry(struct grecs_list *lp,
 	}
 
 	ent->prev = anchor;
-	if (p = anchor->next)
+	if ((p = anchor->next))
 		p->prev = ent;
 	else
 		lp->tail = ent;
@@ -74,15 +74,15 @@ void
 grecs_list_remove_entry(struct grecs_list *lp, struct grecs_list_entry *ent)
 {
 	struct grecs_list_entry *p;
-	if (p = ent->prev)
+	if ((p = ent->prev))
 		p->next = ent->next;
 	else
 		lp->head = ent->next;
-	if (p = ent->next)
+	if ((p = ent->next))
 		p->prev = ent->prev;
 	else
 		lp->tail = ent->prev;
-	ent->next = ent->prev = NULL;
+	grecs_free(ent);
 	lp->count--;
 }
 
@@ -127,7 +127,6 @@ grecs_list_pop(struct grecs_list *lp)
 	if (ep)	{
 		data = ep->data;
 		grecs_list_remove_entry(lp, ep);
-		grecs_free(ep);
 	} else
 		data = NULL;
 	return data;
@@ -144,7 +143,6 @@ grecs_list_remove_tail(struct grecs_list *lp)
 	ep = lp->tail;
 	data = lp->tail->data;
 	grecs_list_remove_entry(lp, ep);
-	grecs_free(ep);
 	return data;
 }
 
@@ -202,3 +200,28 @@ grecs_list_index(struct grecs_list *lp, size_t idx)
 	return ep ? ep->data : NULL;
 }
 
+int
+grecs_list_compare(struct grecs_list *a, struct grecs_list *b)
+{
+	struct grecs_list_entry *ap, *bp;
+	int (*cmp)(const void *, const void *);
+
+	if (!a)
+		return !!b;
+	else if (!b)
+		return 1;
+	
+	if (grecs_list_size(a) != grecs_list_size(b))
+		return 1;
+	if (a->cmp != b->cmp)
+		return 1;
+	
+	cmp = a->cmp ? a->cmp : _ptrcmp;
+	
+	for (ap = a->head, bp = b->head; ap; ap = ap->next, bp = bp->next)
+		if (cmp (ap->data, bp->data))
+			return 1;
+	
+	return 0;
+}
+  

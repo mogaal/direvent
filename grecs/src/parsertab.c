@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -34,6 +34,10 @@ static struct parser_tab {
 #ifdef ENABLE_BIND_PARSER
 	{ "BIND", grecs_bind_parser },
 #endif
+#ifdef ENABLE_DHCPD_PARSER
+	{ "DHCPD", grecs_dhcpd_parser },
+	{ "DHCP", grecs_dhcpd_parser },
+#endif	
 #ifdef ENABLE_GIT_PARSER
 	{ "GIT", grecs_git_parser },
 #endif

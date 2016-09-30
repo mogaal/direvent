@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -18,6 +18,7 @@
 # include <config.h>
 #endif
 #include <grecs.h>
+#include <wordsplit.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
@@ -28,8 +29,9 @@
 #include <string.h>
 #include <errno.h>
 #include <signal.h>
+#include <glob.h>
+#include <unistd.h>
 
-#include <wordsplit.h>
 
 int grecs_log_to_stderr = 1;
 void (*grecs_log_setup_hook) () = NULL;
@@ -62,6 +64,9 @@ static size_t bufsize;
 static char *putback_buffer;
 static size_t putback_size;
 static size_t putback_max;
+static glob_t include_glob;
+static size_t include_pos;
+static int include_once;
 
 static int push_source (const char *name, int once);
 static int pop_source (void);
@@ -243,17 +248,17 @@ grecs_include_path_count(int flag)
 {
     size_t count = 0;
     if (flag & GRECS_STD_INCLUDE)
-	count += grecs_std_include_path ? grecs_std_include_path->count : 0;
+	count += grecs_list_size(grecs_std_include_path);
     if (flag & GRECS_USR_INCLUDE)
-	count += grecs_usr_include_path ? grecs_usr_include_path->count : 0;
-    return 0;
+	count += grecs_list_size(grecs_usr_include_path);
+    return count;
 }
 
 static int
 foreach_dir(struct grecs_list *list, int flag,
 	    int (*fun)(int, const char *, void *), void *data)
 {
-    int rc;
+    int rc = 0;
     struct grecs_list_entry *ep;
 
     for (ep = list->head; rc == 0 && ep; ep = ep->next)
@@ -287,7 +292,9 @@ static int
 pp_list_find(struct grecs_list *list, struct file_data *dptr)
 {
 	struct grecs_list_entry *ep;
-	
+
+	if (!list)
+		return 0;
 	for (ep = list->head; !dptr->found && ep; ep = ep->next) {
 		const char *dir = ep->data;
 		size_t size = strlen (dir) + 1 + dptr->namelen + 1;
@@ -395,6 +402,13 @@ incl_compare(void const *data1, void const *data2)
 }
 
 static int
+incl_copy(void *dst, void *src)
+{
+	memcpy(dst, src, sizeof(struct input_file_ident));
+	return 0;
+}
+
+static int
 source_lookup(struct stat *st)
 {
 	struct input_file_ident key;
@@ -405,7 +419,7 @@ source_lookup(struct stat *st)
 			sizeof(struct input_file_ident), 
 			incl_hasher,
 			incl_compare,
-			NULL,
+			incl_copy,
 			NULL,/*FIXME: alloc*/
 			NULL);
 		if (!incl_sources)
@@ -505,6 +519,14 @@ pop_source()
 	grecs_free(context_stack);
 	context_stack = ctx;
 
+	if (include_pos < include_glob.gl_pathc) {
+		push_source(include_glob.gl_pathv[include_pos++], include_once);
+		return 0;
+	} else if (include_glob.gl_pathc) {
+		globfree(&include_glob);
+		include_pos = include_glob.gl_pathc = 0;
+	}
+	
 	if (!context_stack) {
 		if (grecs_grecs__flex_debug)
 			fprintf(stderr, "End of input\n");
@@ -552,6 +574,16 @@ grecs_find_include_file(const char *name, int allow_cwd)
 }
 
 static int
+isglob(const char *s)
+{
+	for (; *s; s++) {
+		if (strchr("*?[", *s))
+			return 1;
+	}
+	return 0;
+}
+
+static int
 parse_include(const char *text, int once)
 {
 	struct wordsplit ws;
@@ -575,21 +607,38 @@ parse_include(const char *text, int once)
 			allow_cwd = 0;
 			p[len - 1] = 0;
 			p++;
-		}
-		else
+		} else
 			allow_cwd = 1;
 		
-		if (p[0] != '/') {
-			p = grecs_find_include_file(p, allow_cwd);
+		if (isglob(p)) {
+			switch (glob(p, 0, NULL, &include_glob)) {
+			case 0:
+				include_pos = 0;
+				include_once = once;
+				break;
+			case GLOB_NOSPACE:
+				grecs_alloc_die();
+			case GLOB_NOMATCH:
+				break;
+			default:
+				grecs_error(&LOCUS, 0,  _("read error"));
+			}
+			p = NULL;
+		} else if (p[0] != '/') {
+			char *q = p;
+			p = grecs_find_include_file(q, allow_cwd);
 			if (!p)
 				grecs_error(&LOCUS, 0,
 					    _("%s: No such file or directory"),
-					    p);
+					    q);
 		}
-	}
+ 	}
   
 	if (p)
 		rc = push_source(p, once);
+	else if (include_pos < include_glob.gl_pathc)
+		rc = push_source(include_glob.gl_pathv[include_pos++], once);
+	
 	grecs_free(tmp);
 	wordsplit_free(&ws);
 	return rc;
@@ -605,9 +654,19 @@ void
 grecs_preproc_done()
 {
 	grecs_symtab_free(incl_sources);
+	incl_sources = NULL;
+
 	grecs_free(linebuf);
+	linebuf = NULL;
+	bufsize = 0;
+	
 	grecs_free(putback_buffer);
+	putback_buffer = NULL;
+	putback_size = putback_max = 0;
+	
 	free(linebufbase); /* Allocated via standard malloc/realloc */
+	linebufbase = NULL;
+	linebufsize = 0;
 }
 
 int

@@ -1,4 +1,5 @@
 /* grecs - Gray's Extensible Configuration System       -*- c -*- */
+%option noinput
 %top {
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -6,7 +7,7 @@
 }
 %{
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -22,7 +23,6 @@
    with Grecs. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <dhcpd-gram.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -41,10 +41,13 @@
   		grecs_current_locus_point.col += yyleng;		\
  		yylloc.end = grecs_current_locus_point;			\
    	} while (0);
-%}
-    
-%x COMMENT STR
 
+#define ISWS(c) ((c)==' '||(c)=='\t')	
+%}
+
+%x COMMENT STR BOOL EXPR
+
+OWS [ \t\f]*
 WS [ \t\f][ \t\f]*
 ID [a-zA-Z_][a-zA-Z_0-9-]*
 P [1-9][0-9]*
@@ -64,6 +67,61 @@ P [1-9][0-9]*
 #.*     /* end-of-file comment */;
 "//".*\n  { grecs_locus_point_advance_line(grecs_current_locus_point); }
 "//".*    /* end-of-file comment */;
+"if"      return DHCPD_IF;
+"elsif"   return DHCPD_ELSIF;
+"else"    return DHCPD_ELSE;
+
+<BOOL>[^\{\n]*\n {
+	  char *p;
+	  size_t len;
+	  for (p = yytext, len = yyleng - 1; ISWS(*p) && len > 0; p++, len--)
+                  ;
+	  if (len) {
+		  grecs_line_add(p, len);
+		  grecs_line_add(" ", 1);
+	  }
+	  grecs_locus_point_advance_line(grecs_current_locus_point);
+}
+<BOOL>[^\{\n]*\{ {
+	  char *p;
+	  size_t len;
+	  
+	  unput('{');
+	  for (p = yytext, len = yyleng - 1; ISWS(*p) && len > 0; p++, len--)
+                  ;
+	  for (; len > 0 && ISWS(p[len-1]); len--)
+	      ;
+	  grecs_line_add(p, len);
+          BEGIN(INITIAL);
+          yylval.string = grecs_line_finish();
+          return DHCPD_EXPR;     
+}
+
+<EXPR>[^;\n]*\n {
+	  char *p;
+	  size_t len;
+	  for (p = yytext, len = yyleng - 1; ISWS(*p) && len > 0; p++, len--)
+                  ;
+	  if (len) {
+		  grecs_line_add(p, len);
+		  grecs_line_add(" ", 1);
+	  }
+	  grecs_locus_point_advance_line(grecs_current_locus_point);
+}
+<EXPR>[^;\n]*; {
+	  char *p;
+	  size_t len;
+	  
+	  unput(';');
+	  for (p = yytext, len = yyleng - 1; ISWS(*p) && len > 0; p++, len--)
+                  ;
+	  for (; len > 0 && ISWS(p[len-1]); len--)
+	      ;
+	  grecs_line_add(p, len);
+          BEGIN(INITIAL);
+          yylval.string = grecs_line_finish();
+          return DHCPD_EXPR;     
+}
         /* Identifiers */
 {ID}      { grecs_line_begin();
 	    grecs_line_add(yytext, yyleng);
@@ -85,12 +143,14 @@ P [1-9][0-9]*
 \"[^\\"\n]*\\\n        { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow_unescape_last(yytext + 1,
-                                                           yyleng - 1); }
+                                                           yyleng - 1,
+                                                           &yylloc); }
 \"[^\\"\n]*\n          { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow(yytext + 1, yyleng - 1); }
 <STR>[^\\"\n]*\\. |
-<STR>\"[^\\"\n]*\\\n  { grecs_line_acc_grow_unescape_last(yytext, yyleng); }
+<STR>\"[^\\"\n]*\\\n  { grecs_line_acc_grow_unescape_last(yytext, yyleng, 
+                                                          &yylloc); }
 <STR>[^\\"\n]*\n |
 <STR>\"[^\\"\n]*\n    { grecs_line_acc_grow(yytext, yyleng); }
 <STR>[^\\"\n]*\"      { BEGIN(INITIAL);
@@ -101,7 +161,7 @@ P [1-9][0-9]*
 {WS}     ;
          /* Other tokens */
 \n       { grecs_locus_point_advance_line(grecs_current_locus_point); } 
-[,;{}()!] return yytext[0];
+[,;{}()!=] return yytext[0];
 .        { if (isascii(yytext[0]) && isprint(yytext[0]))
 		grecs_error(&yylloc, 0,
 			     _("stray character %c"), yytext[0]);
@@ -109,6 +169,18 @@ P [1-9][0-9]*
                 grecs_error(&yylloc, 0, _("stray character \\%03o"),
 		   	    (unsigned char) yytext[0]); }
 %%
+
+void
+grecs_dhcpd_begin_bool(void)
+{
+        BEGIN(BOOL);
+}
+
+void
+grecs_dhcpd_begin_expr(void)
+{
+        BEGIN(EXPR);
+}
 
 struct dhcpd_input_context {
 	ino_t i_node;

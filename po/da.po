@@ -1,0 +1,859 @@
+# Danish translation libgsasl.
+# Copyright (C) 2015 Free Software Foundation, Inc.
+# This file is distributed under the same license as the direvent package.
+# Joe Hansen <joedalton2@yahoo.dk>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: direvent-4.1.91\n"
+"Report-Msgid-Bugs-To: bug-direvent@gnu.org.ua\n"
+"POT-Creation-Date: 2016-07-06 17:50+0300\n"
+"PO-Revision-Date: 2015-05-01 15:00+0000\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: cmdline.opt:26
+msgid "increase debug level"
+msgstr "øg fejlsøgningsniveauet"
+
+#: cmdline.opt:32
+msgid "PRIO"
+msgstr "PRIO"
+
+#: cmdline.opt:32
+msgid ""
+"log everything with priority PRIO and higher to the stderr, as well as to "
+"the syslog"
+msgstr ""
+"log alt med prioritet PRIO og højere til standardfejl, samt til systemloggen"
+
+#: cmdline.opt:41
+msgid "NAME"
+msgstr "NAVN"
+
+#: cmdline.opt:41
+msgid "set syslog facility"
+msgstr "angiv syslog-facilitet"
+
+#: cmdline.opt:47
+msgid "remain in foreground"
+msgstr "bliv i forgrunden"
+
+#: cmdline.opt:53
+msgid "DIR"
+msgstr ""
+
+#: cmdline.opt:53
+msgid "add include directory"
+msgstr ""
+
+#: cmdline.opt:59
+msgid "PROG"
+msgstr "PROG"
+
+#: cmdline.opt:59
+msgid "self-test mode"
+msgstr "egentest-tilstand"
+
+#: cmdline.opt:65
+msgid "FILE"
+msgstr "FIL"
+
+#: cmdline.opt:65
+msgid "set PID file"
+msgstr "angiv PID-fil"
+
+#: cmdline.opt:71
+msgid "check configuration file and exit"
+msgstr "kontroller konfigurationsfil og afslut"
+
+#: cmdline.opt:77
+msgid "USER"
+msgstr "BRUGER"
+
+#: cmdline.opt:77
+msgid "run as this user"
+msgstr "kør som denne bruger"
+
+#: cmdline.opt:87
+msgid "show configuration file summary"
+msgstr "vis konfigurationsfiloverblik"
+
+#: cmdline.opt:81
+msgid "Other options"
+msgstr "Andre tilvalg"
+
+#: cmdline.opt:93
+msgid "Give this help list"
+msgstr "Vis denne hjælpeoversigt"
+
+#: cmdline.opt:93
+msgid "Give a short usage message"
+msgstr "Vis en kort brugsbesked"
+
+#: cmdline.opt:93
+msgid "Print program version"
+msgstr "Vis programversion"
+
+#: cmdline.opt:13
+msgid "GNU direvent monitors changes in directories"
+msgstr "GNU direvent overvåger ændringer i mapper"
+
+#: cmdline.opt:15
+msgid "[CONFIG]"
+msgstr "[CONFIG]"
+
+#: cmdline.opt:95
+#, c-format
+msgid ""
+"The optional CONFIG argument supplies the name of the configuration file\n"
+"to use instead of %s.\n"
+"\n"
+msgstr ""
+"Det valgfrie argument CONFIG leverer navnet på konfigurationsfilen,\n"
+"der skal bruges i stedet for %s.\n"
+"\n"
+
+#. TRANSLATORS: %s is one of: inotify, kqueue
+#: cmdline.opt:99
+#, c-format
+msgid ""
+"This direvent uses %s interface.\n"
+"\n"
+msgstr ""
+"Denne direvent bruger %s-grænsefladen.\n"
+"\n"
+
+#: cmdline.opt:102
+#, c-format
+msgid "Include search path:\n"
+msgstr ""
+
+#: cmdline.opt:105
+#, c-format
+msgid "No include search path.\n"
+msgstr ""
+
+#: src/config.c:63
+#, c-format
+msgid "unknown syslog facility: %s"
+msgstr "ukendt syslog-facilitet: %s"
+
+#: src/config.c:80
+#, c-format
+msgid "unknown syslog priority: %s"
+msgstr "ukendt syslog-prioritet: %s"
+
+#: src/config.c:88
+msgid "unexpected block statement"
+msgstr "uventet blokudtryk"
+
+#: src/config.c:97
+#, c-format
+msgid "expected %s"
+msgstr "forventede %s"
+
+#: src/config.c:102
+#, c-format
+msgid "expected %s, but found %s"
+msgstr "forventede %s, men fandt %s"
+
+#: src/config.c:124
+#, c-format
+msgid "unknown syslog facility `%s'"
+msgstr "ukendt syslog-facilitet »%s«"
+
+#: src/config.c:133 src/config.c:706
+msgid "name"
+msgstr "navn"
+
+#: src/config.c:134
+msgid ""
+"Set syslog facility. Arg is one of the following: user, daemon, auth, "
+"authpriv, mail, cron, local0 through local7 (case-insensitive), or a "
+"facility number."
+msgstr ""
+"Angiv syslog-facilitet. Arg er en af de følgende: user, daeon, auth, "
+"authpriv, mail, cron, local0 til local7 (ikke forskel på små/store "
+"bogstaver), eller et facilitetnummer."
+
+#: src/config.c:139
+msgid "string"
+msgstr "streng"
+
+#: src/config.c:139
+msgid "Tag syslog messages with this string"
+msgstr "Mærk syslog-beskeder med denne streng"
+
+#: src/config.c:142 grecs/src/format.c:141
+msgid "arg"
+msgstr "arg"
+
+#: src/config.c:143
+msgid "Prefix each message with its priority"
+msgstr "Lav præfiks for hver besked med deres prioritet"
+
+#: src/config.c:209
+#, c-format
+msgid "%s: recursion depth does not match previous definition"
+msgstr "%s: rekursionsdybde matcher ikke foregående definition"
+
+#: src/config.c:247
+msgid "no paths configured"
+msgstr "ingen stier er konfigureret"
+
+#: src/config.c:252
+msgid "no command configured"
+msgstr "ingen kommando er konfigureret"
+
+#: src/config.c:264 grecs/src/tree.c:634
+msgid "invalid use of block statement"
+msgstr "ugyldig brug af blokudtryk"
+
+#: src/config.c:309
+msgid "expected \"recursive\" or end of statement"
+msgstr "forventede »recursive« eller udtryksafslutning"
+
+#: src/config.c:324
+msgid "surplus argument"
+msgstr "overskydende argument"
+
+#: src/config.c:330 src/config.c:481
+msgid "unexpected list"
+msgstr "uventet liste"
+
+#: src/config.c:361 src/config.c:376 src/config.c:391
+msgid "unrecognized event code"
+msgstr "ukendt hændelseskode"
+
+#: src/config.c:473
+msgid "surplus arguments"
+msgstr "overskydende argumenter"
+
+#: src/config.c:487
+msgid "no such user"
+msgstr "ingen sådan bruger"
+
+#: src/config.c:494
+msgid "no such group"
+msgstr "ingen sådan gruppe"
+
+#: src/config.c:535
+#, fuzzy
+msgid "unrecognized option"
+msgstr "ukendt flag"
+
+#: src/config.c:613
+msgid "unterminated regexp"
+msgstr "uafsluttet regulært udtryk"
+
+#: src/config.c:627
+#, c-format
+msgid "unrecognized flag: %c"
+msgstr "ukendt flag: %c"
+
+#: src/config.c:695
+msgid "Pathname to watch"
+msgstr "Stinavn at overvåge"
+
+#: src/config.c:698
+msgid "Events to watch for"
+msgstr "Hændelser at overvåge"
+
+#: src/config.c:701
+msgid "regexp"
+msgstr "regulært udtryk"
+
+#: src/config.c:701
+msgid "Files to watch for"
+msgstr "Filer at overvåge"
+
+#: src/config.c:704
+msgid "Command to execute on event"
+msgstr "Kommando at køre ved hændelse"
+
+#: src/config.c:706
+msgid "Run command as this user"
+msgstr "Kør kommando som denne bruger"
+
+#: src/config.c:709
+msgid "seconds"
+msgstr "sekunder"
+
+#: src/config.c:709
+msgid "Timeout for the command"
+msgstr "Tidsudløb for kommando"
+
+#: src/config.c:711
+msgid "List of additional options"
+msgstr "Lister over yderligere tilvalg"
+
+#: src/config.c:714
+msgid "<arg: string> <arg: string>..."
+msgstr "<arg: streng> <arg: strenge>..."
+
+#: src/config.c:715
+msgid "Modify environment"
+msgstr "Ændr miljø"
+
+#: src/config.c:722
+msgid "Run as this user"
+msgstr "Kør som denne bruger"
+
+#: src/config.c:724
+msgid "Run in foreground"
+msgstr "Kør i forgrunden"
+
+#: src/config.c:726
+msgid "file"
+msgstr "fil"
+
+#: src/config.c:726
+msgid "Set pid file name"
+msgstr "Angiv pid-filnavn"
+
+#: src/config.c:728
+msgid "Configure syslog logging"
+msgstr "Konfigurer syslog-logning"
+
+#: src/config.c:730
+msgid "level"
+msgstr "niveau"
+
+#: src/config.c:730
+msgid "Set debug level"
+msgstr "Angiv fejlsøgningsniveau"
+
+#: src/config.c:732
+msgid "Configure event watcher"
+msgstr "Konfigurer hændelsesovervåger"
+
+#: src/config.c:743
+msgid ""
+"Configuration file structure for direvent.\n"
+"For more information, use `info direvent configuration'."
+msgstr ""
+"Konfigurationsfilstruktur for direvent.\n"
+"For yderligere information, brug »info direvent configuration«."
+
+#: src/direvent.c:142 src/direvent.c:164 src/watcher.c:86 src/watcher.c:182
+#: src/watcher.c:191
+msgid "not enough memory"
+msgstr "ikke nok hukommelse"
+
+#: src/direvent.c:272
+#, c-format
+msgid "cannot open pidfile %s for writing: %s"
+msgstr "kan ikke åbne pid-filen %s for skrivning: %s"
+
+#: src/direvent.c:300
+#, c-format
+msgid "no user with UID %lu"
+msgstr "ingen bruger med UID: %lu"
+
+#: src/direvent.c:418
+#, c-format
+msgid "cannot run `%s': fork failed: %s"
+msgstr "kan ikke køre »%s«: forgrening mislykkedes: %s"
+
+#: src/direvent.c:478
+msgid "too many arguments"
+msgstr "for mange argumenter"
+
+#: src/direvent.c:520
+#, c-format
+msgid "%s %s started"
+msgstr "%s %s startet"
+
+#: src/direvent.c:541
+#, c-format
+msgid "%s %s stopped"
+msgstr "%s %s stoppet"
+
+#: src/environ.c:25
+msgid "environment: "
+msgstr "miljø: "
+
+#: src/hashtab.c:140 grecs/src/symtab.c:206
+msgid "element not found in table"
+msgstr "element blev ikke fundet i tabel"
+
+#: src/hashtab.c:142 grecs/src/symtab.c:208
+msgid "symbol table is full"
+msgstr "symboltabel er fuld"
+
+#: src/hashtab.c:144
+msgid "out of memory"
+msgstr "ikke mere hukommelse"
+
+#: src/progman.c:142
+#, c-format
+msgid "process %lu exited successfully"
+msgstr "processen %lu afsluttedes med succes"
+
+#: src/progman.c:145
+#, c-format
+msgid "process %lu failed with status %d"
+msgstr "processen %lu mislykkedes med status %d"
+
+#: src/progman.c:155
+#, c-format
+msgid "process %lu terminated on signal %d"
+msgstr "processen %lu afsluttedes ved signalet %d"
+
+#: src/progman.c:158
+#, c-format
+msgid "process %lu stopped on signal %d"
+msgstr "processen %lu stoppede ved signalet %d"
+
+#: src/progman.c:163
+#, c-format
+msgid "process %lu dumped core"
+msgstr "processen %lu dumpet kerne"
+
+#: src/progman.c:167
+#, c-format
+msgid "process %lu terminated with unrecognized status"
+msgstr "processen %lu afsluttedes med ukendt status"
+
+#: src/progman.c:228
+msgid "begin scanning process list"
+msgstr "begynd skanning af procesliste"
+
+#: src/progman.c:232
+#, c-format
+msgid "process %lu timed out"
+msgstr "processen %lu fik tidsudløb"
+
+#: src/progman.c:241
+#, c-format
+msgid "scheduling alarm in %lu seconds"
+msgstr "planlægger alarm om %lu sekunder"
+
+#: src/progman.c:322
+#, c-format
+msgid "cannot start redirector for %s, pipe failed: %s"
+msgstr "kan ikke starte videresender for %s, datakanal mislykkedes: %s"
+
+#: src/progman.c:354
+#, c-format
+msgid "cannot run redirector `%s': fork failed: %s"
+msgstr "kan ikke køre videresender »%s«: forgrening mislykkedes: %s"
+
+#: src/progman.c:359
+#, c-format
+msgid "redirector for %s started, pid=%lu"
+msgstr "videresender for %s startet, pid=%lu"
+
+#: src/progman.c:454
+#, c-format
+msgid "starting %s, dir=%s, file=%s"
+msgstr "starter %s, mappe=%s, fil=%s"
+
+#: src/progman.c:482
+#, c-format
+msgid "cannot change to %s: %s"
+msgstr "kan ikke ændre til %s: %s"
+
+#: src/progman.c:510
+#, c-format
+msgid "%s running; dir=%s, file=%s, pid=%lu"
+msgstr "%s kørende; mapppe=%s fil=%s, pid=%lu"
+
+#: src/progman.c:532
+#, c-format
+msgid "waiting for %s (%lu) to terminate"
+msgstr "venter på %s (%lu) for at afslutte"
+
+#: src/watcher.c:231
+#, c-format
+msgid "creating watcher %s"
+msgstr "opretter overvåger %s"
+
+#: src/watcher.c:240
+#, c-format
+msgid "cannot set watcher on %s: %s"
+msgstr "kan ikke angive overvåger på %s: %s"
+
+#: src/watcher.c:319
+#, c-format
+msgid "cannot create watcher %s/%s: not enough memory"
+msgstr "kan ikke oprettet overvåger %s/%s: ikke nok hukommelse"
+
+#: src/watcher.c:326
+#, c-format
+msgid "cannot create watcher %s/%s, stat failed: %s"
+msgstr "kan ikke oprette overvåger %s/%s, kørsel af stat mislykkedes: %s"
+
+#: src/watcher.c:355
+#, c-format
+msgid "cannot open directory %s: %s"
+msgstr "kan ikke åbne mappen %s: %s"
+
+#: src/watcher.c:371
+#, c-format
+msgid "cannot stat %s/%s: not enough memory"
+msgstr "kan ikke køre stat på %s/%s: ikke nok hukommelse"
+
+#: src/watcher.c:376
+#, c-format
+msgid "cannot stat %s: %s"
+msgstr "Kan ikke køre stat på %s: %s"
+
+#: src/watcher.c:412
+msgid "no event handlers configured"
+msgstr "ingen hændelseshåndtering konfigureret"
+
+#: src/watcher.c:417
+msgid "no event handlers installed"
+msgstr "ingen hændelseshåndteringer installeret"
+
+#: src/watcher.c:425
+#, c-format
+msgid "removing watcher %s"
+msgstr "fjerner overvåger %s"
+
+#: grecs/src/format.c:133
+msgid "Disabled;"
+msgstr "Deaktiveret;"
+
+#: grecs/src/opthelp.c:123 grecs/src/opthelp.c:269
+msgid "Usage:"
+msgstr "Brug:"
+
+#: grecs/src/opthelp.c:127
+msgid "OPTION"
+msgstr "TILVALG"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Aliases"
+msgstr "Aliasser"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Alias"
+msgstr "Alias"
+
+#: grecs/src/opthelp.c:186
+msgid ""
+"Mandatory or optional arguments to long options are also mandatory or "
+"optional for any corresponding short options."
+msgstr ""
+"Obligatoriske eller valgfrie parametre til lange tilvalg er også "
+"obligatoriske eller valgfrie for alle tilsvarende korte tilvalg."
+
+#. TRANSLATORS: The placeholder indicates the bug-reporting
+#. address for this package.  Please add _another line_ saying
+#. "Report translation bugs to <...>\n" with the address for
+#. translation bugs (typically your translation team's web or
+#. email address).
+#: grecs/src/opthelp.c:202
+#, c-format
+msgid "Report bugs to %s.\n"
+msgstr ""
+"Rapporter fejl til %s.\n"
+"Joe Hansen, 2015.\n"
+"\n"
+"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+"Mere info: http://www.dansk-gruppen.dk\n"
+
+#: grecs/src/opthelp.c:205
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr "%s hjemmeside: <%s>\n"
+
+#. TRANSLATORS: Translate "(C)" to the copyright symbol
+#. (C-in-a-circle), if this symbol is available in the user's
+#. locale.  Otherwise, do not translate "(C)"; leave it as-is.
+#: grecs/src/opthelp.c:457
+msgid "(C)"
+msgstr "(C)"
+
+#: grecs/src/opthelp.c:466
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+"\n"
+msgstr ""
+"Licens GPLv3+: GNU GPL version 3 eller senere <http://gnu.org/licenses/gpl."
+"html>.\n"
+"Dette er et frit program: du kan frit ændre og videredistribuere "
+"programmet.\n"
+"Der er ingen GARANTI, inden for lovens udstrækning.\n"
+"\n"
+
+#: grecs/src/opthelp.c:483
+msgid "Written by "
+msgstr "Skrevet af "
+
+#. TRANSLATORS: This string is used as a delimiter between
+#. authors' names as in:
+#.
+#. Written by Winnie the Pooh, Piglet ...
+#.
+#: grecs/src/opthelp.c:489
+msgid ", "
+msgstr ", "
+
+#. TRANSLATORS: This string acts as a delimiter before the
+#. last author's names, e.g.:
+#.
+#. Written by Winnie the Pooh, Piglet and Christopher Robin.
+#.
+#: grecs/src/opthelp.c:495
+msgid " and "
+msgstr " og "
+
+#: grecs/src/path-parser.c:62
+#, c-format
+msgid "cannot open `%s'"
+msgstr "kan ikke åbne »%s«"
+
+#: grecs/src/path-parser.c:108 grecs/src/path-parser.c:123
+msgid "unexpected end of file"
+msgstr "uventet filafslutning"
+
+#: grecs/src/path-parser.c:143
+msgid "parse error"
+msgstr "fortolkningsfejl"
+
+#: grecs/src/preproc.c:448 grecs/src/preproc.c:470
+#, c-format
+msgid "Cannot stat `%s'"
+msgstr "Kan ikke køre stat på »%s«"
+
+#: grecs/src/preproc.c:453 grecs/src/preproc.c:458
+msgid "Recursive inclusion"
+msgstr "Rekursiv inklusion"
+
+#: grecs/src/preproc.c:461
+#, c-format
+msgid "`%s' already included here"
+msgstr "»%s« allerede inkluderet her"
+
+#: grecs/src/preproc.c:465
+#, c-format
+msgid "`%s' already included at top level"
+msgstr "»%s« allerede inkluderet på topniveau"
+
+#: grecs/src/preproc.c:480
+#, c-format
+msgid "Cannot open `%s'"
+msgstr "Kan ikke åbne »%s«"
+
+#: grecs/src/preproc.c:595
+msgid "Cannot parse include line"
+msgstr "Kan ikke fortolke inkluderingslinje"
+
+#: grecs/src/preproc.c:598
+msgid "invalid include statement"
+msgstr "ugyldigt inkluderingsudtryk"
+
+#: grecs/src/preproc.c:624
+#, fuzzy
+msgid "read error"
+msgstr "fortolkningsfejl"
+
+#: grecs/src/preproc.c:632
+#, c-format
+msgid "%s: No such file or directory"
+msgstr "%s: Ingen sådan fil eller mappe"
+
+#: grecs/src/preproc.c:698
+#, c-format
+msgid "Unable to start external preprocessor `%s'"
+msgstr "Kan ikke starte ekstern forbrænder »%s«"
+
+#: grecs/src/preproc.c:773 grecs/src/preproc.c:793
+#, c-format
+msgid "Cannot run `%s'"
+msgstr "Kan ikke køre »%s«"
+
+#: grecs/src/tree.c:329
+#, c-format
+msgid "%s: not a valid boolean value"
+msgstr "%s: ikke en gyldig boolesk værdi"
+
+#: grecs/src/tree.c:360
+#, c-format
+msgid "%s: UNIX socket name too long"
+msgstr "%s: UNIX-sokkelnavn er for langt"
+
+#: grecs/src/tree.c:389 grecs/src/tree.c:613
+#, c-format
+msgid "%s: not a valid IP address or hostname"
+msgstr "%s: ikke en gyldig IP-adresse eller værtsnavn"
+
+#: grecs/src/tree.c:413
+#, c-format
+msgid "%s: not a valid port number"
+msgstr "%s: ikke et gyldigt portnummer"
+
+#: grecs/src/tree.c:421
+msgid "missing port number"
+msgstr "mangler portnummer"
+
+#: grecs/src/tree.c:470
+msgid "numeric overflow"
+msgstr "numerisk overløb"
+
+#: grecs/src/tree.c:475
+msgid "value out of allowed range"
+msgstr "værdien er uden for det tilladte interval"
+
+#: grecs/src/tree.c:510 grecs/src/tree.c:540
+#, c-format
+msgid "not a number (stopped near `%s')"
+msgstr "ikke et nummer (stoppet nær »%s«)"
+
+#: grecs/src/tree.c:604
+#, c-format
+msgid "%s: not a valid IP address"
+msgstr "%s: ikke en gyldig IP-adresse"
+
+#: grecs/src/tree.c:743
+#, c-format
+msgid "too many arguments to `%s'; missing semicolon?"
+msgstr "for mange argumenter for »%s«; manglende semikolon?"
+
+#: grecs/src/tree.c:757 grecs/src/tree.c:805
+#, c-format
+msgid "INTERNAL ERROR at %s:%d: unhandled data type %d"
+msgstr "INTERN FEJL ved %s:%d: datatypen %d blev ikke håndteret"
+
+#: grecs/src/tree.c:772
+#, c-format
+msgid "%s: incompatible data type in list item #%d"
+msgstr "%s: datatypen i listepunktet #%d er ikke kompatibel"
+
+#: grecs/src/tree.c:792
+#, c-format
+msgid "incompatible data type for `%s'"
+msgstr "datatypen for »%s« er ikke kompatibel"
+
+#: grecs/src/tree.c:920 grecs/src/tree.c:930
+msgid "Unknown keyword"
+msgstr "Ukendt nøgleord"
+
+#: grecs/src/tree.c:1139
+#, c-format
+msgid "%s: unknown keyword"
+msgstr "%s: ukendt nøgleord"
+
+#: grecs/src/wordsplit.c:62 grecs/src/wordsplit.c:2300
+msgid "memory exhausted"
+msgstr "hukommelsen er opbrugt"
+
+#: grecs/src/wordsplit.c:1073
+#, c-format
+msgid "%.*s: variable null or not set"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1102
+#, c-format
+msgid "warning: undefined variable `%.*s'"
+msgstr "advarsel: ikke defineret variable »%.*s«"
+
+#: grecs/src/wordsplit.c:1630
+#, c-format
+msgid "no files match pattern %s"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2080
+msgid "WS trimming"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2081
+msgid "tilde expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2082
+msgid "variable expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2084
+msgid "quote removal"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2086
+#, fuzzy
+msgid "command substitution"
+msgstr "kommandosubstitution er endnu ikke understøttet"
+
+#: grecs/src/wordsplit.c:2088
+msgid "coalesce list"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2090
+msgid "path expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2120
+msgid "Initial list:"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2136
+#, fuzzy
+msgid "Coalesced list:"
+msgstr "uventet liste"
+
+#: grecs/src/wordsplit.c:2190
+#, c-format
+msgid "(%02d) Input:%.*s;"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2202
+#, c-format
+msgid "(%02d) Restart:%.*s;"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2298
+msgid "no error"
+msgstr "ingen fejl"
+
+#: grecs/src/wordsplit.c:2299
+msgid "missing closing quote"
+msgstr "mangler afsluttende citationstegn"
+
+#: grecs/src/wordsplit.c:2301
+msgid "invalid wordsplit usage"
+msgstr "ugyldig orddelingsbrug"
+
+#: grecs/src/wordsplit.c:2302
+msgid "unbalanced curly brace"
+msgstr "krøllet parentes er ikke lukket"
+
+#: grecs/src/wordsplit.c:2303
+msgid "undefined variable"
+msgstr "udefineret variabel"
+
+#: grecs/src/wordsplit.c:2304
+msgid "input exhausted"
+msgstr "inddata opbrugt"
+
+#: grecs/src/wordsplit.c:2305
+msgid "unbalanced parenthesis"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2306
+#, fuzzy
+msgid "globbing error"
+msgstr "ingen fejl"
+
+#: grecs/src/wordsplit.c:2318
+msgid "unknown error"
+msgstr "ukendt fejl"
+
+#: grecs/src/wordsplit.c:2327
+#, c-format
+msgid "missing closing %c (start near #%lu)"
+msgstr "mangler afsluttende %c (start nær #%lu)"
+
+#~ msgid "INTERNAL ERROR at %s:%d"
+#~ msgstr "INTERN FEJL ved %s:%d"

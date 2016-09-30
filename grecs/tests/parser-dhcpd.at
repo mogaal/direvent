@@ -1,0 +1,59 @@
+# This file is part of grecs  -*- Autotest -*-
+# Copyright (C) 2011-2012, 2016 Sergey Poznyakoff
+#
+# Grecs is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# Grecs is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Grecs.  If not, see <http://www.gnu.org/licenses/>.
+
+AT_SETUP([DHCPD-style parser])
+AT_KEYWORDS([parser dhcpd])
+
+AT_CHECK([gcffmt -type=dhcpd -I$abs_srcdir $abs_srcdir/dhcpd.conf|sed 's/ *$//'],
+[0],
+[.authoritative: 
+.pid-file-name: "/var/run/dhcpd.pid"
+.log-facility: "daemon"
+.default-lease-time: "28800"
+.max-lease-time: "86400"
+.ddns-update-style: "none"
+.get-lease-hostnames: "yes"
+.ddns-update-style: "interim"
+.ignore: "client-updates"
+.ddns-rev-domainname: "in-addr.arpa."
+.use-host-decl-names: "on"
+.key="rndc-key".algorithm: "hmac-md5"
+.key="rndc-key".secret: "1111111111111111111111=="
+.zone="lan.example.com.".primary: "127.0.0.1"
+.zone="lan.example.com.".key: "foo"
+.option: "domain-search" ("example.com", "example.org", "example.net")
+.if="option dhcp-user-class = \"accounting\"".max-lease-time: "17600"
+.if="option dhcp-user-class = \"accounting\"".option: "domain-name" "accounting.example.org"
+.if="option dhcp-user-class = \"accounting\"".option: "domain-name-servers" ("ns1.accounting.example.org", "ns2.accounting.example.org")
+.elsif="option dhcp-user-class = \"sales\"".max-lease-time: "17600"
+.elsif="option dhcp-user-class = \"sales\"".option: "domain-name" "sales.example.org"
+.elsif="option dhcp-user-class = \"sales\"".option: "domain-name-servers" ("ns1.sales.example.org", "ns2.sales.example.org")
+.elsif="option dhcp-user-class = \"engineering\"".max-lease-time: "17600"
+.elsif="option dhcp-user-class = \"engineering\"".option: "domain-name" "engineering.example.org"
+.elsif="option dhcp-user-class = \"engineering\"".option: "domain-name-servers" ("ns1.engineering.example.org", "ns2.engineering.example.org")
+.else.max-lease-time: "600"
+.else.option: "domain-name" "misc.example.org"
+.else.option: "domain-name-servers" ("ns1.misc.example.org", "ns2.misc.example.org")
+.shared-network="LAN".subnet="192.168.0.0" "netmask" "255.255.255.0".option: "routers" "192.168.0.1"
+.shared-network="LAN".subnet="192.168.0.0" "netmask" "255.255.255.0".option: "domain-name-servers" "192.168.0.1"
+.shared-network="LAN".subnet="192.168.0.0" "netmask" "255.255.255.0".update-static-leases: "on"
+.shared-network="LAN".subnet="192.168.0.0" "netmask" "255.255.255.0".pool.range: "192.168.0.1" "192.168.0.254"
+.shared-network="LAN".subnet="192.168.0.0" "netmask" "255.255.255.0".pool.deny: "known-clients"
+.shared-network="LAN".subnet="192.168.0.0" "netmask" "255.255.255.0".pool.ddns-hostname: "binary-to-ascii(10, 8, \"-\", leased-address)"
+])
+
+AT_CLEANUP
+

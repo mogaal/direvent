@@ -1,6 +1,6 @@
 # @configure_input@                                     -*- shell-script -*-
 # Configurable variable values for Grecs test suite.
-# Copyright (C) 2011-2012 Sergey Poznyakoff
+# Copyright (C) 2011-2016 Sergey Poznyakoff
 
 PATH=@abs_builddir@:$PATH
 

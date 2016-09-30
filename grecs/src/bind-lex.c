@@ -1,4 +1,4 @@
-#line 3 "bind-lex.l"
+#line 5 "bind-lex.l"
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
@@ -636,9 +636,9 @@ int grecs_bind__flex_debug = 1;
 
 static grecs_bind_const flex_int16_t grecs_bind__rule_linenum[27] =
     {   0,
-       54,   55,   56,   57,   58,   60,   64,   69,   70,   71,
-       72,   74,   81,   87,   91,   92,   96,   99,  100,  101,
-      102,  103,  108,  110,  111,  112
+       55,   56,   57,   58,   59,   61,   65,   70,   71,   72,
+       73,   75,   82,   88,   92,   93,   98,  101,  102,  104,
+      105,  106,  111,  113,  114,  115
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -651,10 +651,11 @@ static grecs_bind_const flex_int16_t grecs_bind__rule_linenum[27] =
 char *grecs_bind_text;
 #line 1 "bind-lex.l"
 /* grecs - Gray's Extensible Configuration System       -*- c -*- */
+#define YY_NO_INPUT 1
 
-#line 8 "bind-lex.l"
+#line 10 "bind-lex.l"
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -670,7 +671,6 @@ char *grecs_bind_text;
    with Grecs. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <bind-gram.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -769,8 +769,6 @@ extern int grecs_bind_wrap (void );
 
 /* %not-for-header */
 
-    static void grecs_bind_unput (int c,char *buf_ptr  );
-    
 /* %ok-for-header */
 
 /* %endif */
@@ -937,10 +935,10 @@ YY_DECL
 	register int grecs_bind__act;
     
 /* %% [7.0] user's declarations go here */
-#line 52 "bind-lex.l"
+#line 53 "bind-lex.l"
 
          /* C-style comments */
-#line 944 "bind-lex.c"
+#line 942 "bind-lex.c"
 
 	if ( !(grecs_bind__init) )
 		{
@@ -1057,35 +1055,35 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 54 "bind-lex.l"
+#line 55 "bind-lex.l"
 BEGIN(COMMENT);
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 55 "bind-lex.l"
+#line 56 "bind-lex.l"
 /* eat anything that's not a '*' */
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 56 "bind-lex.l"
+#line 57 "bind-lex.l"
 /* eat up '*'s not followed by '/'s */
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 57 "bind-lex.l"
+#line 58 "bind-lex.l"
 grecs_locus_point_advance_line(grecs_current_locus_point);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 58 "bind-lex.l"
+#line 59 "bind-lex.l"
 BEGIN(INITIAL);
 	YY_BREAK
 /* Line directive */
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 60 "bind-lex.l"
+#line 61 "bind-lex.l"
 { grecs_parse_line_directive_cpp(grecs_bind_text,
 						    &grecs_bind_lloc,
 						    &grecs_current_locus_point,
@@ -1094,7 +1092,7 @@ YY_RULE_SETUP
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 64 "bind-lex.l"
+#line 65 "bind-lex.l"
 { grecs_parse_line_directive(grecs_bind_text,
 						    &grecs_bind_lloc,
 						    &grecs_current_locus_point,
@@ -1104,29 +1102,29 @@ YY_RULE_SETUP
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 69 "bind-lex.l"
+#line 70 "bind-lex.l"
 { grecs_locus_point_advance_line(grecs_current_locus_point); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 70 "bind-lex.l"
+#line 71 "bind-lex.l"
 /* end-of-file comment */;
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 71 "bind-lex.l"
+#line 72 "bind-lex.l"
 { grecs_locus_point_advance_line(grecs_current_locus_point); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 72 "bind-lex.l"
+#line 73 "bind-lex.l"
 /* end-of-file comment */;
 	YY_BREAK
 /* Identifiers */
 case 12:
 YY_RULE_SETUP
-#line 74 "bind-lex.l"
+#line 75 "bind-lex.l"
 { grecs_line_begin();
 	    grecs_line_add(grecs_bind_text, grecs_bind_leng);
 	    grecs_bind_lval.string = grecs_line_finish();
@@ -1137,7 +1135,7 @@ YY_RULE_SETUP
 /* Strings */
 case 13:
 YY_RULE_SETUP
-#line 81 "bind-lex.l"
+#line 82 "bind-lex.l"
 {
 	                   grecs_line_begin();
 	                   grecs_line_add(grecs_bind_text, grecs_bind_leng);
@@ -1147,51 +1145,53 @@ YY_RULE_SETUP
 /* Quoted strings */
 case 14:
 YY_RULE_SETUP
-#line 87 "bind-lex.l"
+#line 88 "bind-lex.l"
 { grecs_line_begin();
                         grecs_line_add(grecs_bind_text + 1, grecs_bind_leng - 2);
                         grecs_bind_lval.string = grecs_line_finish();
                         return BIND_STRING; }
 	YY_BREAK
 case 15:
-#line 92 "bind-lex.l"
+#line 93 "bind-lex.l"
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 92 "bind-lex.l"
+#line 93 "bind-lex.l"
 { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow_unescape_last(grecs_bind_text + 1,
-                                                           grecs_bind_leng - 1); }
+                                                           grecs_bind_leng - 1, 
+                                                           &grecs_bind_lloc); }
 	YY_BREAK
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 96 "bind-lex.l"
+#line 98 "bind-lex.l"
 { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow(grecs_bind_text + 1, grecs_bind_leng - 1); }
 	YY_BREAK
 case 18:
-#line 100 "bind-lex.l"
+#line 102 "bind-lex.l"
 case 19:
 /* rule 19 can match eol */
 YY_RULE_SETUP
-#line 100 "bind-lex.l"
-{ grecs_line_acc_grow_unescape_last(grecs_bind_text, grecs_bind_leng); }
+#line 102 "bind-lex.l"
+{ grecs_line_acc_grow_unescape_last(grecs_bind_text, grecs_bind_leng, 
+                                                          &grecs_bind_lloc); }
 	YY_BREAK
 case 20:
 /* rule 20 can match eol */
-#line 102 "bind-lex.l"
+#line 105 "bind-lex.l"
 case 21:
 /* rule 21 can match eol */
 YY_RULE_SETUP
-#line 102 "bind-lex.l"
+#line 105 "bind-lex.l"
 { grecs_line_acc_grow(grecs_bind_text, grecs_bind_leng); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 103 "bind-lex.l"
+#line 106 "bind-lex.l"
 { BEGIN(INITIAL);
                         if (grecs_bind_leng > 1) 
 				grecs_line_add(grecs_bind_text, grecs_bind_leng - 1); 
@@ -1200,24 +1200,24 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 108 "bind-lex.l"
+#line 111 "bind-lex.l"
 ;
 	YY_BREAK
 /* Other tokens */
 case 24:
 /* rule 24 can match eol */
 YY_RULE_SETUP
-#line 110 "bind-lex.l"
+#line 113 "bind-lex.l"
 { grecs_locus_point_advance_line(grecs_current_locus_point); } 
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 111 "bind-lex.l"
+#line 114 "bind-lex.l"
 return grecs_bind_text[0];
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 112 "bind-lex.l"
+#line 115 "bind-lex.l"
 { if (isascii(grecs_bind_text[0]) && isprint(grecs_bind_text[0]))
 		grecs_error(&grecs_bind_lloc, 0,
 			     _("stray character %c"), grecs_bind_text[0]);
@@ -1227,7 +1227,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 118 "bind-lex.l"
+#line 121 "bind-lex.l"
 ECHO;
 	YY_BREAK
 #line 1234 "bind-lex.c"
@@ -1588,49 +1588,6 @@ static int grecs_bind__get_next_buffer (void)
 	return grecs_bind__is_jam ? 0 : grecs_bind__current_state;
 }
 
-/* %if-c-only */
-
-    static void grecs_bind_unput (int c, register char * grecs_bind__bp )
-/* %endif */
-/* %if-c++-only */
-/* %endif */
-{
-	register char *grecs_bind__cp;
-    
-    grecs_bind__cp = (grecs_bind__c_buf_p);
-
-	/* undo effects of setting up grecs_bind_text */
-	*grecs_bind__cp = (grecs_bind__hold_char);
-
-	if ( grecs_bind__cp < YY_CURRENT_BUFFER_LVALUE->grecs_bind__ch_buf + 2 )
-		{ /* need to shift things up to make room */
-		/* +2 for EOB chars. */
-		register int number_to_move = (grecs_bind__n_chars) + 2;
-		register char *dest = &YY_CURRENT_BUFFER_LVALUE->grecs_bind__ch_buf[
-					YY_CURRENT_BUFFER_LVALUE->grecs_bind__buf_size + 2];
-		register char *source =
-				&YY_CURRENT_BUFFER_LVALUE->grecs_bind__ch_buf[number_to_move];
-
-		while ( source > YY_CURRENT_BUFFER_LVALUE->grecs_bind__ch_buf )
-			*--dest = *--source;
-
-		grecs_bind__cp += (int) (dest - source);
-		grecs_bind__bp += (int) (dest - source);
-		YY_CURRENT_BUFFER_LVALUE->grecs_bind__n_chars =
-			(grecs_bind__n_chars) = YY_CURRENT_BUFFER_LVALUE->grecs_bind__buf_size;
-
-		if ( grecs_bind__cp < YY_CURRENT_BUFFER_LVALUE->grecs_bind__ch_buf + 2 )
-			YY_FATAL_ERROR( "flex scanner push-back overflow" );
-		}
-
-	*--grecs_bind__cp = (char) c;
-
-/* %% [18.0] update grecs_bind_lineno here */
-
-	(grecs_bind_text_ptr) = grecs_bind__bp;
-	(grecs_bind__hold_char) = *grecs_bind__cp;
-	(grecs_bind__c_buf_p) = grecs_bind__cp;
-}
 /* %if-c-only */
 
 /* %endif */
@@ -2369,7 +2326,7 @@ void grecs_bind_free (void * ptr )
 
 /* %ok-for-header */
 
-#line 118 "bind-lex.l"
+#line 121 "bind-lex.l"
 
 
 

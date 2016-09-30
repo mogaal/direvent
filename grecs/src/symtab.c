@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+#include <ctype.h>
 
 /* |hash_size| defines a sequence of symbol table sizes. These are prime
    numbers, each of which is approximately twice its predecessor. */
@@ -85,6 +86,18 @@ grecs_hash_string(const char *name, unsigned long hashsize)
 	return i % hashsize;
 }
 
+unsigned
+grecs_hash_string_ci(const char *name, unsigned long hashsize)
+{
+	unsigned i;
+	
+	for (i = 0; *name; name++) {
+		i <<= 1;
+		i ^= tolower (*(unsigned char*) name);
+	}
+	return i % hashsize;
+}
+
 static unsigned
 def_hash(void *data, unsigned long hashsize)
 {
@@ -142,7 +155,7 @@ grecs_symtab_replace(struct grecs_symtab *st, void *ent, void **old_ent)
 {
 	struct grecs_syment *entry;
 	unsigned i, pos = st->hash_fun(ent, hash_size[st->hash_num]);
-	for (i = pos; entry = st->tab[i];) {
+	for (i = pos; (entry = st->tab[i]);) {
 		if (st->cmp_fun(entry, ent) == 0)
 			break;
 		if (++i >= hash_size[st->hash_num])
@@ -206,7 +219,7 @@ grecs_symtab_remove(struct grecs_symtab *st, void *elt)
 	struct grecs_syment *entry;
 	
 	pos = st->hash_fun(elt, hash_size[st->hash_num]);
-	for (i = pos; entry = st->tab[i];) {
+	for (i = pos; (entry = st->tab[i]);) {
 		if (st->cmp_fun(entry, elt) == 0)
 			break;
 		if (++i >= hash_size[st->hash_num])
@@ -215,6 +228,9 @@ grecs_symtab_remove(struct grecs_symtab *st, void *elt)
 			return ENOENT;
 	}
 	
+	if (!entry)
+		return ENOENT;
+
 	syment_free(st, entry);
 
 	for (;;) {
@@ -254,7 +270,7 @@ grecs_symtab_get_index(unsigned *idx, struct grecs_symtab *st,
 
 	pos = st->hash_fun(key, hash_size[st->hash_num]);
 
-	for (i = pos; elem = st->tab[i];) {
+	for (i = pos; (elem = st->tab[i]);) {
 		if (st->cmp_fun(elem, key) == 0) {
 			if (install)
 				*install = 0;

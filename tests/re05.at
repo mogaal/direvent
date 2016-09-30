@@ -1,5 +1,5 @@
 # This file is part of Direvent testsuite. -*- Autotest -*-
-# Copyright (C) 2014 Sergey Poznyakoff
+# Copyright (C) 2014-2016 Sergey Poznyakoff
 #
 # Direvent is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ syslog {
 watcher {
 	path $cwd/dir;
 	event create;
-	file "!/\.[0-9]+$/";
+	file "!/\\\\.[0-9]+$/";
 	command "$TESTDIR/envdump -s -i DIREVENT_FILE=:DIREVENT_GENEV_ -f $outfile -a -k\$self_test_pid";
 	option (stdout,stderr);
 }

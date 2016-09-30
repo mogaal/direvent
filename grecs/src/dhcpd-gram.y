@@ -1,6 +1,6 @@
 %{
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -19,7 +19,6 @@
 # include <config.h>
 #endif
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <dhcpd-gram.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -33,6 +32,20 @@ static struct grecs_node *parse_tree;
 extern int yy_flex_debug;
 extern int grecs_dhcpd_new_source(const char *name, grecs_locus_t *loc);
 extern void grecs_dhcpd_close_sources(void);
+
+extern void grecs_dhcpd_begin_bool(void);
+extern void grecs_dhcpd_begin_expr(void);
+
+/* NOTE: STRING must be allocated */
+static grecs_value_t *
+make_string_value(char *string)
+{
+	grecs_value_t *val;
+	val = grecs_malloc(sizeof(val[0]));
+	val->type = GRECS_TYPE_STRING;
+	val->v.string = string;
+	return val;
+}
 
 %}
 
@@ -48,13 +61,16 @@ extern void grecs_dhcpd_close_sources(void);
 	struct { struct grecs_node *head, *tail; } node_list;
 }
 
-%token <string> DHCPD_STRING DHCPD_IDENT
+%token <string> DHCPD_IF DHCPD_ELSIF DHCPD_EXPR
+%token DHCPD_ELSE 
+%token <string> DHCPD_STRING DHCPD_IDENT 
 %type <string> string
 %type <svalue> value 
 %type <pvalue> vallist tag
 %type <list> vlist strlist
 %type <node> stmt simple block maybe_stmtlist
-%type <node_list> stmtlist
+%type <node> cond elsecond opt_elsecond elsifcond
+%type <node_list> stmtlist elsifchain opt_elsifchain
 
 %%
 
@@ -95,6 +111,7 @@ stmtlist: stmt
 
 stmt    : simple
         | block
+        | cond
         ;
 
 simple  : DHCPD_IDENT vallist ';'
@@ -110,6 +127,14 @@ simple  : DHCPD_IDENT vallist ';'
 			  $$->idloc = @1;
 			  $$->v.value = $2;
 		  }
+	  }
+        | DHCPD_IDENT '=' { grecs_dhcpd_begin_expr(); } DHCPD_EXPR ';'
+	  {
+		  $$ = grecs_node_create_points(grecs_node_stmt,
+						@1.beg, @5.end);
+		  $$->ident = $1;
+		  $$->idloc = @1;
+		  $$->v.value = make_string_value($4);
 	  }
         | string ';'
 	  {
@@ -219,6 +244,99 @@ strlist : DHCPD_STRING ',' DHCPD_STRING
 		  val.locus = @3;
 		  val.v.string = $3;
 		  grecs_list_append($1, grecs_value_ptr_from_static(&val));
+	  }
+        ;
+
+cond    : if DHCPD_EXPR '{' maybe_stmtlist '}' opt_elsifchain opt_elsecond
+          {
+		  $$ = grecs_node_create_points(grecs_node_block,
+						@1.beg, @7.end);
+		  
+		  grecs_line_begin();
+		  grecs_line_add("if", 2);
+
+		  $$->ident = grecs_line_finish();
+		  $$->idloc = @1;
+		  
+		  $$->v.value = make_string_value ($2);
+		  grecs_node_bind($$, $4, 1);
+
+		  if ($6.head) {
+			  grecs_node_bind($6.tail, $7, 0);
+			  grecs_node_bind($$, $6.head, 0);
+		  }
+	  }
+        ;
+
+if      : DHCPD_IF
+          {
+		  grecs_dhcpd_begin_bool();
+	  }
+        ;
+
+elsif   : DHCPD_ELSIF
+          {
+		  grecs_dhcpd_begin_bool();
+	  }
+        ;
+
+opt_elsifchain: /* empty */
+          {
+		  $$.head = $$.tail = NULL;
+	  }
+        | elsifchain
+	;
+
+elsifchain: elsifcond
+          {
+		  $$.head = $$.tail = $1;
+	  } 
+        | elsifchain elsifcond
+	  {
+		  if ($2) {
+			  if (!$1.head)
+				  $1.head = $1.tail = $2;
+			  else
+				  grecs_node_bind($1.tail, $2, 0);
+		  }
+		  $$ = $1;
+	  }
+        ;
+
+elsifcond: elsif DHCPD_EXPR '{' maybe_stmtlist '}'
+          {
+		  $$ = grecs_node_create_points(grecs_node_block,
+						@1.beg, @5.end);
+		  
+		  grecs_line_begin();
+		  grecs_line_add("elsif", 5);
+
+		  $$->ident = grecs_line_finish();
+		  $$->idloc = @1;
+		  $$->v.value = make_string_value ($2);
+		  grecs_node_bind($$, $4, 1);
+	  }
+        ;
+
+opt_elsecond: /* empty */
+          {
+		  $$ = NULL;
+	  }
+        | elsecond
+	;
+
+elsecond: DHCPD_ELSE '{' maybe_stmtlist '}'
+          {
+		  $$ = grecs_node_create_points(grecs_node_block,
+						@1.beg, @4.end);
+		  
+		  grecs_line_begin();
+		  grecs_line_add("else", 4);
+
+		  $$->ident = grecs_line_finish();
+		  $$->idloc = @1;
+		  $$->v.value = NULL;
+		  grecs_node_bind($$, $3, 1);
 	  }
         ;
 

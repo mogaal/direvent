@@ -1,0 +1,856 @@
+# Esperanto translation
+# Copyright (C) 2015 Free Software Foundation, Inc.
+# This file is distributed under the same license as the direvent package.
+# Felipe Castro <fefcas@gmail.com>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: direvent 4.1.91\n"
+"Report-Msgid-Bugs-To: bug-direvent@gnu.org.ua\n"
+"POT-Creation-Date: 2016-07-06 17:50+0300\n"
+"PO-Revision-Date: 2015-01-26 10:40-0300\n"
+"Last-Translator: Felipe Castro <fefcas@gmail.com>\n"
+"Language-Team: Esperanto <translation-team-eo@lists.sourceforge.net>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: cmdline.opt:26
+msgid "increase debug level"
+msgstr "alkrementi ĝustigan nivelon"
+
+#: cmdline.opt:32
+msgid "PRIO"
+msgstr "PRIO"
+
+#: cmdline.opt:32
+msgid ""
+"log everything with priority PRIO and higher to the stderr, as well as to "
+"the syslog"
+msgstr ""
+"protokoli ĉion kun prioritato PRIO aŭ pli alta al la ĉeferarujo, samkiel al "
+"la syslog"
+
+#: cmdline.opt:41
+msgid "NAME"
+msgstr "NOMO"
+
+#: cmdline.opt:41
+msgid "set syslog facility"
+msgstr "aktivigi la utilaĵon syslog"
+
+#: cmdline.opt:47
+msgid "remain in foreground"
+msgstr "resti malfone"
+
+#: cmdline.opt:53
+msgid "DIR"
+msgstr ""
+
+#: cmdline.opt:53
+msgid "add include directory"
+msgstr ""
+
+#: cmdline.opt:59
+msgid "PROG"
+msgstr "PROG"
+
+#: cmdline.opt:59
+msgid "self-test mode"
+msgstr "memtesta reĝimo"
+
+#: cmdline.opt:65
+msgid "FILE"
+msgstr "DOSIERO"
+
+#: cmdline.opt:65
+msgid "set PID file"
+msgstr "difini PID-dosieron"
+
+#: cmdline.opt:71
+msgid "check configuration file and exit"
+msgstr "kontroli agordan dosieron kaj eliri"
+
+#: cmdline.opt:77
+msgid "USER"
+msgstr "UZANTO"
+
+#: cmdline.opt:77
+msgid "run as this user"
+msgstr "funkcii kiel tiu ĉi uzanto"
+
+#: cmdline.opt:87
+msgid "show configuration file summary"
+msgstr "montri agord-dosieran resumon"
+
+#: cmdline.opt:81
+msgid "Other options"
+msgstr "Aliaj modifiloj"
+
+#: cmdline.opt:93
+msgid "Give this help list"
+msgstr "Montri tiun ĉi help-liston"
+
+#: cmdline.opt:93
+msgid "Give a short usage message"
+msgstr "Montri mallongan mesaĝon pri la uzado"
+
+#: cmdline.opt:93
+msgid "Print program version"
+msgstr "Montri program-version"
+
+#: cmdline.opt:13
+msgid "GNU direvent monitors changes in directories"
+msgstr "GNU direvent kontroladas ŝanĝojn en dosierujojn"
+
+#: cmdline.opt:15
+msgid "[CONFIG]"
+msgstr "[AGORDO]"
+
+#: cmdline.opt:95
+#, c-format
+msgid ""
+"The optional CONFIG argument supplies the name of the configuration file\n"
+"to use instead of %s.\n"
+"\n"
+msgstr ""
+"La nedeviga argumento AGORDO indikas la nomon de agordo-dosiero por uzi\n"
+"anstataŭ %s.\n"
+"\n"
+
+#. TRANSLATORS: %s is one of: inotify, kqueue
+#: cmdline.opt:99
+#, c-format
+msgid ""
+"This direvent uses %s interface.\n"
+"\n"
+msgstr ""
+"Tiu ĉi direvent uzas la interfacon %s.\n"
+"\n"
+
+#: cmdline.opt:102
+#, c-format
+msgid "Include search path:\n"
+msgstr ""
+
+#: cmdline.opt:105
+#, c-format
+msgid "No include search path.\n"
+msgstr ""
+
+#: src/config.c:63
+#, c-format
+msgid "unknown syslog facility: %s"
+msgstr "nekonata utilaĵo de syslog: %s"
+
+#: src/config.c:80
+#, c-format
+msgid "unknown syslog priority: %s"
+msgstr "nekonata prioritato de syslog: %s"
+
+#: src/config.c:88
+msgid "unexpected block statement"
+msgstr "neatendita bloka komando"
+
+#: src/config.c:97
+#, c-format
+msgid "expected %s"
+msgstr "ni atendis %s"
+
+#: src/config.c:102
+#, c-format
+msgid "expected %s, but found %s"
+msgstr "ni atendis %s, sed trovis %s"
+
+#: src/config.c:124
+#, c-format
+msgid "unknown syslog facility `%s'"
+msgstr "nekonata utilaĵo syslog '%s'"
+
+#: src/config.c:133 src/config.c:706
+msgid "name"
+msgstr "nomo"
+
+#: src/config.c:134
+msgid ""
+"Set syslog facility. Arg is one of the following: user, daemon, auth, "
+"authpriv, mail, cron, local0 through local7 (case-insensitive), or a "
+"facility number."
+msgstr ""
+"Difini utilaĵon syslog. Arg estas unu el la jena: user, daemon, auth, "
+"authpriv, mail, cron, local0 ĝis local7 (ajn usklece), aŭ numero de utilaĵo."
+
+#: src/config.c:139
+msgid "string"
+msgstr "ĉeno"
+
+#: src/config.c:139
+msgid "Tag syslog messages with this string"
+msgstr "Marki mesaĝojn de syslog per tiu ĉi ĉeno"
+
+#: src/config.c:142 grecs/src/format.c:141
+msgid "arg"
+msgstr "arg"
+
+#: src/config.c:143
+msgid "Prefix each message with its priority"
+msgstr "Prefiksi ĉiun mesaĝon per ĝia prioritato"
+
+#: src/config.c:209
+#, c-format
+msgid "%s: recursion depth does not match previous definition"
+msgstr "%s: rikura profundo ne akordas al antaŭa difino"
+
+#: src/config.c:247
+msgid "no paths configured"
+msgstr "neniu vojo estas agordita"
+
+#: src/config.c:252
+msgid "no command configured"
+msgstr "neniu komando estas agordita"
+
+#: src/config.c:264 grecs/src/tree.c:634
+msgid "invalid use of block statement"
+msgstr "malvalida uzo de bloka komando"
+
+#: src/config.c:309
+msgid "expected \"recursive\" or end of statement"
+msgstr "ni atendis \"recursive\" aŭ la finon de komando"
+
+#: src/config.c:324
+msgid "surplus argument"
+msgstr "troa argumento"
+
+#: src/config.c:330 src/config.c:481
+msgid "unexpected list"
+msgstr "ne atendita listo"
+
+#: src/config.c:361 src/config.c:376 src/config.c:391
+msgid "unrecognized event code"
+msgstr "nerekonita eventkodo"
+
+#: src/config.c:473
+msgid "surplus arguments"
+msgstr "troaj argumentoj"
+
+#: src/config.c:487
+msgid "no such user"
+msgstr "neniu tia uzanto"
+
+#: src/config.c:494
+msgid "no such group"
+msgstr "neniu tia grupo"
+
+#: src/config.c:535
+#, fuzzy
+msgid "unrecognized option"
+msgstr "nerekonita flago"
+
+#: src/config.c:613
+msgid "unterminated regexp"
+msgstr "nefinigita regulesprimo"
+
+#: src/config.c:627
+#, c-format
+msgid "unrecognized flag: %c"
+msgstr "nerekonita flago: %c"
+
+#: src/config.c:695
+msgid "Pathname to watch"
+msgstr "Vojnomo por esti observata"
+
+#: src/config.c:698
+msgid "Events to watch for"
+msgstr "Eventoj por esti observataj"
+
+#: src/config.c:701
+msgid "regexp"
+msgstr "regulesprimo"
+
+#: src/config.c:701
+msgid "Files to watch for"
+msgstr "Dosieroj por esti observataj"
+
+#: src/config.c:704
+msgid "Command to execute on event"
+msgstr "Komando por esti lanĉata pro evento"
+
+#: src/config.c:706
+msgid "Run command as this user"
+msgstr "Lanĉi la komandon kiel tiu ĉi uzanto"
+
+#: src/config.c:709
+msgid "seconds"
+msgstr "sekundoj"
+
+#: src/config.c:709
+msgid "Timeout for the command"
+msgstr "Tempolimo por la komando"
+
+#: src/config.c:711
+msgid "List of additional options"
+msgstr "Listo de kromaj preferoj"
+
+#: src/config.c:714
+msgid "<arg: string> <arg: string>..."
+msgstr "<arg: ĉeno> <arg: ĉeno>..."
+
+#: src/config.c:715
+msgid "Modify environment"
+msgstr "Ŝanĝi medion"
+
+#: src/config.c:722
+msgid "Run as this user"
+msgstr "Ruli kiel tiu ĉi uzanto"
+
+#: src/config.c:724
+msgid "Run in foreground"
+msgstr "Ruli malfone"
+
+#: src/config.c:726
+msgid "file"
+msgstr "dosiero"
+
+#: src/config.c:726
+msgid "Set pid file name"
+msgstr "Difini pid-dosiernomon"
+
+#: src/config.c:728
+msgid "Configure syslog logging"
+msgstr "Agordi protokoligo de syslog"
+
+#: src/config.c:730
+msgid "level"
+msgstr "nivelo"
+
+#: src/config.c:730
+msgid "Set debug level"
+msgstr "Difini ĝustigan nivelon"
+
+#: src/config.c:732
+msgid "Configure event watcher"
+msgstr "Agordi event-observanton"
+
+#: src/config.c:743
+msgid ""
+"Configuration file structure for direvent.\n"
+"For more information, use `info direvent configuration'."
+msgstr ""
+"Strukturo de agorda dosiero por direvent.\n"
+"Por pli da informo, uzu 'info direvent configuration'."
+
+#: src/direvent.c:142 src/direvent.c:164 src/watcher.c:86 src/watcher.c:182
+#: src/watcher.c:191
+msgid "not enough memory"
+msgstr "ne sufiĉe da memoro"
+
+#: src/direvent.c:272
+#, c-format
+msgid "cannot open pidfile %s for writing: %s"
+msgstr "ne eblas malfermi la pid-dosieron %s por skribi: %s"
+
+#: src/direvent.c:300
+#, c-format
+msgid "no user with UID %lu"
+msgstr "neniu uzanto kun UID: %lu"
+
+#: src/direvent.c:418
+#, c-format
+msgid "cannot run `%s': fork failed: %s"
+msgstr "ne eblas lanĉi '%s': forko fiaskis: %s"
+
+#: src/direvent.c:478
+msgid "too many arguments"
+msgstr "tro multaj argumentoj"
+
+#: src/direvent.c:520
+#, c-format
+msgid "%s %s started"
+msgstr "%s %s lanĉita"
+
+#: src/direvent.c:541
+#, c-format
+msgid "%s %s stopped"
+msgstr "%s %s haltigita"
+
+#: src/environ.c:25
+msgid "environment: "
+msgstr "medio: "
+
+#: src/hashtab.c:140 grecs/src/symtab.c:206
+msgid "element not found in table"
+msgstr "elemento ne estas trovita en tabelo"
+
+#: src/hashtab.c:142 grecs/src/symtab.c:208
+msgid "symbol table is full"
+msgstr "simboltabelo estas plena"
+
+#: src/hashtab.c:144
+msgid "out of memory"
+msgstr "mankas memoro"
+
+#: src/progman.c:142
+#, c-format
+msgid "process %lu exited successfully"
+msgstr "la procezo %lu ĉesis sukcese"
+
+#: src/progman.c:145
+#, c-format
+msgid "process %lu failed with status %d"
+msgstr "la procezo %lu fiaskis kun elir-stato %d"
+
+#: src/progman.c:155
+#, c-format
+msgid "process %lu terminated on signal %d"
+msgstr "la procezo %lu ĉesis pro signalo %d"
+
+#: src/progman.c:158
+#, c-format
+msgid "process %lu stopped on signal %d"
+msgstr "la procezo %lu haltis pro signalo %d"
+
+#: src/progman.c:163
+#, c-format
+msgid "process %lu dumped core"
+msgstr "nekropsio de procezo %lu"
+
+#: src/progman.c:167
+#, c-format
+msgid "process %lu terminated with unrecognized status"
+msgstr "la procezo %lu ĉesis kun nerekonita stato"
+
+#: src/progman.c:228
+msgid "begin scanning process list"
+msgstr "komenci skanadon de procez-listo"
+
+#: src/progman.c:232
+#, c-format
+msgid "process %lu timed out"
+msgstr "la procezo %lu eltempiĝis"
+
+#: src/progman.c:241
+#, c-format
+msgid "scheduling alarm in %lu seconds"
+msgstr "ni planas alarmon por %lu sekundoj"
+
+#: src/progman.c:322
+#, c-format
+msgid "cannot start redirector for %s, pipe failed: %s"
+msgstr "ne eblas lanĉi redirektilo por %s, dukto fiaskis: %s"
+
+#: src/progman.c:354
+#, c-format
+msgid "cannot run redirector `%s': fork failed: %s"
+msgstr "ne eblas lanĉi la redirektilon '%s': forko fiaskis: %s"
+
+#: src/progman.c:359
+#, c-format
+msgid "redirector for %s started, pid=%lu"
+msgstr "redirektilo por %s komencis, pid=%lu"
+
+#: src/progman.c:454
+#, c-format
+msgid "starting %s, dir=%s, file=%s"
+msgstr "Ekigo de %s, ujo=%s, dosiero=%s"
+
+#: src/progman.c:482
+#, c-format
+msgid "cannot change to %s: %s"
+msgstr "ne eblas ŝanĝi al %s: %s"
+
+#: src/progman.c:510
+#, c-format
+msgid "%s running; dir=%s, file=%s, pid=%lu"
+msgstr "%s rulas; ujo=%s, dosiero=%s, pid=%lu"
+
+#: src/progman.c:532
+#, c-format
+msgid "waiting for %s (%lu) to terminate"
+msgstr "ni atendas ke %s (%lu) ĉesu"
+
+#: src/watcher.c:231
+#, c-format
+msgid "creating watcher %s"
+msgstr "ni kreas observanton %s"
+
+#: src/watcher.c:240
+#, c-format
+msgid "cannot set watcher on %s: %s"
+msgstr "ne eblas agordi observanton en %s: %s"
+
+#: src/watcher.c:319
+#, c-format
+msgid "cannot create watcher %s/%s: not enough memory"
+msgstr "ne eblas krei observanton %s/%s: mankas memoro"
+
+#: src/watcher.c:326
+#, c-format
+msgid "cannot create watcher %s/%s, stat failed: %s"
+msgstr "ne eblas krei observanton %s/%s, stat fiaksis: %s"
+
+#: src/watcher.c:355
+#, c-format
+msgid "cannot open directory %s: %s"
+msgstr "ne eblas malfermi dosierujon %s: %s"
+
+#: src/watcher.c:371
+#, c-format
+msgid "cannot stat %s/%s: not enough memory"
+msgstr "ne eblas apliki 'stat' %s/%s: mankas memoro"
+
+#: src/watcher.c:376
+#, c-format
+msgid "cannot stat %s: %s"
+msgstr "Ne eblas apliki 'stat' %s: %s"
+
+#: src/watcher.c:412
+msgid "no event handlers configured"
+msgstr "neniu evento-traktilo estas difinita"
+
+#: src/watcher.c:417
+msgid "no event handlers installed"
+msgstr "neniu evento-traktilo estas instalita"
+
+#: src/watcher.c:425
+#, c-format
+msgid "removing watcher %s"
+msgstr "ni forigas observanton %s"
+
+#: grecs/src/format.c:133
+msgid "Disabled;"
+msgstr "Malebligata;"
+
+#: grecs/src/opthelp.c:123 grecs/src/opthelp.c:269
+msgid "Usage:"
+msgstr "Uzmaniero:"
+
+#: grecs/src/opthelp.c:127
+msgid "OPTION"
+msgstr "MODIFILO"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Aliases"
+msgstr "Kromnomoj"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Alias"
+msgstr "Kromnomo"
+
+#: grecs/src/opthelp.c:186
+msgid ""
+"Mandatory or optional arguments to long options are also mandatory or "
+"optional for any corresponding short options."
+msgstr ""
+"Nepraj kaj malnepraj argumentoj por longaj modifiloj ankaŭ estas nepraj kaj "
+"malnepraj por la koresponda mallonga modifilo."
+
+#. TRANSLATORS: The placeholder indicates the bug-reporting
+#. address for this package.  Please add _another line_ saying
+#. "Report translation bugs to <...>\n" with the address for
+#. translation bugs (typically your translation team's web or
+#. email address).
+#: grecs/src/opthelp.c:202
+#, c-format
+msgid "Report bugs to %s.\n"
+msgstr ""
+"Raportu cimojn al: %s.\n"
+"Kaj mistradukojn al <translation-team-eo@lists.sourceforge.net>\n"
+
+#: grecs/src/opthelp.c:205
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr "Hejmpaĝo de %s: <%s>\n"
+
+#. TRANSLATORS: Translate "(C)" to the copyright symbol
+#. (C-in-a-circle), if this symbol is available in the user's
+#. locale.  Otherwise, do not translate "(C)"; leave it as-is.
+#: grecs/src/opthelp.c:457
+msgid "(C)"
+msgstr "©"
+
+#: grecs/src/opthelp.c:466
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+"\n"
+msgstr ""
+"Permeso GPLv3+: GNU GPL versio 3 aŭ posta <http://gnu.org/licenses/gpl."
+"html>\n"
+"Tio ĉi estas libera programaro: vi estas libera por ŝanĝi kaj redisdoni "
+"ĝin.\n"
+"Ekzistas NENIU GARANTIO, laŭ plej amplekse permesate de la leĝoj.\n"
+"\n"
+
+#: grecs/src/opthelp.c:483
+msgid "Written by "
+msgstr "Verkita de "
+
+#. TRANSLATORS: This string is used as a delimiter between
+#. authors' names as in:
+#.
+#. Written by Winnie the Pooh, Piglet ...
+#.
+#: grecs/src/opthelp.c:489
+msgid ", "
+msgstr "; "
+
+#. TRANSLATORS: This string acts as a delimiter before the
+#. last author's names, e.g.:
+#.
+#. Written by Winnie the Pooh, Piglet and Christopher Robin.
+#.
+#: grecs/src/opthelp.c:495
+msgid " and "
+msgstr " kaj "
+
+#: grecs/src/path-parser.c:62
+#, c-format
+msgid "cannot open `%s'"
+msgstr "ne eblas malfermi '%s'"
+
+#: grecs/src/path-parser.c:108 grecs/src/path-parser.c:123
+msgid "unexpected end of file"
+msgstr "neatendita fino de dosiero"
+
+#: grecs/src/path-parser.c:143
+msgid "parse error"
+msgstr "analiz-eraro"
+
+#: grecs/src/preproc.c:448 grecs/src/preproc.c:470
+#, c-format
+msgid "Cannot stat `%s'"
+msgstr "Ne eblas apliki stat '%s'"
+
+#: grecs/src/preproc.c:453 grecs/src/preproc.c:458
+msgid "Recursive inclusion"
+msgstr "Rikura enmeto"
+
+#: grecs/src/preproc.c:461
+#, c-format
+msgid "`%s' already included here"
+msgstr "'%s' jam estas enmetita ĉi tie"
+
+#: grecs/src/preproc.c:465
+#, c-format
+msgid "`%s' already included at top level"
+msgstr "'%s' jam estas enmetita ĉe la supera nivelo"
+
+#: grecs/src/preproc.c:480
+#, c-format
+msgid "Cannot open `%s'"
+msgstr "Ne eblas malfermi '%s'"
+
+#: grecs/src/preproc.c:595
+msgid "Cannot parse include line"
+msgstr "Ne eblas analizi enmetan linion"
+
+#: grecs/src/preproc.c:598
+msgid "invalid include statement"
+msgstr "malvalida enmeta komando"
+
+#: grecs/src/preproc.c:624
+#, fuzzy
+msgid "read error"
+msgstr "analiz-eraro"
+
+#: grecs/src/preproc.c:632
+#, c-format
+msgid "%s: No such file or directory"
+msgstr "%s: neniu tia dosierujo aŭ dosiero"
+
+#: grecs/src/preproc.c:698
+#, c-format
+msgid "Unable to start external preprocessor `%s'"
+msgstr "Ne eblas ekigi eksteran antaŭprocezilon '%s'"
+
+#: grecs/src/preproc.c:773 grecs/src/preproc.c:793
+#, c-format
+msgid "Cannot run `%s'"
+msgstr "Ne eblas lanĉi '%s'"
+
+#: grecs/src/tree.c:329
+#, c-format
+msgid "%s: not a valid boolean value"
+msgstr "%s: ne estas valida bulea valoro"
+
+#: grecs/src/tree.c:360
+#, c-format
+msgid "%s: UNIX socket name too long"
+msgstr "%s: tro longa ingo-nomo de UNIX"
+
+#: grecs/src/tree.c:389 grecs/src/tree.c:613
+#, c-format
+msgid "%s: not a valid IP address or hostname"
+msgstr "%s: ne estas valida IP-adsero aŭ gastigant-nomo"
+
+#: grecs/src/tree.c:413
+#, c-format
+msgid "%s: not a valid port number"
+msgstr "%s: ne estas valida pord-numero"
+
+#: grecs/src/tree.c:421
+msgid "missing port number"
+msgstr "mankas pordo-numero"
+
+#: grecs/src/tree.c:470
+msgid "numeric overflow"
+msgstr "numera troo"
+
+#: grecs/src/tree.c:475
+msgid "value out of allowed range"
+msgstr "valoro estas for de permesata intervalo"
+
+#: grecs/src/tree.c:510 grecs/src/tree.c:540
+#, c-format
+msgid "not a number (stopped near `%s')"
+msgstr "ne estas numero (haltis proksime de '%s')"
+
+#: grecs/src/tree.c:604
+#, c-format
+msgid "%s: not a valid IP address"
+msgstr "%s: neniu valida IP-adreso"
+
+#: grecs/src/tree.c:743
+#, c-format
+msgid "too many arguments to `%s'; missing semicolon?"
+msgstr "tro multaj argumentoj por '%s'; ĉu mankas punkto-komo?"
+
+#: grecs/src/tree.c:757 grecs/src/tree.c:805
+#, c-format
+msgid "INTERNAL ERROR at %s:%d: unhandled data type %d"
+msgstr "INTERNA ERARO ĉe %s:%d: netraktebla datumartipo %d"
+
+#: grecs/src/tree.c:772
+#, c-format
+msgid "%s: incompatible data type in list item #%d"
+msgstr "%s: nekongrua datumartipo en listero #%d"
+
+#: grecs/src/tree.c:792
+#, c-format
+msgid "incompatible data type for `%s'"
+msgstr "nekongrua datumartipo por '%s'"
+
+#: grecs/src/tree.c:920 grecs/src/tree.c:930
+msgid "Unknown keyword"
+msgstr "Nekonata ŝlosilvorto"
+
+#: grecs/src/tree.c:1139
+#, c-format
+msgid "%s: unknown keyword"
+msgstr "%s: nekonata ŝlosilvorto"
+
+#: grecs/src/wordsplit.c:62 grecs/src/wordsplit.c:2300
+msgid "memory exhausted"
+msgstr "memoro estas elĉerpita"
+
+#: grecs/src/wordsplit.c:1073
+#, c-format
+msgid "%.*s: variable null or not set"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1102
+#, c-format
+msgid "warning: undefined variable `%.*s'"
+msgstr "averto: nedifinita variablo '%.*s'"
+
+#: grecs/src/wordsplit.c:1630
+#, c-format
+msgid "no files match pattern %s"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2080
+msgid "WS trimming"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2081
+msgid "tilde expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2082
+msgid "variable expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2084
+msgid "quote removal"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2086
+#, fuzzy
+msgid "command substitution"
+msgstr "komand-antataŭigo ankoraŭ ne estas subtenata"
+
+#: grecs/src/wordsplit.c:2088
+msgid "coalesce list"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2090
+msgid "path expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2120
+msgid "Initial list:"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2136
+#, fuzzy
+msgid "Coalesced list:"
+msgstr "ne atendita listo"
+
+#: grecs/src/wordsplit.c:2190
+#, c-format
+msgid "(%02d) Input:%.*s;"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2202
+#, c-format
+msgid "(%02d) Restart:%.*s;"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2298
+msgid "no error"
+msgstr "neniu eraro"
+
+#: grecs/src/wordsplit.c:2299
+msgid "missing closing quote"
+msgstr "mankas ferma citilo"
+
+#: grecs/src/wordsplit.c:2301
+msgid "invalid wordsplit usage"
+msgstr "malvalida uzo de 'wordsplit'"
+
+#: grecs/src/wordsplit.c:2302
+msgid "unbalanced curly brace"
+msgstr "ne spegulita ronda krampo"
+
+#: grecs/src/wordsplit.c:2303
+msgid "undefined variable"
+msgstr "nedifinita variablo"
+
+#: grecs/src/wordsplit.c:2304
+msgid "input exhausted"
+msgstr "enigo estas elĉerpita"
+
+#: grecs/src/wordsplit.c:2305
+msgid "unbalanced parenthesis"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2306
+#, fuzzy
+msgid "globbing error"
+msgstr "neniu eraro"
+
+#: grecs/src/wordsplit.c:2318
+msgid "unknown error"
+msgstr "nekonata eraro"
+
+#: grecs/src/wordsplit.c:2327
+#, c-format
+msgid "missing closing %c (start near #%lu)"
+msgstr "mankas ferma %c (komencas proksime de #%lu)"
+
+#~ msgid "INTERNAL ERROR at %s:%d"
+#~ msgstr "INTERNA ERARO ĉe %s:%d"

@@ -1,5 +1,5 @@
 # This file is part of Grecs
-# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+# Copyright (C) 2007-2016 Sergey Poznyakoff
 #
 # Grecs is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
 # along with Grecs.  If not, see <http://www.gnu.org/licenses/>.
 
 ACLOCAL_AMFLAGS = -I am
-SUBDIRS=. src @GRECS_TESTDIR@ @GRECS_DOCDIR@
+SUBDIRS=. include src @GRECS_TESTDIR@ @GRECS_DOCDIR@
 EXTRA_DIST=build-aux/yyrename @GRECS_BUILD_AUX@ @GRECS_DISTDOC@ gitid.h
 
 noinst_HEADERS = gitid.h
@@ -25,14 +25,16 @@ BUILT_SOURCES = gitid.h README
 gitid.h:
 	@if test -e .git; then \
            url=`git config --get remote.origin.url | sed 's|.*://||;s|/gitroot/|/|'`; \
-           if test "$$url" = "git.gnu.org.ua/grecs.git"; then \
+	   case $$url in \
+           git.gnu.org.ua/grecs.git|*@git.gnu.org.ua/grecs.git) \
 	      dirty=`git diff-index --name-only HEAD 2>/dev/null` || dirty=;\
               test -n "$$dirty" && dirty="-dirty"; \
 	      ID=`git log -1 --pretty='format:%H-%ct-%ae'`$$dirty;\
-	      echo "#define GRECS_GIT_ID \"$$ID\"" > gitid.tmp; \
-	      cmp gitid.tmp gitid.h >/dev/null 2>&1 || mv gitid.tmp gitid.h; \
-	      rm -f gitid.tmp; \
-           fi; \
+	      echo "#define GRECS_GIT_ID \"$$ID\"";; \
+           *) echo "#define GRECS_GIT_ID \"unknown\"";; \
+           esac > gitid.tmp; \
+	   cmp gitid.tmp gitid.h >/dev/null 2>&1 || mv gitid.tmp gitid.h; \
+	   rm -f gitid.tmp; \
 	fi; 
 
 README:

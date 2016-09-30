@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -18,12 +18,12 @@
 # include <config.h>
 #endif
 #include <grecs.h>
+#include <wordsplit.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 #include <errno.h>
-#include "wordsplit.h"
 
 const char *
 grecs_data_type_string(enum grecs_data_type type)
@@ -61,7 +61,7 @@ grecs_data_type_string(enum grecs_data_type type)
 		return "hostname";
 
 	case grecs_type_sockaddr:
-		return "sock-addr";
+		return "sockaddr";
 
 	case grecs_type_section:
 		return "section";
@@ -188,6 +188,8 @@ grecs_print_statement_array(struct grecs_keyword *kwp,
 		return;
 	}
 	for (; kwp->ident; kwp++, n++) {
+		if (kwp->flags & GRECS_HIDDEN)
+			continue;
 		if (n)
 			fputc('\n', stream);
 		if (kwp->type == grecs_type_section)
@@ -242,6 +244,11 @@ grecs_format_node_path(struct grecs_node *node, int flags,
 {
 	char delim[2] = ".";
 
+	if (!node) {
+		clos->fmtfun("NULL", clos->data);
+		return;
+	}
+	
 	if (node->up)
 		grecs_format_node_path(node->up, flags, clos);
 	if (node->type == grecs_node_root)
@@ -321,6 +328,11 @@ grecs_format_node(struct grecs_node *node, int flags,
 		return 1;
 	}
 
+	if (!node) {
+		clos->fmtfun("NULL", clos->data);
+		return 0;
+	}
+	
 	switch (node->type) {
 	case grecs_node_root:
 	case grecs_node_block:

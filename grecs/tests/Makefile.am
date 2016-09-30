@@ -1,5 +1,5 @@
 # This file is part of grecs - Gray's Extensible Configuration System
-# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+# Copyright (C) 2007-2016 Sergey Poznyakoff
 #
 # Grecs is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ EXTRA_DIST = \
  bind.int.conf\
  bind.ext.conf\
  bind.dlz\
+ dhcpd.conf\
  meta1.conf\
  git.conf
 
@@ -40,8 +41,16 @@ if GRECS_COND_BIND_PARSER
   PARSER_DEFS += ENABLE_BIND_PARSER
 endif
 
+if GRECS_COND_DHCPD_PARSER
+  PARSER_DEFS += ENABLE_DHCPD_PARSER
+endif
+
 if GRECS_COND_GIT_PARSER
   PARSER_DEFS += ENABLE_GIT_PARSER 
+endif
+
+if GRECS_COND_JSON
+  PARSER_DEFS += ENABLE_JSON
 endif
 
 ## ------------ ##
@@ -83,13 +92,20 @@ TESTSUITE_AT = \
  glob05.at\
  grecs00.at\
  enum.at\
+ incl00.at\
+ incl01.at\
+ incl02.at\
+ incl03.at\
  join.at\
+ json00.at\
+ json01.at\
  locus00.at\
  locus01.at\
  locus02.at\
  locus-bind.at\
  locus-git.at\
  locus-meta1.at\
+ parser-dhcpd.at\
  parser-bind.at\
  parser-git.at\
  parser-meta1.at\
@@ -107,6 +123,7 @@ TESTSUITE_AT = \
  sort01.at\
  testsuite.at\
  vercmp.at\
+ wordsplit.at\
  @GRECS_DISTCK_AT@
 
 TESTSUITE = $(srcdir)/testsuite
@@ -136,7 +153,12 @@ noinst_PROGRAMS = \
  gcfenum\
  gcfpeek\
  gcfset\
- gcfver
+ gcfver\
+ wsp
+
+if GRECS_COND_JSON
+  noinst_PROGRAMS += json
+endif
 
 LDADD = @GRECS_LDADD@ $(LIBINTL)
 AM_CPPFLAGS = @GRECS_INCLUDES@ @GRECS_HOST_PROJECT_INCLUDES@

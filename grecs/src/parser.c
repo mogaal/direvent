@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -56,6 +56,23 @@ grecs_lex_trace(int n)
 struct grecs_node *
 grecs_parse(const char *name)
 {
+	if (!grecs_trace_flags) {
+		char *p = getenv("GRECS_DEBUG");
+		if (p) {
+			while (*p) {
+				switch (*p++) {
+				case 'g':
+				case 'G':
+					grecs_trace_flags |= GRECS_TRACE_GRAM;
+					break;
+				case 'l':
+				case 'L':
+					grecs_trace_flags |= GRECS_TRACE_LEX;
+					break;
+				}
+			}
+		}
+	}
 	grecs_error_count = 0;
 	grecs_current_locus_point.file = grecs_install_text(name);
 	grecs_current_locus_point.line = 1;

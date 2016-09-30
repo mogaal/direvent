@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -42,11 +42,15 @@ grecs_line_acc_grow_char(int c)
 	grecs_txtacc_grow(line_acc, &t, 1);
 }
 
-void
+int
 grecs_line_acc_grow_char_unescape(int c)
 {
-	if (c != '\n')
-		grecs_line_acc_grow_char(wordsplit_c_unquote_char(c));
+	if (c != '\n') {
+		int uc = wordsplit_c_unquote_char(c);
+		grecs_line_acc_grow_char(uc ? uc : c);
+		return !uc;
+	}
+	return 0;
 }
 
 void
@@ -57,10 +61,14 @@ grecs_line_acc_grow(const char *text, size_t len)
 
 /* Same, but unescapes the last character from text */
 void
-grecs_line_acc_grow_unescape_last(char *text, size_t len)
+grecs_line_acc_grow_unescape_last(char *text, size_t len,
+				  grecs_locus_t const *loc)
 {
 	grecs_txtacc_grow(line_acc, text, len - 2);
-	grecs_line_acc_grow_char_unescape(text[len - 1]);
+	if (grecs_line_acc_grow_char_unescape(text[len - 1]) && loc)
+		grecs_warning(loc, 0,
+			      _("unknown escape sequence: '\\%c'"),
+			      text[len - 1]);
 }
 
 void

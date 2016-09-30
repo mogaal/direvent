@@ -1,4 +1,6 @@
 /* grecs - Gray's Extensible Configuration System       -*- c -*- */
+%option nounput
+%option noinput
 %top {
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -6,7 +8,7 @@
 }
 %{
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -22,7 +24,6 @@
    with Grecs. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <grecs-gram.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -75,7 +76,6 @@ static void qstring_locus_fixup(void);
 
 %}
     
-    
 %x COMMENT ML STR
 
 WS [ \t\f][ \t\f]*
@@ -106,7 +106,7 @@ P [1-9][0-9]*
         /* Identifiers */
 <INITIAL>{ID}           return ident();
          /* Strings */
-[a-zA-Z0-9_\.\*/:@-]([a-zA-Z0-9_\./:@-][a-zA-Z0-9_\.\*/:@-]*)? {
+[a-zA-Z0-9_\.\*/:@\[\]-]([a-zA-Z0-9_\./:@\[\]-][a-zA-Z0-9_\.\*/:@\[\]-]*)? {
 	                   grecs_line_begin();
 	                   grecs_line_add(yytext, yyleng);
                            yylval.string = grecs_line_finish();
@@ -120,15 +120,19 @@ P [1-9][0-9]*
 \"[^\\"\n]*\\\n        { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow_unescape_last(yytext + 1,
-                                                           yyleng - 1);
+                                                           yyleng - 1,
+                                                           &yylloc);
                          grecs_locus_point_advance_line(grecs_current_locus_point); }
 \"[^\\"\n]*\\.         { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow_unescape_last(yytext + 1,
-                                                           yyleng - 1); }
-<STR>\"[^\\"\n]*\\\n  { grecs_line_acc_grow_unescape_last(yytext, yyleng);
+                                                           yyleng - 1, 
+                                                           &yylloc); }
+<STR>\"[^\\"\n]*\\\n  { grecs_line_acc_grow_unescape_last(yytext, yyleng, 
+                                                          &yylloc);
                         grecs_locus_point_advance_line(grecs_current_locus_point); }
-<STR>[^\\"\n]*\\.     { grecs_line_acc_grow_unescape_last(yytext, yyleng); }
+<STR>[^\\"\n]*\\.     { grecs_line_acc_grow_unescape_last(yytext, yyleng, 
+                                                          &yylloc); }
 <STR>[^\\"\n]*\"      { BEGIN(INITIAL);
                         if (yyleng > 1) 
 				grecs_line_add(yytext, yyleng - 1); 
@@ -187,9 +191,10 @@ pid_t grecs_preproc_pid;
 int
 yywrap()
 {
-	if (yyin)
+	if (grecs_preprocessor) {
 		grecs_preproc_extrn_shutdown(grecs_preproc_pid);
-	else
+		fclose(yyin);
+	} else
 		grecs_preproc_done();
 	grecs_current_locus_point.file = NULL;
 	return 1;
@@ -382,7 +387,8 @@ grecs_parse_line_directive(char *text, grecs_locus_t *ploc,
 	struct wordsplit ws;
 	
 	if (wordsplit(text, &ws, WRDSF_DEFFLAGS))
-		grecs_error(ploc, 0, _("cannot parse #line line"));
+		grecs_error(ploc, 0, _("cannot parse #line line: %s"),
+			    wordsplit_strerror(&ws));
 	else {
 		if (ws.ws_wordc == 2)
 			rc = assign_locus(ppoint, NULL,
@@ -418,7 +424,8 @@ grecs_parse_line_directive_cpp(char *text, grecs_locus_t *ploc,
 	struct wordsplit ws;
 	
 	if (wordsplit(text, &ws, WRDSF_DEFFLAGS)) {
-		grecs_error(ploc, 0, _("cannot parse #line line"));
+		grecs_error(ploc, 0, _("cannot parse #line line: %s"),
+			    wordsplit_strerror(&ws));
 		return;
 	} else if (ws.ws_wordc < 3)
 		grecs_error(ploc, 0, _("invalid #line statement"));

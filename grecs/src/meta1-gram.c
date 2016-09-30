@@ -69,7 +69,7 @@
 #line 1 "meta1-gram.y"
 
 /* MeTA1 configuration parser for Grecs.
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -90,7 +90,6 @@
 #include <errno.h>
 #include <string.h>
 #include "grecs.h"
-#include "grecs-locus.h"
 
 int grecs_meta1_lex(void);
 int grecs_meta1_error(char const *s);
@@ -101,7 +100,7 @@ extern void grecs_meta1_set_in(FILE *);
 
 
 /* Line 268 of yacc.c  */
-#line 105 "meta1-gram.c"
+#line 104 "meta1-gram.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -152,7 +151,7 @@ typedef union YYSTYPE
 {
 
 /* Line 295 of yacc.c  */
-#line 37 "meta1-gram.y"
+#line 36 "meta1-gram.y"
 
 	char *string;
 	grecs_value_t svalue, *pvalue;
@@ -163,7 +162,7 @@ typedef union YYSTYPE
 
 
 /* Line 295 of yacc.c  */
-#line 167 "meta1-gram.c"
+#line 166 "meta1-gram.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define grecs_meta1_stype YYSTYPE /* obsolescent; will be withdrawn */
@@ -188,7 +187,7 @@ typedef struct YYLTYPE
 
 
 /* Line 345 of yacc.c  */
-#line 192 "meta1-gram.c"
+#line 191 "meta1-gram.c"
 
 #ifdef short
 # undef short
@@ -484,9 +483,9 @@ static const grecs_meta1_type_int8 grecs_meta1_rhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const grecs_meta1_type_uint8 grecs_meta1_rline[] =
 {
-       0,    54,    54,    64,    67,    73,    77,    83,    84,    87,
-      97,   109,   112,   120,   127,   136,   137,   140,   154,   159,
-     166,   170,   176,   181,   188,   189
+       0,    53,    53,    63,    66,    72,    76,    82,    83,    86,
+      96,   108,   111,   119,   126,   135,   136,   139,   153,   158,
+     165,   169,   175,   180,   187,   188
 };
 #endif
 
@@ -1478,7 +1477,7 @@ grecs_meta1_reduce:
         case 2:
 
 /* Line 1810 of yacc.c  */
-#line 55 "meta1-gram.y"
+#line 54 "meta1-gram.y"
     {
 		  parse_tree = grecs_node_create(grecs_node_root, &(grecs_meta1_lsp[(1) - (1)]));
 		  parse_tree->v.texttab = grecs_text_table();
@@ -1489,7 +1488,7 @@ grecs_meta1_reduce:
   case 3:
 
 /* Line 1810 of yacc.c  */
-#line 64 "meta1-gram.y"
+#line 63 "meta1-gram.y"
     {
 		  (grecs_meta1_val.node) = NULL;
 	  }
@@ -1498,7 +1497,7 @@ grecs_meta1_reduce:
   case 4:
 
 /* Line 1810 of yacc.c  */
-#line 68 "meta1-gram.y"
+#line 67 "meta1-gram.y"
     {
 		  (grecs_meta1_val.node) = (grecs_meta1_vsp[(1) - (1)].node_list).head;
 	  }
@@ -1507,7 +1506,7 @@ grecs_meta1_reduce:
   case 5:
 
 /* Line 1810 of yacc.c  */
-#line 74 "meta1-gram.y"
+#line 73 "meta1-gram.y"
     {
 		  (grecs_meta1_val.node_list).head = (grecs_meta1_val.node_list).tail = (grecs_meta1_vsp[(1) - (1)].node);
 	  }
@@ -1516,7 +1515,7 @@ grecs_meta1_reduce:
   case 6:
 
 /* Line 1810 of yacc.c  */
-#line 78 "meta1-gram.y"
+#line 77 "meta1-gram.y"
     {
 		  grecs_node_bind((grecs_meta1_vsp[(1) - (2)].node_list).tail, (grecs_meta1_vsp[(2) - (2)].node), 0);
 	  }
@@ -1525,7 +1524,7 @@ grecs_meta1_reduce:
   case 9:
 
 /* Line 1810 of yacc.c  */
-#line 88 "meta1-gram.y"
+#line 87 "meta1-gram.y"
     {
 		  (grecs_meta1_val.node) = grecs_node_create_points(grecs_node_stmt,
 						(grecs_meta1_lsp[(1) - (4)]).beg, (grecs_meta1_lsp[(3) - (4)]).end);
@@ -1538,7 +1537,7 @@ grecs_meta1_reduce:
   case 10:
 
 /* Line 1810 of yacc.c  */
-#line 98 "meta1-gram.y"
+#line 97 "meta1-gram.y"
     {
 		  (grecs_meta1_val.node) = grecs_node_create_points(grecs_node_block,
 						(grecs_meta1_lsp[(1) - (6)]).beg, (grecs_meta1_lsp[(5) - (6)]).end);
@@ -1552,7 +1551,7 @@ grecs_meta1_reduce:
   case 11:
 
 /* Line 1810 of yacc.c  */
-#line 109 "meta1-gram.y"
+#line 108 "meta1-gram.y"
     {
 		  (grecs_meta1_val.pvalue) = NULL;
 	  }
@@ -1561,7 +1560,7 @@ grecs_meta1_reduce:
   case 12:
 
 /* Line 1810 of yacc.c  */
-#line 113 "meta1-gram.y"
+#line 112 "meta1-gram.y"
     {
 		  (grecs_meta1_val.pvalue) = grecs_malloc(sizeof((grecs_meta1_val.pvalue)[0]));
 		  (grecs_meta1_val.pvalue)->type = GRECS_TYPE_STRING;
@@ -1572,7 +1571,7 @@ grecs_meta1_reduce:
   case 13:
 
 /* Line 1810 of yacc.c  */
-#line 121 "meta1-gram.y"
+#line 120 "meta1-gram.y"
     {
 		  (grecs_meta1_val.pvalue) = grecs_malloc(sizeof((grecs_meta1_val.pvalue)[0]));
 		  (grecs_meta1_val.pvalue)->type = GRECS_TYPE_STRING;
@@ -1584,7 +1583,7 @@ grecs_meta1_reduce:
   case 14:
 
 /* Line 1810 of yacc.c  */
-#line 128 "meta1-gram.y"
+#line 127 "meta1-gram.y"
     {
 		  (grecs_meta1_val.pvalue) = grecs_malloc(sizeof((grecs_meta1_val.pvalue)[0]));
 		  (grecs_meta1_val.pvalue)->type = GRECS_TYPE_LIST;
@@ -1596,7 +1595,7 @@ grecs_meta1_reduce:
   case 17:
 
 /* Line 1810 of yacc.c  */
-#line 141 "meta1-gram.y"
+#line 140 "meta1-gram.y"
     {
 		  struct grecs_list_entry *ep;
 		  
@@ -1614,7 +1613,7 @@ grecs_meta1_reduce:
   case 18:
 
 /* Line 1810 of yacc.c  */
-#line 155 "meta1-gram.y"
+#line 154 "meta1-gram.y"
     {
 		  (grecs_meta1_val.list) = grecs_list_create();
 		  grecs_list_append((grecs_meta1_val.list), (grecs_meta1_vsp[(1) - (1)].string));
@@ -1624,7 +1623,7 @@ grecs_meta1_reduce:
   case 19:
 
 /* Line 1810 of yacc.c  */
-#line 160 "meta1-gram.y"
+#line 159 "meta1-gram.y"
     {
 		  grecs_list_append((grecs_meta1_vsp[(1) - (2)].list), (grecs_meta1_vsp[(2) - (2)].string));
 		  (grecs_meta1_val.list) = (grecs_meta1_vsp[(1) - (2)].list);
@@ -1634,7 +1633,7 @@ grecs_meta1_reduce:
   case 20:
 
 /* Line 1810 of yacc.c  */
-#line 167 "meta1-gram.y"
+#line 166 "meta1-gram.y"
     {
 		  (grecs_meta1_val.list) = (grecs_meta1_vsp[(2) - (3)].list);
 	  }
@@ -1643,7 +1642,7 @@ grecs_meta1_reduce:
   case 21:
 
 /* Line 1810 of yacc.c  */
-#line 171 "meta1-gram.y"
+#line 170 "meta1-gram.y"
     {
 		  (grecs_meta1_val.list) = (grecs_meta1_vsp[(2) - (4)].list);
 	  }
@@ -1652,7 +1651,7 @@ grecs_meta1_reduce:
   case 22:
 
 /* Line 1810 of yacc.c  */
-#line 177 "meta1-gram.y"
+#line 176 "meta1-gram.y"
     {
 		  (grecs_meta1_val.list) = grecs_value_list_create();
 		  grecs_list_append((grecs_meta1_val.list), (grecs_meta1_vsp[(1) - (1)].pvalue));
@@ -1662,7 +1661,7 @@ grecs_meta1_reduce:
   case 23:
 
 /* Line 1810 of yacc.c  */
-#line 182 "meta1-gram.y"
+#line 181 "meta1-gram.y"
     {
 		  grecs_list_append((grecs_meta1_vsp[(1) - (3)].list), (grecs_meta1_vsp[(3) - (3)].pvalue));
 		  (grecs_meta1_val.list) = (grecs_meta1_vsp[(1) - (3)].list);
@@ -1672,7 +1671,7 @@ grecs_meta1_reduce:
 
 
 /* Line 1810 of yacc.c  */
-#line 1676 "meta1-gram.c"
+#line 1675 "meta1-gram.c"
       default: break;
     }
   /* User semantic actions sometimes alter grecs_meta1_char, and that requires
@@ -1910,7 +1909,7 @@ grecs_meta1_return:
 
 
 /* Line 2071 of yacc.c  */
-#line 192 "meta1-gram.y"
+#line 191 "meta1-gram.y"
 
 int
 grecs_meta1_error(char const *s)

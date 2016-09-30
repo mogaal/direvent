@@ -1,5 +1,5 @@
 /* direvent - directory content watcher daemon
-   Copyright (C) 2012-2014 Sergey Poznyakoff
+   Copyright (C) 2012-2016 Sergey Poznyakoff
 
    Direvent is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -40,6 +40,7 @@
 #define HF_NOWAIT 0x01       /* Don't wait for termination */
 #define HF_STDOUT 0x02       /* Capture stdout */
 #define HF_STDERR 0x04       /* Capture stderr */
+#define HF_SHELL  0x08       /* Call program via /bin/sh -c */ 
 
 #ifndef DEFAULT_TIMEOUT
 # define DEFAULT_TIMEOUT 5
@@ -200,8 +201,7 @@ struct pathent {
 };
 
 void config_help(void);
-struct grecs_node;
-void config_finish(struct grecs_node *tree);
+void config_init(void);
 void config_parse(const char *file);
 
 int get_facility(const char *arg);

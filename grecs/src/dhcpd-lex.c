@@ -1,4 +1,4 @@
-#line 3 "dhcpd-lex.l"
+#line 4 "dhcpd-lex.l"
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
@@ -448,8 +448,8 @@ static void grecs_dhcpd_fatal_error (grecs_dhcpdconst char msg[]  );
 	(grecs_dhcpd_c_buf_p) = grecs_dhcpd_cp;
 
 /* %% [4.0] data tables for the DFA and the user's section 1 definitions go here */
-#define YY_NUM_RULES 22
-#define YY_END_OF_BUFFER 23
+#define YY_NUM_RULES 29
+#define YY_END_OF_BUFFER 30
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct grecs_dhcpd_trans_info
@@ -457,17 +457,20 @@ struct grecs_dhcpd_trans_info
 	flex_int32_t grecs_dhcpd_verify;
 	flex_int32_t grecs_dhcpd_nxt;
 	};
-static grecs_dhcpdconst flex_int16_t grecs_dhcpd_accept[87] =
+static grecs_dhcpdconst flex_int16_t grecs_dhcpd_accept[111] =
     {   0,
-        0,    0,    0,    0,    0,    0,   23,   21,   18,   19,
-       20,   21,    4,    8,    8,    7,   18,    4,   22,   22,
-       15,   17,   22,   18,    0,   12,    9,    0,    4,    3,
-        8,    6,    7,   18,    0,    4,    4,    4,    0,   15,
-       17,    0,    0,   16,    0,   13,   10,   11,    8,    6,
-        5,    6,    7,    0,    0,    0,    4,    4,    4,   14,
-        0,    0,    0,    4,    4,    0,    0,    4,    4,    4,
-        0,    0,    0,    4,    1,    4,    4,    0,    1,    0,
-        0,    4,    2,    0,    2,    0
+        0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+       30,   28,   25,   26,   27,   28,    4,   15,   15,   14,
+       14,   14,   25,    4,   29,   29,   22,   24,   29,   29,
+       10,   11,   29,   12,   13,   25,    0,   19,   16,    0,
+        4,    3,   15,    6,   14,   14,    7,   25,    0,    4,
+        4,    4,    0,   22,   24,    0,    0,   23,    0,   20,
+        0,   10,   11,    0,   12,   13,   17,   18,   15,    6,
+        5,    6,   14,   14,    0,    0,    0,    4,    4,    4,
+       21,    9,   14,    0,    0,    0,    4,    4,    8,    0,
+        0,    4,    4,    4,    0,    0,    0,    4,    1,    4,
+
+        4,    0,    1,    0,    0,    4,    2,    0,    2,    0
     } ;
 
 static grecs_dhcpdconst flex_int32_t grecs_dhcpd_ec[256] =
@@ -477,15 +480,15 @@ static grecs_dhcpdconst flex_int32_t grecs_dhcpd_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    2,    5,    6,    7,    1,    1,    1,    1,    5,
         5,    8,    1,    5,    9,   10,   11,   12,   13,   13,
-       13,   13,   13,   13,   13,   13,   13,   10,    5,    1,
-        1,    1,    1,   10,   14,   14,   14,   14,   14,   14,
-       14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
-       14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
-        1,   15,    1,    1,   14,    1,   14,   14,   14,   14,
+       13,   13,   13,   13,   13,   13,   13,   10,   14,    1,
+        5,    1,    1,   10,   15,   15,   15,   15,   15,   15,
+       15,   15,   15,   15,   15,   15,   15,   15,   15,   15,
+       15,   15,   15,   15,   15,   15,   15,   15,   15,   15,
+        1,   16,    1,    1,   15,    1,   15,   15,   15,   15,
 
-       16,   14,   14,   14,   17,   14,   14,   18,   14,   19,
-       14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
-       14,   14,    5,    1,    5,    1,    1,    1,    1,    1,
+       17,   18,   15,   15,   19,   15,   15,   20,   15,   21,
+       15,   15,   15,   15,   22,   15,   15,   15,   15,   15,
+       15,   15,   23,    1,    5,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -502,124 +505,127 @@ static grecs_dhcpdconst flex_int32_t grecs_dhcpd_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static grecs_dhcpdconst flex_int32_t grecs_dhcpd_meta[20] =
+static grecs_dhcpdconst flex_int32_t grecs_dhcpd_meta[24] =
     {   0,
-        1,    2,    3,    1,    1,    4,    1,    5,    6,    6,
-        6,    7,    7,    6,    1,    6,    6,    6,    6
+        1,    1,    2,    1,    1,    3,    1,    4,    5,    5,
+        5,    5,    5,    1,    5,    1,    5,    5,    5,    5,
+        5,    5,    1
     } ;
 
-static grecs_dhcpdconst flex_int16_t grecs_dhcpd_base[107] =
+static grecs_dhcpdconst flex_int16_t grecs_dhcpd_base[134] =
     {   0,
-        0,   18,    0,    0,   23,   36,   94,  314,   19,  314,
-      314,   49,   90,    0,   81,   17,   63,   69,  314,   85,
-      314,   19,    0,   28,   98,  314,  314,   87,   86,  314,
-        0,  113,  125,    0,  135,    0,  152,   28,  168,  314,
-      314,    0,   21,  314,   83,  314,  314,  314,    0,   82,
-      314,    0,  176,    0,   82,   66,  186,    0,   30,  314,
-       35,   79,   61,   37,   32,   73,   62,   41,   47,   54,
-       71,   55,   73,   56,  314,   57,   71,   63,  314,   70,
-       65,   51,  314,   43,  314,  314,  192,  199,  206,  213,
-      215,  217,  224,  231,  238,  245,  248,  251,  258,  264,
+        0,   22,    0,    0,   22,   24,   23,   28,   29,   30,
+      291,  292,   32,  292,  292,   36,  287,    0,  278,   37,
+       39,   17,   51,   58,  292,   51,  292,   53,    0,   42,
+      292,  292,   59,  292,  292,   62,   69,  292,  292,  285,
+      284,  292,    0,   85,   66,  101,  264,   77,  108,  127,
+      146,  112,  110,  292,  292,    0,   67,  292,  282,  292,
+      111,  292,  292,  119,  292,  292,  292,  292,    0,  281,
+      292,    0,  238,  119,  122,  141,  207,  149,  158,  116,
+      292,  200,  128,  160,  155,  144,  114,   65,  142,  157,
+      139,  166,  170,  142,  133,  171,  130,  172,  292,  176,
 
-      271,  278,  285,  292,  299,  306
+      124,  177,  292,  178,  122,  115,  292,   77,  292,  292,
+      184,  189,  194,  199,  204,  209,   58,   36,  214,  219,
+      224,  229,  234,  239,  241,  243,  248,  253,  258,  263,
+      268,  273,  278
     } ;
 
-static grecs_dhcpdconst flex_int16_t grecs_dhcpd_def[107] =
+static grecs_dhcpdconst flex_int16_t grecs_dhcpd_def[134] =
     {   0,
-       86,    1,   87,   87,   88,   88,   86,   86,   86,   86,
-       86,   89,   90,   91,   91,   92,   86,   90,   86,   93,
-       86,   94,   95,   86,   89,   86,   86,   96,   90,   86,
-       97,   86,   98,   17,   86,   18,   18,   90,   93,   86,
-       86,   95,   94,   86,   86,   86,   86,   86,   97,   99,
-       86,   32,   98,   35,  100,   86,   90,   37,   90,   86,
-       86,  100,   86,  101,   90,  102,   86,  101,  103,   90,
-      102,  104,   86,  103,   86,  103,  105,  104,   86,  104,
-      106,  105,   86,  106,   86,    0,   86,   86,   86,   86,
-       86,   86,   86,   86,   86,   86,   86,   86,   86,   86,
+      110,    1,  111,  111,  112,  112,  113,  113,  114,  114,
+      110,  110,  110,  110,  110,  115,  116,  117,  117,  118,
+      118,   21,  110,  116,  110,  119,  110,  120,  121,  122,
+      110,  110,  123,  110,  110,  110,  115,  110,  110,  124,
+      116,  110,  125,  110,  126,  126,   46,  110,  110,  116,
+      116,  116,  119,  110,  110,  121,  120,  110,  110,  110,
+      122,  110,  110,  123,  110,  110,  110,  110,  125,  127,
+      110,   44,   46,   46,  110,  110,  110,  116,  116,  116,
+      110,   46,   46,  110,  110,  110,  128,  116,   46,  129,
+      110,  128,  130,  116,  129,  131,  110,  130,  110,  130,
 
-       86,   86,   86,   86,   86,   86
+      132,  131,  110,  131,  133,  132,  110,  133,  110,    0,
+      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
+      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
+      110,  110,  110
     } ;
 
-static grecs_dhcpdconst flex_int16_t grecs_dhcpd_nxt[334] =
+static grecs_dhcpdconst flex_int16_t grecs_dhcpd_nxt[316] =
     {   0,
-        8,    9,   10,    9,   11,   12,   13,   14,   14,   14,
-       15,   14,   14,   16,    8,   16,   16,   16,   16,   17,
-       24,   44,   24,   44,   18,   21,   31,   31,   22,   24,
-       30,   24,   30,   45,   30,   45,   61,   23,   21,   30,
-       66,   22,   69,   30,   59,   85,   69,   70,   65,   75,
-       23,   26,   76,   83,   27,   77,   30,   79,   75,   75,
-       80,   76,   76,   28,   34,   79,   24,   85,   80,   35,
-       36,   30,   79,   83,   81,   80,   72,   73,   72,   67,
-       61,   37,   63,   61,   51,   60,   38,   40,   30,   48,
-       41,   32,   30,   86,   86,   86,   86,   86,   86,   42,
+       12,   13,   14,   13,   15,   16,   17,   18,   18,   18,
+       19,   18,   18,   15,   20,   12,   21,   20,   22,   20,
+       20,   20,   15,   23,   27,   31,   27,   28,   24,   28,
+       31,   34,   34,   36,   47,   36,   45,   29,   38,   29,
+       45,   39,   35,   35,   62,   32,   43,   43,   43,   43,
+       32,   40,   48,   54,   36,   58,   55,   49,   46,   50,
+       42,   65,   43,   36,   63,   36,   56,   42,   59,   58,
+       51,   38,   66,   69,   39,   69,   69,   52,   48,  109,
+       36,   94,   59,   49,   40,   70,   70,   71,   70,   70,
+       70,   70,   72,   72,   72,   72,   72,   72,   70,   72,
 
-       26,   86,   86,   27,   86,   86,   86,   86,   86,   86,
-       86,   86,   28,   50,   50,   51,   50,   50,   50,   50,
-       52,   52,   52,   52,   52,   52,   52,   50,   52,   52,
-       52,   52,   49,   86,   49,   49,   54,   86,   86,   86,
-       86,   86,   86,   86,   86,   86,   86,   55,   86,   86,
-       86,   86,   56,   57,   86,   86,   86,   86,   86,   86,
-       86,   86,   86,   58,   58,   86,   86,   86,   86,   29,
-       40,   86,   86,   41,   86,   86,   86,   86,   86,   86,
-       86,   86,   42,   49,   86,   49,   49,   57,   30,   86,
-       86,   64,   19,   19,   19,   19,   19,   19,   19,   20,
+       70,   72,   72,   72,   72,   72,   72,   70,   69,   75,
+       69,   69,   54,   62,   42,   55,   42,  107,   42,   93,
+       76,   65,   74,   75,  109,   56,  107,   77,   50,   42,
+       80,  105,   66,   63,   76,   82,   88,   83,   96,   51,
+       73,   77,   84,  101,   42,   89,   52,   78,   42,   73,
+       78,   42,   85,   85,   87,   97,   84,   79,   79,   78,
+       42,   84,   96,   73,   91,   90,   85,   85,   42,   79,
+       79,   93,   99,  103,   99,  100,  104,  100,   99,  103,
+      103,  100,  104,  104,   25,   25,   25,   25,   25,   26,
+       26,   26,   26,   26,   30,   30,   30,   30,   30,   33,
 
-       20,   20,   20,   20,   20,   20,   25,   25,   25,   25,
-       25,   25,   25,   29,   29,   29,   29,   29,   29,   29,
-       31,   31,   33,   33,   39,   39,   39,   39,   39,   39,
-       39,   43,   43,   43,   86,   43,   43,   43,   46,   46,
-       86,   46,   46,   46,   46,   47,   47,   47,   47,   47,
-       47,   47,   49,   49,   49,   53,   53,   53,   50,   50,
-       50,   50,   50,   50,   50,   62,   86,   86,   86,   86,
-       62,   68,   68,   68,   68,   68,   68,   68,   71,   71,
-       86,   71,   71,   71,   71,   74,   74,   74,   74,   74,
-       74,   74,   78,   78,   78,   78,   78,   78,   78,   82,
+       33,   33,   33,   33,   37,   37,   37,   37,   37,   41,
+       41,   41,   41,   41,   53,   53,   53,   53,   53,   57,
+       57,   73,   57,   57,   60,   86,   60,   60,   60,   61,
+       61,   61,   61,   61,   64,   64,   64,   64,   64,   67,
+       67,   67,   67,   67,   69,   69,   73,   73,   70,   70,
+       70,   70,   70,   92,   92,   92,   92,   92,   95,   73,
+       95,   95,   95,   98,   98,   98,   98,   98,  102,  102,
+      102,  102,  102,  106,  106,  106,  106,  106,  108,  108,
+      108,  108,  108,   71,   81,   73,   42,   68,   44,   42,
+      110,   11,  110,  110,  110,  110,  110,  110,  110,  110,
 
-       82,   82,   82,   82,   82,   82,   84,   84,   84,   84,
-       84,   84,   84,    7,   86,   86,   86,   86,   86,   86,
-       86,   86,   86,   86,   86,   86,   86,   86,   86,   86,
-       86,   86,   86
+      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
+      110,  110,  110,  110,  110
     } ;
 
-static grecs_dhcpdconst flex_int16_t grecs_dhcpd_chk[334] =
+static grecs_dhcpdconst flex_int16_t grecs_dhcpd_chk[316] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    2,
-        9,   22,    9,   43,    2,    5,   16,   16,    5,   24,
-       38,   24,   59,   22,   65,   43,   61,    5,    6,   64,
-       61,    6,   64,   68,   38,   84,   68,   65,   59,   69,
-        6,   12,   69,   82,   12,   70,   70,   72,   74,   76,
-       72,   74,   76,   12,   17,   78,   17,   81,   78,   17,
-       18,   18,   80,   77,   73,   80,   71,   67,   66,   63,
-       62,   18,   56,   55,   50,   45,   18,   20,   29,   28,
-       20,   15,   13,    7,    0,    0,    0,    0,    0,   20,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    2,    5,    7,    6,    5,    2,    6,
+        8,    9,   10,   13,   22,   13,   22,    5,   16,    6,
+      118,   16,    9,   10,   30,    7,   20,   20,   21,   21,
+        8,   16,   23,   26,   23,   28,   26,   23,   21,   24,
+       24,   33,  117,   36,   30,   36,   26,   88,   28,   57,
+       24,   37,   33,   45,   37,   45,   45,   24,   48,  108,
+       48,   88,   57,   48,   37,   44,   44,   44,   44,   44,
+       44,   44,   44,   44,   44,   44,   44,   44,   44,   44,
 
-       25,    0,    0,   25,    0,    0,    0,    0,    0,    0,
-        0,    0,   25,   32,   32,   32,   32,   32,   32,   32,
-       32,   32,   32,   32,   32,   32,   32,   32,   32,   32,
-       32,   32,   33,    0,   33,   33,   35,    0,    0,    0,
-        0,    0,    0,    0,    0,    0,    0,   35,    0,    0,
-        0,    0,   35,   37,    0,    0,    0,    0,    0,    0,
-        0,    0,    0,   37,   37,    0,    0,    0,    0,   37,
-       39,    0,    0,   39,    0,    0,    0,    0,    0,    0,
-        0,    0,   39,   53,    0,   53,   53,   57,   57,    0,
-        0,   57,   87,   87,   87,   87,   87,   87,   87,   88,
+       44,   44,   44,   44,   44,   44,   44,   44,   46,   49,
+       46,   46,   53,   61,   52,   53,   87,  106,   80,   87,
+       49,   64,   46,   75,  105,   53,  101,   49,   50,   50,
+       52,   97,   64,   61,   75,   74,   80,   74,   95,   50,
+       74,   75,   76,   94,   94,   83,   50,   51,   51,   83,
+       78,   78,   76,   76,   78,   91,   85,   51,   51,   79,
+       79,   84,   90,   89,   86,   84,   85,   85,   92,   79,
+       79,   92,   93,   96,   98,   93,   96,   98,  100,  102,
+      104,  100,  102,  104,  111,  111,  111,  111,  111,  112,
+      112,  112,  112,  112,  113,  113,  113,  113,  113,  114,
 
-       88,   88,   88,   88,   88,   88,   89,   89,   89,   89,
-       89,   89,   89,   90,   90,   90,   90,   90,   90,   90,
-       91,   91,   92,   92,   93,   93,   93,   93,   93,   93,
-       93,   94,   94,   94,    0,   94,   94,   94,   95,   95,
-        0,   95,   95,   95,   95,   96,   96,   96,   96,   96,
-       96,   96,   97,   97,   97,   98,   98,   98,   99,   99,
-       99,   99,   99,   99,   99,  100,    0,    0,    0,    0,
-      100,  101,  101,  101,  101,  101,  101,  101,  102,  102,
-        0,  102,  102,  102,  102,  103,  103,  103,  103,  103,
-      103,  103,  104,  104,  104,  104,  104,  104,  104,  105,
+      114,  114,  114,  114,  115,  115,  115,  115,  115,  116,
+      116,  116,  116,  116,  119,  119,  119,  119,  119,  120,
+      120,   82,  120,  120,  121,   77,  121,  121,  121,  122,
+      122,  122,  122,  122,  123,  123,  123,  123,  123,  124,
+      124,  124,  124,  124,  125,  125,  126,  126,  127,  127,
+      127,  127,  127,  128,  128,  128,  128,  128,  129,   73,
+      129,  129,  129,  130,  130,  130,  130,  130,  131,  131,
+      131,  131,  131,  132,  132,  132,  132,  132,  133,  133,
+      133,  133,  133,   70,   59,   47,   41,   40,   19,   17,
+       11,  110,  110,  110,  110,  110,  110,  110,  110,  110,
 
-      105,  105,  105,  105,  105,  105,  106,  106,  106,  106,
-      106,  106,  106,   86,   86,   86,   86,   86,   86,   86,
-       86,   86,   86,   86,   86,   86,   86,   86,   86,   86,
-       86,   86,   86
+      110,  110,  110,  110,  110,  110,  110,  110,  110,  110,
+      110,  110,  110,  110,  110
     } ;
 
 static grecs_dhcpd_state_type grecs_dhcpd_last_accepting_state;
@@ -628,11 +634,11 @@ static char *grecs_dhcpd_last_accepting_cpos;
 extern int grecs_dhcpd_flex_debug;
 int grecs_dhcpd_flex_debug = 1;
 
-static grecs_dhcpdconst flex_int16_t grecs_dhcpd_rule_linenum[22] =
+static grecs_dhcpdconst flex_int16_t grecs_dhcpd_rule_linenum[29] =
     {   0,
-       54,   58,   63,   64,   65,   66,   68,   74,   80,   84,
-       85,   89,   92,   93,   94,   95,   96,  101,  103,  104,
-      105
+       57,   61,   66,   67,   68,   69,   70,   71,   72,   74,
+       85,  100,  111,  126,  132,  138,  142,  143,  148,  151,
+      152,  154,  155,  156,  161,  163,  164,  165
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -645,10 +651,11 @@ static grecs_dhcpdconst flex_int16_t grecs_dhcpd_rule_linenum[22] =
 char *grecs_dhcpdtext;
 #line 1 "dhcpd-lex.l"
 /* grecs - Gray's Extensible Configuration System       -*- c -*- */
+#define YY_NO_INPUT 1
 
-#line 8 "dhcpd-lex.l"
+#line 9 "dhcpd-lex.l"
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -664,7 +671,6 @@ char *grecs_dhcpdtext;
    with Grecs. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <dhcpd-gram.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -684,11 +690,15 @@ char *grecs_dhcpdtext;
  		grecs_dhcpdlloc.end = grecs_current_locus_point;			\
    	} while (0);
 
-#line 688 "dhcpd-lex.c"
+#define ISWS(c) ((c)==' '||(c)=='\t')	
+
+#line 696 "dhcpd-lex.c"
 
 #define INITIAL 0
 #define COMMENT 1
 #define STR 2
+#define BOOL 3
+#define EXPR 4
 
 #ifndef YY_NO_UNISTD_H
 /* Special case for "unistd.h", since it is non-ANSI. We include it way
@@ -931,10 +941,10 @@ YY_DECL
 	register int grecs_dhcpd_act;
     
 /* %% [7.0] user's declarations go here */
-#line 52 "dhcpd-lex.l"
+#line 55 "dhcpd-lex.l"
 
          /* Line directive */
-#line 938 "dhcpd-lex.c"
+#line 948 "dhcpd-lex.c"
 
 	if ( !(grecs_dhcpd_init) )
 		{
@@ -998,13 +1008,13 @@ grecs_dhcpd_match:
 			while ( grecs_dhcpd_chk[grecs_dhcpd_base[grecs_dhcpd_current_state] + grecs_dhcpd_c] != grecs_dhcpd_current_state )
 				{
 				grecs_dhcpd_current_state = (int) grecs_dhcpd_def[grecs_dhcpd_current_state];
-				if ( grecs_dhcpd_current_state >= 87 )
+				if ( grecs_dhcpd_current_state >= 111 )
 					grecs_dhcpd_c = grecs_dhcpd_meta[(unsigned int) grecs_dhcpd_c];
 				}
 			grecs_dhcpd_current_state = grecs_dhcpd_nxt[grecs_dhcpd_base[grecs_dhcpd_current_state] + (unsigned int) grecs_dhcpd_c];
 			++grecs_dhcpd_cp;
 			}
-		while ( grecs_dhcpd_base[grecs_dhcpd_current_state] != 314 );
+		while ( grecs_dhcpd_base[grecs_dhcpd_current_state] != 292 );
 
 grecs_dhcpd_find_action:
 /* %% [10.0] code to find the action number goes here */
@@ -1027,13 +1037,13 @@ do_action:	/* This label is used only to access EOF actions. */
 			{
 			if ( grecs_dhcpd_act == 0 )
 				fprintf( stderr, "--scanner backing up\n" );
-			else if ( grecs_dhcpd_act < 22 )
+			else if ( grecs_dhcpd_act < 29 )
 				fprintf( stderr, "--accepting rule at line %ld (\"%s\")\n",
 				         (long)grecs_dhcpd_rule_linenum[grecs_dhcpd_act], grecs_dhcpdtext );
-			else if ( grecs_dhcpd_act == 22 )
+			else if ( grecs_dhcpd_act == 29 )
 				fprintf( stderr, "--accepting default rule (\"%s\")\n",
 				         grecs_dhcpdtext );
-			else if ( grecs_dhcpd_act == 23 )
+			else if ( grecs_dhcpd_act == 30 )
 				fprintf( stderr, "--(end of buffer or a NUL)\n" );
 			else
 				fprintf( stderr, "--EOF (start condition %d)\n", YY_START );
@@ -1052,7 +1062,7 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 54 "dhcpd-lex.l"
+#line 57 "dhcpd-lex.l"
 { grecs_parse_line_directive_cpp(grecs_dhcpdtext,
 						    &grecs_dhcpdlloc,
 						    &grecs_current_locus_point,
@@ -1061,7 +1071,7 @@ YY_RULE_SETUP
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 58 "dhcpd-lex.l"
+#line 61 "dhcpd-lex.l"
 { grecs_parse_line_directive(grecs_dhcpdtext,
 						    &grecs_dhcpdlloc,
 						    &grecs_current_locus_point,
@@ -1071,29 +1081,112 @@ YY_RULE_SETUP
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 63 "dhcpd-lex.l"
+#line 66 "dhcpd-lex.l"
 { grecs_locus_point_advance_line(grecs_current_locus_point); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 64 "dhcpd-lex.l"
+#line 67 "dhcpd-lex.l"
 /* end-of-file comment */;
 	YY_BREAK
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 65 "dhcpd-lex.l"
+#line 68 "dhcpd-lex.l"
 { grecs_locus_point_advance_line(grecs_current_locus_point); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 66 "dhcpd-lex.l"
+#line 69 "dhcpd-lex.l"
 /* end-of-file comment */;
 	YY_BREAK
-/* Identifiers */
 case 7:
 YY_RULE_SETUP
-#line 68 "dhcpd-lex.l"
+#line 70 "dhcpd-lex.l"
+return DHCPD_IF;
+	YY_BREAK
+case 8:
+YY_RULE_SETUP
+#line 71 "dhcpd-lex.l"
+return DHCPD_ELSIF;
+	YY_BREAK
+case 9:
+YY_RULE_SETUP
+#line 72 "dhcpd-lex.l"
+return DHCPD_ELSE;
+	YY_BREAK
+case 10:
+/* rule 10 can match eol */
+YY_RULE_SETUP
+#line 74 "dhcpd-lex.l"
+{
+	  char *p;
+	  size_t len;
+	  for (p = grecs_dhcpdtext, len = grecs_dhcpdleng - 1; ISWS(*p) && len > 0; p++, len--)
+                  ;
+	  if (len) {
+		  grecs_line_add(p, len);
+		  grecs_line_add(" ", 1);
+	  }
+	  grecs_locus_point_advance_line(grecs_current_locus_point);
+}
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 85 "dhcpd-lex.l"
+{
+	  char *p;
+	  size_t len;
+	  
+	  unput('{');
+	  for (p = grecs_dhcpdtext, len = grecs_dhcpdleng - 1; ISWS(*p) && len > 0; p++, len--)
+                  ;
+	  for (; len > 0 && ISWS(p[len-1]); len--)
+	      ;
+	  grecs_line_add(p, len);
+          BEGIN(INITIAL);
+          grecs_dhcpdlval.string = grecs_line_finish();
+          return DHCPD_EXPR;     
+}
+	YY_BREAK
+case 12:
+/* rule 12 can match eol */
+YY_RULE_SETUP
+#line 100 "dhcpd-lex.l"
+{
+	  char *p;
+	  size_t len;
+	  for (p = grecs_dhcpdtext, len = grecs_dhcpdleng - 1; ISWS(*p) && len > 0; p++, len--)
+                  ;
+	  if (len) {
+		  grecs_line_add(p, len);
+		  grecs_line_add(" ", 1);
+	  }
+	  grecs_locus_point_advance_line(grecs_current_locus_point);
+}
+	YY_BREAK
+case 13:
+YY_RULE_SETUP
+#line 111 "dhcpd-lex.l"
+{
+	  char *p;
+	  size_t len;
+	  
+	  unput(';');
+	  for (p = grecs_dhcpdtext, len = grecs_dhcpdleng - 1; ISWS(*p) && len > 0; p++, len--)
+                  ;
+	  for (; len > 0 && ISWS(p[len-1]); len--)
+	      ;
+	  grecs_line_add(p, len);
+          BEGIN(INITIAL);
+          grecs_dhcpdlval.string = grecs_line_finish();
+          return DHCPD_EXPR;     
+}
+	YY_BREAK
+/* Identifiers */
+case 14:
+YY_RULE_SETUP
+#line 126 "dhcpd-lex.l"
 { grecs_line_begin();
 	    grecs_line_add(grecs_dhcpdtext, grecs_dhcpdleng);
 	    grecs_dhcpdlval.string = grecs_line_finish();
@@ -1101,9 +1194,9 @@ YY_RULE_SETUP
           }
 	YY_BREAK
 /* Strings */
-case 8:
+case 15:
 YY_RULE_SETUP
-#line 74 "dhcpd-lex.l"
+#line 132 "dhcpd-lex.l"
 {
 	                   grecs_line_begin();
 	                   grecs_line_add(grecs_dhcpdtext, grecs_dhcpdleng);
@@ -1111,79 +1204,81 @@ YY_RULE_SETUP
                            return DHCPD_STRING; }
 	YY_BREAK
 /* Quoted strings */
-case 9:
+case 16:
 YY_RULE_SETUP
-#line 80 "dhcpd-lex.l"
+#line 138 "dhcpd-lex.l"
 { grecs_line_begin();
                         grecs_line_add(grecs_dhcpdtext + 1, grecs_dhcpdleng - 2);
                         grecs_dhcpdlval.string = grecs_line_finish();
                         return DHCPD_STRING; }
 	YY_BREAK
-case 10:
-#line 85 "dhcpd-lex.l"
-case 11:
-/* rule 11 can match eol */
+case 17:
+#line 143 "dhcpd-lex.l"
+case 18:
+/* rule 18 can match eol */
 YY_RULE_SETUP
-#line 85 "dhcpd-lex.l"
+#line 143 "dhcpd-lex.l"
 { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow_unescape_last(grecs_dhcpdtext + 1,
-                                                           grecs_dhcpdleng - 1); }
+                                                           grecs_dhcpdleng - 1,
+                                                           &grecs_dhcpdlloc); }
 	YY_BREAK
-case 12:
-/* rule 12 can match eol */
+case 19:
+/* rule 19 can match eol */
 YY_RULE_SETUP
-#line 89 "dhcpd-lex.l"
+#line 148 "dhcpd-lex.l"
 { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow(grecs_dhcpdtext + 1, grecs_dhcpdleng - 1); }
 	YY_BREAK
-case 13:
-#line 93 "dhcpd-lex.l"
-case 14:
-/* rule 14 can match eol */
+case 20:
+#line 152 "dhcpd-lex.l"
+case 21:
+/* rule 21 can match eol */
 YY_RULE_SETUP
-#line 93 "dhcpd-lex.l"
-{ grecs_line_acc_grow_unescape_last(grecs_dhcpdtext, grecs_dhcpdleng); }
+#line 152 "dhcpd-lex.l"
+{ grecs_line_acc_grow_unescape_last(grecs_dhcpdtext, grecs_dhcpdleng, 
+                                                          &grecs_dhcpdlloc); }
 	YY_BREAK
-case 15:
-/* rule 15 can match eol */
-#line 95 "dhcpd-lex.l"
-case 16:
-/* rule 16 can match eol */
+case 22:
+/* rule 22 can match eol */
+#line 155 "dhcpd-lex.l"
+case 23:
+/* rule 23 can match eol */
 YY_RULE_SETUP
-#line 95 "dhcpd-lex.l"
+#line 155 "dhcpd-lex.l"
 { grecs_line_acc_grow(grecs_dhcpdtext, grecs_dhcpdleng); }
 	YY_BREAK
-case 17:
+case 24:
 YY_RULE_SETUP
-#line 96 "dhcpd-lex.l"
+#line 156 "dhcpd-lex.l"
 { BEGIN(INITIAL);
                         if (grecs_dhcpdleng > 1) 
 				grecs_line_add(grecs_dhcpdtext, grecs_dhcpdleng - 1); 
                         grecs_dhcpdlval.string = grecs_line_finish();
 		        return DHCPD_STRING; }
 	YY_BREAK
-case 18:
+case 25:
 YY_RULE_SETUP
-#line 101 "dhcpd-lex.l"
+#line 161 "dhcpd-lex.l"
 ;
 	YY_BREAK
 /* Other tokens */
-case 19:
-/* rule 19 can match eol */
+case 26:
+/* rule 26 can match eol */
 YY_RULE_SETUP
-#line 103 "dhcpd-lex.l"
+#line 163 "dhcpd-lex.l"
 { grecs_locus_point_advance_line(grecs_current_locus_point); } 
 	YY_BREAK
-case 20:
+case 27:
 YY_RULE_SETUP
-#line 104 "dhcpd-lex.l"
+#line 164 "dhcpd-lex.l"
 return grecs_dhcpdtext[0];
 	YY_BREAK
-case 21:
+case 28:
 YY_RULE_SETUP
-#line 105 "dhcpd-lex.l"
+#line 165 "dhcpd-lex.l"
 { if (isascii(grecs_dhcpdtext[0]) && isprint(grecs_dhcpdtext[0]))
 		grecs_error(&grecs_dhcpdlloc, 0,
 			     _("stray character %c"), grecs_dhcpdtext[0]);
@@ -1191,15 +1286,17 @@ YY_RULE_SETUP
                 grecs_error(&grecs_dhcpdlloc, 0, _("stray character \\%03o"),
 		   	    (unsigned char) grecs_dhcpdtext[0]); }
 	YY_BREAK
-case 22:
+case 29:
 YY_RULE_SETUP
-#line 111 "dhcpd-lex.l"
+#line 171 "dhcpd-lex.l"
 ECHO;
 	YY_BREAK
-#line 1200 "dhcpd-lex.c"
+#line 1295 "dhcpd-lex.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENT):
 case YY_STATE_EOF(STR):
+case YY_STATE_EOF(BOOL):
+case YY_STATE_EOF(EXPR):
 	grecs_dhcpdterminate();
 
 	case YY_END_OF_BUFFER:
@@ -1512,7 +1609,7 @@ static int grecs_dhcpd_get_next_buffer (void)
 		while ( grecs_dhcpd_chk[grecs_dhcpd_base[grecs_dhcpd_current_state] + grecs_dhcpd_c] != grecs_dhcpd_current_state )
 			{
 			grecs_dhcpd_current_state = (int) grecs_dhcpd_def[grecs_dhcpd_current_state];
-			if ( grecs_dhcpd_current_state >= 87 )
+			if ( grecs_dhcpd_current_state >= 111 )
 				grecs_dhcpd_c = grecs_dhcpd_meta[(unsigned int) grecs_dhcpd_c];
 			}
 		grecs_dhcpd_current_state = grecs_dhcpd_nxt[grecs_dhcpd_base[grecs_dhcpd_current_state] + (unsigned int) grecs_dhcpd_c];
@@ -1545,11 +1642,11 @@ static int grecs_dhcpd_get_next_buffer (void)
 	while ( grecs_dhcpd_chk[grecs_dhcpd_base[grecs_dhcpd_current_state] + grecs_dhcpd_c] != grecs_dhcpd_current_state )
 		{
 		grecs_dhcpd_current_state = (int) grecs_dhcpd_def[grecs_dhcpd_current_state];
-		if ( grecs_dhcpd_current_state >= 87 )
+		if ( grecs_dhcpd_current_state >= 111 )
 			grecs_dhcpd_c = grecs_dhcpd_meta[(unsigned int) grecs_dhcpd_c];
 		}
 	grecs_dhcpd_current_state = grecs_dhcpd_nxt[grecs_dhcpd_base[grecs_dhcpd_current_state] + (unsigned int) grecs_dhcpd_c];
-	grecs_dhcpd_is_jam = (grecs_dhcpd_current_state == 86);
+	grecs_dhcpd_is_jam = (grecs_dhcpd_current_state == 110);
 
 	return grecs_dhcpd_is_jam ? 0 : grecs_dhcpd_current_state;
 }
@@ -2335,9 +2432,21 @@ void grecs_dhcpdfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 111 "dhcpd-lex.l"
+#line 171 "dhcpd-lex.l"
 
 
+
+void
+grecs_dhcpd_begin_bool(void)
+{
+        BEGIN(BOOL);
+}
+
+void
+grecs_dhcpd_begin_expr(void)
+{
+        BEGIN(EXPR);
+}
 
 struct dhcpd_input_context {
 	ino_t i_node;

@@ -15,7 +15,7 @@
 @SET_MAKE@
 
 # This file is part of grecs - Gray's Extensible Configuration System
-# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+# Copyright (C) 2007-2016 Sergey Poznyakoff
 #
 # Grecs is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Grecs.  If not, see <http://www.gnu.org/licenses/>.
-
 
 
 VPATH = @srcdir@
@@ -97,14 +96,15 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Make.am $(srcdir)/Make-static.in \
-	$(srcdir)/Make-static.am grecs-gram.c grecs-lex.c bind-gram.c \
-	bind-lex.c dhcpd-gram.c dhcpd-lex.c meta1-gram.c meta1-lex.c \
-	$(top_srcdir)/build-aux/depcomp $(top_srcdir)/build-aux/ylwrap \
-	$(noinst_HEADERS)
+	$(srcdir)/Make-static.am grecs-gram.c grecs-lex.c json-gram.c \
+	json-lex.c bind-gram.c bind-lex.c dhcpd-gram.c dhcpd-lex.c \
+	meta1-gram.c meta1-lex.c $(top_srcdir)/build-aux/depcomp \
+	$(top_srcdir)/build-aux/ylwrap
 @GRECS_COND_META1_PARSER_TRUE@am__append_1 = -DENABLE_META1_PARSER
 @GRECS_COND_BIND_PARSER_TRUE@am__append_2 = -DENABLE_BIND_PARSER
 @GRECS_COND_DHCPD_PARSER_TRUE@am__append_3 = -DENABLE_DHCPD_PARSER
 @GRECS_COND_GIT_PARSER_TRUE@am__append_4 = -DENABLE_GIT_PARSER 
+@GRECS_COND_SOCKADDR_LIST_TRUE@am__append_5 = sockaddr.c
 subdir = grecs/src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/grecs/am/grecs.m4 \
@@ -129,29 +129,34 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 libgrecs_a_AR = $(AR) $(ARFLAGS)
 libgrecs_a_LIBADD =
-am__libgrecs_a_SOURCES_DIST = asprintf.c diag.c format.c grecs-gram.y \
-	grecs-lex.l join.c lineacc.c list.c lookup.c mem.c opthelp.c \
-	parser.c parsertab.c path-parser.c preproc.c sort.c symtab.c \
-	text.c tree.c txtacc.c version.c wordsplit.c bind-gram.y \
+am__libgrecs_a_SOURCES_DIST = asprintf.c cidr.c diag.c format.c \
+	grecs-gram.y grecs-lex.l ipstr.c join.c lineacc.c list.c \
+	lookup.c mem.c opthelp.c parser.c parsertab.c path-parser.c \
+	preproc.c sort.c symtab.c text.c tree.c txtacc.c version.c \
+	wordsplit.c json-gram.y json-lex.l jsonfmt.c bind-gram.y \
 	bind-lex.l dhcpd-gram.y dhcpd-lex.l git-parser.c meta1-gram.y \
-	meta1-lex.l
-@GRECS_COND_BIND_PARSER_TRUE@am__objects_1 = bind-gram.$(OBJEXT) \
+	meta1-lex.l sockaddr.c
+@GRECS_COND_JSON_TRUE@am__objects_1 = json-gram.$(OBJEXT) \
+@GRECS_COND_JSON_TRUE@	json-lex.$(OBJEXT) jsonfmt.$(OBJEXT)
+@GRECS_COND_BIND_PARSER_TRUE@am__objects_2 = bind-gram.$(OBJEXT) \
 @GRECS_COND_BIND_PARSER_TRUE@	bind-lex.$(OBJEXT)
-@GRECS_COND_DHCPD_PARSER_TRUE@am__objects_2 = dhcpd-gram.$(OBJEXT) \
+@GRECS_COND_DHCPD_PARSER_TRUE@am__objects_3 = dhcpd-gram.$(OBJEXT) \
 @GRECS_COND_DHCPD_PARSER_TRUE@	dhcpd-lex.$(OBJEXT)
-@GRECS_COND_GIT_PARSER_TRUE@am__objects_3 = git-parser.$(OBJEXT)
-@GRECS_COND_META1_PARSER_TRUE@am__objects_4 = meta1-gram.$(OBJEXT) \
+@GRECS_COND_GIT_PARSER_TRUE@am__objects_4 = git-parser.$(OBJEXT)
+@GRECS_COND_META1_PARSER_TRUE@am__objects_5 = meta1-gram.$(OBJEXT) \
 @GRECS_COND_META1_PARSER_TRUE@	meta1-lex.$(OBJEXT)
-am__objects_5 = asprintf.$(OBJEXT) diag.$(OBJEXT) format.$(OBJEXT) \
-	grecs-gram.$(OBJEXT) grecs-lex.$(OBJEXT) join.$(OBJEXT) \
-	lineacc.$(OBJEXT) list.$(OBJEXT) lookup.$(OBJEXT) \
-	mem.$(OBJEXT) opthelp.$(OBJEXT) parser.$(OBJEXT) \
-	parsertab.$(OBJEXT) path-parser.$(OBJEXT) preproc.$(OBJEXT) \
-	sort.$(OBJEXT) symtab.$(OBJEXT) text.$(OBJEXT) tree.$(OBJEXT) \
+@GRECS_COND_SOCKADDR_LIST_TRUE@am__objects_6 = sockaddr.$(OBJEXT)
+am__objects_7 = asprintf.$(OBJEXT) cidr.$(OBJEXT) diag.$(OBJEXT) \
+	format.$(OBJEXT) grecs-gram.$(OBJEXT) grecs-lex.$(OBJEXT) \
+	ipstr.$(OBJEXT) join.$(OBJEXT) lineacc.$(OBJEXT) \
+	list.$(OBJEXT) lookup.$(OBJEXT) mem.$(OBJEXT) \
+	opthelp.$(OBJEXT) parser.$(OBJEXT) parsertab.$(OBJEXT) \
+	path-parser.$(OBJEXT) preproc.$(OBJEXT) sort.$(OBJEXT) \
+	symtab.$(OBJEXT) text.$(OBJEXT) tree.$(OBJEXT) \
 	txtacc.$(OBJEXT) version.$(OBJEXT) wordsplit.$(OBJEXT) \
 	$(am__objects_1) $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4)
-am_libgrecs_a_OBJECTS = $(am__objects_5)
+	$(am__objects_4) $(am__objects_5) $(am__objects_6)
+am_libgrecs_a_OBJECTS = $(am__objects_7)
 libgrecs_a_OBJECTS = $(am_libgrecs_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -228,7 +233,6 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(incdir)"
 DATA = $(inc_DATA)
-HEADERS = $(noinst_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -284,12 +288,14 @@ GRECS_INCLUDES = @GRECS_INCLUDES@
 GRECS_INCLUDE_DIR = @GRECS_INCLUDE_DIR@
 GRECS_LDADD = @GRECS_LDADD@
 GRECS_README = @GRECS_README@
+GRECS_SOCKADDR_LIST = @GRECS_SOCKADDR_LIST@
 GRECS_SRCDIR = @GRECS_SRCDIR@
 GRECS_SUBDIR = @GRECS_SUBDIR@
 GRECS_TESTDIR = @GRECS_TESTDIR@
 GRECS_TREE_API = @GRECS_TREE_API@
 GREP = @GREP@
 IFACE = @IFACE@
+INCLUDE_PATH_ARGS = @INCLUDE_PATH_ARGS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -395,45 +401,23 @@ PARSER_DEFS = $(am__append_1) $(am__append_2) $(am__append_3) \
 @GRECS_COND_DHCPD_PARSER_TRUE@GRECS_PARSER_DHCPD = dhcpd-gram.y dhcpd-lex.l
 @GRECS_COND_DHCPD_PARSER_TRUE@GRECS_EXTRA_DHCPD = dhcpd-gram.h
 @GRECS_COND_GIT_PARSER_TRUE@GRECS_PARSER_GIT = git-parser.c
-GRECS_SRC = \
- asprintf.c\
- diag.c\
- format.c\
- grecs-gram.y\
- grecs-lex.l\
- join.c\
- lineacc.c\
- list.c\
- lookup.c\
- mem.c\
- opthelp.c\
- parser.c\
- parsertab.c\
- path-parser.c\
- preproc.c\
- sort.c\
- symtab.c\
- text.c\
- tree.c\
- txtacc.c\
- version.c\
- wordsplit.c\
- $(GRECS_PARSER_BIND)\
- $(GRECS_PARSER_DHCPD)\
- $(GRECS_PARSER_GIT)\
- $(GRECS_PARSER_META1)
-
-noinst_HEADERS = grecs-locus.h grecs.h grecsopt.h wordsplit.h
+@GRECS_COND_JSON_TRUE@GRECS_JSON = json-gram.y json-lex.l jsonfmt.c
+@GRECS_COND_JSON_TRUE@GRECS_EXTRA_JSON = json-gram.h
+GRECS_SRC = asprintf.c cidr.c diag.c format.c grecs-gram.y grecs-lex.l \
+	ipstr.c join.c lineacc.c list.c lookup.c mem.c opthelp.c \
+	parser.c parsertab.c path-parser.c preproc.c sort.c symtab.c \
+	text.c tree.c txtacc.c version.c wordsplit.c $(GRECS_JSON) \
+	$(GRECS_PARSER_BIND) $(GRECS_PARSER_DHCPD) $(GRECS_PARSER_GIT) \
+	$(GRECS_PARSER_META1) $(am__append_5)
 EXTRA_DIST = \
  grecs-gram.h\
- grecs.hin\
  $(GRECS_EXTRA_BIND)\
  $(GRECS_EXTRA_DHCPD)\
+ $(GRECS_EXTRA_JSON)\
  $(GRECS_EXTRA_META1)\
  $(PP_SETUP_FILE)\
  Make.am Make-inst.am Make-shared.am Make-static.am
 
-BUILT_SOURCES = grecs.h
 AM_CPPFLAGS = \
  -I$(srcdir)\
  -I$(top_srcdir)/@GRECS_SUBDIR@\
@@ -449,7 +433,7 @@ LEXCOMPILE = $(top_srcdir)/@GRECS_SUBDIR@/build-aux/yyrename '$(LEX) $(LFLAGS) $
 YACCCOMPILE = $(top_srcdir)/@GRECS_SUBDIR@/build-aux/yyrename '$(YACC) $(YFLAGS) $(AM_YFLAGS)'
 
 # This file is part of grecs - Gray's Extensible Configuration System
-# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+# Copyright (C) 2007-2016 Sergey Poznyakoff
 #
 # Grecs is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -465,8 +449,7 @@ YACCCOMPILE = $(top_srcdir)/@GRECS_SUBDIR@/build-aux/yyrename '$(YACC) $(YFLAGS)
 # along with Grecs.  If not, see <http://www.gnu.org/licenses/>.
 noinst_LIBRARIES = libgrecs.a
 libgrecs_a_SOURCES = $(GRECS_SRC)
-all: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) all-am
+all: all-am
 
 .SUFFIXES:
 .SUFFIXES: .c .l .o .obj .y
@@ -519,6 +502,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/asprintf.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bind-gram.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bind-lex.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cidr.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dhcpd-gram.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dhcpd-lex.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/diag.Po@am__quote@
@@ -526,7 +510,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/git-parser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/grecs-gram.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/grecs-lex.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ipstr.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/join.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/json-gram.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/json-lex.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/jsonfmt.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lineacc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/list.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lookup.Po@am__quote@
@@ -538,6 +526,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parsertab.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/path-parser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/preproc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sockaddr.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sort.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/symtab.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/text.Po@am__quote@
@@ -670,15 +659,13 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LIBRARIES) $(DATA) $(HEADERS)
+check: check-am
+all-am: Makefile $(LIBRARIES) $(DATA)
 installdirs:
 	for dir in "$(DESTDIR)$(incdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: $(BUILT_SOURCES)
-	$(MAKE) $(AM_MAKEFLAGS) install-am
+install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -714,9 +701,10 @@ maintainer-clean-generic:
 	-rm -f dhcpd-lex.c
 	-rm -f grecs-gram.c
 	-rm -f grecs-lex.c
+	-rm -f json-gram.c
+	-rm -f json-lex.c
 	-rm -f meta1-gram.c
 	-rm -f meta1-lex.c
-	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-noinstLIBRARIES mostlyclean-am
@@ -786,7 +774,7 @@ ps-am:
 
 uninstall-am: uninstall-incDATA
 
-.MAKE: all check install install-am install-strip
+.MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS TAGS all all-am check check-am clean clean-generic \
 	clean-noinstLIBRARIES cscopelist-am ctags ctags-am distclean \
@@ -801,10 +789,6 @@ uninstall-am: uninstall-incDATA
 	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
 	tags tags-am uninstall uninstall-am uninstall-incDATA
 
-
-grecs.h: $(abs_srcdir)/grecs.hin
-	$(AM_V_GEN)sed 's/@''GRECS_TREE_API''@/@GRECS_TREE_API@/g' \
-		$(abs_srcdir)/grecs.hin > grecs.h
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

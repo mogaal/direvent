@@ -1,7 +1,7 @@
-This is direvent.info, produced by makeinfo version 5.9.90 from
+This is direvent.info, produced by makeinfo version 5.9.93 from
 direvent.texi.
 
-Copyright (C) 2013-2014 Sergey Poznyakoff
+Copyright (C) 2013-2016 Sergey Poznyakoff
 
    Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -11,6 +11,7 @@ copy of the license is included in the section entitled "GNU Free
 Documentation License".
 INFO-DIR-SECTION Individual utilities
 START-INFO-DIR-ENTRY
+* direvent: (direvent).                Monitor changes in directories.
 END-INFO-DIR-ENTRY
 
 
@@ -19,8 +20,24 @@ File: direvent.info,  Node: Top,  Next: Intro,  Up: (dir)
 Direvent
 ********
 
-This edition of the 'GNU Direvent' manual, last updated 18 September
-2014, documents GNU Direvent Version 5.0.90.
+This edition of the 'GNU Direvent' manual, last updated 4 July 2016,
+documents GNU Direvent Version 5.1.
+
+* Menu:
+
+
+* Intro::                   Introduction.
+* Overview::
+* Quick start::
+* Invocation::
+* Configuration::
+* System dependencies::
+* Reporting Bugs::          How to Report a Bug.
+
+Appendices
+
+* Copying This Manual::  The GNU Free Documentation License.
+* Concept Index::        Index of Concepts.
 
 
 File: direvent.info,  Node: Intro,  Next: Overview,  Prev: Top,  Up: Top
@@ -40,7 +57,7 @@ example, to track changes in important configuration files.
 
    Interfaces for tracking changes to file systems are highly
 system-specific.  GNU 'direvent' aims to provide a uniform and
-system-independent command-level interface.  As of version 5.0.90
+system-independent command-level interface.  As of version 5.1
 'direvent' works with modern Linux kernels (since v.  2.6.13) and BSD
 systems (FreeBSD, NetBSD, OpenBSD, Darwin).
 
@@ -197,10 +214,12 @@ configured as:
      and redirected to the syslog.  Otherwise it is closed.
   6. File descriptors above 2 are closed.
   7. Macro variables are expanded.  *Note macro expansion::.
-  8. Word splitting is performed on the resulting command line.  The
-     first word is treated as the pathname of the program to be
-     executed.
-  9. The program is invoked.
+  8. If the 'shell' option is set, the handler is invoked via the shell,
+     as '/bin/sh -c "COMMAND"'.
+
+     Otherwise, word splitting is performed on the resulting command
+     line.  The first word is treated as the pathname of the program,
+     which is then invoked via the 'execve' system call.
 
 
 File: direvent.info,  Node: Invocation,  Next: Configuration,  Prev: Quick start,  Up: Top
@@ -227,6 +246,10 @@ CONFIG supplies the configuration file to use instead of the default
 '-f'
 '--foreground'
      Remain in foreground.
+'-I DIR'
+'--include=DIR'
+     Add DIR to the beginning of the include search path (*note include
+     search path::).
 '-l PRIO'
      While connected to a terminal, 'direvent' outputs its diagnostics
      messages to stderr and, if configured, to syslog.  This option
@@ -303,6 +326,14 @@ File: direvent.info,  Node: Configuration,  Next: System dependencies,  Prev: In
 5 Configuration
 ***************
 
+* Menu:
+
+* syntax::
+* macro expansion::
+* general settings::
+* syslog::
+* watcher::
+
 
 File: direvent.info,  Node: syntax,  Next: macro expansion,  Up: Configuration
 
@@ -316,6 +347,12 @@ separators.  Blanks, tabs, newlines and comments, collectively called
 "white space" are ignored except as they serve to separate tokens.  Some
 white space is required to separate otherwise adjacent keywords and
 values.
+
+* Menu:
+
+* Comments::
+* Pragmatic Comments::
+* Statements::
 
 
 File: direvent.info,  Node: Comments,  Next: Pragmatic Comments,  Up: syntax
@@ -350,8 +387,41 @@ Pragmatic comments begin with a '#' sign and end with the next physical
 newline character.
 
 '#include <FILE>'
-'#include FILE'
-     Include the contents of the file FILE.
+'#include "FILE"'
+     Include the contents of the file FILE.  If FILE is an absolute file
+     name, the named file is included.  An error message will be issued
+     if it does not exist.
+
+     If FILE contains wildcard characters ('*', '[', ']' or '?'), it is
+     interpreted as a shell globbing pattern and all files matching that
+     pattern are included, in lexicographical order.  If no matching
+     files are found, the directive is replaced with an empty line.
+
+     Otherwise, the form with angle brackets searches for file in the
+     "include search path", while the second one looks for it in the
+     current working directory first, and, if not found there, in the
+     include search path.  If the file is not found, an error message
+     will be issued.
+
+     "Include search path" is formed by two directory sets: the
+     user-defined search path, as defined by eventual '-I' (*note
+     include option::) command line options, and the standard include
+     search path, defined at compile time.  The latter can be inspected
+     using the '--help' option.
+
+     The order of directories is as follows.  First, 'direvent' scans
+     any directories given with '-I' options, in the same order as given
+     on the command line.  If FILE is not found in any of them, the
+     standard include search path is scanned.  It is defined at the
+     compile time and by default consists of two directories:
+
+        * 'PREFIX/share/direvent/5.1/include'
+        * 'PREFIX/share/direvent/include'
+
+     where PREFIX is the installation prefix.  The default can be
+     changed when configuring the package.  To inspect the actual
+     standard include search path at the runtime, run 'direvent --help',
+     and look for the string 'Include search path:' in its output.
 
 '#include_once <FILE>'
 '#include_once FILE'
@@ -703,6 +773,10 @@ them declaring a separate watcher.
 
           command "/bin/prog -event $genev_name -file $file";
 
+     By default, the command is executed directly via 'execve' system
+     call.  If 'shell' option is set, the command is executed via
+     '/bin/sh'.
+
      *Note handler environment::, for a detailed discussion of how the
      command is executed.
 
@@ -715,6 +789,9 @@ them declaring a separate watcher.
 
  -- Config: option STRING-LIST
      A list of additional options.  The following options are defined:
+
+     shell
+          Invoke the handler command as '/bin/sh -c "COMMAND"'.
 
      wait
           Wait for the program to terminate before handling next event
@@ -810,6 +887,12 @@ File: direvent.info,  Node: System dependencies,  Next: Reporting Bugs,  Prev: C
 *********************
 
 'Direvent' relies on the event monitoring API provided by the kernel.
+
+* Menu:
+
+* linux::     GNU/Linux systems.
+* bsd::       BSD systems.
+* darwin::    Darwin (Mac OS X).
 
 
 File: direvent.info,  Node: linux,  Next: bsd,  Up: System dependencies
@@ -1376,30 +1459,32 @@ This is a general index of all issues discussed in this manual
 * Menu:
 
 * #include:                              Pragmatic Comments.  (line  11)
-* #include_once:                         Pragmatic Comments.  (line  15)
-* #line:                                 Pragmatic Comments.  (line  20)
-* --config-help:                         Invocation.          (line  83)
+* #include_once:                         Pragmatic Comments.  (line  48)
+* #line:                                 Pragmatic Comments.  (line  53)
+* --config-help:                         Invocation.          (line  87)
 * --debug:                               Invocation.          (line  16)
 * --facility:                            Invocation.          (line  18)
 * --foreground:                          Invocation.          (line  21)
-* --help:                                Invocation.          (line  85)
-* --lint:                                Invocation.          (line  71)
-* --pidfile:                             Invocation.          (line  33)
-* --self-test:                           Invocation.          (line  37)
-* --usage:                               Invocation.          (line  88)
-* --user:                                Invocation.          (line  74)
-* --version:                             Invocation.          (line  90)
+* --help:                                Invocation.          (line  89)
+* --include:                             Invocation.          (line  24)
+* --lint:                                Invocation.          (line  75)
+* --pidfile:                             Invocation.          (line  37)
+* --self-test:                           Invocation.          (line  41)
+* --usage:                               Invocation.          (line  92)
+* --user:                                Invocation.          (line  78)
+* --version:                             Invocation.          (line  94)
 * -d:                                    Invocation.          (line  16)
 * -F:                                    Invocation.          (line  18)
 * -f:                                    Invocation.          (line  21)
-* -H:                                    Invocation.          (line  83)
-* -h:                                    Invocation.          (line  85)
-* -l:                                    Invocation.          (line  24)
-* -P:                                    Invocation.          (line  33)
-* -T:                                    Invocation.          (line  37)
-* -t:                                    Invocation.          (line  71)
-* -u:                                    Invocation.          (line  74)
-* -V:                                    Invocation.          (line  90)
+* -H:                                    Invocation.          (line  87)
+* -h:                                    Invocation.          (line  89)
+* -I:                                    Invocation.          (line  24)
+* -l:                                    Invocation.          (line  28)
+* -P:                                    Invocation.          (line  37)
+* -T:                                    Invocation.          (line  41)
+* -t:                                    Invocation.          (line  75)
+* -u:                                    Invocation.          (line  78)
+* -V:                                    Invocation.          (line  94)
 * ACCESS, linux event:                   linux.               (line  25)
 * ATTRIB, BSD:                           bsd.                 (line  30)
 * attrib, generic event:                 Overview.            (line  26)
@@ -1420,14 +1505,14 @@ This is a general index of all issues discussed in this manual
 * DELETE, BSD:                           bsd.                 (line  25)
 * delete, generic event:                 Overview.            (line  22)
 * DELETE, linux event:                   linux.               (line  34)
-* DIREVENT_FILE, environment variable:   watcher.             (line 128)
-* DIREVENT_GENEV_CODE, environment variable: watcher.         (line 122)
-* DIREVENT_GENEV_NAME, environment variable: watcher.         (line 125)
-* DIREVENT_SYSEV_CODE, environment variable: watcher.         (line 117)
-* DIREVENT_SYSEV_NAME, environment variable: watcher.         (line 119)
-* environ:                               watcher.             (line 113)
-* environment modification:              watcher.             (line 133)
-* environment, handler:                  watcher.             (line 117)
+* DIREVENT_FILE, environment variable:   watcher.             (line 135)
+* DIREVENT_GENEV_CODE, environment variable: watcher.         (line 129)
+* DIREVENT_GENEV_NAME, environment variable: watcher.         (line 132)
+* DIREVENT_SYSEV_CODE, environment variable: watcher.         (line 124)
+* DIREVENT_SYSEV_NAME, environment variable: watcher.         (line 126)
+* environ:                               watcher.             (line 120)
+* environment modification:              watcher.             (line 140)
+* environment, handler:                  watcher.             (line 124)
 * escape sequence:                       Statements.          (line  33)
 * event:                                 watcher.             (line  65)
 * events:                                Overview.            (line  12)
@@ -1448,11 +1533,13 @@ This is a general index of all issues discussed in this manual
 * genev_code, macro variable:            macro expansion.     (line  19)
 * genev_name, macro variable:            macro expansion.     (line  23)
 * GNU/Linux:                             linux.               (line   6)
-* Handler environment variables:         watcher.             (line 117)
+* Handler environment variables:         watcher.             (line 124)
 * handler execution environment:         Quick start.         (line  43)
 * handler, defining:                     watcher.             (line  78)
 * handler, introduced:                   Overview.            (line  31)
 * here-document:                         Statements.          (line  73)
+* include directories, preprocessor:     Pragmatic Comments.  (line  28)
+* include search path, preprocessor:     Pragmatic Comments.  (line  28)
 * inotify:                               linux.               (line   6)
 * kqueue:                                bsd.                 (line   6)
 * LINK, BSD:                             bsd.                 (line  32)
@@ -1468,20 +1555,24 @@ This is a general index of all issues discussed in this manual
 * number of open file descriptors:       bsd.                 (line  10)
 * number of watches, linux:              linux.               (line   9)
 * OPEN, linux event:                     linux.               (line  42)
-* option:                                watcher.             (line  97)
+* option:                                watcher.             (line 101)
 * path:                                  watcher.             (line  24)
 * pidfile:                               general settings.    (line  13)
 * pragmatic comments:                    Pragmatic Comments.  (line   6)
+* preprocessor include search path:      Pragmatic Comments.  (line  28)
 * print-priority:                        syslog.              (line  31)
 * quoted string:                         Statements.          (line  33)
 * RENAME, BSD:                           bsd.                 (line  34)
-* self-test mode:                        Invocation.          (line  37)
+* self-test mode:                        Invocation.          (line  41)
 * self_test_pid:                         macro expansion.     (line  29)
+* shell, watcher option:                 watcher.             (line 105)
 * simple statements:                     Statements.          (line   6)
 * single-line comments:                  Comments.            (line   6)
 * statement, block:                      Statements.          (line 129)
 * statement, simple:                     Statements.          (line   6)
 * statements, configuration file:        Statements.          (line   6)
+* stdout, watcher option:                watcher.             (line 113)
+* strerr, watcher option:                watcher.             (line 117)
 * string, quoted:                        Statements.          (line  33)
 * string, unquoted:                      Statements.          (line  29)
 * sysctl:                                linux.               (line   9)
@@ -1496,9 +1587,10 @@ This is a general index of all issues discussed in this manual
 * system-dependent events, linux:        linux.               (line  22)
 * tag:                                   syslog.              (line  27)
 * tag, syslog:                           syslog.              (line  28)
-* timeout:                               watcher.             (line  93)
+* timeout:                               watcher.             (line  97)
 * user:                                  general settings.    (line   6)
-* user <1>:                              watcher.             (line  90)
+* user <1>:                              watcher.             (line  94)
+* wait, watcher option:                  watcher.             (line 108)
 * watcher declaration:                   watcher.             (line  11)
 * watcher declaration, summary:          Overview.            (line  60)
 * watcher, complete description:         watcher.             (line   6)
@@ -1509,37 +1601,39 @@ This is a general index of all issues discussed in this manual
 
 
 Tag Table:
-Node: Top574
-Node: Intro769
-Node: Overview1680
-Ref: handler2694
-Node: Quick start5681
-Ref: handler environment7375
-Node: Invocation8284
-Ref: self-test mode9436
-Node: Configuration11511
-Node: syntax11646
-Node: Comments12128
-Node: Pragmatic Comments12802
-Node: Statements13845
-Ref: backslash-interpretation15044
-Ref: here-document16407
-Node: macro expansion18823
-Ref: $file19491
-Ref: $genev_code19545
-Ref: $genev_name19680
-Ref: $sysev_code20124
-Ref: $sysev_name20249
-Node: general settings20551
-Node: syslog21093
-Node: watcher22306
-Ref: environ26375
-Node: System dependencies29340
-Node: linux29562
-Node: bsd30896
-Node: darwin32350
-Node: Reporting Bugs32737
-Node: Copying This Manual33599
-Node: Concept Index56029
+Node: Top645
+Node: Intro1137
+Node: Overview2045
+Ref: handler3059
+Node: Quick start6046
+Ref: handler environment7740
+Node: Invocation8774
+Ref: include option9280
+Ref: self-test mode10044
+Node: Configuration12119
+Node: syntax12339
+Node: Comments12882
+Node: Pragmatic Comments13556
+Ref: include search path14729
+Node: Statements16322
+Ref: backslash-interpretation17521
+Ref: here-document18884
+Node: macro expansion21300
+Ref: $file21968
+Ref: $genev_code22022
+Ref: $genev_name22157
+Ref: $sysev_code22601
+Ref: $sysev_name22726
+Node: general settings23028
+Node: syslog23570
+Node: watcher24783
+Ref: environ29081
+Node: System dependencies32046
+Node: linux32371
+Node: bsd33705
+Node: darwin35159
+Node: Reporting Bugs35546
+Node: Copying This Manual36408
+Node: Concept Index58838
 
 End Tag Table

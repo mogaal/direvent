@@ -1,6 +1,6 @@
 %{
 /* MeTA1 configuration parser for Grecs.
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -21,7 +21,6 @@
 #include <errno.h>
 #include <string.h>
 #include "grecs.h"
-#include "grecs-locus.h"
 
 int yylex(void);
 int yyerror(char const *s);
