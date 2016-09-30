@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -29,6 +29,8 @@
 #include <limits.h>
 #include <string.h>
 #include "grecs.h"
+
+struct grecs_sockaddr_hints *grecs_sockaddr_hints;
 
 void
 grecs_value_free_content(struct grecs_value *val)
@@ -241,7 +243,6 @@ grecs_tree_free(struct grecs_node *node)
 {
 	if (!node)
 		return 0;
-        /* FIXME: Check if that's a node_type_root */
 	if (node->type != grecs_node_root) {
 		errno = EINVAL;
 		return 1;
@@ -347,6 +348,7 @@ string_to_host(struct in_addr *in, const char *string,
 	return 0;
 }
 
+#if !GRECS_SOCKADDR_LIST
 static int
 string_to_sockaddr(struct grecs_sockaddr *sp, const char *string,
 		   grecs_locus_t const *locus)
@@ -425,7 +427,7 @@ string_to_sockaddr(struct grecs_sockaddr *sp, const char *string,
 	}
 	return 0;
 }
-
+#endif
 
 /* The TYPE_* defines come from gnulib's intprops.h */
 
@@ -544,7 +546,7 @@ string_to_sockaddr(struct grecs_sockaddr *sp, const char *string,
 
 int
 grecs_string_convert(void *target, enum grecs_data_type type,
-		      const char *string, grecs_locus_t const *locus)
+		     const char *string, grecs_locus_t const *locus)
 {
   switch (type) {
   case grecs_type_void:
@@ -554,7 +556,7 @@ grecs_string_convert(void *target, enum grecs_data_type type,
 	  break;
 	  
   case grecs_type_string:
-	  *(const char**)target = grecs_strdup(string);
+	  *(char**)target = grecs_strdup(string);
 	  break;
 	    
   case grecs_type_short:
@@ -615,14 +617,17 @@ grecs_string_convert(void *target, enum grecs_data_type type,
 	  break;    
 	    
   case grecs_type_sockaddr:
+#if GRECS_SOCKADDR_LIST
+	  return grecs_str_to_sockaddr((struct grecs_sockaddr **)target,
+				       string, grecs_sockaddr_hints,
+				       locus);
+#else
 	  return string_to_sockaddr((struct grecs_sockaddr *)target, string,
 				    locus);
-      
-      /* FIXME: */
+#endif
+
   case grecs_type_cidr:
-	  grecs_error(locus, 0,
-		       _("INTERNAL ERROR at %s:%d"), __FILE__, __LINE__);
-	  abort();
+	  return grecs_str_to_cidr((struct grecs_cidr *)target, string, locus);
 	    
   case grecs_type_section:
 	  grecs_error(locus, 0,
@@ -663,9 +668,19 @@ DECL_NUMCMP(time_t)
 __DECL_NUMCMP(in_addr, struct in_addr)
 __DECL_NUMCMP(grecs_sockaddr, struct grecs_sockaddr)
 
+static int
+cidr_cmp(const void *elt1, const void *elt2)
+{
+	struct grecs_cidr const *cp1 = elt1, *cp2 = elt2;
+	return !(cp1->family == cp2->family
+		 && cp1->len == cp2->len
+		 && memcmp(cp1->address, cp2->address, cp1->len) == 0
+		 && memcmp(cp1->netmask, cp2->netmask, cp1->len) == 0);
+}
+
 struct grecs_prop grecs_prop_tab[] = {
-	{ 0, NULL },                                  /* grecs_type_void */
-	{ sizeof(char*), string_cmp },                /* grecs_type_string */
+	{ 0, NULL },                                 /* grecs_type_void */
+	{ sizeof(char*), string_cmp },               /* grecs_type_string */
 	{ sizeof(short), NUMCMP(short) },            /* grecs_type_short */
 	{ sizeof(unsigned short), NUMCMP(short) },   /* grecs_type_ushort */
 	{ sizeof(int), NUMCMP(int) },                /* grecs_type_int */
@@ -680,7 +695,7 @@ struct grecs_prop grecs_prop_tab[] = {
 	{ sizeof(time_t), NUMCMP(time_t) },          /* grecs_type_time */
 	{ sizeof(int), NUMCMP(int) },                /* grecs_type_bool */
 	{ sizeof(struct in_addr), NUMCMP(in_addr) }, /* grecs_type_ipv4 */
-	{ 0, NULL },                           /* FIXME: grecs_type_cidr */
+	{ sizeof(struct grecs_cidr), cidr_cmp },     /* grecs_type_cidr */
 	{ sizeof(struct in_addr), NUMCMP(in_addr) }, /* grecs_type_host */ 
 	{ sizeof(struct grecs_sockaddr), NUMCMP(grecs_sockaddr) },
                                                	      /* grecs_type_sockaddr */
@@ -809,10 +824,15 @@ grecs_process_ident(struct grecs_keyword *kwp, grecs_value_t *value,
 			grecs_list_append(list, ptr);
 		}
 		*(struct grecs_list**)target = list;
-	} else
+	} else {
+		if (kwp->type == grecs_type_string
+		    && !(kwp->flags & GRECS_CONST))
+			free(*(char**)target);
 		grecs_string_convert(target, kwp->type,
 				     value->v.string,
 				     &value->locus);
+	}
+	kwp->flags &= ~GRECS_CONST;
 }
 
 

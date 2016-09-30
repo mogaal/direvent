@@ -69,7 +69,7 @@
 #line 1 "bind-gram.y"
 
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -88,7 +88,6 @@
 # include <config.h>
 #endif
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <bind-gram.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -107,7 +106,7 @@ static struct grecs_value *stmtlist_to_value(struct grecs_node *node);
 
 
 /* Line 268 of yacc.c  */
-#line 111 "bind-gram.c"
+#line 110 "bind-gram.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -160,7 +159,7 @@ typedef union YYSTYPE
 {
 
 /* Line 295 of yacc.c  */
-#line 43 "bind-gram.y"
+#line 42 "bind-gram.y"
 
 	char *string;
 	grecs_value_t svalue, *pvalue;
@@ -172,7 +171,7 @@ typedef union YYSTYPE
 
 
 /* Line 295 of yacc.c  */
-#line 176 "bind-gram.c"
+#line 175 "bind-gram.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define grecs_bind_stype YYSTYPE /* obsolescent; will be withdrawn */
@@ -197,7 +196,7 @@ typedef struct YYLTYPE
 
 
 /* Line 345 of yacc.c  */
-#line 201 "bind-gram.c"
+#line 200 "bind-gram.c"
 
 #ifdef short
 # undef short
@@ -494,9 +493,9 @@ static const grecs_bind_type_int8 grecs_bind_rhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const grecs_bind_type_uint8 grecs_bind_rline[] =
 {
-       0,    62,    62,    72,    75,    81,    85,    97,    98,   101,
-     115,   122,   135,   144,   167,   170,   173,   197,   202,   208,
-     216,   217,   220,   228,   233,   237
+       0,    61,    61,    71,    74,    80,    84,    96,    97,   100,
+     114,   121,   134,   143,   166,   169,   172,   196,   201,   207,
+     215,   216,   219,   227,   232,   236
 };
 #endif
 
@@ -1492,7 +1491,7 @@ grecs_bind_reduce:
         case 2:
 
 /* Line 1810 of yacc.c  */
-#line 63 "bind-gram.y"
+#line 62 "bind-gram.y"
     {
 		  parse_tree = grecs_node_create(grecs_node_root, &(grecs_bind_lsp[(1) - (1)]));
 		  parse_tree->v.texttab = grecs_text_table();
@@ -1503,7 +1502,7 @@ grecs_bind_reduce:
   case 3:
 
 /* Line 1810 of yacc.c  */
-#line 72 "bind-gram.y"
+#line 71 "bind-gram.y"
     {
 		  (grecs_bind_val.node) = NULL;
 	  }
@@ -1512,7 +1511,7 @@ grecs_bind_reduce:
   case 4:
 
 /* Line 1810 of yacc.c  */
-#line 76 "bind-gram.y"
+#line 75 "bind-gram.y"
     {
 		  (grecs_bind_val.node) = (grecs_bind_vsp[(1) - (1)].node_list).head;
 	  }
@@ -1521,7 +1520,7 @@ grecs_bind_reduce:
   case 5:
 
 /* Line 1810 of yacc.c  */
-#line 82 "bind-gram.y"
+#line 81 "bind-gram.y"
     {
 		  (grecs_bind_val.node_list).head = (grecs_bind_val.node_list).tail = (grecs_bind_vsp[(1) - (1)].node);
 	  }
@@ -1530,7 +1529,7 @@ grecs_bind_reduce:
   case 6:
 
 /* Line 1810 of yacc.c  */
-#line 86 "bind-gram.y"
+#line 85 "bind-gram.y"
     {
 		  if ((grecs_bind_vsp[(2) - (2)].node)) {
 			  if (!(grecs_bind_vsp[(1) - (2)].node_list).head)
@@ -1545,7 +1544,7 @@ grecs_bind_reduce:
   case 9:
 
 /* Line 1810 of yacc.c  */
-#line 102 "bind-gram.y"
+#line 101 "bind-gram.y"
     {
 		  if (strcmp((grecs_bind_vsp[(1) - (3)].string), "include") == 0 &&
 		      (grecs_bind_vsp[(2) - (3)].pvalue)->type == GRECS_TYPE_STRING) {
@@ -1564,7 +1563,7 @@ grecs_bind_reduce:
   case 10:
 
 /* Line 1810 of yacc.c  */
-#line 116 "bind-gram.y"
+#line 115 "bind-gram.y"
     {
 		  (grecs_bind_val.node) = grecs_node_create(grecs_node_stmt, &(grecs_bind_lsp[(1) - (2)]));
 		  (grecs_bind_val.node)->ident = (grecs_bind_vsp[(1) - (2)].string);
@@ -1576,7 +1575,7 @@ grecs_bind_reduce:
   case 11:
 
 /* Line 1810 of yacc.c  */
-#line 123 "bind-gram.y"
+#line 122 "bind-gram.y"
     {
 		  (grecs_bind_val.node) = grecs_node_create_points(grecs_node_stmt,
 						(grecs_bind_lsp[(1) - (3)]).beg, (grecs_bind_lsp[(2) - (3)]).end);
@@ -1592,7 +1591,7 @@ grecs_bind_reduce:
   case 12:
 
 /* Line 1810 of yacc.c  */
-#line 136 "bind-gram.y"
+#line 135 "bind-gram.y"
     {
 		  (grecs_bind_val.node) = grecs_node_create_points(grecs_node_block,
 						(grecs_bind_lsp[(1) - (6)]).beg, (grecs_bind_lsp[(5) - (6)]).end);
@@ -1606,7 +1605,7 @@ grecs_bind_reduce:
   case 13:
 
 /* Line 1810 of yacc.c  */
-#line 157 "bind-gram.y"
+#line 156 "bind-gram.y"
     {
 		  (grecs_bind_val.node) = grecs_node_create_points(grecs_node_stmt,
 						(grecs_bind_lsp[(1) - (5)]).beg, (grecs_bind_lsp[(4) - (5)]).end);
@@ -1619,7 +1618,7 @@ grecs_bind_reduce:
   case 14:
 
 /* Line 1810 of yacc.c  */
-#line 167 "bind-gram.y"
+#line 166 "bind-gram.y"
     {
 		  (grecs_bind_val.pvalue) = NULL;
 	  }
@@ -1628,7 +1627,7 @@ grecs_bind_reduce:
   case 16:
 
 /* Line 1810 of yacc.c  */
-#line 174 "bind-gram.y"
+#line 173 "bind-gram.y"
     {
 		  size_t n;
 		  
@@ -1655,7 +1654,7 @@ grecs_bind_reduce:
   case 17:
 
 /* Line 1810 of yacc.c  */
-#line 198 "bind-gram.y"
+#line 197 "bind-gram.y"
     {
 		  (grecs_bind_val.list) = grecs_value_list_create();
 		  grecs_list_append((grecs_bind_val.list), grecs_value_ptr_from_static(&(grecs_bind_vsp[(1) - (1)].svalue)));
@@ -1665,7 +1664,7 @@ grecs_bind_reduce:
   case 18:
 
 /* Line 1810 of yacc.c  */
-#line 203 "bind-gram.y"
+#line 202 "bind-gram.y"
     {
 		  grecs_list_append((grecs_bind_vsp[(1) - (2)].list), grecs_value_ptr_from_static(&(grecs_bind_vsp[(2) - (2)].svalue)));
 	  }
@@ -1674,7 +1673,7 @@ grecs_bind_reduce:
   case 19:
 
 /* Line 1810 of yacc.c  */
-#line 209 "bind-gram.y"
+#line 208 "bind-gram.y"
     {
 		  (grecs_bind_val.svalue).type = GRECS_TYPE_STRING;
 		  (grecs_bind_val.svalue).locus = (grecs_bind_lsp[(1) - (1)]);
@@ -1685,7 +1684,7 @@ grecs_bind_reduce:
   case 22:
 
 /* Line 1810 of yacc.c  */
-#line 221 "bind-gram.y"
+#line 220 "bind-gram.y"
     {
 		  (grecs_bind_val.svalue).type = GRECS_TYPE_LIST;
 		  (grecs_bind_val.svalue).locus = (grecs_bind_lsp[(1) - (2)]);
@@ -1696,7 +1695,7 @@ grecs_bind_reduce:
   case 23:
 
 /* Line 1810 of yacc.c  */
-#line 229 "bind-gram.y"
+#line 228 "bind-gram.y"
     {
 		  (grecs_bind_val.list) = grecs_value_list_create();
 		  grecs_list_append((grecs_bind_val.list), grecs_value_ptr_from_static(&(grecs_bind_vsp[(1) - (1)].svalue)));
@@ -1706,7 +1705,7 @@ grecs_bind_reduce:
   case 24:
 
 /* Line 1810 of yacc.c  */
-#line 234 "bind-gram.y"
+#line 233 "bind-gram.y"
     {
 		  grecs_list_append((grecs_bind_vsp[(1) - (2)].list), grecs_value_ptr_from_static(&(grecs_bind_vsp[(2) - (2)].svalue)));
 	  }
@@ -1715,7 +1714,7 @@ grecs_bind_reduce:
   case 25:
 
 /* Line 1810 of yacc.c  */
-#line 238 "bind-gram.y"
+#line 237 "bind-gram.y"
     {
 		  grecs_list_append((grecs_bind_vsp[(1) - (4)].list), stmtlist_to_value((grecs_bind_vsp[(3) - (4)].node_list).head));
 		  /* FIXME: Free $3 */
@@ -1725,7 +1724,7 @@ grecs_bind_reduce:
 
 
 /* Line 1810 of yacc.c  */
-#line 1729 "bind-gram.c"
+#line 1728 "bind-gram.c"
       default: break;
     }
   /* User semantic actions sometimes alter grecs_bind_char, and that requires
@@ -1963,7 +1962,7 @@ grecs_bind_return:
 
 
 /* Line 2071 of yacc.c  */
-#line 244 "bind-gram.y"
+#line 243 "bind-gram.y"
 
 
 int

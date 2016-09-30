@@ -1,0 +1,89 @@
+# This file is part of Grecs  -*- Autotest -*-
+# Copyright (C) 2015-2016 Sergey Poznyakoff
+#
+# Grecs is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# Grecs is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Grecs.  If not, see <http://www.gnu.org/licenses/>.
+AT_SETUP([Lookup])
+AT_KEYWORDS([json json01 lookup])
+
+AT_DATA([input.json],[[
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "isAlive": true,
+  "age": 25,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021-3100"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567"
+    }
+  ],
+  "children": [],
+  "spouse": null
+}
+]])
+
+m4_define([json_query],[
+echo $1
+json -indent=2 -precision=0 -file=input.json -search=$1
+echo =$?
+])
+
+AT_CHECK([json_query(age)
+json_query(address)
+json_query(address.postalCode)
+json_query(phoneNumbers.1.number)
+json_query(x)
+json_query(x.y.z)
+json_query(phoneNumbers.2.number)
+json_query(phoneNumbers.x)
+],
+[0],
+[age
+25
+=0
+address
+{
+  "city": "New York",
+  "postalCode": "10021-3100",
+  "state": "NY",
+  "streetAddress": "21 2nd Street"
+}
+=0
+address.postalCode
+"10021-3100"
+=0
+phoneNumbers.1.number
+"646 555-4567"
+=0
+x
+=4
+x.y.z
+=4
+phoneNumbers.2.number
+=4
+phoneNumbers.x
+=4
+])
+
+AT_CLEANUP

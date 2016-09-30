@@ -1,4 +1,4 @@
-@set UPDATED 18 September 2014
-@set UPDATED-MONTH September 2014
-@set EDITION 5.0.90
-@set VERSION 5.0.90
+@set UPDATED 4 July 2016
+@set UPDATED-MONTH July 2016
+@set EDITION 5.1
+@set VERSION 5.1

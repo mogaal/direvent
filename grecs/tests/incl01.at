@@ -1,0 +1,41 @@
+# This file is part of grecs  -*- Autotest -*-
+# Copyright (C) 2014-2016 Sergey Poznyakoff
+#
+# Grecs is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# Grecs is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Grecs.  If not, see <http://www.gnu.org/licenses/>.
+
+AT_SETUP([Recursive inclusion])
+AT_KEYWORDS([include incl01])
+
+AT_CHECK([
+AT_DATA([a.inc],[this true;
+#include "b.inc"
+])
+
+AT_DATA([b.inc],[#include "a.inc"
+])
+
+AT_DATA([test.cf],[before 1;
+#include "a.inc"
+after 1;
+])
+
+gcffmt ./test.cf
+],
+[1],
+[],
+[./b.inc:1: Recursive inclusion
+./test.cf:2: `./a.inc' already included here
+])
+
+AT_CLEANUP

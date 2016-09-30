@@ -15,7 +15,7 @@
 @SET_MAKE@
 
 # This file is part of Direvent -*- autoconf -*-
-# Copyright (C) 2012-2015 Sergey Poznyakoff
+# Copyright (C) 2012-2016 Sergey Poznyakoff
 #
 # Direvent is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -241,12 +241,14 @@ GRECS_INCLUDES = @GRECS_INCLUDES@
 GRECS_INCLUDE_DIR = @GRECS_INCLUDE_DIR@
 GRECS_LDADD = @GRECS_LDADD@
 GRECS_README = @GRECS_README@
+GRECS_SOCKADDR_LIST = @GRECS_SOCKADDR_LIST@
 GRECS_SRCDIR = @GRECS_SRCDIR@
 GRECS_SUBDIR = @GRECS_SUBDIR@
 GRECS_TESTDIR = @GRECS_TESTDIR@
 GRECS_TREE_API = @GRECS_TREE_API@
 GREP = @GREP@
 IFACE = @IFACE@
+INCLUDE_PATH_ARGS = @INCLUDE_PATH_ARGS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -352,7 +354,7 @@ EXTRA_DIST = \
  gendocs_template\
  gendocs.sh
 
-GENDOCS = $(srcdir)/gendocs.sh
+GENDOCS = $(srcdir)/gendocs.sh --no-copy-images --html '--init-file=$(abs_srcdir)/html.init'
 TEXI2DVI = texi2dvi -t '@set $(RENDITION)'
 all: all-am
 
@@ -899,7 +901,7 @@ manual:
 	TEXINPUTS=$(srcdir):$(top_srcdir)/build-aux:$(TEXINPUTS) \
 	 MAKEINFO="$(MAKEINFO) $(MAKEINFOFLAGS) $(AM_MAKEINFOFLAGS)" \
 	 TEXI2DVI="$(TEXI2DVI)" \
-	 $(GENDOCS) --no-copy-images $(PACKAGE) '$(PACKAGE_NAME) manual'
+	 $(GENDOCS) $(PACKAGE) '$(PACKAGE_NAME) manual'
 
 manual.tar.bz2: manual
 	tar cfj manual.tar.bz2 manual

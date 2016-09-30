@@ -1,3 +1,87 @@
+2016-07-06  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Version 5.1
+
+2016-07-04  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Remove unused variables
+
+	Use latest commit of grecs
+
+	Update copyright years
+
+2016-06-20  Sergey Poznyakoff  <gray@gnu.org>
+
+	Update grecs
+
+	Make sure descriptor 0 is allocated before calling detach.
+
+	* grecs: Upgrade to 9161098.
+
+	Bugfix
+
+	* configure.ac (INCLUDE_PATH_ARGS): Quote definition for shell
+
+	Implement search path for #include and #include_once.
+
+	* src/Makefile.am (AM_CPPFLAGS): Define INCLUDE_PATH_ARGS
+	* src/cmdline.opt: New option --include-directory (-I).
+	(help_hook): Print the actual content of the include search path.
+	* src/config.c (config_finish): Remove.
+	(config_init): New function. Set up include search path.
+	(config_parse): New function.
+	* src/direvent.c (main): Call config_init and config_parse.
+	* src/direvent.h (config_finish): Remove.
+	(config_init,config_parse): New proto.
+
+	* grecs: Upgrade.
+
+	* NEWS: Document changes.
+	* README: Document the --with-include-path option.
+	* configure.ac: New option --with-include-path.
+	* doc/direvent.8: Document the -I option and include search paths.
+	* doc/direvent.conf.5: Document include search paths.
+	* doc/direvent.texi: Document the -I option and include search paths.
+
+2016-06-18  Sergey Poznyakoff  <gray@gnu.org>
+
+	New option to invoke handlers via /bin/sh
+
+	* src/config.c (cb_option): New option 'shell'.
+	* src/direvent.h (HF_SHELL): New flag.
+	* src/progman.c (runcmd): Optionally run program via /bin/sh
+	* NEWS: Mention new option.
+	* doc/direvent.conf.5: Document the 'shell' option.
+	* grecs: Update.
+	* tests/shell.at: New test case.
+	* tests/Makefile.am: Add new test.
+	* tests/testsuite.at: Add new test.
+
+	Globbing patterns in #include and #include_once
+
+	* grecs: Update.
+	* src/direvent.c (main): Allocate tag to avoid coredump if
+	redefined in the config.
+	* tests/re05.at: Escape backslash.
+	* NEWS: Update.
+	* doc/direvent.conf.5: Update.
+	* doc/direvent.texi: Update.
+
+2015-04-23  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Fix doc generation.
+
+	Default Config file applied to all output formats, which is wrong.
+	Use a dedicated configuration file for html output formats, and
+	defaults for the rest.
+
+	* doc/Makefile.am (GENDOCS): Add html-specific configuration file.
+	* doc/Config: Rename to doc/html.init (with changes).
+
+2015-04-16  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Version 5.0.90
+
 2015-03-01  Sergey Poznyakoff  <gray@gnu.org>
 
 	Switch to Texinfo 5.0

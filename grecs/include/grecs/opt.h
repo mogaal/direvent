@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -14,8 +14,8 @@
    You should have received a copy of the GNU General Public License along
    with Grecs. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef _GRECSOPT_H
-#define _GRECSOPT_H
+#ifndef _GRECS_OPT_H
+#define _GRECS_OPT_H
 
 struct grecs_proginfo {
 	const char *progname;

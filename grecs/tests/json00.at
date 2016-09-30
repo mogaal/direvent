@@ -1,0 +1,75 @@
+# This file is part of Grecs  -*- Autotest -*-
+# Copyright (C) 2015-2016 Sergey Poznyakoff
+#
+# Grecs is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# Grecs is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Grecs.  If not, see <http://www.gnu.org/licenses/>.
+AT_SETUP([Parser])
+AT_KEYWORDS([json json00 parser])
+
+AT_DATA([input.json],[[
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "isAlive": true,
+  "age": 25,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021-3100"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567"
+    }
+  ],
+  "children": [],
+  "spouse": null
+}
+]])
+
+AT_CHECK([json -indent=2 -precision=0 -file=input.json],
+[0],
+[[{
+  "address": {
+    "city": "New York",
+    "postalCode": "10021-3100",
+    "state": "NY",
+    "streetAddress": "21 2nd Street"
+  },
+  "age": 25,
+  "children": [],
+  "firstName": "John",
+  "isAlive": true,
+  "lastName": "Smith",
+  "phoneNumbers": [
+    {
+      "number": "212 555-1234",
+      "type": "home"
+    },
+    {
+      "number": "646 555-4567",
+      "type": "office"
+    }
+  ],
+  "spouse": null
+}
+]])
+
+AT_CLEANUP
+

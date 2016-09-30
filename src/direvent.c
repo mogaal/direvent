@@ -1,5 +1,5 @@
 /* direvent - directory content watcher daemon
-   Copyright (C) 2012-2014 Sergey Poznyakoff
+   Copyright (C) 2012-2016 Sergey Poznyakoff
 
    Direvent is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -22,6 +22,7 @@
 #include <grp.h>
 #include <signal.h>
 #include <grecs.h>
+#include <locale.h>
 #include "wordsplit.h"
 
 #ifndef SYSCONFDIR
@@ -454,7 +455,6 @@ int
 main(int argc, char **argv)
 {
 	int i;
-	struct grecs_node *tree;
 
 #ifdef ENABLE_NLS
 	setlocale(LC_ALL, "");
@@ -463,10 +463,11 @@ main(int argc, char **argv)
 #endif
 
 	set_program_name(argv[0]);
-	tag = (char*) program_name;
+	tag = estrdup(program_name);
 
 	genev_init();
-
+	config_init();
+	
 	parse_options(argc, argv, &i);
 
 	argc -= i;
@@ -483,11 +484,7 @@ main(int argc, char **argv)
 		break;
 	}
 
-	tree = grecs_parse(conffile);
-	if (!tree)
-		exit(1);
-
-	config_finish(tree);
+	config_parse(conffile);
 	if (lint_only)
 		return 0;
 

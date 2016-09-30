@@ -1,5 +1,5 @@
 # This file is part of Direvent -*- autoconf -*-
-# Copyright (C) 2012-2014 Sergey Poznyakoff
+# Copyright (C) 2012-2016 Sergey Poznyakoff
 #
 # Direvent is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,8 +43,9 @@ endif
 
 LDADD=@GRECS_LDADD@ @LIBINTL@
 AM_CPPFLAGS=\
- -I$(top_srcdir)/grecs/src/\
- -DLOCALEDIR=\"$(localedir)\"
+ @GRECS_INCLUDES@\
+ -DLOCALEDIR=\"$(localedir)\"\
+ -DINCLUDE_PATH_ARGS='$(INCLUDE_PATH_ARGS)'
 
 BUILT_SOURCES=cmdline.h
 EXTRA_DIST=cmdline.opt

@@ -1,6 +1,6 @@
-#line 3 "meta1-lex.l"
+#line 5 "meta1-lex.l"
 /* MeTA1 configuration lexer for Grecs.
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -18,17 +18,16 @@
 /* This file implements a lexical analyzer for MeTA1 main configuration file.
  */
 
-#ifndef HAVE_CONFIG_H
+#ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
 #include "grecs.h"
-#include "grecs-locus.h"
 #include "meta1-gram.h"
 #include <ctype.h>
 
 
 
-#line 32 "meta1-lex.c"
+#line 31 "meta1-lex.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -600,9 +599,9 @@ int grecs_meta1__flex_debug = 1;
 
 static grecs_meta1_const flex_int16_t grecs_meta1__rule_linenum[23] =
     {   0,
-       49,   50,   51,   52,   53,   55,   56,   58,   59,   60,
-       65,   70,   74,   78,   82,   83,   84,   89,   96,   97,
-       98,   99
+       50,   51,   52,   53,   54,   56,   57,   59,   60,   61,
+       66,   71,   75,   79,   84,   85,   87,   92,   99,  100,
+      101,  102
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -615,8 +614,9 @@ static grecs_meta1_const flex_int16_t grecs_meta1__rule_linenum[23] =
 char *grecs_meta1_text;
 #line 1 "meta1-lex.l"
 /* MeTA1 configuration lexer for Grecs. -*- c -*- */
+#define YY_NO_INPUT 1
 
-#line 32 "meta1-lex.l"
+#line 33 "meta1-lex.l"
 static int grecs_meta1_wrap(void);
 static void meta1_line_add_unescape_hex(const char *text, size_t len);	
 
@@ -708,8 +708,6 @@ extern int grecs_meta1_wrap (void );
 
 /* %not-for-header */
 
-    static void grecs_meta1_unput (int c,char *buf_ptr  );
-    
 /* %ok-for-header */
 
 /* %endif */
@@ -873,10 +871,10 @@ YY_DECL
 	register int grecs_meta1__act;
     
 /* %% [7.0] user's declarations go here */
-#line 47 "meta1-lex.l"
+#line 48 "meta1-lex.l"
 
          /* C-style comments */
-#line 880 "meta1-lex.c"
+#line 878 "meta1-lex.c"
 
 	if ( !(grecs_meta1__init) )
 		{
@@ -992,50 +990,50 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 49 "meta1-lex.l"
+#line 50 "meta1-lex.l"
 BEGIN (COMMENT);
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 50 "meta1-lex.l"
+#line 51 "meta1-lex.l"
 /* eat anything that's not a '*' */
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 51 "meta1-lex.l"
+#line 52 "meta1-lex.l"
 /* eat up '*'s not followed by '/'s */
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 52 "meta1-lex.l"
+#line 53 "meta1-lex.l"
 grecs_locus_point_advance_line(grecs_current_locus_point);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 53 "meta1-lex.l"
+#line 54 "meta1-lex.l"
 BEGIN (INITIAL);
 	YY_BREAK
 /* End-of-line comments */
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 55 "meta1-lex.l"
+#line 56 "meta1-lex.l"
 { grecs_locus_point_advance_line(grecs_current_locus_point); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 56 "meta1-lex.l"
+#line 57 "meta1-lex.l"
 /* end-of-file comment */;
 	YY_BREAK
 /* Number */
 case 8:
-#line 59 "meta1-lex.l"
-case 9:
 #line 60 "meta1-lex.l"
+case 9:
+#line 61 "meta1-lex.l"
 case 10:
 YY_RULE_SETUP
-#line 60 "meta1-lex.l"
+#line 61 "meta1-lex.l"
 { grecs_line_begin();
 	                  grecs_line_add(grecs_meta1_text, grecs_meta1_leng);
 	                  grecs_meta1_lval.string = grecs_line_finish();
@@ -1044,7 +1042,7 @@ YY_RULE_SETUP
 /* Identifiers (unquoted strings) */
 case 11:
 YY_RULE_SETUP
-#line 65 "meta1-lex.l"
+#line 66 "meta1-lex.l"
 { grecs_line_begin();
 	                  grecs_line_add(grecs_meta1_text, grecs_meta1_leng);
 	                  grecs_meta1_lval.string = grecs_line_finish();
@@ -1053,7 +1051,7 @@ YY_RULE_SETUP
 /* Quoted strings */
 case 12:
 YY_RULE_SETUP
-#line 70 "meta1-lex.l"
+#line 71 "meta1-lex.l"
 { grecs_line_begin();
 	                  grecs_line_add(grecs_meta1_text + 1, grecs_meta1_leng - 2);
 	                  grecs_meta1_lval.string = grecs_line_finish();
@@ -1061,7 +1059,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 74 "meta1-lex.l"
+#line 75 "meta1-lex.l"
 { BEGIN(STR);
                           grecs_line_begin();
 			  meta1_line_add_unescape_hex(grecs_meta1_text + 1, grecs_meta1_leng - 1);
@@ -1069,25 +1067,27 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 78 "meta1-lex.l"
+#line 79 "meta1-lex.l"
 { BEGIN(STR);
 	                  grecs_line_begin();
 			  grecs_line_acc_grow_unescape_last(grecs_meta1_text + 1,
-                                                            grecs_meta1_leng - 1); }
+                                                            grecs_meta1_leng - 1,
+                                                            &grecs_meta1_lloc); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 82 "meta1-lex.l"
+#line 84 "meta1-lex.l"
 { meta1_line_add_unescape_hex(grecs_meta1_text, grecs_meta1_leng); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 83 "meta1-lex.l"
-{ grecs_line_acc_grow_unescape_last(grecs_meta1_text, grecs_meta1_leng); }
+#line 85 "meta1-lex.l"
+{ grecs_line_acc_grow_unescape_last(grecs_meta1_text, grecs_meta1_leng, 
+                                                            &grecs_meta1_lloc); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 84 "meta1-lex.l"
+#line 87 "meta1-lex.l"
 { BEGIN(INITIAL);
                           if (grecs_meta1_leng > 1) 
                             grecs_line_add(grecs_meta1_text, grecs_meta1_leng - 1); 
@@ -1097,7 +1097,7 @@ YY_RULE_SETUP
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
-#line 89 "meta1-lex.l"
+#line 92 "meta1-lex.l"
 { BEGIN(INITIAL);
                           grecs_error(&grecs_meta1_lloc, 0,
                                       _("newline in a string"));
@@ -1108,23 +1108,23 @@ YY_RULE_SETUP
 /* Other tokens */
 case 19:
 YY_RULE_SETUP
-#line 96 "meta1-lex.l"
+#line 99 "meta1-lex.l"
 ;
 	YY_BREAK
 case 20:
 /* rule 20 can match eol */
 YY_RULE_SETUP
-#line 97 "meta1-lex.l"
+#line 100 "meta1-lex.l"
 { grecs_locus_point_advance_line(grecs_current_locus_point); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 98 "meta1-lex.l"
+#line 101 "meta1-lex.l"
 return grecs_meta1_text[0];
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 99 "meta1-lex.l"
+#line 102 "meta1-lex.l"
 { grecs_error(&grecs_meta1_lloc, 0,
                        (isascii(grecs_meta1_text[0]) && isprint(grecs_meta1_text[0])) ?
                           _("stray character %c") :
@@ -1133,7 +1133,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 104 "meta1-lex.l"
+#line 107 "meta1-lex.l"
 ECHO;
 	YY_BREAK
 #line 1140 "meta1-lex.c"
@@ -1493,49 +1493,6 @@ static int grecs_meta1__get_next_buffer (void)
 	return grecs_meta1__is_jam ? 0 : grecs_meta1__current_state;
 }
 
-/* %if-c-only */
-
-    static void grecs_meta1_unput (int c, register char * grecs_meta1__bp )
-/* %endif */
-/* %if-c++-only */
-/* %endif */
-{
-	register char *grecs_meta1__cp;
-    
-    grecs_meta1__cp = (grecs_meta1__c_buf_p);
-
-	/* undo effects of setting up grecs_meta1_text */
-	*grecs_meta1__cp = (grecs_meta1__hold_char);
-
-	if ( grecs_meta1__cp < YY_CURRENT_BUFFER_LVALUE->grecs_meta1__ch_buf + 2 )
-		{ /* need to shift things up to make room */
-		/* +2 for EOB chars. */
-		register int number_to_move = (grecs_meta1__n_chars) + 2;
-		register char *dest = &YY_CURRENT_BUFFER_LVALUE->grecs_meta1__ch_buf[
-					YY_CURRENT_BUFFER_LVALUE->grecs_meta1__buf_size + 2];
-		register char *source =
-				&YY_CURRENT_BUFFER_LVALUE->grecs_meta1__ch_buf[number_to_move];
-
-		while ( source > YY_CURRENT_BUFFER_LVALUE->grecs_meta1__ch_buf )
-			*--dest = *--source;
-
-		grecs_meta1__cp += (int) (dest - source);
-		grecs_meta1__bp += (int) (dest - source);
-		YY_CURRENT_BUFFER_LVALUE->grecs_meta1__n_chars =
-			(grecs_meta1__n_chars) = YY_CURRENT_BUFFER_LVALUE->grecs_meta1__buf_size;
-
-		if ( grecs_meta1__cp < YY_CURRENT_BUFFER_LVALUE->grecs_meta1__ch_buf + 2 )
-			YY_FATAL_ERROR( "flex scanner push-back overflow" );
-		}
-
-	*--grecs_meta1__cp = (char) c;
-
-/* %% [18.0] update grecs_meta1_lineno here */
-
-	(grecs_meta1_text_ptr) = grecs_meta1__bp;
-	(grecs_meta1__hold_char) = *grecs_meta1__cp;
-	(grecs_meta1__c_buf_p) = grecs_meta1__cp;
-}
 /* %if-c-only */
 
 /* %endif */
@@ -2273,7 +2230,7 @@ void grecs_meta1_free (void * ptr )
 
 /* %ok-for-header */
 
-#line 104 "meta1-lex.l"
+#line 107 "meta1-lex.l"
 
 
 

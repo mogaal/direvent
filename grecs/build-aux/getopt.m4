@@ -1,5 +1,5 @@
 dnl This file is part of grecs
-dnl Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+dnl Copyright (C) 2007-2016 Sergey Poznyakoff
 dnl
 dnl Grecs is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -88,87 +88,88 @@ define([<_getopt_set_options>],
      [<_getopt_set_option([<$1>])
        _getopt_set_options(shift($@))>])>])
 
-dnl format_authors(name[,name...])
+dnl __getopt_format_authors(name[,name...])
 dnl ------------------------------
-define([<format_authors>],dnl
+define([<__getopt_format_authors>],dnl
 	[<ifelse([<$1>],,NULL,[<"$1",
-format_authors(shift($@))>])>])
+__getopt_format_authors(shift($@))>])>])
        
-dnl upcase(ARGS...)
+dnl __getopt_upcase(ARGS...)
 dnl Concatenate and convert ARGS to upper case.
 dnl
-define([<upcase>], [<translit([<$*>], [<a-z>], [<A-Z>])>])
+define([<__getopt_upcase>], [<translit([<$*>], [<a-z>], [<A-Z>])>])
 
-dnl concat(ARGS...)
+dnl __getopt_concat(ARGS...)
 dnl Concatenate arguments, inserting ", " between each pair of them.
 dnl
-define([<concat>],[<ifelse([<$#>],1,[<$1>],[<$1, concat(shift($@))>])>])
+define([<__getopt_concat>],[<ifelse([<$#>],1,[<$1>],[<$1, __getopt_concat(shift($@))>])>])
 
-dnl flushleft(ARGS...)
+dnl __getopt_flushleft(ARGS...)
 dnl Concatenate ARGS and remove any leading whitespace
 dnl
-define([<flushleft>],
- [<patsubst([<concat($*)>], [<^[	]+>])>])
+define([<__getopt_flushleft>],
+ [<patsubst([<__getopt_concat($*)>], [<^[	]+>])>])
 
-dnl chop(ARGS...)
+dnl __getopt_chop(ARGS...)
 dnl Concatenate ARGS and remove any trailing whitespace
 dnl
-define([<chop>],
+define([<__getopt_chop>],
  [<patsubst([<$*>], [<[	]+$>])>])
 
-dnl escape(ARGS...)
+dnl __getopt_escape(ARGS...)
 dnl Concatenate ARGS and escape any occurrences of double-quotes with
 dnl backslashes.
 dnl
-define([<escape>],
-[<patsubst([<concat($*)>],[<[\"]>],[<\\\&>])>])
+define([<__getopt_escape>],
+[<patsubst([<__getopt_concat($*)>],[<[\"]>],[<\\\&>])>])
 
-dnl prep(ARG)
+dnl __getopt_prep(ARG)
 dnl Prepare ARG for including in C strings: replace newlines and any 
 dnl preceding and following whitespace by a single space character, remove
 dnl leading whitespace, and escape double-quotes.
 dnl
-define([<prep>],
- [<escape(flushleft(patsubst([<$1>],[<[	]*
+define([<__getopt_prep>],
+ [<__getopt_escape(__getopt_flushleft(patsubst([<$1>],[<[	]*
 +[	]*>],[< >])))>])
 
-dnl SHORT_OPTS
+dnl __GETOPT_SHORT_OPTS
 dnl Accumulator for the 3rd argument of getopt_long
 dnl
-define([<SHORT_OPTS>],[<_getopt_if_option_set([<nopermute>],+)>])
+define([<__GETOPT_SHORT_OPTS>],[<_getopt_if_option_set([<nopermute>],+)>])
 
 dnl GROUP(STRING)
 dnl Begin a named group of options
 dnl
 define([<GROUP>],[<dnl
 divert(3)
-	{ NULL, NULL, 0, N_("prep([<$1>])") },
+	{ NULL, NULL, 0, N_("__getopt_prep([<$1>])") },
 divert(-1)>])
 
-# quote(args) - convert args to single-quoted string
-define([<quote>], [<ifelse([<$#>], [<0>], [<>], [<[<$*>]>])>])
-define([<dquote>], [<[<$@>]>])
+# __getopt_quote(args) - convert args to single-quoted string
+define([<__getopt_quote>], [<ifelse([<$#>], [<0>], [<>], [<[<$*>]>])>])
+define([<__getopt_dquote>], [<[<$@>]>])
 
 define([<__GATHER_OPTIONS>],[<
-define([<KEY>],ifelse([<$2>],,[<OPTION_>]upcase(patsubst($1,-,_)),'$2'))
+pushdef([<__GETOPT_KEY>],ifelse([<$2>],,[<OPTION_>]__getopt_upcase(patsubst($1,-,_)),'$2'))
 ifelse([<$2>],,[<
 divert(1)
-	KEY,
+	__GETOPT_KEY,
 divert(-1)
 >])
-define([<SELECTOR>],ifdef([<SELECTOR>],SELECTOR) case KEY:)
+define([<__GETOPT_SELECTOR>],ifdef([<__GETOPT_SELECTOR>],__GETOPT_SELECTOR) case __GETOPT_KEY:)
 ifelse([<$1>],,,[<
 divert(2)
-	{ "$1", ARGTYPE, 0, KEY },
+	{ "$1", __GETOPT_ARGTYPE, 0, __GETOPT_KEY },
 divert(-1)>])
 dnl
-define([<SHORT_OPTS>],dquote(SHORT_OPTS[<>]dnl
-ifelse([<$2>],,,[<$2>]ifelse(ARGTYPE,[<no_argument>],,ARGTYPE,[<required_argument>],:,ARGTYPE,[<optional_argument>],::))))
+define([<__GETOPT_SHORT_OPTS>],__getopt_dquote(__GETOPT_SHORT_OPTS[<>]dnl
+ifelse([<$2>],,,[<$2>]ifelse(__GETOPT_ARGTYPE,[<no_argument>],,__GETOPT_ARGTYPE,[<required_argument>],:,__GETOPT_ARGTYPE,[<optional_argument>],::))))
 dnl
 ifelse([<$1>],,,dnl
-[<define([<LONG_TAG>],ifelse(LONG_TAG,,[<--$1>],[<LONG_TAG; --$1>]))>])
+[<define([<__GETOPT_LONG_TAG>],ifelse(__GETOPT_LONG_TAG,,[<--$1>],[<__GETOPT_LONG_TAG; --$1>]))>])
 ifelse([<$2>],,,dnl
-[<define([<SHORT_TAG>],ifelse(SHORT_TAG,,[<-$2>],[<SHORT_TAG; -$2>]))>])
+[<define([<__GETOPT_SHORT_TAG>],ifelse(__GETOPT_SHORT_TAG,,[<-$2>],[<__GETOPT_SHORT_TAG; -$2>]))>])
+popdef([<__GETOPT_KEY>])
 >])
 
 dnl OPTION(long-opt, short-opt, [arg], [descr])
@@ -189,12 +190,13 @@ dnl If descr is not given the option will not appear in the --help and
 dnl --usage outputs.
 dnl
 define([<OPTION>],[<
-pushdef([<LONG_TAG>])
-pushdef([<SHORT_TAG>])
-pushdef([<ARGNAME>],[<$3>])
-pushdef([<HIDDEN>],ifelse([<$4>],,1,0))
-pushdef([<DOCSTRING>],[<prep([<$4>])>])
-pushdef([<ARGTYPE>],[<ifelse([<$3>],,[<no_argument>],dnl
+pushdef([<__GETOPT_LONG_TAG>])
+pushdef([<__GETOPT_SHORT_TAG>])
+pushdef([<__GETOPT_SELECTOR>])
+pushdef([<__GETOPT_ARGNAME>],[<$3>])
+pushdef([<__GETOPT_HIDDEN>],ifelse([<$4>],,1,0))
+pushdef([<__GETOPT_DOCSTRING>],[<__getopt_prep([<$4>])>])
+pushdef([<__GETOPT_ARGTYPE>],[<ifelse([<$3>],,[<no_argument>],dnl
 patsubst([<$3>],[<\[.*\]>]),,[<optional_argument>],dnl
 [<required_argument>])>])
 __GATHER_OPTIONS($@)
@@ -216,28 +218,28 @@ dnl Start an action associated with the declared option. Must follow OPTION
 dnl statement, with optional ALIAS statements in between.
 dnl
 define([<BEGIN>],[<
-ifelse(HIDDEN,1,,[<
+ifelse(__GETOPT_HIDDEN,1,,[<
 divert(3)
 	{
 #ifdef HAVE_GETOPT_LONG
 	  "translit(dnl
-ifelse(SHORT_TAG,,LONG_TAG,[<SHORT_TAG[<>]ifelse(LONG_TAG,,,; LONG_TAG)>]),
+ifelse(__GETOPT_SHORT_TAG,,__GETOPT_LONG_TAG,[<__GETOPT_SHORT_TAG[<>]ifelse(__GETOPT_LONG_TAG,,,; __GETOPT_LONG_TAG)>]),
 		    [<;>],[<,>])",
 #else
-	  "translit(SHORT_TAG, [<;>],[<,>])",
+	  "translit(__GETOPT_SHORT_TAG, [<;>],[<,>])",
 #endif
-				   ifelse(ARGNAME,,[<NULL, 0>],
-[<ifelse(ARGTYPE,[<optional_argument>],
-[<N_(>]"[<patsubst(ARGNAME,[<\[\(.*\)\]>],[<\1>])>][<"), 1>],[<N_("ARGNAME"), 0>])>]), N_("DOCSTRING") },
+				   ifelse(__GETOPT_ARGNAME,,[<NULL, 0>],
+[<ifelse(__GETOPT_ARGTYPE,[<optional_argument>],
+[<N_(>]"[<patsubst(__GETOPT_ARGNAME,[<\[\(.*\)\]>],[<\1>])>][<"), 1>],[<N_("__GETOPT_ARGNAME"), 0>])>]), N_("__GETOPT_DOCSTRING") },
 divert(-1)>])
-popdef([<ARGTYPE>])
-popdef([<ARGNAME>])
-popdef([<DOCSTRING>])
-popdef([<HIDDEN>])
+popdef([<__GETOPT_ARGTYPE>])
+popdef([<__GETOPT_ARGNAME>])
+popdef([<__GETOPT_DOCSTRING>])
+popdef([<__GETOPT_HIDDEN>])
 divert(4)dnl
-popdef([<LONG_TAG>])dnl
-popdef([<SHORT_TAG>])dnl
-	SELECTOR
+popdef([<__GETOPT_LONG_TAG>])dnl
+popdef([<__GETOPT_SHORT_TAG>])dnl
+	__GETOPT_SELECTOR
 	  {
 >])
 
@@ -248,7 +250,7 @@ define([<END>],[<
 	     break;
 	  }
 divert(-1)
-undefine([<SELECTOR>])>])
+popdef([<__GETOPT_SELECTOR>])>])
 
 dnl OPTNODE(name, value)
 define([<OPTNODE>],[<do {
@@ -275,10 +277,10 @@ define([<GETOPT>],[<
 
   optind = 0;
 #ifdef HAVE_GETOPT_LONG
-  while ((c = getopt_long($1, $2, "SHORT_OPTS",
+  while ((c = getopt_long($1, $2, "__GETOPT_SHORT_OPTS",
 			  long_options, NULL)) != EOF)
 #else
-  while ((c = getopt($1, $2, "SHORT_OPTS")) != EOF)
+  while ((c = getopt($1, $2, "__GETOPT_SHORT_OPTS")) != EOF)
 #endif
     {
       switch (c)
@@ -391,7 +393,7 @@ _getopt_if_option_set([<nostdincl>],,[<
 #include <unistd.h>
 >])
 #include <grecs.h>
-#include <grecsopt.h>
+#include <grecs/opt.h>
 /* Option codes */
 enum {
 	_OPTION_INIT=255,

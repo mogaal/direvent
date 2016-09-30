@@ -1,5 +1,5 @@
 # This file is part of grecs - Gray's Extensible Configuration System
-# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+# Copyright (C) 2007-2016 Sergey Poznyakoff
 #
 # Grecs is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,5 @@
 include Make.am
 lib_LTLIBRARIES=libgrecs.la
 libgrecs_la_SOURCES = $(GRECS_SRC)
-include_HEADERS = grecs.h wordsplit.h
 m4datadir = $(datadir)/aclocal
 dist_m4data_DATA = libgrecs.m4

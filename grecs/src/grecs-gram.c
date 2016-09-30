@@ -69,7 +69,7 @@
 #line 1 "grecs-gram.y"
 
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -88,7 +88,6 @@
 # include <config.h>
 #endif
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <grecs-gram.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -102,7 +101,7 @@ static struct grecs_node *parse_tree;
 
 
 /* Line 268 of yacc.c  */
-#line 106 "grecs-gram.c"
+#line 105 "grecs-gram.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -157,7 +156,7 @@ typedef union YYSTYPE
 {
 
 /* Line 295 of yacc.c  */
-#line 38 "grecs-gram.y"
+#line 37 "grecs-gram.y"
 
 	char *string;
 	grecs_value_t svalue, *pvalue;
@@ -169,7 +168,7 @@ typedef union YYSTYPE
 
 
 /* Line 295 of yacc.c  */
-#line 173 "grecs-gram.c"
+#line 172 "grecs-gram.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define grecs_grecs_stype YYSTYPE /* obsolescent; will be withdrawn */
@@ -194,7 +193,7 @@ typedef struct YYLTYPE
 
 
 /* Line 345 of yacc.c  */
-#line 198 "grecs-gram.c"
+#line 197 "grecs-gram.c"
 
 #ifdef short
 # undef short
@@ -494,10 +493,10 @@ static const grecs_grecs_type_int8 grecs_grecs_rhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const grecs_grecs_type_uint8 grecs_grecs_rline[] =
 {
-       0,    58,    58,    68,    71,    77,    81,    87,    88,    91,
-      99,   108,   120,   123,   126,   150,   155,   161,   167,   173,
-     181,   182,   183,   186,   201,   206,   213,   217,   221,   227,
-     232,   239,   240
+       0,    57,    57,    67,    70,    76,    80,    86,    87,    90,
+      98,   107,   119,   122,   125,   149,   154,   160,   166,   172,
+     180,   181,   182,   185,   200,   205,   212,   216,   220,   226,
+     231,   238,   239
 };
 #endif
 
@@ -1495,7 +1494,7 @@ grecs_grecs_reduce:
         case 2:
 
 /* Line 1810 of yacc.c  */
-#line 59 "grecs-gram.y"
+#line 58 "grecs-gram.y"
     {
 		  parse_tree = grecs_node_create(grecs_node_root, &(grecs_grecs_lsp[(1) - (1)]));
 		  parse_tree->v.texttab = grecs_text_table();
@@ -1506,7 +1505,7 @@ grecs_grecs_reduce:
   case 3:
 
 /* Line 1810 of yacc.c  */
-#line 68 "grecs-gram.y"
+#line 67 "grecs-gram.y"
     {
 		  (grecs_grecs_val.node) = NULL;
 	  }
@@ -1515,7 +1514,7 @@ grecs_grecs_reduce:
   case 4:
 
 /* Line 1810 of yacc.c  */
-#line 72 "grecs-gram.y"
+#line 71 "grecs-gram.y"
     {
 		  (grecs_grecs_val.node) = (grecs_grecs_vsp[(1) - (1)].node_list).head;
 	  }
@@ -1524,7 +1523,7 @@ grecs_grecs_reduce:
   case 5:
 
 /* Line 1810 of yacc.c  */
-#line 78 "grecs-gram.y"
+#line 77 "grecs-gram.y"
     {
 		  (grecs_grecs_val.node_list).head = (grecs_grecs_val.node_list).tail = (grecs_grecs_vsp[(1) - (1)].node);
 	  }
@@ -1533,7 +1532,7 @@ grecs_grecs_reduce:
   case 6:
 
 /* Line 1810 of yacc.c  */
-#line 82 "grecs-gram.y"
+#line 81 "grecs-gram.y"
     {
 		  grecs_node_bind((grecs_grecs_vsp[(1) - (2)].node_list).tail, (grecs_grecs_vsp[(2) - (2)].node), 0);
 	  }
@@ -1542,7 +1541,7 @@ grecs_grecs_reduce:
   case 9:
 
 /* Line 1810 of yacc.c  */
-#line 92 "grecs-gram.y"
+#line 91 "grecs-gram.y"
     {
 		  (grecs_grecs_val.node) = grecs_node_create_points(grecs_node_stmt,
 						(grecs_grecs_lsp[(1) - (3)]).beg, (grecs_grecs_lsp[(2) - (3)]).end);
@@ -1555,7 +1554,7 @@ grecs_grecs_reduce:
   case 10:
 
 /* Line 1810 of yacc.c  */
-#line 100 "grecs-gram.y"
+#line 99 "grecs-gram.y"
     {
 		  (grecs_grecs_val.node) = grecs_node_create(grecs_node_stmt, &(grecs_grecs_lsp[(1) - (2)]));
 		  (grecs_grecs_val.node)->ident = (grecs_grecs_vsp[(1) - (2)].string);
@@ -1567,7 +1566,7 @@ grecs_grecs_reduce:
   case 11:
 
 /* Line 1810 of yacc.c  */
-#line 109 "grecs-gram.y"
+#line 108 "grecs-gram.y"
     {
 		  (grecs_grecs_val.node) = grecs_node_create_points(grecs_node_block,
 						(grecs_grecs_lsp[(1) - (6)]).beg, (grecs_grecs_lsp[(5) - (6)]).end);
@@ -1581,7 +1580,7 @@ grecs_grecs_reduce:
   case 12:
 
 /* Line 1810 of yacc.c  */
-#line 120 "grecs-gram.y"
+#line 119 "grecs-gram.y"
     {
 		  (grecs_grecs_val.pvalue) = NULL;
 	  }
@@ -1590,7 +1589,7 @@ grecs_grecs_reduce:
   case 14:
 
 /* Line 1810 of yacc.c  */
-#line 127 "grecs-gram.y"
+#line 126 "grecs-gram.y"
     {
 		  size_t n;
 		  
@@ -1617,7 +1616,7 @@ grecs_grecs_reduce:
   case 15:
 
 /* Line 1810 of yacc.c  */
-#line 151 "grecs-gram.y"
+#line 150 "grecs-gram.y"
     {
 		  (grecs_grecs_val.list) = grecs_value_list_create();
 		  grecs_list_append((grecs_grecs_val.list), grecs_value_ptr_from_static(&(grecs_grecs_vsp[(1) - (1)].svalue)));
@@ -1627,7 +1626,7 @@ grecs_grecs_reduce:
   case 16:
 
 /* Line 1810 of yacc.c  */
-#line 156 "grecs-gram.y"
+#line 155 "grecs-gram.y"
     {
 		  grecs_list_append((grecs_grecs_vsp[(1) - (2)].list), grecs_value_ptr_from_static(&(grecs_grecs_vsp[(2) - (2)].svalue)));
 	  }
@@ -1636,7 +1635,7 @@ grecs_grecs_reduce:
   case 17:
 
 /* Line 1810 of yacc.c  */
-#line 162 "grecs-gram.y"
+#line 161 "grecs-gram.y"
     {
 		  (grecs_grecs_val.svalue).type = GRECS_TYPE_STRING;
 		  (grecs_grecs_val.svalue).locus = (grecs_grecs_lsp[(1) - (1)]);
@@ -1647,7 +1646,7 @@ grecs_grecs_reduce:
   case 18:
 
 /* Line 1810 of yacc.c  */
-#line 168 "grecs-gram.y"
+#line 167 "grecs-gram.y"
     {
 		  (grecs_grecs_val.svalue).type = GRECS_TYPE_LIST;
 		  (grecs_grecs_val.svalue).locus = (grecs_grecs_lsp[(1) - (1)]);
@@ -1658,7 +1657,7 @@ grecs_grecs_reduce:
   case 19:
 
 /* Line 1810 of yacc.c  */
-#line 174 "grecs-gram.y"
+#line 173 "grecs-gram.y"
     {
 		  (grecs_grecs_val.svalue).type = GRECS_TYPE_STRING;
 		  (grecs_grecs_val.svalue).locus = (grecs_grecs_lsp[(1) - (1)]);
@@ -1669,7 +1668,7 @@ grecs_grecs_reduce:
   case 23:
 
 /* Line 1810 of yacc.c  */
-#line 187 "grecs-gram.y"
+#line 186 "grecs-gram.y"
     {
 		  struct grecs_list_entry *ep;
 		  
@@ -1687,7 +1686,7 @@ grecs_grecs_reduce:
   case 24:
 
 /* Line 1810 of yacc.c  */
-#line 202 "grecs-gram.y"
+#line 201 "grecs-gram.y"
     {
 		  (grecs_grecs_val.list) = grecs_list_create();
 		  grecs_list_append((grecs_grecs_val.list), (grecs_grecs_vsp[(1) - (1)].string));
@@ -1697,7 +1696,7 @@ grecs_grecs_reduce:
   case 25:
 
 /* Line 1810 of yacc.c  */
-#line 207 "grecs-gram.y"
+#line 206 "grecs-gram.y"
     {
 		  grecs_list_append((grecs_grecs_vsp[(1) - (2)].list), (grecs_grecs_vsp[(2) - (2)].string));
 		  (grecs_grecs_val.list) = (grecs_grecs_vsp[(1) - (2)].list);
@@ -1707,7 +1706,7 @@ grecs_grecs_reduce:
   case 26:
 
 /* Line 1810 of yacc.c  */
-#line 214 "grecs-gram.y"
+#line 213 "grecs-gram.y"
     {
 		  (grecs_grecs_val.list) = NULL;
 	  }
@@ -1716,7 +1715,7 @@ grecs_grecs_reduce:
   case 27:
 
 /* Line 1810 of yacc.c  */
-#line 218 "grecs-gram.y"
+#line 217 "grecs-gram.y"
     {
 		  (grecs_grecs_val.list) = (grecs_grecs_vsp[(2) - (3)].list);
 	  }
@@ -1725,7 +1724,7 @@ grecs_grecs_reduce:
   case 28:
 
 /* Line 1810 of yacc.c  */
-#line 222 "grecs-gram.y"
+#line 221 "grecs-gram.y"
     {
 		  (grecs_grecs_val.list) = (grecs_grecs_vsp[(2) - (4)].list);
 	  }
@@ -1734,7 +1733,7 @@ grecs_grecs_reduce:
   case 29:
 
 /* Line 1810 of yacc.c  */
-#line 228 "grecs-gram.y"
+#line 227 "grecs-gram.y"
     {
 		  (grecs_grecs_val.list) = grecs_value_list_create();
 		  grecs_list_append((grecs_grecs_val.list), grecs_value_ptr_from_static(&(grecs_grecs_vsp[(1) - (1)].svalue)));
@@ -1744,7 +1743,7 @@ grecs_grecs_reduce:
   case 30:
 
 /* Line 1810 of yacc.c  */
-#line 233 "grecs-gram.y"
+#line 232 "grecs-gram.y"
     {
 		  grecs_list_append((grecs_grecs_vsp[(1) - (3)].list), grecs_value_ptr_from_static(&(grecs_grecs_vsp[(3) - (3)].svalue)));
 		  (grecs_grecs_val.list) = (grecs_grecs_vsp[(1) - (3)].list);
@@ -1754,7 +1753,7 @@ grecs_grecs_reduce:
 
 
 /* Line 1810 of yacc.c  */
-#line 1758 "grecs-gram.c"
+#line 1757 "grecs-gram.c"
       default: break;
     }
   /* User semantic actions sometimes alter grecs_grecs_char, and that requires
@@ -1992,7 +1991,7 @@ grecs_grecs_return:
 
 
 /* Line 2071 of yacc.c  */
-#line 243 "grecs-gram.y"
+#line 242 "grecs-gram.y"
 
 
 int

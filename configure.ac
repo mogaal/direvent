@@ -1,5 +1,5 @@
 # This file is part of Direvent -*- autoconf -*-
-# Copyright (C) 2012-2015 Sergey Poznyakoff
+# Copyright (C) 2012-2016 Sergey Poznyakoff
 #
 # Direvent is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
 # along with Direvent.  If not, see <http://www.gnu.org/licenses/>.
 
 AC_PREREQ([2.69])
-AC_INIT([GNU Direvent], [5.0.90], [bug-direvent@gnu.org.ua], [direvent],
+AC_INIT([GNU Direvent], [5.1], [bug-direvent@gnu.org.ua], [direvent],
         [http://www.gnu.org.ua/software/direvent])
 AC_CONFIG_SRCDIR([src/direvent.c])
 AC_CONFIG_HEADERS([config.h])
@@ -72,6 +72,13 @@ GRECS_HOST_PROJECT_INCLUDES='-I$(top_srcdir)/src'
 AM_ICONV
 AM_GNU_GETTEXT([external], [need-formatstring-macros])
 AM_GNU_GETTEXT_VERSION([0.18])
+
+AC_SUBST(INCLUDE_PATH_ARGS,['$(pkgdatadir)/$(VERSION):$(pkgdatadir)/include'])
+AC_ARG_WITH([include-path],
+            [AC_HELP_STRING([--with-include-path=PATH],
+	         [set direvent runtime include path])],
+            [INCLUDE_PATH_ARGS=$withval])
+INCLUDE_PATH_ARGS=$(echo "$INCLUDE_PATH_ARGS" | sed 's/:/\",\"/g;s/^/\"/;s/$/\"/')
 
 # Initialize the test suite.
 AC_CONFIG_TESTDIR(tests)

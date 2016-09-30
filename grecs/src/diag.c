@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -18,7 +18,6 @@
 # include <config.h>
 #endif
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

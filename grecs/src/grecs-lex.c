@@ -1,4 +1,4 @@
-#line 3 "grecs-lex.l"
+#line 5 "grecs-lex.l"
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif	
@@ -487,7 +487,7 @@ static grecs_grecs_const flex_int32_t grecs_grecs__ec[256] =
         1,    1,    1,   11,   16,   16,   16,   16,   16,   16,
        16,   16,   16,   16,   16,   16,   16,   16,   16,   16,
        16,   16,   16,   16,   16,   16,   16,   16,   16,   16,
-        1,   17,    1,    1,   16,    1,   16,   16,   16,   16,
+       11,   17,   11,    1,   16,    1,   16,   16,   16,   16,
 
        18,   16,   16,   16,   19,   16,   16,   20,   16,   21,
        16,   16,   16,   16,   16,   16,   16,   16,   16,   16,
@@ -696,9 +696,9 @@ int grecs_grecs__flex_debug = 1;
 static grecs_grecs_const flex_int16_t grecs_grecs__rule_linenum[32] =
     {   0,
        87,   88,   89,   90,   91,   93,   97,  102,  103,  104,
-      105,  107,  109,  115,  120,  125,  129,  131,  132,  139,
-      140,  141,  142,  143,  144,  148,  151,  172,  174,  175,
-      176
+      105,  107,  109,  115,  120,  126,  131,  134,  136,  143,
+      144,  145,  146,  147,  148,  152,  155,  176,  178,  179,
+      180
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -711,10 +711,11 @@ static grecs_grecs_const flex_int16_t grecs_grecs__rule_linenum[32] =
 char *grecs_grecs_text;
 #line 1 "grecs-lex.l"
 /* grecs - Gray's Extensible Configuration System       -*- c -*- */
+#define YY_NO_INPUT 1
 
-#line 8 "grecs-lex.l"
+#line 10 "grecs-lex.l"
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -730,7 +731,6 @@ char *grecs_grecs_text;
    with Grecs. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <grecs-gram.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -862,8 +862,6 @@ extern int grecs_grecs_wrap (void );
 
 /* %not-for-header */
 
-    static void grecs_grecs_unput (int c,char *buf_ptr  );
-    
 /* %ok-for-header */
 
 /* %endif */
@@ -1033,7 +1031,7 @@ YY_DECL
 #line 85 "grecs-lex.l"
 
          /* C-style comments */
-#line 1037 "grecs-lex.c"
+#line 1035 "grecs-lex.c"
 
 	if ( !(grecs_grecs__init) )
 		{
@@ -1249,32 +1247,36 @@ YY_RULE_SETUP
 { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow_unescape_last(grecs_grecs_text + 1,
-                                                           grecs_grecs_leng - 1);
+                                                           grecs_grecs_leng - 1,
+                                                           &grecs_grecs_lloc);
                          grecs_locus_point_advance_line(grecs_current_locus_point); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 125 "grecs-lex.l"
+#line 126 "grecs-lex.l"
 { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow_unescape_last(grecs_grecs_text + 1,
-                                                           grecs_grecs_leng - 1); }
+                                                           grecs_grecs_leng - 1, 
+                                                           &grecs_grecs_lloc); }
 	YY_BREAK
 case 17:
 /* rule 17 can match eol */
 YY_RULE_SETUP
-#line 129 "grecs-lex.l"
-{ grecs_line_acc_grow_unescape_last(grecs_grecs_text, grecs_grecs_leng);
+#line 131 "grecs-lex.l"
+{ grecs_line_acc_grow_unescape_last(grecs_grecs_text, grecs_grecs_leng, 
+                                                          &grecs_grecs_lloc);
                         grecs_locus_point_advance_line(grecs_current_locus_point); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 131 "grecs-lex.l"
-{ grecs_line_acc_grow_unescape_last(grecs_grecs_text, grecs_grecs_leng); }
+#line 134 "grecs-lex.l"
+{ grecs_line_acc_grow_unescape_last(grecs_grecs_text, grecs_grecs_leng, 
+                                                          &grecs_grecs_lloc); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 132 "grecs-lex.l"
+#line 136 "grecs-lex.l"
 { BEGIN(INITIAL);
                         if (grecs_grecs_leng > 1) 
 				grecs_line_add(grecs_grecs_text, grecs_grecs_leng - 1); 
@@ -1285,23 +1287,23 @@ YY_RULE_SETUP
 /* Multiline strings */
 case 20:
 /* rule 20 can match eol */
-#line 140 "grecs-lex.l"
+#line 144 "grecs-lex.l"
 case 21:
 /* rule 21 can match eol */
-#line 141 "grecs-lex.l"
+#line 145 "grecs-lex.l"
 case 22:
 /* rule 22 can match eol */
-#line 142 "grecs-lex.l"
+#line 146 "grecs-lex.l"
 case 23:
 /* rule 23 can match eol */
-#line 143 "grecs-lex.l"
+#line 147 "grecs-lex.l"
 case 24:
 /* rule 24 can match eol */
-#line 144 "grecs-lex.l"
+#line 148 "grecs-lex.l"
 case 25:
 /* rule 25 can match eol */
 YY_RULE_SETUP
-#line 144 "grecs-lex.l"
+#line 148 "grecs-lex.l"
 {
                 BEGIN(ML);
 		multiline_begin(grecs_grecs_text+2); }
@@ -1310,7 +1312,7 @@ YY_RULE_SETUP
 case 26:
 /* rule 26 can match eol */
 YY_RULE_SETUP
-#line 148 "grecs-lex.l"
+#line 152 "grecs-lex.l"
 {
 	grecs_locus_point_advance_line(grecs_current_locus_point);
 }
@@ -1318,7 +1320,7 @@ YY_RULE_SETUP
 case 27:
 /* rule 27 can match eol */
 YY_RULE_SETUP
-#line 151 "grecs-lex.l"
+#line 155 "grecs-lex.l"
 { char *p = multiline_strip_tabs(grecs_grecs_text);
 	   
            if (!strncmp(p, multiline_delimiter, multiline_delimiter_len)
@@ -1343,24 +1345,24 @@ YY_RULE_SETUP
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 172 "grecs-lex.l"
+#line 176 "grecs-lex.l"
 ;
 	YY_BREAK
 /* Other tokens */
 case 29:
 /* rule 29 can match eol */
 YY_RULE_SETUP
-#line 174 "grecs-lex.l"
+#line 178 "grecs-lex.l"
 { grecs_locus_point_advance_line(grecs_current_locus_point); } 
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 175 "grecs-lex.l"
+#line 179 "grecs-lex.l"
 return grecs_grecs_text[0];
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 176 "grecs-lex.l"
+#line 180 "grecs-lex.l"
 { if (isascii(grecs_grecs_text[0]) && isprint(grecs_grecs_text[0]))
 		grecs_error(&grecs_grecs_lloc, 0,
 			     _("stray character %c"), grecs_grecs_text[0]);
@@ -1371,10 +1373,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 183 "grecs-lex.l"
+#line 187 "grecs-lex.l"
 ECHO;
 	YY_BREAK
-#line 1378 "grecs-lex.c"
+#line 1380 "grecs-lex.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENT):
 case YY_STATE_EOF(ML):
@@ -1733,49 +1735,6 @@ static int grecs_grecs__get_next_buffer (void)
 	return grecs_grecs__is_jam ? 0 : grecs_grecs__current_state;
 }
 
-/* %if-c-only */
-
-    static void grecs_grecs_unput (int c, register char * grecs_grecs__bp )
-/* %endif */
-/* %if-c++-only */
-/* %endif */
-{
-	register char *grecs_grecs__cp;
-    
-    grecs_grecs__cp = (grecs_grecs__c_buf_p);
-
-	/* undo effects of setting up grecs_grecs_text */
-	*grecs_grecs__cp = (grecs_grecs__hold_char);
-
-	if ( grecs_grecs__cp < YY_CURRENT_BUFFER_LVALUE->grecs_grecs__ch_buf + 2 )
-		{ /* need to shift things up to make room */
-		/* +2 for EOB chars. */
-		register int number_to_move = (grecs_grecs__n_chars) + 2;
-		register char *dest = &YY_CURRENT_BUFFER_LVALUE->grecs_grecs__ch_buf[
-					YY_CURRENT_BUFFER_LVALUE->grecs_grecs__buf_size + 2];
-		register char *source =
-				&YY_CURRENT_BUFFER_LVALUE->grecs_grecs__ch_buf[number_to_move];
-
-		while ( source > YY_CURRENT_BUFFER_LVALUE->grecs_grecs__ch_buf )
-			*--dest = *--source;
-
-		grecs_grecs__cp += (int) (dest - source);
-		grecs_grecs__bp += (int) (dest - source);
-		YY_CURRENT_BUFFER_LVALUE->grecs_grecs__n_chars =
-			(grecs_grecs__n_chars) = YY_CURRENT_BUFFER_LVALUE->grecs_grecs__buf_size;
-
-		if ( grecs_grecs__cp < YY_CURRENT_BUFFER_LVALUE->grecs_grecs__ch_buf + 2 )
-			YY_FATAL_ERROR( "flex scanner push-back overflow" );
-		}
-
-	*--grecs_grecs__cp = (char) c;
-
-/* %% [18.0] update grecs_grecs_lineno here */
-
-	(grecs_grecs_text_ptr) = grecs_grecs__bp;
-	(grecs_grecs__hold_char) = *grecs_grecs__cp;
-	(grecs_grecs__c_buf_p) = grecs_grecs__cp;
-}
 /* %if-c-only */
 
 /* %endif */
@@ -2514,7 +2473,7 @@ void grecs_grecs_free (void * ptr )
 
 /* %ok-for-header */
 
-#line 183 "grecs-lex.l"
+#line 187 "grecs-lex.l"
 
 
 
@@ -2523,9 +2482,10 @@ pid_t grecs_preproc_pid;
 int
 grecs_grecs_wrap()
 {
-	if (grecs_grecs_in)
+	if (grecs_preprocessor) {
 		grecs_preproc_extrn_shutdown(grecs_preproc_pid);
-	else
+		fclose(grecs_grecs_in);
+	} else
 		grecs_preproc_done();
 	grecs_current_locus_point.file = NULL;
 	return 1;
@@ -2718,7 +2678,8 @@ grecs_parse_line_directive(char *text, grecs_locus_t *ploc,
 	struct wordsplit ws;
 	
 	if (wordsplit(text, &ws, WRDSF_DEFFLAGS))
-		grecs_error(ploc, 0, _("cannot parse #line line"));
+		grecs_error(ploc, 0, _("cannot parse #line line: %s"),
+			    wordsplit_strerror(&ws));
 	else {
 		if (ws.ws_wordc == 2)
 			rc = assign_locus(ppoint, NULL,
@@ -2754,7 +2715,8 @@ grecs_parse_line_directive_cpp(char *text, grecs_locus_t *ploc,
 	struct wordsplit ws;
 	
 	if (wordsplit(text, &ws, WRDSF_DEFFLAGS)) {
-		grecs_error(ploc, 0, _("cannot parse #line line"));
+		grecs_error(ploc, 0, _("cannot parse #line line: %s"),
+			    wordsplit_strerror(&ws));
 		return;
 	} else if (ws.ws_wordc < 3)
 		grecs_error(ploc, 0, _("invalid #line statement"));

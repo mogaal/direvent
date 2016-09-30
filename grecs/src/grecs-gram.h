@@ -57,7 +57,7 @@ typedef union YYSTYPE
 {
 
 /* Line 2072 of yacc.c  */
-#line 38 "grecs-gram.y"
+#line 37 "grecs-gram.y"
 
 	char *string;
 	grecs_value_t svalue, *pvalue;

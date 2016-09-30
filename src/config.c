@@ -1,5 +1,5 @@
 /* direvent - directory content watcher daemon
-   Copyright (C) 2012-2014 Sergey Poznyakoff
+   Copyright (C) 2012-2016 Sergey Poznyakoff
 
    Direvent is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -529,8 +529,10 @@ cb_option(enum grecs_callback_command cmd, grecs_node_t *node,
 			eventconf.flags |= HF_STDOUT;
 		else if (strcmp(vp->v.string, "stderr") == 0)
 			eventconf.flags |= HF_STDERR;
+		else if (strcmp(vp->v.string, "shell") == 0)
+			eventconf.flags |= HF_SHELL;
 		else 
-			grecs_error(&vp->locus, 0, _("unrecognized flag"));
+			grecs_error(&vp->locus, 0, _("unrecognized option"));
 	}
 	return 0;
 }
@@ -745,8 +747,20 @@ config_help()
 }
 
 void
-config_finish(struct grecs_node *tree)
-{	
+config_init(void)
+{
+	grecs_include_path_setup(INCLUDE_PATH_ARGS, NULL);
+}
+
+void
+config_parse(char const *conffile)
+{
+	struct grecs_node *tree;
+
+	tree = grecs_parse(conffile);
+	if (!tree)
+		exit(1);
 	if (grecs_tree_process(tree, direvent_kw))
 		exit(1);
+	
 }

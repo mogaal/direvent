@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -20,6 +20,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <errno.h>
+#include <stdlib.h>
 #include "grecs.h"
 
 struct logging_setup {
@@ -70,11 +71,11 @@ cb_logging_facility(GRECS_CB_ARGS)
 	GRECS_CB_AUTO
 		
 	if (cmd != grecs_callback_set_value) {
-		grecs_error(locus, 0, _("Unexpected block statement"));
+		grecs_error(locus, 0, "Unexpected block statement");
 		return 1;
 	}
 	if (!value || value->type != GRECS_TYPE_STRING) {
-		grecs_error(locus, 0, _("expected string argument"));
+		grecs_error(locus, 0, "expected string argument");
 		return 1;
 	}
 
@@ -111,7 +112,7 @@ static struct grecs_keyword program_kwtab[] = {
 	{ "scalar", "label", "Scalar string",
 	  grecs_type_string, GRECS_DFLT,
 	  NULL, offsetof(struct program,scalar_string) },
-	{ "logging", NULL, N_("Configure logging logging"),
+	{ "logging", NULL, "Configure logging logging",
 	  grecs_type_section, GRECS_DFLT,
 	  NULL, offsetof(struct program,logging_setup),
 	  NULL, NULL, logging_kwtab },
@@ -128,7 +129,7 @@ cb_program(GRECS_CB_ARGS)
 	switch (cmd) {
 	case grecs_callback_section_begin:
 		if (!value || value->type != GRECS_TYPE_STRING) {
-			grecs_error(locus, 0, _("tag must be a string"));
+			grecs_error(locus, 0, "tag must be a string");
 			return 0;
 		}
 		prog = grecs_zalloc(sizeof(*prog));
@@ -145,7 +146,7 @@ cb_program(GRECS_CB_ARGS)
 		break;
 
 	case grecs_callback_set_value:
-		grecs_error(locus, 0, _("invalid use of block statement"));
+		grecs_error(locus, 0, "invalid use of block statement");
 	}
 	return 0;
 }
@@ -153,10 +154,10 @@ cb_program(GRECS_CB_ARGS)
 static struct grecs_keyword main_kwtab[] = {
 	{ "scalar", "label", "Scalar string",
 	  grecs_type_string, GRECS_DFLT, &scalar_string },
-	{ "logging", NULL, N_("Configure logging logging"),
+	{ "logging", NULL, "Configure logging logging",
 	  grecs_type_section, GRECS_DFLT, &logging_setup, 0, NULL,
 	  NULL, logging_kwtab },
-	{ "mailbox", NULL, N_("Mailbox configuration"),
+	{ "mailbox", NULL, "Mailbox configuration",
 	  grecs_type_section, GRECS_DFLT, NULL, 0, NULL, NULL, mailbox_kwtab },
 	{ "program", "name: string", "Subprogram configuration",
 	  grecs_type_section, GRECS_DFLT,

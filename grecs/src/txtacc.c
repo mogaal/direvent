@@ -1,5 +1,5 @@
 /* wydawca - automatic release submission daemon
-   Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Wydawca is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -18,6 +18,7 @@
 # include <config.h>
 #endif
 #include <string.h>
+#include <stdlib.h>
 #include "grecs.h"
 
 struct grecs_txtacc_entry
@@ -73,7 +74,7 @@ static void
 grecs_txtacc_entry_tailor(struct grecs_txtacc_entry *ent)
 {
 	if (ent->size > ent->len) {
-		char *p = realloc(ent->buf, ent->len);
+		char *p = grecs_realloc(ent->buf, ent->len);
 		if (!p)
 			return;
 		ent->buf = p;
@@ -192,7 +193,7 @@ grecs_txtacc_free_string(struct grecs_txtacc *acc, char *str)
 		struct grecs_txtacc_entry *tp = ep->data;
 		if (tp->buf == str) {
 			grecs_list_remove_entry(acc->mem, ep);
-			grecs_free(tp->buf);
+			grecs_txtacc_entry_free(tp);
 			return;
 		}
 	}

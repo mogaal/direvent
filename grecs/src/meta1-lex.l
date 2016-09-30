@@ -1,7 +1,9 @@
 /* MeTA1 configuration lexer for Grecs. -*- c -*- */
+%option noinput
+%option nounput
 %top {
 /* MeTA1 configuration lexer for Grecs.
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -19,11 +21,10 @@
 /* This file implements a lexical analyzer for MeTA1 main configuration file.
  */
 
-#ifndef HAVE_CONFIG_H
+#ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
 #include "grecs.h"
-#include "grecs-locus.h"
 #include "meta1-gram.h"
 #include <ctype.h>
 }
@@ -78,9 +79,11 @@ X [0-9a-fA-F]
 \"[^\\"\n]*\\.          { BEGIN(STR);
 	                  grecs_line_begin();
 			  grecs_line_acc_grow_unescape_last(yytext + 1,
-                                                            yyleng - 1); }
+                                                            yyleng - 1,
+                                                            &yylloc); }
 <STR>[^\\"\n]*\\x{X}{1,2} { meta1_line_add_unescape_hex(yytext, yyleng); }
-<STR>[^\\"\n]*\\.       { grecs_line_acc_grow_unescape_last(yytext, yyleng); }
+<STR>[^\\"\n]*\\.       { grecs_line_acc_grow_unescape_last(yytext, yyleng, 
+                                                            &yylloc); }
 <STR>[^\\"\n]*\"        { BEGIN(INITIAL);
                           if (yyleng > 1) 
                             grecs_line_add(yytext, yyleng - 1); 

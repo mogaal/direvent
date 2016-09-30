@@ -1,4 +1,6 @@
 /* grecs - Gray's Extensible Configuration System       -*- c -*- */
+%option noinput
+%option nounput
 %top {
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -6,7 +8,7 @@
 }
 %{
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -22,7 +24,6 @@
    with Grecs. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <grecs.h>
-#include <grecs-locus.h>
 #include <bind-gram.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -92,12 +93,14 @@ P [1-9][0-9]*
 \"[^\\"\n]*\\\n        { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow_unescape_last(yytext + 1,
-                                                           yyleng - 1); }
+                                                           yyleng - 1, 
+                                                           &yylloc); }
 \"[^\\"\n]*\n          { BEGIN(STR);
                          grecs_line_begin();
 		         grecs_line_acc_grow(yytext + 1, yyleng - 1); }
 <STR>[^\\"\n]*\\. |
-<STR>\"[^\\"\n]*\\\n  { grecs_line_acc_grow_unescape_last(yytext, yyleng); }
+<STR>\"[^\\"\n]*\\\n  { grecs_line_acc_grow_unescape_last(yytext, yyleng, 
+                                                          &yylloc); }
 <STR>[^\\"\n]*\n |
 <STR>\"[^\\"\n]*\n    { grecs_line_acc_grow(yytext, yyleng); }
 <STR>[^\\"\n]*\"      { BEGIN(INITIAL);

@@ -1,5 +1,5 @@
 /* grecs - Gray's Extensible Configuration System
-   Copyright (C) 2007-2012 Sergey Poznyakoff
+   Copyright (C) 2007-2016 Sergey Poznyakoff
 
    Grecs is free software; you can redistribute it and/or modify it
    under the terms of the GNU General Public License as published by the
@@ -13,6 +13,28 @@
 
    You should have received a copy of the GNU General Public License along
    with Grecs. If not, see <http://www.gnu.org/licenses/>. */
+
+#ifndef _GRECS_LOCUS_H
+#define _GRECS_LOCUS_H
+
+struct grecs_locus_point {
+	char *file;
+	unsigned line;
+	unsigned col;
+};
+
+#define grecs_locus_point_advance_line(loc) do {	\
+		(loc).line++;				\
+		(loc).col = 0;				\
+	} while (0)
+
+#define GRECS_LOCUS_POINT_EQ(a,b) \
+	((strcmp((a)->file, (b)->file) == 0) && ((a)->line == (b)->line))
+
+typedef struct grecs_locus {
+	struct grecs_locus_point beg;
+	struct grecs_locus_point end;
+} grecs_locus_t;
 
 #define YYLTYPE grecs_locus_t
 
@@ -55,3 +77,4 @@
                                 (Loc).beg.col);				\
 	} while (0)
 
+#endif

@@ -1,0 +1,855 @@
+# Serbian translation for direvent.
+# Copyright © 2014 Free Software Foundation, Inc.
+# This file is distributed under the same license as the direvent package.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: direvent-4.1.91\n"
+"Report-Msgid-Bugs-To: bug-direvent@gnu.org.ua\n"
+"POT-Creation-Date: 2016-07-06 17:50+0300\n"
+"PO-Revision-Date: 2016-03-06 13:50+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"Language-Team: Serbian <(nothing)>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: cmdline.opt:26
+msgid "increase debug level"
+msgstr "повећава ниво прочишћавања"
+
+#: cmdline.opt:32
+msgid "PRIO"
+msgstr "ПРИО"
+
+#: cmdline.opt:32
+msgid ""
+"log everything with priority PRIO and higher to the stderr, as well as to "
+"the syslog"
+msgstr ""
+"записује све са ПРИОРИТЕТОМ и већим на стандардну грешку, као и у системски "
+"дневник"
+
+#: cmdline.opt:41
+msgid "NAME"
+msgstr "НАЗИВ"
+
+#: cmdline.opt:41
+msgid "set syslog facility"
+msgstr "подешава помоћника системског дневника"
+
+#: cmdline.opt:47
+msgid "remain in foreground"
+msgstr "остаје у позадини"
+
+#: cmdline.opt:53
+msgid "DIR"
+msgstr ""
+
+#: cmdline.opt:53
+msgid "add include directory"
+msgstr ""
+
+#: cmdline.opt:59
+msgid "PROG"
+msgstr "ПРОГ"
+
+#: cmdline.opt:59
+msgid "self-test mode"
+msgstr "режим самотестирања"
+
+#: cmdline.opt:65
+msgid "FILE"
+msgstr "ДАТОТЕКА"
+
+#: cmdline.opt:65
+msgid "set PID file"
+msgstr "поставља датотеку броја процеса"
+
+#: cmdline.opt:71
+msgid "check configuration file and exit"
+msgstr "проверава датотеку подешавања и излази"
+
+#: cmdline.opt:77
+msgid "USER"
+msgstr "КОРИСНИК"
+
+#: cmdline.opt:77
+msgid "run as this user"
+msgstr "покреће се као овај корисник"
+
+#: cmdline.opt:87
+msgid "show configuration file summary"
+msgstr "приказује сажетак датотеке подешавања"
+
+#: cmdline.opt:81
+msgid "Other options"
+msgstr "Остале могућности"
+
+#: cmdline.opt:93
+msgid "Give this help list"
+msgstr "Приказује овај списак помоћи"
+
+#: cmdline.opt:93
+msgid "Give a short usage message"
+msgstr "Приказује кратку поруку коришћења"
+
+#: cmdline.opt:93
+msgid "Print program version"
+msgstr "Исписује издање програма"
+
+#: cmdline.opt:13
+msgid "GNU direvent monitors changes in directories"
+msgstr "Гнуов диревент надгледа промене у директоријумима"
+
+#: cmdline.opt:15
+msgid "[CONFIG]"
+msgstr "[ПОДЕШАВАЊА]"
+
+#: cmdline.opt:95
+#, c-format
+msgid ""
+"The optional CONFIG argument supplies the name of the configuration file\n"
+"to use instead of %s.\n"
+"\n"
+msgstr ""
+"Изборни аргумент ПОДЕШАВАЊА доставља назив датотеке подешавања\n"
+"која ће се користити уместо „%s“.\n"
+"\n"
+
+#. TRANSLATORS: %s is one of: inotify, kqueue
+#: cmdline.opt:99
+#, c-format
+msgid ""
+"This direvent uses %s interface.\n"
+"\n"
+msgstr ""
+"Овај диревент користи сучеље „%s“.\n"
+"\n"
+
+#: cmdline.opt:102
+#, c-format
+msgid "Include search path:\n"
+msgstr ""
+
+#: cmdline.opt:105
+#, c-format
+msgid "No include search path.\n"
+msgstr ""
+
+#: src/config.c:63
+#, c-format
+msgid "unknown syslog facility: %s"
+msgstr "непознат помоћник системског дневника: %s"
+
+#: src/config.c:80
+#, c-format
+msgid "unknown syslog priority: %s"
+msgstr "непознат приоритет системског дневника: %s"
+
+#: src/config.c:88
+msgid "unexpected block statement"
+msgstr "неочекивана изјава блока"
+
+#: src/config.c:97
+#, c-format
+msgid "expected %s"
+msgstr "очекивах „%s“"
+
+#: src/config.c:102
+#, c-format
+msgid "expected %s, but found %s"
+msgstr "очекивах „%s“, али добих „%s“"
+
+#: src/config.c:124
+#, c-format
+msgid "unknown syslog facility `%s'"
+msgstr "непознат помоћник системског дневника „%s“"
+
+#: src/config.c:133 src/config.c:706
+msgid "name"
+msgstr "name"
+
+#: src/config.c:134
+msgid ""
+"Set syslog facility. Arg is one of the following: user, daemon, auth, "
+"authpriv, mail, cron, local0 through local7 (case-insensitive), or a "
+"facility number."
+msgstr ""
+"Подешава помоћника системског дневника. Аргумент може бити: user, daemon, "
+"auth, authpriv, mail, cron, од local0 до local7 (не разликује величину "
+"слова), или број помоћника."
+
+#: src/config.c:139
+msgid "string"
+msgstr "string"
+
+#: src/config.c:139
+msgid "Tag syslog messages with this string"
+msgstr "Означава поруке системског дневника овом ниском"
+
+#: src/config.c:142 grecs/src/format.c:141
+msgid "arg"
+msgstr "arg"
+
+#: src/config.c:143
+msgid "Prefix each message with its priority"
+msgstr "Ставља приоритет сваке поруке као префикс"
+
+#: src/config.c:209
+#, c-format
+msgid "%s: recursion depth does not match previous definition"
+msgstr "%s: дубина дубачења не одговара претходној одредници"
+
+#: src/config.c:247
+msgid "no paths configured"
+msgstr "нема подешених путања"
+
+#: src/config.c:252
+msgid "no command configured"
+msgstr "нема подешених наредби"
+
+#: src/config.c:264 grecs/src/tree.c:634
+msgid "invalid use of block statement"
+msgstr "неисправна употреба изјаве блока"
+
+#: src/config.c:309
+msgid "expected \"recursive\" or end of statement"
+msgstr "очекивах „recursive“ или крај изјаве"
+
+#: src/config.c:324
+msgid "surplus argument"
+msgstr "сувишан аргумент"
+
+#: src/config.c:330 src/config.c:481
+msgid "unexpected list"
+msgstr "неочекивани списак"
+
+#: src/config.c:361 src/config.c:376 src/config.c:391
+msgid "unrecognized event code"
+msgstr "непозната шифра догађаја"
+
+#: src/config.c:473
+msgid "surplus arguments"
+msgstr "сувишни аргументи"
+
+#: src/config.c:487
+msgid "no such user"
+msgstr "нема таквог корисника"
+
+#: src/config.c:494
+msgid "no such group"
+msgstr "нема такве групе"
+
+#: src/config.c:535
+#, fuzzy
+msgid "unrecognized option"
+msgstr "непозната заставица"
+
+#: src/config.c:613
+msgid "unterminated regexp"
+msgstr "недовршен рег. израз"
+
+#: src/config.c:627
+#, c-format
+msgid "unrecognized flag: %c"
+msgstr "непозната заставица: %c"
+
+#: src/config.c:695
+msgid "Pathname to watch"
+msgstr "Путања за осматрање"
+
+#: src/config.c:698
+msgid "Events to watch for"
+msgstr "Догађаји за осматрање"
+
+#: src/config.c:701
+msgid "regexp"
+msgstr "regexp"
+
+#: src/config.c:701
+msgid "Files to watch for"
+msgstr "Датотеке за осматрање"
+
+#: src/config.c:704
+msgid "Command to execute on event"
+msgstr "Наредба за извршавање при догађају"
+
+#: src/config.c:706
+msgid "Run command as this user"
+msgstr "Покрени наредбу као овај корисник"
+
+#: src/config.c:709
+msgid "seconds"
+msgstr "seconds"
+
+#: src/config.c:709
+msgid "Timeout for the command"
+msgstr "Временски рок за наредбу"
+
+#: src/config.c:711
+msgid "List of additional options"
+msgstr "Списак додатних могућности"
+
+#: src/config.c:714
+msgid "<arg: string> <arg: string>..."
+msgstr "<arg: ниска> <arg: ниска>..."
+
+#: src/config.c:715
+msgid "Modify environment"
+msgstr "Мења окружење"
+
+#: src/config.c:722
+msgid "Run as this user"
+msgstr "Покреће се као овај корисник"
+
+#: src/config.c:724
+msgid "Run in foreground"
+msgstr "Ради у позадини"
+
+#: src/config.c:726
+msgid "file"
+msgstr "file"
+
+#: src/config.c:726
+msgid "Set pid file name"
+msgstr "Подешава назив датотеке броја процеса"
+
+#: src/config.c:728
+msgid "Configure syslog logging"
+msgstr "Подешава записивање системског дневника"
+
+#: src/config.c:730
+msgid "level"
+msgstr "level"
+
+#: src/config.c:730
+msgid "Set debug level"
+msgstr "Подешава ниво прочишћавања"
+
+#: src/config.c:732
+msgid "Configure event watcher"
+msgstr "Подешава осматрача догађаја"
+
+#: src/config.c:743
+msgid ""
+"Configuration file structure for direvent.\n"
+"For more information, use `info direvent configuration'."
+msgstr ""
+"Структура датотеке подешавања за диревент.\n"
+"За више података, користите „info direvent configuration“."
+
+#: src/direvent.c:142 src/direvent.c:164 src/watcher.c:86 src/watcher.c:182
+#: src/watcher.c:191
+msgid "not enough memory"
+msgstr "нема довољно меморије"
+
+#: src/direvent.c:272
+#, c-format
+msgid "cannot open pidfile %s for writing: %s"
+msgstr "не могу да отворим датотеку броја процеса „%s“ зарад писања: %s"
+
+#: src/direvent.c:300
+#, c-format
+msgid "no user with UID %lu"
+msgstr "нема корисника са одредником %lu"
+
+#: src/direvent.c:418
+#, c-format
+msgid "cannot run `%s': fork failed: %s"
+msgstr "не могу да покренем „%s“: рачвање није успело: %s"
+
+#: src/direvent.c:478
+msgid "too many arguments"
+msgstr "превише аргумената"
+
+#: src/direvent.c:520
+#, c-format
+msgid "%s %s started"
+msgstr "„%s“ %s је покренут"
+
+#: src/direvent.c:541
+#, c-format
+msgid "%s %s stopped"
+msgstr "„%s“ %s је заустављен"
+
+#: src/environ.c:25
+msgid "environment: "
+msgstr "окружење:"
+
+#: src/hashtab.c:140 grecs/src/symtab.c:206
+msgid "element not found in table"
+msgstr "нисам нашао елемент у табели"
+
+#: src/hashtab.c:142 grecs/src/symtab.c:208
+msgid "symbol table is full"
+msgstr "табела симбола је пуна"
+
+#: src/hashtab.c:144
+msgid "out of memory"
+msgstr "нема више меморије"
+
+#: src/progman.c:142
+#, c-format
+msgid "process %lu exited successfully"
+msgstr "процес %lu је успешно изашао"
+
+#: src/progman.c:145
+#, c-format
+msgid "process %lu failed with status %d"
+msgstr "процес %lu није успео са стањем „%d“"
+
+#: src/progman.c:155
+#, c-format
+msgid "process %lu terminated on signal %d"
+msgstr "процес %lu је окончан при сигналу „%d“"
+
+#: src/progman.c:158
+#, c-format
+msgid "process %lu stopped on signal %d"
+msgstr "процес %lu је заустављен при сигналу „%d“"
+
+#: src/progman.c:163
+#, c-format
+msgid "process %lu dumped core"
+msgstr "процес %lu је избацио језгро"
+
+#: src/progman.c:167
+#, c-format
+msgid "process %lu terminated with unrecognized status"
+msgstr "процес %lu је окончан са непознатим стањем"
+
+#: src/progman.c:228
+msgid "begin scanning process list"
+msgstr "почиње преглед списка процеса"
+
+#: src/progman.c:232
+#, c-format
+msgid "process %lu timed out"
+msgstr "истекло је време процесу %lu"
+
+#: src/progman.c:241
+#, c-format
+msgid "scheduling alarm in %lu seconds"
+msgstr "заказујем аларм за %lu секунде"
+
+#: src/progman.c:322
+#, c-format
+msgid "cannot start redirector for %s, pipe failed: %s"
+msgstr "не могу да покренем преусмеривача за „%s“, спојка није успела: %s"
+
+#: src/progman.c:354
+#, c-format
+msgid "cannot run redirector `%s': fork failed: %s"
+msgstr "не могу да покренем преусмеривача „%s“: рачвање није успело: %s"
+
+#: src/progman.c:359
+#, c-format
+msgid "redirector for %s started, pid=%lu"
+msgstr "преусмеривач за „%s“ је покренут, пид=%lu"
+
+#: src/progman.c:454
+#, c-format
+msgid "starting %s, dir=%s, file=%s"
+msgstr "покрећем „%s“, дир=%s, датотека=%s"
+
+#: src/progman.c:482
+#, c-format
+msgid "cannot change to %s: %s"
+msgstr "не могу да пређем у „%s“: %s"
+
+#: src/progman.c:510
+#, c-format
+msgid "%s running; dir=%s, file=%s, pid=%lu"
+msgstr "„%s“ је покренут; дир=%s, датотека=%s, пид=%lu"
+
+#: src/progman.c:532
+#, c-format
+msgid "waiting for %s (%lu) to terminate"
+msgstr "чекам на „%s“ (%lu) да заврши"
+
+#: src/watcher.c:231
+#, c-format
+msgid "creating watcher %s"
+msgstr "правим осматрача „%s“"
+
+#: src/watcher.c:240
+#, c-format
+msgid "cannot set watcher on %s: %s"
+msgstr "не могу да подесим осматрача на „%s“: %s"
+
+#: src/watcher.c:319
+#, c-format
+msgid "cannot create watcher %s/%s: not enough memory"
+msgstr "не могу да направим осматрача „%s/%s“: нема довољно меморије"
+
+#: src/watcher.c:326
+#, c-format
+msgid "cannot create watcher %s/%s, stat failed: %s"
+msgstr ""
+"не могу да направим осматрача „%s/%s“, нисам успео да добавим податке: %s"
+
+#: src/watcher.c:355
+#, c-format
+msgid "cannot open directory %s: %s"
+msgstr "не могу да отворим директоријум „%s“: %s"
+
+#: src/watcher.c:371
+#, c-format
+msgid "cannot stat %s/%s: not enough memory"
+msgstr "не могу да добавим податке за „%s/%s“: нема довољно меморије"
+
+#: src/watcher.c:376
+#, c-format
+msgid "cannot stat %s: %s"
+msgstr "не могу да добавим податке за „%s“: %s"
+
+#: src/watcher.c:412
+msgid "no event handlers configured"
+msgstr "нема подешених руковалаца догађаја"
+
+#: src/watcher.c:417
+msgid "no event handlers installed"
+msgstr "нема инсталираних руковалаца догађаја"
+
+#: src/watcher.c:425
+#, c-format
+msgid "removing watcher %s"
+msgstr "уклањам осматрача „%s“"
+
+#: grecs/src/format.c:133
+msgid "Disabled;"
+msgstr "Искључен;"
+
+#: grecs/src/opthelp.c:123 grecs/src/opthelp.c:269
+msgid "Usage:"
+msgstr "Употреба:"
+
+#: grecs/src/opthelp.c:127
+msgid "OPTION"
+msgstr "МОГУЋНОСТ"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Aliases"
+msgstr "Алијаси"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Alias"
+msgstr "Алијас"
+
+#: grecs/src/opthelp.c:186
+msgid ""
+"Mandatory or optional arguments to long options are also mandatory or "
+"optional for any corresponding short options."
+msgstr ""
+"Обавезни или изборни аргументи за дуге опције су такође обавезни или изборни "
+"за било које одговарајуће кратке опције."
+
+#. TRANSLATORS: The placeholder indicates the bug-reporting
+#. address for this package.  Please add _another line_ saying
+#. "Report translation bugs to <...>\n" with the address for
+#. translation bugs (typically your translation team's web or
+#. email address).
+#: grecs/src/opthelp.c:202
+#, c-format
+msgid "Report bugs to %s.\n"
+msgstr "Грешке пријавите на „%s“.\n"
+
+#: grecs/src/opthelp.c:205
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr "Матична страница „%s“: <%s>.\n"
+
+#. TRANSLATORS: Translate "(C)" to the copyright symbol
+#. (C-in-a-circle), if this symbol is available in the user's
+#. locale.  Otherwise, do not translate "(C)"; leave it as-is.
+#: grecs/src/opthelp.c:457
+msgid "(C)"
+msgstr "©"
+
+#: grecs/src/opthelp.c:466
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+"\n"
+msgstr ""
+"Лиценца ОЈЛв3+: Гнуова ОЈЛ 3. издање или новије <http://gnu.org/licenses/gpl."
+"html>\n"
+"Ово је слободан софтвер: слободни сте да га мењате и расподељујете.\n"
+"Не постоји НИКАКВА ГАРАНЦИЈА, у оквирима дозвољеним законом.\n"
+"\n"
+
+#: grecs/src/opthelp.c:483
+msgid "Written by "
+msgstr "Приредио "
+
+#. TRANSLATORS: This string is used as a delimiter between
+#. authors' names as in:
+#.
+#. Written by Winnie the Pooh, Piglet ...
+#.
+#: grecs/src/opthelp.c:489
+msgid ", "
+msgstr ", "
+
+#. TRANSLATORS: This string acts as a delimiter before the
+#. last author's names, e.g.:
+#.
+#. Written by Winnie the Pooh, Piglet and Christopher Robin.
+#.
+#: grecs/src/opthelp.c:495
+msgid " and "
+msgstr " и "
+
+#: grecs/src/path-parser.c:62
+#, c-format
+msgid "cannot open `%s'"
+msgstr "не могу да отворим „%s“"
+
+#: grecs/src/path-parser.c:108 grecs/src/path-parser.c:123
+msgid "unexpected end of file"
+msgstr "неочекивани крај датотеке"
+
+#: grecs/src/path-parser.c:143
+msgid "parse error"
+msgstr "грешка обраде"
+
+#: grecs/src/preproc.c:448 grecs/src/preproc.c:470
+#, c-format
+msgid "Cannot stat `%s'"
+msgstr "Не могу да добавим податке за „%s“"
+
+#: grecs/src/preproc.c:453 grecs/src/preproc.c:458
+msgid "Recursive inclusion"
+msgstr "Дубинско укључивање"
+
+#: grecs/src/preproc.c:461
+#, c-format
+msgid "`%s' already included here"
+msgstr "„%s“ је већ укључено овде"
+
+#: grecs/src/preproc.c:465
+#, c-format
+msgid "`%s' already included at top level"
+msgstr "„%s“ је већ укључено на највишем нивоу"
+
+#: grecs/src/preproc.c:480
+#, c-format
+msgid "Cannot open `%s'"
+msgstr "Не могу да отворим „%s“"
+
+#: grecs/src/preproc.c:595
+msgid "Cannot parse include line"
+msgstr "Не могу да обрадим ред укључивања"
+
+#: grecs/src/preproc.c:598
+msgid "invalid include statement"
+msgstr "неисправна изјава укључивања"
+
+#: grecs/src/preproc.c:624
+#, fuzzy
+msgid "read error"
+msgstr "грешка обраде"
+
+#: grecs/src/preproc.c:632
+#, c-format
+msgid "%s: No such file or directory"
+msgstr "%s: Нема такве датотеке или директоријума"
+
+#: grecs/src/preproc.c:698
+#, c-format
+msgid "Unable to start external preprocessor `%s'"
+msgstr "Не могу да покренем спољног предобрађивача „%s“"
+
+#: grecs/src/preproc.c:773 grecs/src/preproc.c:793
+#, c-format
+msgid "Cannot run `%s'"
+msgstr "Не могу да покренем „%s“"
+
+#: grecs/src/tree.c:329
+#, c-format
+msgid "%s: not a valid boolean value"
+msgstr "%s: није исправна логичка вредност"
+
+#: grecs/src/tree.c:360
+#, c-format
+msgid "%s: UNIX socket name too long"
+msgstr "%s: назив ЈУНИКС прикључнице је предуг"
+
+#: grecs/src/tree.c:389 grecs/src/tree.c:613
+#, c-format
+msgid "%s: not a valid IP address or hostname"
+msgstr "%s: није исправна ИП адреса или назив домаћина"
+
+#: grecs/src/tree.c:413
+#, c-format
+msgid "%s: not a valid port number"
+msgstr "%s: није исправан број прикључника"
+
+#: grecs/src/tree.c:421
+msgid "missing port number"
+msgstr "недостаје број прикључника"
+
+#: grecs/src/tree.c:470
+msgid "numeric overflow"
+msgstr "прекорачење бројева"
+
+#: grecs/src/tree.c:475
+msgid "value out of allowed range"
+msgstr "вредност је изван дозвољеног опсега"
+
+#: grecs/src/tree.c:510 grecs/src/tree.c:540
+#, c-format
+msgid "not a number (stopped near `%s')"
+msgstr "није број (стадох близу „%s“)"
+
+#: grecs/src/tree.c:604
+#, c-format
+msgid "%s: not a valid IP address"
+msgstr "%s: није исправна ИП адреса"
+
+#: grecs/src/tree.c:743
+#, c-format
+msgid "too many arguments to `%s'; missing semicolon?"
+msgstr "превише аргумената за „%s“; недостаје запетачка?"
+
+#: grecs/src/tree.c:757 grecs/src/tree.c:805
+#, c-format
+msgid "INTERNAL ERROR at %s:%d: unhandled data type %d"
+msgstr "УНУТРАШЊА ГРЕШКА на „%s“:%d: непозната врста података „%d“"
+
+#: grecs/src/tree.c:772
+#, c-format
+msgid "%s: incompatible data type in list item #%d"
+msgstr "%s: несагласна врста података у %d. ставци списка"
+
+#: grecs/src/tree.c:792
+#, c-format
+msgid "incompatible data type for `%s'"
+msgstr "несагласна врста података за „%s“"
+
+#: grecs/src/tree.c:920 grecs/src/tree.c:930
+msgid "Unknown keyword"
+msgstr "Непозната кључна реч"
+
+#: grecs/src/tree.c:1139
+#, c-format
+msgid "%s: unknown keyword"
+msgstr "%s: непозната кључна реч"
+
+#: grecs/src/wordsplit.c:62 grecs/src/wordsplit.c:2300
+msgid "memory exhausted"
+msgstr "нема више меморије"
+
+#: grecs/src/wordsplit.c:1073
+#, c-format
+msgid "%.*s: variable null or not set"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1102
+#, c-format
+msgid "warning: undefined variable `%.*s'"
+msgstr "упозорење: неодређена променљива „%.*s“"
+
+#: grecs/src/wordsplit.c:1630
+#, c-format
+msgid "no files match pattern %s"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2080
+msgid "WS trimming"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2081
+msgid "tilde expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2082
+msgid "variable expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2084
+msgid "quote removal"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2086
+#, fuzzy
+msgid "command substitution"
+msgstr "замена наредбе још увек није подржана"
+
+#: grecs/src/wordsplit.c:2088
+msgid "coalesce list"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2090
+msgid "path expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2120
+msgid "Initial list:"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2136
+#, fuzzy
+msgid "Coalesced list:"
+msgstr "неочекивани списак"
+
+#: grecs/src/wordsplit.c:2190
+#, c-format
+msgid "(%02d) Input:%.*s;"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2202
+#, c-format
+msgid "(%02d) Restart:%.*s;"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2298
+msgid "no error"
+msgstr "нема грешке"
+
+#: grecs/src/wordsplit.c:2299
+msgid "missing closing quote"
+msgstr "недостају затварајући наводници"
+
+#: grecs/src/wordsplit.c:2301
+msgid "invalid wordsplit usage"
+msgstr "неисправна употреба поделе речи"
+
+#: grecs/src/wordsplit.c:2302
+msgid "unbalanced curly brace"
+msgstr "неуравнотежена витичаста заграда"
+
+#: grecs/src/wordsplit.c:2303
+msgid "undefined variable"
+msgstr "неодређена променљива"
+
+#: grecs/src/wordsplit.c:2304
+msgid "input exhausted"
+msgstr "нема више улаза"
+
+#: grecs/src/wordsplit.c:2305
+msgid "unbalanced parenthesis"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2306
+#, fuzzy
+msgid "globbing error"
+msgstr "нема грешке"
+
+#: grecs/src/wordsplit.c:2318
+msgid "unknown error"
+msgstr "непозната грешка"
+
+#: grecs/src/wordsplit.c:2327
+#, c-format
+msgid "missing closing %c (start near #%lu)"
+msgstr "недостаје затварајућа %c (почиње близу #%lu)"
+
+#~ msgid "INTERNAL ERROR at %s:%d"
+#~ msgstr "УНУТРАШЊА ГРЕШКА на „%s“:%d"

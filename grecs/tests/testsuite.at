@@ -1,5 +1,5 @@
 # This file is part of grecs - Gray's Extensible Configuration System -*- Autotest -*-
-# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+# Copyright (C) 2007-2016 Sergey Poznyakoff
 #
 # Grecs is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,6 +47,8 @@ dnl # Begin tests
 AT_INIT
 m4_if(GRECS_DISTCK_AT,,,[m4_include(GRECS_DISTCK_AT)])
 
+m4_include([wordsplit.at])
+
 AT_BANNER([Formats])
 m4_include([format00.at])
 m4_include([format01.at])
@@ -79,11 +81,22 @@ AT_BANNER([Sort])
 m4_include([sort00.at])
 m4_include([sort01.at])
 
+AT_BANNER([Include])
+m4_include([incl00.at])
+m4_include([incl01.at])
+m4_include([incl02.at])
+m4_include([incl03.at])
+
 m4_ifdef([ENABLE_BIND_PARSER],[
 AT_BANNER([BIND Parser])
 m4_include([parser-bind.at])
 m4_include([bind00.at])
 m4_include([locus-bind.at])
+])
+
+m4_ifdef([ENABLE_DHCPD_PARSER],[
+AT_BANNER([DHCPD Parser])
+m4_include([parser-dhcpd.at])
 ])
 
 m4_ifdef([ENABLE_META1_PARSER],[
@@ -111,5 +124,11 @@ m4_include([locus00.at])
 m4_include([locus01.at])
 m4_include([locus02.at])
 m4_include([path-locus.at])
+
+m4_ifdef([ENABLE_JSON],[
+AT_BANNER(JSON)
+m4_include([json00.at])
+m4_include([json01.at])
+])
 
 # End of testsuite.at

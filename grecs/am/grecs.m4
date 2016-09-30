@@ -1,5 +1,5 @@
 # This file is part of grecs - Gray's Extensible Configuration System -*- autoconf -*-
-# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+# Copyright (C) 2007-2016 Sergey Poznyakoff
 #
 # Grex is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -68,6 +68,9 @@ AC_DEFUN([_GRECS_SET_OPTIONS],
 #   tree-api           Use alternative signature of callback functions,
 #                      passing a pointer to grecs_node_t as an argument,
 #                      instead of pointers to the value and locus.
+#   sockaddr-list      Sockaddr type keeps a singly-linked list of addresses
+#                      returned by getaddrinfo.
+#   json               Compile JSON support
 #
 # The pp-setup-file argument supplies the pathname of the preprocessor
 # setup file in the source tree.  It is ignored if std-pp-setup option is
@@ -114,9 +117,8 @@ AC_DEFUN([GRECS_SETUP],[
         DEFAULT_PREPROCESSOR=`expr $DEFAULT_PREPROCESSOR : '.*/\(.*\)'`;;
     esac
     AC_PATH_PROG(PPBIN, $DEFAULT_PREPROCESSOR)
-    DEFAULT_PREPROCESSOR=$PPBIN
-    if test -n "$DEFAULT_PREPROCESSOR"; then
-      DEFAULT_PREPROCESSOR="$DEFAULT_PREPROCESSOR $PREPROC_OPTIONS"
+    if test -n "$PPBIN"; then
+      DEFAULT_PREPROCESSOR="$PPBIN $PREPROC_OPTIONS"
       _GRECS_IF_OPTION_SET([std-pp-setup],
         [PP_SETUP_FILE='pp-setup'],
 	[m4_if([$3],,[PP_SETUP_FILE=],[PP_SETUP_FILE='$3'])])
@@ -136,9 +138,13 @@ AC_DEFUN([GRECS_SETUP],[
 	   *) PP_SETUP_FILE=;; # Skip it
            esac])
       fi
+      DEFAULT_PREPROCESSOR="\\\"$DEFAULT_PREPROCESSOR\\\""
+    else
+      AC_MSG_WARN([requested preprocessor command "$DEFAULT_PREPROCESSOR" not found])
+      AC_MSG_WARN([preprocessing disabled])
+      DEFAULT_PREPROCESSOR=NULL
     fi
     PATH=$save_PATH
-    DEFAULT_PREPROCESSOR="\\\"$DEFAULT_PREPROCESSOR\\\""
   else
     DEFAULT_PREPROCESSOR=NULL
   fi
@@ -175,6 +181,15 @@ AC_DEFUN([GRECS_SETUP],[
   AM_CONDITIONAL([GRECS_COND_INSTALLHEADERS],
                  _GRECS_IF_OPTION_SET([install-headers],[true],[false]))
 
+  AM_CONDITIONAL([GRECS_COND_SOCKADDR_LIST],
+                 _GRECS_IF_OPTION_SET([sockaddr-list],[true],[false]))
+  AM_CONDITIONAL([GRECS_COND_JSON],
+                 _GRECS_IF_OPTION_SET([json],[true],[false]))
+
+  AC_SUBST([GRECS_SOCKADDR_LIST])
+  _GRECS_IF_OPTION_SET([sockaddr-list],[GRECS_SOCKADDR_LIST=1],
+                       [GRECS_SOCKADDR_LIST=0])
+		 
   AC_SUBST([GRECS_TREE_API])
   _GRECS_IF_OPTION_SET([tree-api],[GRECS_TREE_API=1],[GRECS_TREE_API=0])
 		 
@@ -187,13 +202,14 @@ AC_DEFUN([GRECS_SETUP],[
   AC_SUBST([GRECS_CHANGELOG])
   AC_SUBST([GRECS_DISTCK_AT])
   AC_SUBST([GRECS_README])
-  AC_SUBST([GRECS_INCLUDES],['-I$(top_srcdir)/]grecsdir[src]')
+  AC_SUBST([GRECS_INCLUDES],['-I$(top_srcdir)/]grecsdir[include] [-I$(top_builddir)/]grecsdir[include]')
   AC_SUBST([GRECS_HOST_PROJECT_INCLUDES])
   AC_SUBST([GRECS_DISTDOC])
   AC_SUBST([GRECS_INCLUDE_DIR],['$(pkgincludedir)'])
-  
+
   _GRECS_OPTION_SWITCH([install],[
     LT_INIT
+    GRECS_BUILD_TYPE=install
     GRECS_LDADD=['$(top_builddir)/]grecsdir[src/libgrecs.la']
     GRECS_DOCDIR='doc'
     GRECS_CHANGELOG=
@@ -203,18 +219,27 @@ AC_DEFUN([GRECS_SETUP],[
                     grecsdir[doc/Makefile])
   ],[shared],[
     LT_INIT
+    GRECS_BUILD_TYPE=shared
     GRECS_LDADD=['$(top_builddir)/]grecsdir[src/libgrecs.la']
     GRECS_CHANGELOG='#'
     GRECS_README=README.submodule
     _GRECS_IF_OPTION_SET([syntax-doc],[GRECS_DISTDOC=doc/grecs-syntax.texi])
     AC_CONFIG_FILES(grecsdir[src/Makefile]:grecsdir[src/Make-shared.in])
   ],[
+    GRECS_BUILD_TYPE=static
     GRECS_LDADD=['$(top_builddir)/]grecsdir[src/libgrecs.a']
     GRECS_CHANGELOG='#'
     GRECS_README=README.submodule
     _GRECS_IF_OPTION_SET([syntax-doc],[GRECS_DISTDOC=doc/grecs-syntax.texi])
     AC_CONFIG_FILES(grecsdir[src/Makefile]:grecsdir[src/Make-static.in])
   ])
-  AC_CONFIG_FILES(grecsdir[Makefile])
+  AM_CONDITIONAL([GRECS_COND_BUILD_INSTALL],[test $GRECS_BUILD_TYPE = install])
+  AM_CONDITIONAL([GRECS_COND_BUILD_SHARED],[test $GRECS_BUILD_TYPE = shared])
+  AM_CONDITIONAL([GRECS_COND_BUILD_STATIC],[test $GRECS_BUILD_TYPE = static])
+
+  AC_CONFIG_FILES(grecsdir[Makefile]
+                  grecsdir[include/Makefile]
+		  grecsdir[include/grecs/Makefile]
+             grecsdir[include/grecs/types.h]:grecsdir[include/grecs/types.h.in])
   m4_popdef([grecsdir])
 ])

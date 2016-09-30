@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: direvent 4.1.91\n"
 "Report-Msgid-Bugs-To: bug-direvent@gnu.org.ua\n"
-"POT-Creation-Date: 2015-04-16 14:37+0300\n"
+"POT-Creation-Date: 2016-07-06 17:50+0300\n"
 "PO-Revision-Date: 2014-09-02 08:37-0300\n"
 "Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldpbr-translation@lists.sourceforge."
@@ -49,50 +49,58 @@ msgid "remain in foreground"
 msgstr "mantém em primeiro plano"
 
 #: cmdline.opt:53
+msgid "DIR"
+msgstr ""
+
+#: cmdline.opt:53
+msgid "add include directory"
+msgstr ""
+
+#: cmdline.opt:59
 msgid "PROG"
 msgstr "PROG"
 
-#: cmdline.opt:53
+#: cmdline.opt:59
 msgid "self-test mode"
 msgstr "modo auto-teste"
 
-#: cmdline.opt:59
+#: cmdline.opt:65
 msgid "FILE"
 msgstr "ARQUIVO"
 
-#: cmdline.opt:59
+#: cmdline.opt:65
 msgid "set PID file"
 msgstr "define arquivo PID"
 
-#: cmdline.opt:65
+#: cmdline.opt:71
 msgid "check configuration file and exit"
 msgstr "verifica arquivo arquivo de configuração e sai"
 
-#: cmdline.opt:71
+#: cmdline.opt:77
 msgid "USER"
 msgstr "USUÁRIO"
 
-#: cmdline.opt:71
+#: cmdline.opt:77
 msgid "run as this user"
 msgstr "executa como esse usuário"
 
-#: cmdline.opt:81
+#: cmdline.opt:87
 msgid "show configuration file summary"
 msgstr "mostra resumo do arquivo de configuração"
 
-#: cmdline.opt:75
+#: cmdline.opt:81
 msgid "Other options"
 msgstr "Outras opções"
 
-#: cmdline.opt:87
+#: cmdline.opt:93
 msgid "Give this help list"
 msgstr "fornece essa lista de ajuda"
 
-#: cmdline.opt:87
+#: cmdline.opt:93
 msgid "Give a short usage message"
 msgstr "fornece uma mensagem curta de uso"
 
-#: cmdline.opt:87
+#: cmdline.opt:93
 msgid "Print program version"
 msgstr "exibe a versão do programa"
 
@@ -104,7 +112,7 @@ msgstr "GNU direvent monitora alterações em diretórios"
 msgid "[CONFIG]"
 msgstr "[CONFIG]"
 
-#: cmdline.opt:81
+#: cmdline.opt:95
 #, c-format
 msgid ""
 "The optional CONFIG argument supplies the name of the configuration file\n"
@@ -116,7 +124,7 @@ msgstr ""
 "\n"
 
 #. TRANSLATORS: %s is one of: inotify, kqueue
-#: cmdline.opt:85
+#: cmdline.opt:99
 #, c-format
 msgid ""
 "This direvent uses %s interface.\n"
@@ -124,6 +132,16 @@ msgid ""
 msgstr ""
 "Esse direvent usa uma interface %s.\n"
 "\n"
+
+#: cmdline.opt:102
+#, c-format
+msgid "Include search path:\n"
+msgstr ""
+
+#: cmdline.opt:105
+#, c-format
+msgid "No include search path.\n"
+msgstr ""
 
 #: src/config.c:63
 #, c-format
@@ -154,7 +172,7 @@ msgstr "esperava %s, mas encontrou %s"
 msgid "unknown syslog facility `%s'"
 msgstr "facilidade syslog desconhecida \"%s\""
 
-#: src/config.c:133 src/config.c:704
+#: src/config.c:133 src/config.c:706
 msgid "name"
 msgstr "nome"
 
@@ -197,7 +215,7 @@ msgstr "nenhum caminho configurado"
 msgid "no command configured"
 msgstr "nenhum comando configurado"
 
-#: src/config.c:264 grecs/src/tree.c:629
+#: src/config.c:264 grecs/src/tree.c:634
 msgid "invalid use of block statement"
 msgstr "uso inválido de declaração de bloco"
 
@@ -229,96 +247,97 @@ msgstr "usuário inexistente"
 msgid "no such group"
 msgstr "grupo inexistente"
 
-#: src/config.c:533
-msgid "unrecognized flag"
+#: src/config.c:535
+#, fuzzy
+msgid "unrecognized option"
 msgstr "opção não reconhecida"
 
-#: src/config.c:611
+#: src/config.c:613
 msgid "unterminated regexp"
 msgstr "expressão regular não terminada"
 
-#: src/config.c:625
+#: src/config.c:627
 #, c-format
 msgid "unrecognized flag: %c"
 msgstr "opção não reconhecida: %c"
 
-#: src/config.c:693
+#: src/config.c:695
 msgid "Pathname to watch"
 msgstr "Caminho a observar"
 
-#: src/config.c:696
+#: src/config.c:698
 msgid "Events to watch for"
 msgstr "Eventos a observar por"
 
-#: src/config.c:699
+#: src/config.c:701
 msgid "regexp"
 msgstr "expressão regular"
 
-#: src/config.c:699
+#: src/config.c:701
 msgid "Files to watch for"
 msgstr "Arquivos a observar por"
 
-#: src/config.c:702
+#: src/config.c:704
 msgid "Command to execute on event"
 msgstr "Comando para executar no evento"
 
-#: src/config.c:704
+#: src/config.c:706
 msgid "Run command as this user"
 msgstr "Executa comando como esse usuário"
 
-#: src/config.c:707
+#: src/config.c:709
 msgid "seconds"
 msgstr "segundos"
 
-#: src/config.c:707
+#: src/config.c:709
 msgid "Timeout for the command"
 msgstr "Tempo limite de espera pelo comando"
 
-#: src/config.c:709
+#: src/config.c:711
 msgid "List of additional options"
 msgstr "Lista de opções adicionais"
 
-#: src/config.c:712
+#: src/config.c:714
 msgid "<arg: string> <arg: string>..."
 msgstr "<arg: texto> <arg: texto>..."
 
-#: src/config.c:713
+#: src/config.c:715
 msgid "Modify environment"
 msgstr "Modifica ambiente"
 
-#: src/config.c:720
+#: src/config.c:722
 msgid "Run as this user"
 msgstr "Executa como esse usuário"
 
-#: src/config.c:722
+#: src/config.c:724
 msgid "Run in foreground"
 msgstr "Executa em primeiro plano"
 
-#: src/config.c:724
+#: src/config.c:726
 msgid "file"
 msgstr "arquivo"
 
-#: src/config.c:724
+#: src/config.c:726
 msgid "Set pid file name"
 msgstr "Define nome de arquivo pid"
 
-#: src/config.c:726
+#: src/config.c:728
 msgid "Configure syslog logging"
 msgstr "Configura registro syslog"
 
-#: src/config.c:728
+#: src/config.c:730
 msgid "level"
 msgstr "nível"
 
-#: src/config.c:728
+#: src/config.c:730
 msgid "Set debug level"
 msgstr "Define nível de depuração"
 
-#: src/config.c:730
+#: src/config.c:732
 msgid "Configure event watcher"
 msgstr "Configure observador de evento"
 
-#: src/config.c:741
+#: src/config.c:743
 msgid ""
 "Configuration file structure for direvent.\n"
 "For more information, use `info direvent configuration'."
@@ -326,36 +345,36 @@ msgstr ""
 "Estrutura de arquivo de configuração para direvent.\n"
 "Para mais informação, use \"info direvent configuration\"."
 
-#: src/direvent.c:141 src/direvent.c:163 src/watcher.c:86 src/watcher.c:182
+#: src/direvent.c:142 src/direvent.c:164 src/watcher.c:86 src/watcher.c:182
 #: src/watcher.c:191
 msgid "not enough memory"
 msgstr "memória insuficiente"
 
-#: src/direvent.c:271
+#: src/direvent.c:272
 #, c-format
 msgid "cannot open pidfile %s for writing: %s"
 msgstr "não é possível abrir o arquivo PID %s para escrita: %s"
 
-#: src/direvent.c:299
+#: src/direvent.c:300
 #, c-format
 msgid "no user with UID %lu"
 msgstr "nenhum usuário com UID %lu"
 
-#: src/direvent.c:417
+#: src/direvent.c:418
 #, c-format
 msgid "cannot run `%s': fork failed: %s"
 msgstr "não é possível \"%s\": fork falhou: %s"
 
-#: src/direvent.c:477
+#: src/direvent.c:478
 msgid "too many arguments"
 msgstr "argumentos demais"
 
-#: src/direvent.c:523
+#: src/direvent.c:520
 #, c-format
 msgid "%s %s started"
 msgstr "%s %s iniciou"
 
-#: src/direvent.c:544
+#: src/direvent.c:541
 #, c-format
 msgid "%s %s stopped"
 msgstr "%s %s parou"
@@ -364,11 +383,11 @@ msgstr "%s %s parou"
 msgid "environment: "
 msgstr "ambiente: "
 
-#: src/hashtab.c:140 grecs/src/symtab.c:193
+#: src/hashtab.c:140 grecs/src/symtab.c:206
 msgid "element not found in table"
 msgstr "elemento não encontrado na tabela"
 
-#: src/hashtab.c:142 grecs/src/symtab.c:195
+#: src/hashtab.c:142 grecs/src/symtab.c:208
 msgid "symbol table is full"
 msgstr "tabela de símbolos está completo"
 
@@ -435,22 +454,22 @@ msgstr "não foi possível redirecionar \"%s\": fork falhou: %s"
 msgid "redirector for %s started, pid=%lu"
 msgstr "redirecionador para %s iniciado, pid=%lu"
 
-#: src/progman.c:439
+#: src/progman.c:454
 #, c-format
 msgid "starting %s, dir=%s, file=%s"
 msgstr "iniciando %s, dir=%s, arquivo=%s"
 
-#: src/progman.c:468
+#: src/progman.c:482
 #, c-format
 msgid "cannot change to %s: %s"
 msgstr "não foi possível alterar para %s: %s"
 
-#: src/progman.c:496
+#: src/progman.c:510
 #, c-format
 msgid "%s running; dir=%s, file=%s, pid=%lu"
 msgstr "%s em execução, dir=%s, arquivo=%s, pid=%lu"
 
-#: src/progman.c:518
+#: src/progman.c:532
 #, c-format
 msgid "waiting for %s (%lu) to terminate"
 msgstr "esperando por %s (%lu) ser terminado"
@@ -603,175 +622,240 @@ msgstr "fim de linha inesperado"
 msgid "parse error"
 msgstr "erro de analise"
 
-#: grecs/src/preproc.c:434 grecs/src/preproc.c:456
+#: grecs/src/preproc.c:448 grecs/src/preproc.c:470
 #, c-format
 msgid "Cannot stat `%s'"
 msgstr "Não foi possível obter status de \"%s\""
 
-#: grecs/src/preproc.c:439 grecs/src/preproc.c:444
+#: grecs/src/preproc.c:453 grecs/src/preproc.c:458
 msgid "Recursive inclusion"
 msgstr "Inclusão recursiva"
 
-#: grecs/src/preproc.c:447
+#: grecs/src/preproc.c:461
 #, c-format
 msgid "`%s' already included here"
 msgstr "\"%s\" já incluso aqui"
 
-#: grecs/src/preproc.c:451
+#: grecs/src/preproc.c:465
 #, c-format
 msgid "`%s' already included at top level"
 msgstr "\"%s\" já incluso no nível superior"
 
-#: grecs/src/preproc.c:466
+#: grecs/src/preproc.c:480
 #, c-format
 msgid "Cannot open `%s'"
 msgstr "Não foi possível abrir \"%s\""
 
-#: grecs/src/preproc.c:563
+#: grecs/src/preproc.c:595
 msgid "Cannot parse include line"
 msgstr "Não foi possível analisar a linha incluída"
 
-#: grecs/src/preproc.c:566
+#: grecs/src/preproc.c:598
 msgid "invalid include statement"
 msgstr "declaração inclusa inválida"
 
-#: grecs/src/preproc.c:586
+#: grecs/src/preproc.c:624
+#, fuzzy
+msgid "read error"
+msgstr "erro de analise"
+
+#: grecs/src/preproc.c:632
 #, c-format
 msgid "%s: No such file or directory"
 msgstr "%s: Arquivo ou diretório não encontrados"
 
-#: grecs/src/preproc.c:639
+#: grecs/src/preproc.c:698
 #, c-format
 msgid "Unable to start external preprocessor `%s'"
 msgstr "Não foi possível iniciar preprocessador externo \"%s\""
 
-#: grecs/src/preproc.c:714 grecs/src/preproc.c:734
+#: grecs/src/preproc.c:773 grecs/src/preproc.c:793
 #, c-format
 msgid "Cannot run `%s'"
 msgstr "Não foi possível executar \"%s\""
 
-#: grecs/src/tree.c:328
+#: grecs/src/tree.c:329
 #, c-format
 msgid "%s: not a valid boolean value"
 msgstr "%s: não é um valor booleano válido"
 
-#: grecs/src/tree.c:358
+#: grecs/src/tree.c:360
 #, c-format
 msgid "%s: UNIX socket name too long"
 msgstr "%s: nome de soquete UNIX longo demais"
 
-#: grecs/src/tree.c:387 grecs/src/tree.c:611
+#: grecs/src/tree.c:389 grecs/src/tree.c:613
 #, c-format
 msgid "%s: not a valid IP address or hostname"
 msgstr "%s: não é um endereço de IP ou nome de máquina válidos"
 
-#: grecs/src/tree.c:411
+#: grecs/src/tree.c:413
 #, c-format
 msgid "%s: not a valid port number"
 msgstr "%s: não é um número de porta válido"
 
-#: grecs/src/tree.c:419
+#: grecs/src/tree.c:421
 msgid "missing port number"
 msgstr "faltando número de porta"
 
-#: grecs/src/tree.c:468
+#: grecs/src/tree.c:470
 msgid "numeric overflow"
 msgstr "Estouro numérico"
 
-#: grecs/src/tree.c:473
+#: grecs/src/tree.c:475
 msgid "value out of allowed range"
 msgstr "valor fora do intervalo permitido"
 
-#: grecs/src/tree.c:508 grecs/src/tree.c:538
+#: grecs/src/tree.c:510 grecs/src/tree.c:540
 #, c-format
 msgid "not a number (stopped near `%s')"
 msgstr "não é um número (parou perto de \"%s\")"
 
-#: grecs/src/tree.c:602
+#: grecs/src/tree.c:604
 #, c-format
 msgid "%s: not a valid IP address"
 msgstr "%s: não é um endereço IP válido"
 
-#: grecs/src/tree.c:624
-#, c-format
-msgid "INTERNAL ERROR at %s:%d"
-msgstr "ERRO INTERNO em %s:%d"
-
-#: grecs/src/tree.c:728
+#: grecs/src/tree.c:743
 #, c-format
 msgid "too many arguments to `%s'; missing semicolon?"
 msgstr "argumentos demais para \"%s\"; faltando ponto-e-vírgula?"
 
-#: grecs/src/tree.c:742 grecs/src/tree.c:790
+#: grecs/src/tree.c:757 grecs/src/tree.c:805
 #, c-format
 msgid "INTERNAL ERROR at %s:%d: unhandled data type %d"
 msgstr "ERRO INTERNO em %s:%d: tipo de dados não lidado %d"
 
-#: grecs/src/tree.c:757
+#: grecs/src/tree.c:772
 #, c-format
 msgid "%s: incompatible data type in list item #%d"
 msgstr "%s: tipo de dados incompatível na item de lista #%d"
 
-#: grecs/src/tree.c:777
+#: grecs/src/tree.c:792
 #, c-format
 msgid "incompatible data type for `%s'"
 msgstr "tipo de dados incompatível para \"%s\""
 
-#: grecs/src/tree.c:900 grecs/src/tree.c:910
+#: grecs/src/tree.c:920 grecs/src/tree.c:930
 msgid "Unknown keyword"
 msgstr "Palavra-chave desconhecida"
 
-#: grecs/src/tree.c:1119
+#: grecs/src/tree.c:1139
 #, c-format
 msgid "%s: unknown keyword"
 msgstr "%s: palavra-chave desconhecida"
 
-#: grecs/src/wordsplit.c:57 grecs/src/wordsplit.c:1577
-#: grecs/src/wordsplit.c:1608
+#: grecs/src/wordsplit.c:62 grecs/src/wordsplit.c:2300
 msgid "memory exhausted"
 msgstr "memória esgotada"
 
-#: grecs/src/wordsplit.c:790
+#: grecs/src/wordsplit.c:1073
+#, c-format
+msgid "%.*s: variable null or not set"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1102
 #, c-format
 msgid "warning: undefined variable `%.*s'"
 msgstr "aviso: variável não definida \"%.*s\""
 
-#: grecs/src/wordsplit.c:1567 grecs/src/wordsplit.c:1606
+#: grecs/src/wordsplit.c:1630
+#, c-format
+msgid "no files match pattern %s"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2080
+msgid "WS trimming"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2081
+msgid "tilde expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2082
+msgid "variable expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2084
+msgid "quote removal"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2086
+#, fuzzy
+msgid "command substitution"
+msgstr "não há ainda suporte a substituição de comando"
+
+#: grecs/src/wordsplit.c:2088
+msgid "coalesce list"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2090
+msgid "path expansion"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2120
+msgid "Initial list:"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2136
+#, fuzzy
+msgid "Coalesced list:"
+msgstr "lista inesperada"
+
+#: grecs/src/wordsplit.c:2190
+#, c-format
+msgid "(%02d) Input:%.*s;"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2202
+#, c-format
+msgid "(%02d) Restart:%.*s;"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2298
 msgid "no error"
 msgstr "nenhum erro"
 
-#: grecs/src/wordsplit.c:1571
+#: grecs/src/wordsplit.c:2299
+msgid "missing closing quote"
+msgstr "faltando fechar aspas"
+
+#: grecs/src/wordsplit.c:2301
+msgid "invalid wordsplit usage"
+msgstr "uso inválido de separação de palavra"
+
+#: grecs/src/wordsplit.c:2302
+msgid "unbalanced curly brace"
+msgstr "chave \"{}\"não balanceada"
+
+#: grecs/src/wordsplit.c:2303
+msgid "undefined variable"
+msgstr "variável não definida"
+
+#: grecs/src/wordsplit.c:2304
+msgid "input exhausted"
+msgstr "entrada esgotada"
+
+#: grecs/src/wordsplit.c:2305
+msgid "unbalanced parenthesis"
+msgstr ""
+
+#: grecs/src/wordsplit.c:2306
+#, fuzzy
+msgid "globbing error"
+msgstr "nenhum erro"
+
+#: grecs/src/wordsplit.c:2318
+msgid "unknown error"
+msgstr "erro desconhecido"
+
+#: grecs/src/wordsplit.c:2327
 #, c-format
 msgid "missing closing %c (start near #%lu)"
 msgstr "faltando fechar %c (início próximo a #%lu)"
 
-#: grecs/src/wordsplit.c:1581 grecs/src/wordsplit.c:1609
-msgid "command substitution is not yet supported"
-msgstr "não há ainda suporte a substituição de comando"
-
-#: grecs/src/wordsplit.c:1585 grecs/src/wordsplit.c:1610
-msgid "invalid wordsplit usage"
-msgstr "uso inválido de separação de palavra"
-
-#: grecs/src/wordsplit.c:1589 grecs/src/wordsplit.c:1611
-msgid "unbalanced curly brace"
-msgstr "chave \"{}\"não balanceada"
-
-#: grecs/src/wordsplit.c:1593 grecs/src/wordsplit.c:1612
-msgid "undefined variable"
-msgstr "variável não definida"
-
-#: grecs/src/wordsplit.c:1597 grecs/src/wordsplit.c:1613
-msgid "input exhausted"
-msgstr "entrada esgotada"
-
-#: grecs/src/wordsplit.c:1601 grecs/src/wordsplit.c:1623
-msgid "unknown error"
-msgstr "erro desconhecido"
-
-#: grecs/src/wordsplit.c:1607
-msgid "missing closing quote"
-msgstr "faltando fechar aspas"
+#~ msgid "INTERNAL ERROR at %s:%d"
+#~ msgstr "ERRO INTERNO em %s:%d"
 
 #~ msgid "ignoring duplicate definition"
 #~ msgstr "ignorando definição duplicada"
