@@ -7,7 +7,7 @@ Copyright: 2012-2014 Sergey Poznyakoff <gray@gnu.org.ua>
 License: GPL-3+
 
 Files: debian/*
-Copyright: 2014 Alejandro Garrido Mota <alejandro@debian.org>
+Copyright: 2014-2016 Alejandro Garrido Mota <alejandro@debian.org>
 License: GPL-3+
 
 Files: doc/*.info doc/*.texi
