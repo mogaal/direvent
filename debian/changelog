@@ -1,4 +1,4 @@
-direvent (5.1) UNRELEASED; urgency=medium
+direvent (5.1-1) UNRELEASED; urgency=medium
 
   * New upstream release
   * d/watch: update regex to avoid "latest" in watch.
