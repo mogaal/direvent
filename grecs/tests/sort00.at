@@ -1,0 +1,55 @@
+# This file is part of grecs  -*- Autotest -*-
+# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+#
+# Grecs is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# Grecs is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Grecs.  If not, see <http://www.gnu.org/licenses/>.
+
+AT_SETUP([Sort])
+AT_KEYWORDS([sort sort00])
+
+GRECS_TEST([b 1;
+a {
+	x 5;
+	b 4;
+	z 1;
+}
+z 10;
+k {
+	i 10;
+	a 1;
+	y 4;
+	o 3;
+}
+f {
+	a 1;
+	b 2;
+}
+g 1;
+],
+[gcffmt -sort],
+[0],
+[.a.b: "4"
+.a.x: "5"
+.a.z: "1"
+.b: "1"
+.f.a: "1"
+.f.b: "2"
+.g: "1"
+.k.a: "1"
+.k.i: "10"
+.k.o: "3"
+.k.y: "4"
+.z: "10"
+])
+
+AT_CLEANUP

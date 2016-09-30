@@ -1,0 +1,69 @@
+# This file is part of Direvent testsuite. -*- Autotest -*-
+# Copyright (C) 2013, 2014 Sergey Poznyakoff
+#
+# Direvent is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# Direvent is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Direvent.  If not, see <http://www.gnu.org/licenses/>.
+
+m4_version_prereq([2.52g])
+
+m4_define([AT_SKIP_TEST],[exit 77])
+
+dnl AT_DIREVENT_TEST([CONFIG],[SELFTEST],[PROLOGUE],[EPILOGUE],[CODE],[STDOUT],
+dnl                  [STDERR])                 
+m4_define([AT_DIREVENT_TEST],[
+AT_CHECK([
+cwd=`pwd -P`
+$3
+cat > test.conf <<EOT
+[$1]
+EOT
+cat > selftest.sh <<EOT
+#!/bin/sh
+[$2]
+sleep 10
+exit 21
+EOT
+chmod +x selftest.sh
+direvent -lnotice -f --self-test $cwd/selftest.sh test.conf || exit $?
+$4
+],
+[$5],
+[$6],
+[$7])])
+
+AT_INIT
+AT_TESTED([direvent])
+
+m4_include([create.at])
+m4_include([createrec.at])
+m4_include([delete.at])
+m4_include([write.at])
+m4_include([attrib.at])
+m4_include([cmdexp.at])
+m4_include([samepath.at])
+
+AT_BANNER([Environment modifications])
+m4_include([env00.at])
+m4_include([env01.at])
+m4_include([env02.at])
+m4_include([env03.at])
+
+AT_BANNER([Filename selection])
+m4_include([glob01.at])
+m4_include([glob02.at])
+m4_include([re01.at])
+m4_include([re02.at])
+m4_include([re03.at])
+m4_include([re04.at])
+m4_include([re05.at])
+

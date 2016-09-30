@@ -1,0 +1,780 @@
+# Dutch translations for GNU direvent.
+# Copyright (C) 2014 Free Software Foundation, Inc.
+# This file is distributed under the same license as the direvent package.
+#
+# "Alsof kleine kaboutertjes zachtjes in je ballen knijpen."
+#
+# Benno Schulenberg <benno@vertaalt.nl>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: direvent-4.1.91\n"
+"Report-Msgid-Bugs-To: bug-direvent@gnu.org.ua\n"
+"POT-Creation-Date: 2015-04-16 14:37+0300\n"
+"PO-Revision-Date: 2014-09-03 20:21+0200\n"
+"Last-Translator: Benno Schulenberg <benno@vertaalt.nl>\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: cmdline.opt:26
+msgid "increase debug level"
+msgstr "debug-niveau verhogen"
+
+#: cmdline.opt:32
+msgid "PRIO"
+msgstr "PRIO"
+
+#: cmdline.opt:32
+msgid ""
+"log everything with priority PRIO and higher to the stderr, as well as to "
+"the syslog"
+msgstr ""
+"alles met een prioriteit hoger dan PRIO loggen naar zowel "
+"standaardfoutuitvoer als syslog"
+
+#: cmdline.opt:41
+msgid "NAME"
+msgstr "NAAM"
+
+#: cmdline.opt:41
+msgid "set syslog facility"
+msgstr "te gebruiken syslog-faciliteit"
+
+#: cmdline.opt:47
+msgid "remain in foreground"
+msgstr "in de voorgrond blijven"
+
+#: cmdline.opt:53
+msgid "PROG"
+msgstr "PROGRAMMA"
+
+#: cmdline.opt:53
+msgid "self-test mode"
+msgstr "zelftest-modus"
+
+#: cmdline.opt:59
+msgid "FILE"
+msgstr "BESTAND"
+
+#: cmdline.opt:59
+msgid "set PID file"
+msgstr "te gebruiken PID-bestand"
+
+#: cmdline.opt:65
+msgid "check configuration file and exit"
+msgstr "configuratiebestand controleren en stoppen"
+
+#: cmdline.opt:71
+msgid "USER"
+msgstr "GEBRUIKER"
+
+#: cmdline.opt:71
+msgid "run as this user"
+msgstr "uitvoeren als deze gebruiker"
+
+#: cmdline.opt:81
+msgid "show configuration file summary"
+msgstr "samenvatting van configuratiebestand weergeven"
+
+#: cmdline.opt:75
+msgid "Other options"
+msgstr "Overige opties"
+
+#: cmdline.opt:87
+msgid "Give this help list"
+msgstr "deze hulptekst tonen"
+
+#: cmdline.opt:87
+msgid "Give a short usage message"
+msgstr "een korte gebruikssamenvatting tonen"
+
+#: cmdline.opt:87
+msgid "Print program version"
+msgstr "de programmaversie tonen"
+
+#: cmdline.opt:13
+msgid "GNU direvent monitors changes in directories"
+msgstr "GNU 'direvent' monitort veranderingen in mappen."
+
+#: cmdline.opt:15
+msgid "[CONFIG]"
+msgstr "[CONFIG]"
+
+#: cmdline.opt:81
+#, c-format
+msgid ""
+"The optional CONFIG argument supplies the name of the configuration file\n"
+"to use instead of %s.\n"
+"\n"
+msgstr ""
+"Het optionele argument CONFIG is de naam van het configuratiebestand\n"
+"dat gebruikt dient te worden in plaats van %s.\n"
+"\n"
+
+#. TRANSLATORS: %s is one of: inotify, kqueue
+#: cmdline.opt:85
+#, c-format
+msgid ""
+"This direvent uses %s interface.\n"
+"\n"
+msgstr ""
+"Deze 'direvent' gebruikt de %s-interface.\n"
+"\n"
+
+#: src/config.c:63
+#, c-format
+msgid "unknown syslog facility: %s"
+msgstr "onbekende syslog-faciliteit: %s"
+
+#: src/config.c:80
+#, c-format
+msgid "unknown syslog priority: %s"
+msgstr "onbekende syslog-prioriteit: %s"
+
+#: src/config.c:88
+msgid "unexpected block statement"
+msgstr "onverwacht blok-statement"
+
+#: src/config.c:97
+#, c-format
+msgid "expected %s"
+msgstr "verwachtte %s"
+
+#: src/config.c:102
+#, c-format
+msgid "expected %s, but found %s"
+msgstr "verwachtte %s, maar vond %s"
+
+#: src/config.c:124
+#, c-format
+msgid "unknown syslog facility `%s'"
+msgstr "onbekende syslog-faciliteit: '%s'"
+
+#: src/config.c:133 src/config.c:704
+msgid "name"
+msgstr "NAAM"
+
+#: src/config.c:134
+msgid ""
+"Set syslog facility. Arg is one of the following: user, daemon, auth, "
+"authpriv, mail, cron, local0 through local7 (case-insensitive), or a "
+"facility number."
+msgstr ""
+"Te gebruiken syslog-faciliteit.  Het argument is één van: 'user', 'daemon', "
+"'auth', 'authpriv', 'mail', 'cron', 'local0'..'local7' (hoofdlettegevoelig), "
+"of een faciliteitnummer."
+
+#: src/config.c:139
+msgid "string"
+msgstr "TEKENREEKS"
+
+#: src/config.c:139
+msgid "Tag syslog messages with this string"
+msgstr "syslog-berichten labelen met deze tekenreeks"
+
+#: src/config.c:142 grecs/src/format.c:141
+msgid "arg"
+msgstr "ARGUMENT"
+
+#: src/config.c:143
+msgid "Prefix each message with its priority"
+msgstr "aan elk bericht de prioriteit voorvoegen"
+
+#: src/config.c:209
+#, c-format
+msgid "%s: recursion depth does not match previous definition"
+msgstr "%s: recursiediepte komt niet overeen met vorige definitie"
+
+#: src/config.c:247
+msgid "no paths configured"
+msgstr "geen paden geconfigureerd"
+
+#: src/config.c:252
+msgid "no command configured"
+msgstr "geen commando geconfigureerd"
+
+#: src/config.c:264 grecs/src/tree.c:629
+msgid "invalid use of block statement"
+msgstr "ongeldig gebruik van blok-statement"
+
+#: src/config.c:309
+msgid "expected \"recursive\" or end of statement"
+msgstr "verwachtte \"recursive\" of einde van statement"
+
+#: src/config.c:324
+msgid "surplus argument"
+msgstr "overtollig argument"
+
+#: src/config.c:330 src/config.c:481
+msgid "unexpected list"
+msgstr "onverwachte lijst"
+
+#: src/config.c:361 src/config.c:376 src/config.c:391
+msgid "unrecognized event code"
+msgstr "niet-herkende gebeurteniscode"
+
+#: src/config.c:473
+msgid "surplus arguments"
+msgstr "overtollige argumenten"
+
+#: src/config.c:487
+msgid "no such user"
+msgstr "die gebruiker bestaat niet"
+
+#: src/config.c:494
+msgid "no such group"
+msgstr "die groep bestaat niet"
+
+#: src/config.c:533
+msgid "unrecognized flag"
+msgstr "niet-herkende vlag"
+
+#: src/config.c:611
+msgid "unterminated regexp"
+msgstr "onafgesloten reguliere expressie"
+
+#: src/config.c:625
+#, c-format
+msgid "unrecognized flag: %c"
+msgstr "niet-herkende vlag: %c"
+
+#: src/config.c:693
+msgid "Pathname to watch"
+msgstr "te monitoren padnaam"
+
+#: src/config.c:696
+msgid "Events to watch for"
+msgstr "te monitoren gebeurtenissen"
+
+#: src/config.c:699
+msgid "regexp"
+msgstr "reg.exp."
+
+#: src/config.c:699
+msgid "Files to watch for"
+msgstr "te monitoren bestanden"
+
+#: src/config.c:702
+msgid "Command to execute on event"
+msgstr "uit te voeren opdracht bij gebeurtenis"
+
+#: src/config.c:704
+msgid "Run command as this user"
+msgstr "opdracht uitvoeren als deze gebruiker"
+
+#: src/config.c:707
+msgid "seconds"
+msgstr "SECONDEN"
+
+#: src/config.c:707
+msgid "Timeout for the command"
+msgstr "tijdslimiet voor de opdracht"
+
+#: src/config.c:709
+msgid "List of additional options"
+msgstr "lijst van additionele opties"
+
+#: src/config.c:712
+msgid "<arg: string> <arg: string>..."
+msgstr "<arg: tekenreeks> <arg: tekenreeks>..."
+
+#: src/config.c:713
+msgid "Modify environment"
+msgstr "de omgeving aanpassen"
+
+#: src/config.c:720
+msgid "Run as this user"
+msgstr "uitvoeren als deze gebruiker"
+
+#: src/config.c:722
+msgid "Run in foreground"
+msgstr "in de voorgrond draaien"
+
+#: src/config.c:724
+msgid "file"
+msgstr "BESTAND"
+
+#: src/config.c:724
+msgid "Set pid file name"
+msgstr "te gebruiken pid-bestand"
+
+#: src/config.c:726
+msgid "Configure syslog logging"
+msgstr "syslog-loggen instellen"
+
+#: src/config.c:728
+msgid "level"
+msgstr "NIVEAU"
+
+#: src/config.c:728
+msgid "Set debug level"
+msgstr "debug-niveau instellen"
+
+#: src/config.c:730
+msgid "Configure event watcher"
+msgstr "gebeurtenismonitor instellen"
+
+#: src/config.c:741
+msgid ""
+"Configuration file structure for direvent.\n"
+"For more information, use `info direvent configuration'."
+msgstr ""
+"Structuur van het configuratiebestand voor 'direvent'.\n"
+"Zie 'info direvent configuration' voor meer informatie."
+
+#: src/direvent.c:141 src/direvent.c:163 src/watcher.c:86 src/watcher.c:182
+#: src/watcher.c:191
+msgid "not enough memory"
+msgstr "onvoldoende geheugen beschikbaar"
+
+#: src/direvent.c:271
+#, c-format
+msgid "cannot open pidfile %s for writing: %s"
+msgstr "kan PID-bestand %s niet openen om te schrijven: %s"
+
+#: src/direvent.c:299
+#, c-format
+msgid "no user with UID %lu"
+msgstr "er is geen gebruiker met UID %lu"
+
+#: src/direvent.c:417
+#, c-format
+msgid "cannot run `%s': fork failed: %s"
+msgstr "kan '%s' niet uitvoeren: fork() is mislukt: %s"
+
+#: src/direvent.c:477
+msgid "too many arguments"
+msgstr "te veel argumenten"
+
+#: src/direvent.c:523
+#, c-format
+msgid "%s %s started"
+msgstr "%s %s is gestart"
+
+#: src/direvent.c:544
+#, c-format
+msgid "%s %s stopped"
+msgstr "%s %s is gestopt"
+
+#: src/environ.c:25
+msgid "environment: "
+msgstr "omgeving: "
+
+#: src/hashtab.c:140 grecs/src/symtab.c:193
+msgid "element not found in table"
+msgstr "element niet gevonden in tabel"
+
+#: src/hashtab.c:142 grecs/src/symtab.c:195
+msgid "symbol table is full"
+msgstr "symbolentabel is vol"
+
+#: src/hashtab.c:144
+msgid "out of memory"
+msgstr "onvoldoende geheugen beschikbaar"
+
+#: src/progman.c:142
+#, c-format
+msgid "process %lu exited successfully"
+msgstr "proces %lu is met succes afgesloten"
+
+#: src/progman.c:145
+#, c-format
+msgid "process %lu failed with status %d"
+msgstr "proces %lu is mislukt met afsluitwaarde %d"
+
+#: src/progman.c:155
+#, c-format
+msgid "process %lu terminated on signal %d"
+msgstr "proces %lu is beëindigd door signaal %d"
+
+#: src/progman.c:158
+#, c-format
+msgid "process %lu stopped on signal %d"
+msgstr "proces %lu is gepauzeerd door signaal %d"
+
+#: src/progman.c:163
+#, c-format
+msgid "process %lu dumped core"
+msgstr "process %lu heeft een core-dump gemaakt"
+
+#: src/progman.c:167
+#, c-format
+msgid "process %lu terminated with unrecognized status"
+msgstr "proces %lu is beëindigd met een onbekende afsluitwaarde"
+
+#: src/progman.c:228
+msgid "begin scanning process list"
+msgstr "scannen van de processenlijst"
+
+#: src/progman.c:232
+#, c-format
+msgid "process %lu timed out"
+msgstr "proces %lu overschreed de tijdslimiet"
+
+#: src/progman.c:241
+#, c-format
+msgid "scheduling alarm in %lu seconds"
+msgstr "een alarm wordt geagendeerd voor over %lu seconden"
+
+#: src/progman.c:322
+#, c-format
+msgid "cannot start redirector for %s, pipe failed: %s"
+msgstr "kan omleider niet starten voor %s, pipe() is mislukt: %s"
+
+#: src/progman.c:354
+#, c-format
+msgid "cannot run redirector `%s': fork failed: %s"
+msgstr "kan omleider '%s' niet draaien, fork() is mislukt: %s"
+
+#: src/progman.c:359
+#, c-format
+msgid "redirector for %s started, pid=%lu"
+msgstr "omleider voor %s is gestart, PID=%lu"
+
+#: src/progman.c:439
+#, c-format
+msgid "starting %s, dir=%s, file=%s"
+msgstr "starten van %s, map=%s, bestand=%s"
+
+#: src/progman.c:468
+#, c-format
+msgid "cannot change to %s: %s"
+msgstr "kan map niet wijzigen naar %s: %s"
+
+#: src/progman.c:496
+#, c-format
+msgid "%s running; dir=%s, file=%s, pid=%lu"
+msgstr "%s draait; map=%s, bestand=%s, PID=%lu"
+
+#: src/progman.c:518
+#, c-format
+msgid "waiting for %s (%lu) to terminate"
+msgstr "wachtend op afsluiten van %s (%lu)"
+
+#: src/watcher.c:231
+#, c-format
+msgid "creating watcher %s"
+msgstr "aanmaken van monitor %s"
+
+#: src/watcher.c:240
+#, c-format
+msgid "cannot set watcher on %s: %s"
+msgstr "kan geen monitor zetten op %s: %s"
+
+#: src/watcher.c:319
+#, c-format
+msgid "cannot create watcher %s/%s: not enough memory"
+msgstr "kan monitor %s/%s niet aanmaken: onvoldoende geheugen beschikbaar"
+
+#: src/watcher.c:326
+#, c-format
+msgid "cannot create watcher %s/%s, stat failed: %s"
+msgstr "kan monitor %s/%s niet aanmaken, stat() is mislukt: %s"
+
+#: src/watcher.c:355
+#, c-format
+msgid "cannot open directory %s: %s"
+msgstr "kan map %s niet openen: %s"
+
+#: src/watcher.c:371
+#, c-format
+msgid "cannot stat %s/%s: not enough memory"
+msgstr ""
+"kan de status van %s/%s niet opvragen: onvoldoende geheugen beschikbaar"
+
+#: src/watcher.c:376
+#, c-format
+msgid "cannot stat %s: %s"
+msgstr "kan de status van %s niet opvragen: %s"
+
+#: src/watcher.c:412
+msgid "no event handlers configured"
+msgstr "geen gebeurtenis-afhandelaars geconfigureerd"
+
+#: src/watcher.c:417
+msgid "no event handlers installed"
+msgstr "geen gebeurtenis-afhandelaars geïnstalleerd"
+
+#: src/watcher.c:425
+#, c-format
+msgid "removing watcher %s"
+msgstr "verwijderen van monitor %s"
+
+#: grecs/src/format.c:133
+msgid "Disabled;"
+msgstr "uitgezet;"
+
+#: grecs/src/opthelp.c:123 grecs/src/opthelp.c:269
+msgid "Usage:"
+msgstr "Gebruik: "
+
+#: grecs/src/opthelp.c:127
+msgid "OPTION"
+msgstr "OPTIE"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Aliases"
+msgstr "Aliassen"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Alias"
+msgstr "Alias"
+
+#: grecs/src/opthelp.c:186
+msgid ""
+"Mandatory or optional arguments to long options are also mandatory or "
+"optional for any corresponding short options."
+msgstr ""
+"Een argument dat verplicht of optioneel is voor een lange optie, is dat\n"
+"ook voor de overeenkomstige korte optie."
+
+#. TRANSLATORS: The placeholder indicates the bug-reporting
+#. address for this package.  Please add _another line_ saying
+#. "Report translation bugs to <...>\n" with the address for
+#. translation bugs (typically your translation team's web or
+#. email address).
+#: grecs/src/opthelp.c:202
+#, c-format
+msgid "Report bugs to %s.\n"
+msgstr ""
+"Rapporteer gebreken in het programma aan %s;\n"
+"meld fouten in de vertaling aan <vertaling@vrijschrift.org>.\n"
+
+#: grecs/src/opthelp.c:205
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr "Webpagina van '%s': <%s>\n"
+
+#. TRANSLATORS: Translate "(C)" to the copyright symbol
+#. (C-in-a-circle), if this symbol is available in the user's
+#. locale.  Otherwise, do not translate "(C)"; leave it as-is.
+#: grecs/src/opthelp.c:457
+msgid "(C)"
+msgstr "©"
+
+#: grecs/src/opthelp.c:466
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+"\n"
+msgstr ""
+"Dit is vrije software: u mag het vrijelijk wijzigen en verder verspreiden.\n"
+"De precieze licentie is GPL-3+: GNU General Public License versie 3 of "
+"later.\n"
+"Zie <http://gnu.org/licenses/gpl.html> voor de volledige (Engelse) tekst.\n"
+"Deze software kent GEEN GARANTIE, voor zover de wet dit toestaat.\n"
+"\n"
+
+#: grecs/src/opthelp.c:483
+msgid "Written by "
+msgstr "Geschreven door "
+
+#. TRANSLATORS: This string is used as a delimiter between
+#. authors' names as in:
+#.
+#. Written by Winnie the Pooh, Piglet ...
+#.
+#: grecs/src/opthelp.c:489
+msgid ", "
+msgstr ", "
+
+#. TRANSLATORS: This string acts as a delimiter before the
+#. last author's names, e.g.:
+#.
+#. Written by Winnie the Pooh, Piglet and Christopher Robin.
+#.
+#: grecs/src/opthelp.c:495
+msgid " and "
+msgstr " en "
+
+#: grecs/src/path-parser.c:62
+#, c-format
+msgid "cannot open `%s'"
+msgstr "kan '%s' niet openen"
+
+#: grecs/src/path-parser.c:108 grecs/src/path-parser.c:123
+msgid "unexpected end of file"
+msgstr "onverwacht einde van bestand"
+
+#: grecs/src/path-parser.c:143
+msgid "parse error"
+msgstr "ontledingsfout"
+
+#: grecs/src/preproc.c:434 grecs/src/preproc.c:456
+#, c-format
+msgid "Cannot stat `%s'"
+msgstr "Kan de status van '%s' niet opvragen"
+
+#: grecs/src/preproc.c:439 grecs/src/preproc.c:444
+msgid "Recursive inclusion"
+msgstr "Recursieve insluiting"
+
+#: grecs/src/preproc.c:447
+#, c-format
+msgid "`%s' already included here"
+msgstr "'%s' is hier al ingesloten"
+
+#: grecs/src/preproc.c:451
+#, c-format
+msgid "`%s' already included at top level"
+msgstr "'%s' is al ingesloten op het topniveau"
+
+#: grecs/src/preproc.c:466
+#, c-format
+msgid "Cannot open `%s'"
+msgstr "Kan '%s' niet openen"
+
+#: grecs/src/preproc.c:563
+msgid "Cannot parse include line"
+msgstr "Kan 'include'-regel niet ontleden"
+
+#: grecs/src/preproc.c:566
+msgid "invalid include statement"
+msgstr "ongeldig 'include'-statement"
+
+#: grecs/src/preproc.c:586
+#, c-format
+msgid "%s: No such file or directory"
+msgstr "%s: Bestand of map bestaat niet"
+
+#: grecs/src/preproc.c:639
+#, c-format
+msgid "Unable to start external preprocessor `%s'"
+msgstr "Kan externe preprocessor '%s' niet starten"
+
+#: grecs/src/preproc.c:714 grecs/src/preproc.c:734
+#, c-format
+msgid "Cannot run `%s'"
+msgstr "Kan '%s' niet uitvoeren"
+
+#: grecs/src/tree.c:328
+#, c-format
+msgid "%s: not a valid boolean value"
+msgstr "%s is geen geldige booleaanse waarde"
+
+#: grecs/src/tree.c:358
+#, c-format
+msgid "%s: UNIX socket name too long"
+msgstr "%s: UNIX-socketnaam is te lang"
+
+#: grecs/src/tree.c:387 grecs/src/tree.c:611
+#, c-format
+msgid "%s: not a valid IP address or hostname"
+msgstr "%s is geen geldig IP-adres of hostnaam"
+
+#: grecs/src/tree.c:411
+#, c-format
+msgid "%s: not a valid port number"
+msgstr "%s is geen geldig poortnummer"
+
+#: grecs/src/tree.c:419
+msgid "missing port number"
+msgstr "ontbrekend poortnummer"
+
+#: grecs/src/tree.c:468
+msgid "numeric overflow"
+msgstr "numerieke overloop"
+
+#: grecs/src/tree.c:473
+msgid "value out of allowed range"
+msgstr "waarde ligt buiten bereik"
+
+#: grecs/src/tree.c:508 grecs/src/tree.c:538
+#, c-format
+msgid "not a number (stopped near `%s')"
+msgstr "is geen getal (gestopt dichtbij '%s')"
+
+#: grecs/src/tree.c:602
+#, c-format
+msgid "%s: not a valid IP address"
+msgstr "%s is geen geldig IP-adres"
+
+#: grecs/src/tree.c:624
+#, c-format
+msgid "INTERNAL ERROR at %s:%d"
+msgstr "**interne programmafout** bij %s:%d"
+
+#: grecs/src/tree.c:728
+#, c-format
+msgid "too many arguments to `%s'; missing semicolon?"
+msgstr "te veel argumenten van '%s'; ontbrekende puntkomma?"
+
+#: grecs/src/tree.c:742 grecs/src/tree.c:790
+#, c-format
+msgid "INTERNAL ERROR at %s:%d: unhandled data type %d"
+msgstr "**interne programmafout** bij %s:%d: onverwerkt gegevenstype %d"
+
+#: grecs/src/tree.c:757
+#, c-format
+msgid "%s: incompatible data type in list item #%d"
+msgstr "%s: incompatibel gegevenstype in lijstitem #%d"
+
+#: grecs/src/tree.c:777
+#, c-format
+msgid "incompatible data type for `%s'"
+msgstr "incompatibel gegevenstype voor '%s'"
+
+#: grecs/src/tree.c:900 grecs/src/tree.c:910
+msgid "Unknown keyword"
+msgstr "Onbekend sleutelwoord"
+
+#: grecs/src/tree.c:1119
+#, c-format
+msgid "%s: unknown keyword"
+msgstr "%s: onbekend sleutelwoord"
+
+#: grecs/src/wordsplit.c:57 grecs/src/wordsplit.c:1577
+#: grecs/src/wordsplit.c:1608
+msgid "memory exhausted"
+msgstr "onvoldoende geheugen beschikbaar"
+
+#: grecs/src/wordsplit.c:790
+#, c-format
+msgid "warning: undefined variable `%.*s'"
+msgstr "waarschuwing: ongedefinieerde variabele '%.*s'"
+
+#: grecs/src/wordsplit.c:1567 grecs/src/wordsplit.c:1606
+msgid "no error"
+msgstr "geen fout"
+
+#: grecs/src/wordsplit.c:1571
+#, c-format
+msgid "missing closing %c (start near #%lu)"
+msgstr "ontbrekend afsluitend %c (begon ongeveer bij #%lu)"
+
+#: grecs/src/wordsplit.c:1581 grecs/src/wordsplit.c:1609
+msgid "command substitution is not yet supported"
+msgstr "opdrachtsubstitutie wordt nog niet ondersteund"
+
+#: grecs/src/wordsplit.c:1585 grecs/src/wordsplit.c:1610
+msgid "invalid wordsplit usage"
+msgstr "ongeldig gebruik van woordscheiding"
+
+#: grecs/src/wordsplit.c:1589 grecs/src/wordsplit.c:1611
+msgid "unbalanced curly brace"
+msgstr "ongepaarde accolade"
+
+#: grecs/src/wordsplit.c:1593 grecs/src/wordsplit.c:1612
+msgid "undefined variable"
+msgstr "ongedefinieerde variabele"
+
+#: grecs/src/wordsplit.c:1597 grecs/src/wordsplit.c:1613
+msgid "input exhausted"
+msgstr "de invoer is op"
+
+#: grecs/src/wordsplit.c:1601 grecs/src/wordsplit.c:1623
+msgid "unknown error"
+msgstr "onbekende fout"
+
+#: grecs/src/wordsplit.c:1607
+msgid "missing closing quote"
+msgstr "ontbrekend afsluitend aanhalingsteken"
+
+#~ msgid "ignoring duplicate definition"
+#~ msgstr "dubbele definitie wordt genegeerd"

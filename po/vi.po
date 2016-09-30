@@ -1,0 +1,779 @@
+# Vietnamese translations for direvent package.
+# Bản dịch tiếng Việt cho gói direvent.
+# Copyright (C) 2014 Free Software Foundation, Inc.
+# Copyright (C) 2014 Sergey Poznyakoff (msgid).
+# This file is distributed under the same license as the direvent package.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: direvent 4.1.91\n"
+"Report-Msgid-Bugs-To: bug-direvent@gnu.org.ua\n"
+"POT-Creation-Date: 2015-04-16 14:37+0300\n"
+"PO-Revision-Date: 2014-09-03 07:54+0700\n"
+"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
+"Language-Team: Vietnamese <translation-team-vi@lists.sourceforge.net>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: cmdline.opt:26
+msgid "increase debug level"
+msgstr "tăng mức gỡ lỗi"
+
+#: cmdline.opt:32
+msgid "PRIO"
+msgstr "ƯUTIÊN"
+
+#: cmdline.opt:32
+msgid ""
+"log everything with priority PRIO and higher to the stderr, as well as to "
+"the syslog"
+msgstr ""
+"ghi nhật ký mọi thứ mà mức ưu tiên bằng hay cao hơn ƯUTIÊN ra đầu ra lỗi "
+"chuẩn, cũng như là syslog"
+
+#: cmdline.opt:41
+msgid "NAME"
+msgstr "TÊN"
+
+#: cmdline.opt:41
+msgid "set syslog facility"
+msgstr "đặt cơ sở hạ tầng ghi nhật ký"
+
+#: cmdline.opt:47
+msgid "remain in foreground"
+msgstr "vẫn ở trên tiền cảnh"
+
+#: cmdline.opt:53
+msgid "PROG"
+msgstr "TRÌNH"
+
+#: cmdline.opt:53
+msgid "self-test mode"
+msgstr "chế độ tự kiểm tra"
+
+#: cmdline.opt:59
+msgid "FILE"
+msgstr "TẬP-TIN"
+
+#: cmdline.opt:59
+msgid "set PID file"
+msgstr "đặt tập tin ghi mã số tiến trình"
+
+#: cmdline.opt:65
+msgid "check configuration file and exit"
+msgstr "kiểm tra tập tin cấu hình rồi thoát"
+
+#: cmdline.opt:71
+msgid "USER"
+msgstr "NGƯỜI_DÙNG"
+
+#: cmdline.opt:71
+msgid "run as this user"
+msgstr "chạy dưới tài khoản này"
+
+#: cmdline.opt:81
+msgid "show configuration file summary"
+msgstr "hiển thị tổng hợp về tập tin cấu hình"
+
+#: cmdline.opt:75
+msgid "Other options"
+msgstr "Tùy chọn khác"
+
+#: cmdline.opt:87
+msgid "Give this help list"
+msgstr "Đưa ra danh sách trợ giúp"
+
+#: cmdline.opt:87
+msgid "Give a short usage message"
+msgstr "Đưa ra trợ giúp dạng ngắn gọn"
+
+#: cmdline.opt:87
+msgid "Print program version"
+msgstr "In ra phiên bản chương trình"
+
+#: cmdline.opt:13
+msgid "GNU direvent monitors changes in directories"
+msgstr "GNU direvent theo dõi các thay đổi trong các thư mục"
+
+#: cmdline.opt:15
+msgid "[CONFIG]"
+msgstr "[CẤUHÌNH]"
+
+#: cmdline.opt:81
+#, c-format
+msgid ""
+"The optional CONFIG argument supplies the name of the configuration file\n"
+"to use instead of %s.\n"
+"\n"
+msgstr ""
+"Đối số tùy chọn CONFIG cung cấp tên của tập tin cấu hình\n"
+"được dùng thay cho %s.\n"
+"\n"
+
+#. TRANSLATORS: %s is one of: inotify, kqueue
+#: cmdline.opt:85
+#, c-format
+msgid ""
+"This direvent uses %s interface.\n"
+"\n"
+msgstr ""
+"direvent này dùng giao diện %s.\n"
+"\n"
+
+#: src/config.c:63
+#, c-format
+msgid "unknown syslog facility: %s"
+msgstr "không hiểu cơ sở hạ tầng ghi nhật ký: “%s”"
+
+#: src/config.c:80
+#, c-format
+msgid "unknown syslog priority: %s"
+msgstr "không hiểu mức ưu tiên ghi nhật ký: “%s”"
+
+#: src/config.c:88
+msgid "unexpected block statement"
+msgstr "gặp biểu thức khối không cần"
+
+#: src/config.c:97
+#, c-format
+msgid "expected %s"
+msgstr "cần %s"
+
+#: src/config.c:102
+#, c-format
+msgid "expected %s, but found %s"
+msgstr "cần %s, nhưng lại nhận được %s"
+
+#: src/config.c:124
+#, c-format
+msgid "unknown syslog facility `%s'"
+msgstr "không hiểu cơ sở hạ tầng ghi nhật ký “%s”"
+
+#: src/config.c:133 src/config.c:704
+msgid "name"
+msgstr "tên"
+
+#: src/config.c:134
+msgid ""
+"Set syslog facility. Arg is one of the following: user, daemon, auth, "
+"authpriv, mail, cron, local0 through local7 (case-insensitive), or a "
+"facility number."
+msgstr ""
+"Đặt cơ sở hạ tầng syslog. Đối số là một trong số sau: user, daemon, auth, "
+"authpriv, mail, cron, local0 đến local7 (phân biệt HOA/thường), hoặc là số "
+"của cơ sở hạ tầng."
+
+#: src/config.c:139
+msgid "string"
+msgstr "chuỗi"
+
+#: src/config.c:139
+msgid "Tag syslog messages with this string"
+msgstr "Đánh dấu thông tin nhật ký với chuỗi này"
+
+#: src/config.c:142 grecs/src/format.c:141
+msgid "arg"
+msgstr "đối-số"
+
+#: src/config.c:143
+msgid "Prefix each message with its priority"
+msgstr "Nối thêm tiền tố từng lời nhắn bằng mức ưu tiên của nó"
+
+#: src/config.c:209
+#, c-format
+msgid "%s: recursion depth does not match previous definition"
+msgstr "%s: độ sâu đệ quy không khớp với định nghĩa trước đó"
+
+#: src/config.c:247
+msgid "no paths configured"
+msgstr "chưa có đường dẫn nào được cấu hình"
+
+#: src/config.c:252
+msgid "no command configured"
+msgstr "chưa cấu hình lệnh nào"
+
+#: src/config.c:264 grecs/src/tree.c:629
+msgid "invalid use of block statement"
+msgstr "cách dùng biểu thức khối không hợp lệ"
+
+#: src/config.c:309
+msgid "expected \"recursive\" or end of statement"
+msgstr "cần \"recursive\" hoặc kết thúc câu lệnh"
+
+#: src/config.c:324
+msgid "surplus argument"
+msgstr "tham số thừa"
+
+#: src/config.c:330 src/config.c:481
+msgid "unexpected list"
+msgstr "gặp danh sách không cần"
+
+#: src/config.c:361 src/config.c:376 src/config.c:391
+msgid "unrecognized event code"
+msgstr "không nhận ra mã sự kiện"
+
+#: src/config.c:473
+msgid "surplus arguments"
+msgstr "các đối số thừa"
+
+#: src/config.c:487
+msgid "no such user"
+msgstr "không có người dùng như vậy"
+
+#: src/config.c:494
+msgid "no such group"
+msgstr "không có nhóm như vậy"
+
+#: src/config.c:533
+msgid "unrecognized flag"
+msgstr "không nhận ra cờ"
+
+#: src/config.c:611
+msgid "unterminated regexp"
+msgstr "biểu thức chính quy chưa được chấm dứt"
+
+#: src/config.c:625
+#, c-format
+msgid "unrecognized flag: %c"
+msgstr "không nhận ra cờ: “%c”"
+
+#: src/config.c:693
+msgid "Pathname to watch"
+msgstr "Tên đường dẫn cần theo dõi"
+
+#: src/config.c:696
+msgid "Events to watch for"
+msgstr "Sự kiện cần theo dõi"
+
+#: src/config.c:699
+msgid "regexp"
+msgstr "BTCQ"
+
+#: src/config.c:699
+msgid "Files to watch for"
+msgstr "Các tập tin cần theo dõi"
+
+#: src/config.c:702
+msgid "Command to execute on event"
+msgstr "Lệnh thực thi cho sự kiện"
+
+#: src/config.c:704
+msgid "Run command as this user"
+msgstr "Chạy lệnh dưới tư cách người dùng này"
+
+#: src/config.c:707
+msgid "seconds"
+msgstr "giây"
+
+#: src/config.c:707
+msgid "Timeout for the command"
+msgstr "Thời gian chờ lệnh tối đa"
+
+#: src/config.c:709
+msgid "List of additional options"
+msgstr "Danh sách các tùy chọn bổ xung"
+
+#: src/config.c:712
+msgid "<arg: string> <arg: string>..."
+msgstr "<đối-số: chuỗi> <đối-số: chuỗi>..."
+
+#: src/config.c:713
+msgid "Modify environment"
+msgstr "Biến đổi biến môi trường"
+
+#: src/config.c:720
+msgid "Run as this user"
+msgstr "chạy như là người dùng này"
+
+#: src/config.c:722
+msgid "Run in foreground"
+msgstr "Chạy trên nền"
+
+#: src/config.c:724
+msgid "file"
+msgstr "tập_tin"
+
+#: src/config.c:724
+msgid "Set pid file name"
+msgstr "Đặt tên tập tin lưu mã số tiến trình"
+
+#: src/config.c:726
+msgid "Configure syslog logging"
+msgstr "Cấu hình ghi nhật ký syslog"
+
+#: src/config.c:728
+msgid "level"
+msgstr "mức"
+
+#: src/config.c:728
+msgid "Set debug level"
+msgstr "Đặt mức gỡ lỗi"
+
+#: src/config.c:730
+msgid "Configure event watcher"
+msgstr "Cấu hình bộ theo dõi sự kiện"
+
+#: src/config.c:741
+msgid ""
+"Configuration file structure for direvent.\n"
+"For more information, use `info direvent configuration'."
+msgstr ""
+"Cấu trúc tập tin cấu hình cho direvent.\n"
+"Để biết thêm thông tin vui lòng xem “info direvent configuration”."
+
+#: src/direvent.c:141 src/direvent.c:163 src/watcher.c:86 src/watcher.c:182
+#: src/watcher.c:191
+msgid "not enough memory"
+msgstr "không đủ bộ nhớ"
+
+#: src/direvent.c:271
+#, c-format
+msgid "cannot open pidfile %s for writing: %s"
+msgstr "không thể mở tập-tin mã số tiến trình %s để ghi: %s"
+
+#: src/direvent.c:299
+#, c-format
+msgid "no user with UID %lu"
+msgstr "không có người dùng với mã số là %lu"
+
+#: src/direvent.c:417
+#, c-format
+msgid "cannot run `%s': fork failed: %s"
+msgstr "không thể chạy “%s”: gặp lỗi khi rẽ nhánh tiến trình: %s"
+
+#: src/direvent.c:477
+msgid "too many arguments"
+msgstr "quá nhiều đối số"
+
+#: src/direvent.c:523
+#, c-format
+msgid "%s %s started"
+msgstr "%s %s đã chạy"
+
+#: src/direvent.c:544
+#, c-format
+msgid "%s %s stopped"
+msgstr "%s %s đã dừng"
+
+#: src/environ.c:25
+msgid "environment: "
+msgstr "môi trường: "
+
+#: src/hashtab.c:140 grecs/src/symtab.c:193
+msgid "element not found in table"
+msgstr "phần tử không tìm thấy trong bảng"
+
+#: src/hashtab.c:142 grecs/src/symtab.c:195
+msgid "symbol table is full"
+msgstr "bảng ký hiệu đã đầy"
+
+#: src/hashtab.c:144
+msgid "out of memory"
+msgstr "hết bộ nhớ"
+
+#: src/progman.c:142
+#, c-format
+msgid "process %lu exited successfully"
+msgstr "tiến trình %lu đã thoát thành công"
+
+#: src/progman.c:145
+#, c-format
+msgid "process %lu failed with status %d"
+msgstr "tiến trình %lu gặp lỗi với trạng thái %d"
+
+#: src/progman.c:155
+#, c-format
+msgid "process %lu terminated on signal %d"
+msgstr "tiến trình %lu chấm dứt trên tín hiệu %d"
+
+#: src/progman.c:158
+#, c-format
+msgid "process %lu stopped on signal %d"
+msgstr "tiến trình %lu dừng trên tín hiệu %d"
+
+#: src/progman.c:163
+#, c-format
+msgid "process %lu dumped core"
+msgstr "tiến trình %lu bị đổ lõi"
+
+#: src/progman.c:167
+#, c-format
+msgid "process %lu terminated with unrecognized status"
+msgstr "tiến trình %lu chấm dứt với trạng thái không nhận ra"
+
+#: src/progman.c:228
+msgid "begin scanning process list"
+msgstr "đang bắt đầu quét tìm danh sách xử lý"
+
+#: src/progman.c:232
+#, c-format
+msgid "process %lu timed out"
+msgstr "tiến trình %lu bị lỗi quá thời gian"
+
+#: src/progman.c:241
+#, c-format
+msgid "scheduling alarm in %lu seconds"
+msgstr "lập lịch phát âm báo trong %lu giây"
+
+#: src/progman.c:322
+#, c-format
+msgid "cannot start redirector for %s, pipe failed: %s"
+msgstr "không thể khởi chạy bộ chuyển hướng cho %s, gặp lỗi với đường ống: %s"
+
+#: src/progman.c:354
+#, c-format
+msgid "cannot run redirector `%s': fork failed: %s"
+msgstr ""
+"không thể chạy bộ chuyển hướng “%s”: gặp lỗi khi rẽ nhánh tiến trình: %s"
+
+#: src/progman.c:359
+#, c-format
+msgid "redirector for %s started, pid=%lu"
+msgstr "bộ chuyển hướng cho %s đã khởi chạy, pid=%lu"
+
+#: src/progman.c:439
+#, c-format
+msgid "starting %s, dir=%s, file=%s"
+msgstr "đang khởi chạy %s, thư-mục=%s, tập-tin=%s"
+
+#: src/progman.c:468
+#, c-format
+msgid "cannot change to %s: %s"
+msgstr "không thể chuyển đổi sang %s: %s"
+
+#: src/progman.c:496
+#, c-format
+msgid "%s running; dir=%s, file=%s, pid=%lu"
+msgstr "%s đang chạy; thư-mục=%s, tập-tin=%s, mã-số-tiến-trình=%lu"
+
+#: src/progman.c:518
+#, c-format
+msgid "waiting for %s (%lu) to terminate"
+msgstr "chờ %s (%lu) chấm dứt"
+
+#: src/watcher.c:231
+#, c-format
+msgid "creating watcher %s"
+msgstr "đang tạo bộ theo dõi %s"
+
+#: src/watcher.c:240
+#, c-format
+msgid "cannot set watcher on %s: %s"
+msgstr "không thể đặt bộ theo dõi trên %s: %s"
+
+#: src/watcher.c:319
+#, c-format
+msgid "cannot create watcher %s/%s: not enough memory"
+msgstr "không thể tạo bộ theo dõi %s/%s: không đủ bộ nhớ"
+
+#: src/watcher.c:326
+#, c-format
+msgid "cannot create watcher %s/%s, stat failed: %s"
+msgstr "không thể tạo bộ theo dõi %s/%s, gặp lỗi khi lấy thống kê: %s"
+
+#: src/watcher.c:355
+#, c-format
+msgid "cannot open directory %s: %s"
+msgstr "không thể mở thư mục %s: %s"
+
+#: src/watcher.c:371
+#, c-format
+msgid "cannot stat %s/%s: not enough memory"
+msgstr "không thể lấy thống kê %s/%s: không đủ bộ nhớ"
+
+#: src/watcher.c:376
+#, c-format
+msgid "cannot stat %s: %s"
+msgstr "không thể lấy thống kê %s: %s"
+
+#: src/watcher.c:412
+msgid "no event handlers configured"
+msgstr "chưa cấu hình bộ tiếp hợp sự kiện nào"
+
+#: src/watcher.c:417
+msgid "no event handlers installed"
+msgstr "chưa cài đặt bộ tiếp hợp sự kiện nào"
+
+#: src/watcher.c:425
+#, c-format
+msgid "removing watcher %s"
+msgstr "gỡ bỏ bộ theo dõi %s"
+
+#: grecs/src/format.c:133
+msgid "Disabled;"
+msgstr "Đã tắt;"
+
+#: grecs/src/opthelp.c:123 grecs/src/opthelp.c:269
+msgid "Usage:"
+msgstr "Cách dùng:"
+
+#: grecs/src/opthelp.c:127
+msgid "OPTION"
+msgstr "TÙY_CHỌN"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Aliases"
+msgstr "Bí danh"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Alias"
+msgstr "Bí danh"
+
+#: grecs/src/opthelp.c:186
+msgid ""
+"Mandatory or optional arguments to long options are also mandatory or "
+"optional for any corresponding short options."
+msgstr ""
+"Tất cả đối số bắt buộc phải sử dụng với tùy chọn dài cũng bắt buộc với tùy "
+"chọn ngắn tương ứng."
+
+#. TRANSLATORS: The placeholder indicates the bug-reporting
+#. address for this package.  Please add _another line_ saying
+#. "Report translation bugs to <...>\n" with the address for
+#. translation bugs (typically your translation team's web or
+#. email address).
+#: grecs/src/opthelp.c:202
+#, c-format
+msgid "Report bugs to %s.\n"
+msgstr ""
+"Thông báo lỗi cho %s.\n"
+"Báo cáo lỗi dịch cho nhóm dịch tiếng Việt tại TranslationProject:\n"
+"\t<translation-team-vi@lists.sourceforge.net>\n"
+
+#: grecs/src/opthelp.c:205
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr "Trang chủ %s: <%s>\n"
+
+#. TRANSLATORS: Translate "(C)" to the copyright symbol
+#. (C-in-a-circle), if this symbol is available in the user's
+#. locale.  Otherwise, do not translate "(C)"; leave it as-is.
+#: grecs/src/opthelp.c:457
+msgid "(C)"
+msgstr "©"
+
+#: grecs/src/opthelp.c:466
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+"\n"
+msgstr ""
+"Giấy phép GPL pb3+: Giấy phép Công cộng GNU phiên bản 3 hay sau\n"
+"<http://gnu.org/licenses/gpl.html>\n"
+"Đây là phần mềm tự do: bạn có quyền sửa đổi và phát hành lại nó.\n"
+"KHÔNG CÓ BẢO HÀNH GÌ CẢ, với điều khiển được pháp luật cho phép.\n"
+"\n"
+
+#: grecs/src/opthelp.c:483
+msgid "Written by "
+msgstr "Tác giả "
+
+#. TRANSLATORS: This string is used as a delimiter between
+#. authors' names as in:
+#.
+#. Written by Winnie the Pooh, Piglet ...
+#.
+#: grecs/src/opthelp.c:489
+msgid ", "
+msgstr ", "
+
+#. TRANSLATORS: This string acts as a delimiter before the
+#. last author's names, e.g.:
+#.
+#. Written by Winnie the Pooh, Piglet and Christopher Robin.
+#.
+#: grecs/src/opthelp.c:495
+msgid " and "
+msgstr " và "
+
+#: grecs/src/path-parser.c:62
+#, c-format
+msgid "cannot open `%s'"
+msgstr "không thể mở “%s”"
+
+#: grecs/src/path-parser.c:108 grecs/src/path-parser.c:123
+msgid "unexpected end of file"
+msgstr "kết thúc tập tin đột xuất"
+
+#: grecs/src/path-parser.c:143
+msgid "parse error"
+msgstr "lỗi phân tích cú pháp"
+
+#: grecs/src/preproc.c:434 grecs/src/preproc.c:456
+#, c-format
+msgid "Cannot stat `%s'"
+msgstr "không thể lấy thông tin thống kê về “%s”"
+
+#: grecs/src/preproc.c:439 grecs/src/preproc.c:444
+msgid "Recursive inclusion"
+msgstr "Bao gồm đệ quy"
+
+#: grecs/src/preproc.c:447
+#, c-format
+msgid "`%s' already included here"
+msgstr "\"%s\" đã được bao gồm ở đây"
+
+#: grecs/src/preproc.c:451
+#, c-format
+msgid "`%s' already included at top level"
+msgstr "\"%s\" đã bao gồm ở cấp đầu"
+
+#: grecs/src/preproc.c:466
+#, c-format
+msgid "Cannot open `%s'"
+msgstr "Không thể mở “%s”"
+
+#: grecs/src/preproc.c:563
+msgid "Cannot parse include line"
+msgstr "Không thể phân tích cú pháp của bao gồm"
+
+#: grecs/src/preproc.c:566
+msgid "invalid include statement"
+msgstr "câu lệnh bao gồm sai"
+
+#: grecs/src/preproc.c:586
+#, c-format
+msgid "%s: No such file or directory"
+msgstr "%s: Không có tập tin hoặc thư mục như vậy"
+
+#: grecs/src/preproc.c:639
+#, c-format
+msgid "Unable to start external preprocessor `%s'"
+msgstr "Không thể khởi động bộ tiền xử lý bên ngoài “%s”"
+
+#: grecs/src/preproc.c:714 grecs/src/preproc.c:734
+#, c-format
+msgid "Cannot run `%s'"
+msgstr " Không thể chạy “%s”"
+
+#: grecs/src/tree.c:328
+#, c-format
+msgid "%s: not a valid boolean value"
+msgstr "%s: không phải là giá trị lô gíc"
+
+#: grecs/src/tree.c:358
+#, c-format
+msgid "%s: UNIX socket name too long"
+msgstr "%s: tên ổ cắm UNIX quá dài"
+
+#: grecs/src/tree.c:387 grecs/src/tree.c:611
+#, c-format
+msgid "%s: not a valid IP address or hostname"
+msgstr "%s: không phải là địa chỉ IP hay tên máy hợp lệ"
+
+#: grecs/src/tree.c:411
+#, c-format
+msgid "%s: not a valid port number"
+msgstr "%s: số hiệu cổng không hợp lệ"
+
+#: grecs/src/tree.c:419
+msgid "missing port number"
+msgstr "thiếu số hiệu của cổng"
+
+#: grecs/src/tree.c:468
+msgid "numeric overflow"
+msgstr "tràn số"
+
+#: grecs/src/tree.c:473
+msgid "value out of allowed range"
+msgstr "số nằm ngoài phạm vi được phép"
+
+#: grecs/src/tree.c:508 grecs/src/tree.c:538
+#, c-format
+msgid "not a number (stopped near `%s')"
+msgstr "không là kiểu số (dừng ở gần “%s”)"
+
+#: grecs/src/tree.c:602
+#, c-format
+msgid "%s: not a valid IP address"
+msgstr "%s: không phải là địa chỉ IP hợp lệ"
+
+#: grecs/src/tree.c:624
+#, c-format
+msgid "INTERNAL ERROR at %s:%d"
+msgstr "LỖI NỘI BỘ ở %s:%d"
+
+#: grecs/src/tree.c:728
+#, c-format
+msgid "too many arguments to `%s'; missing semicolon?"
+msgstr "quá nhiều đối số cho “%s'; thiếu dấu chấm phẩy à?"
+
+#: grecs/src/tree.c:742 grecs/src/tree.c:790
+#, c-format
+msgid "INTERNAL ERROR at %s:%d: unhandled data type %d"
+msgstr "LỖI NỘI TẠI ở %s:%d: kiểu dữ liệu không thể xử lý %d"
+
+#: grecs/src/tree.c:757
+#, c-format
+msgid "%s: incompatible data type in list item #%d"
+msgstr "%s: kiểu dữ liệu không tương thích trong mục tin #%d của danh sách"
+
+#: grecs/src/tree.c:777
+#, c-format
+msgid "incompatible data type for `%s'"
+msgstr "kiểu dữ liệu không tương thích với “%s”"
+
+#: grecs/src/tree.c:900 grecs/src/tree.c:910
+msgid "Unknown keyword"
+msgstr "Không hiểu từ khóa"
+
+#: grecs/src/tree.c:1119
+#, c-format
+msgid "%s: unknown keyword"
+msgstr "%s: không hiểu từ khóa"
+
+#: grecs/src/wordsplit.c:57 grecs/src/wordsplit.c:1577
+#: grecs/src/wordsplit.c:1608
+msgid "memory exhausted"
+msgstr "hết bộ nhớ"
+
+#: grecs/src/wordsplit.c:790
+#, c-format
+msgid "warning: undefined variable `%.*s'"
+msgstr "cảnh báo: chưa định nghĩa biến “%.*s”"
+
+#: grecs/src/wordsplit.c:1567 grecs/src/wordsplit.c:1606
+msgid "no error"
+msgstr "không lỗi"
+
+#: grecs/src/wordsplit.c:1571
+#, c-format
+msgid "missing closing %c (start near #%lu)"
+msgstr "thiếu đóng %c (bắt đầu gần #%lu)"
+
+#: grecs/src/wordsplit.c:1581 grecs/src/wordsplit.c:1609
+msgid "command substitution is not yet supported"
+msgstr "lệnh thay thế vẫn chưa được hỗ trợ"
+
+#: grecs/src/wordsplit.c:1585 grecs/src/wordsplit.c:1610
+msgid "invalid wordsplit usage"
+msgstr "cách dùng wordsplit (tách chữ) không hợp lệ"
+
+#: grecs/src/wordsplit.c:1589 grecs/src/wordsplit.c:1611
+msgid "unbalanced curly brace"
+msgstr "chưa khớp cặp dấu ngoặc"
+
+#: grecs/src/wordsplit.c:1593 grecs/src/wordsplit.c:1612
+msgid "undefined variable"
+msgstr "biến chưa được định nghĩa"
+
+#: grecs/src/wordsplit.c:1597 grecs/src/wordsplit.c:1613
+msgid "input exhausted"
+msgstr "đầu vào đã hết"
+
+#: grecs/src/wordsplit.c:1601 grecs/src/wordsplit.c:1623
+msgid "unknown error"
+msgstr "lỗi không rõ"
+
+#: grecs/src/wordsplit.c:1607
+msgid "missing closing quote"
+msgstr "thiếu dấu trích dẫn đóng"
+
+#~ msgid "ignoring duplicate definition"
+#~ msgstr "bỏ qua định nghĩa bị trùng lặp"

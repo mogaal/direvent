@@ -1,0 +1,767 @@
+# Hungarian translation for direvent.
+# Copyright (C) 2014 Free Software Foundation, Inc.
+# This file is distributed under the same license as the direvent package.
+#
+# Balázs Úr <urbalazs@gmail.com>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: direvent 4.1.90\n"
+"Report-Msgid-Bugs-To: bug-direvent@gnu.org.ua\n"
+"POT-Creation-Date: 2015-04-16 14:37+0300\n"
+"PO-Revision-Date: 2014-08-31 14:45+0200\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: cmdline.opt:26
+msgid "increase debug level"
+msgstr "hibakeresési szint növelése"
+
+#: cmdline.opt:32
+msgid "PRIO"
+msgstr "PRIO"
+
+#: cmdline.opt:32
+msgid ""
+"log everything with priority PRIO and higher to the stderr, as well as to "
+"the syslog"
+msgstr ""
+"minden PRIO és magasabb prioritással rendelkező naplózása a szabványos "
+"hibakimenetre, valamint a syslog programba"
+
+#: cmdline.opt:41
+msgid "NAME"
+msgstr "NÉV"
+
+#: cmdline.opt:41
+msgid "set syslog facility"
+msgstr "syslog képesség beállítása"
+
+#: cmdline.opt:47
+msgid "remain in foreground"
+msgstr "maradjon előtérben"
+
+#: cmdline.opt:53
+msgid "PROG"
+msgstr "PROG"
+
+#: cmdline.opt:53
+msgid "self-test mode"
+msgstr "önellenőrző mód"
+
+#: cmdline.opt:59
+msgid "FILE"
+msgstr "FÁJL"
+
+#: cmdline.opt:59
+msgid "set PID file"
+msgstr "PID fájl beállítása"
+
+#: cmdline.opt:65
+#, fuzzy
+msgid "check configuration file and exit"
+msgstr "beállítófájl összegzés megjelenítése"
+
+#: cmdline.opt:71
+msgid "USER"
+msgstr ""
+
+#: cmdline.opt:71
+#, fuzzy
+msgid "run as this user"
+msgstr "Futtatás ezen felhasználóként"
+
+#: cmdline.opt:81
+msgid "show configuration file summary"
+msgstr "beállítófájl összegzés megjelenítése"
+
+#: cmdline.opt:75
+msgid "Other options"
+msgstr "Egyéb beállítások"
+
+#: cmdline.opt:87
+msgid "Give this help list"
+msgstr "Ezen súgólista megjelenítése"
+
+#: cmdline.opt:87
+msgid "Give a short usage message"
+msgstr "Egy rövid használati utasítás megjelenítése"
+
+#: cmdline.opt:87
+msgid "Print program version"
+msgstr "Programverzió kiírása"
+
+#: cmdline.opt:13
+msgid "GNU direvent monitors changes in directories"
+msgstr "A GNU direvent változásokat figyel meg a könyvtárakban"
+
+#: cmdline.opt:15
+msgid "[CONFIG]"
+msgstr "[BEÁLLÍTÁS]"
+
+#: cmdline.opt:81
+#, c-format
+msgid ""
+"The optional CONFIG argument supplies the name of the configuration file\n"
+"to use instead of %s.\n"
+"\n"
+msgstr ""
+
+#. TRANSLATORS: %s is one of: inotify, kqueue
+#: cmdline.opt:85
+#, c-format
+msgid ""
+"This direvent uses %s interface.\n"
+"\n"
+msgstr ""
+
+#: src/config.c:63
+#, c-format
+msgid "unknown syslog facility: %s"
+msgstr "ismeretlen syslog képesség: %s"
+
+#: src/config.c:80
+#, c-format
+msgid "unknown syslog priority: %s"
+msgstr "ismeretlen syslog prioritás: %s"
+
+#: src/config.c:88
+msgid "unexpected block statement"
+msgstr "nem várt blokk utasítás"
+
+#: src/config.c:97
+#, c-format
+msgid "expected %s"
+msgstr "várt érték: %s"
+
+#: src/config.c:102
+#, c-format
+msgid "expected %s, but found %s"
+msgstr "várt érték: %s, de %s található"
+
+#: src/config.c:124
+#, c-format
+msgid "unknown syslog facility `%s'"
+msgstr "ismeretlen syslog képesség: „%s”"
+
+#: src/config.c:133 src/config.c:704
+msgid "name"
+msgstr "név"
+
+#: src/config.c:134
+msgid ""
+"Set syslog facility. Arg is one of the following: user, daemon, auth, "
+"authpriv, mail, cron, local0 through local7 (case-insensitive), or a "
+"facility number."
+msgstr ""
+"Syslog képesség beállítása. Az argumentum a következők egyike lehet: user, "
+"daemon, auth, authpriv, mail, cron, local0 és local7 között (kis- és "
+"nagybetű érzéketlen) vagy egy képesség szám."
+
+#: src/config.c:139
+msgid "string"
+msgstr "szöveg"
+
+#: src/config.c:139
+msgid "Tag syslog messages with this string"
+msgstr "Syslog üzenetek címkézése ezzel a szöveggel"
+
+#: src/config.c:142 grecs/src/format.c:141
+msgid "arg"
+msgstr "arg"
+
+#: src/config.c:143
+msgid "Prefix each message with its priority"
+msgstr "Minden üzenet elé előtag tétele a prioritásával"
+
+#: src/config.c:209
+#, c-format
+msgid "%s: recursion depth does not match previous definition"
+msgstr ""
+
+#: src/config.c:247
+msgid "no paths configured"
+msgstr "nincsenek útvonalak beállítva"
+
+#: src/config.c:252
+msgid "no command configured"
+msgstr "nincs parancs beállítva"
+
+#: src/config.c:264 grecs/src/tree.c:629
+msgid "invalid use of block statement"
+msgstr "érvénytelen blokk utasítás használata"
+
+#: src/config.c:309
+msgid "expected \"recursive\" or end of statement"
+msgstr "várt érték: „recursive” vagy utasítás vége"
+
+#: src/config.c:324
+msgid "surplus argument"
+msgstr "többlet argumentum"
+
+#: src/config.c:330 src/config.c:481
+msgid "unexpected list"
+msgstr "nem várt lista"
+
+#: src/config.c:361 src/config.c:376 src/config.c:391
+msgid "unrecognized event code"
+msgstr "azonosítatlan eseménykód"
+
+#: src/config.c:473
+msgid "surplus arguments"
+msgstr "többlet argumentumok"
+
+#: src/config.c:487
+msgid "no such user"
+msgstr "nincs ilyen felhasználó"
+
+#: src/config.c:494
+msgid "no such group"
+msgstr "nincs ilyen csoport"
+
+#: src/config.c:533
+msgid "unrecognized flag"
+msgstr "azonosítatlan jelző"
+
+#: src/config.c:611
+msgid "unterminated regexp"
+msgstr "befejezetlen reguláris kifejezés"
+
+#: src/config.c:625
+#, c-format
+msgid "unrecognized flag: %c"
+msgstr "azonosítatlan jelző: %c"
+
+#: src/config.c:693
+msgid "Pathname to watch"
+msgstr "Figyelendő útvonalnév"
+
+#: src/config.c:696
+msgid "Events to watch for"
+msgstr "Figyelendő események"
+
+#: src/config.c:699
+msgid "regexp"
+msgstr "reguláris kifejezés"
+
+#: src/config.c:699
+msgid "Files to watch for"
+msgstr "Figyelendő fájlok"
+
+#: src/config.c:702
+msgid "Command to execute on event"
+msgstr "Az eseménykor végrehajtandó parancs"
+
+#: src/config.c:704
+msgid "Run command as this user"
+msgstr "Parancs futtatása ezen felhasználóként"
+
+#: src/config.c:707
+msgid "seconds"
+msgstr "másodperc"
+
+#: src/config.c:707
+msgid "Timeout for the command"
+msgstr "A parancs időkorlátja"
+
+#: src/config.c:709
+msgid "List of additional options"
+msgstr "További beállítások listája"
+
+#: src/config.c:712
+msgid "<arg: string> <arg: string>..."
+msgstr "<arg: szöveg> <arg: szöveg>…"
+
+#: src/config.c:713
+msgid "Modify environment"
+msgstr "Környezet módosítása"
+
+#: src/config.c:720
+msgid "Run as this user"
+msgstr "Futtatás ezen felhasználóként"
+
+#: src/config.c:722
+msgid "Run in foreground"
+msgstr "Futtatás az előtérben"
+
+#: src/config.c:724
+msgid "file"
+msgstr "fájl"
+
+#: src/config.c:724
+msgid "Set pid file name"
+msgstr "PID fájlnév beállítása"
+
+#: src/config.c:726
+msgid "Configure syslog logging"
+msgstr "Syslog naplózás beállítása"
+
+#: src/config.c:728
+msgid "level"
+msgstr "szint"
+
+#: src/config.c:728
+msgid "Set debug level"
+msgstr "Hibakeresési szint beállítása"
+
+#: src/config.c:730
+msgid "Configure event watcher"
+msgstr "Eseményfigyelő beállítása"
+
+#: src/config.c:741
+msgid ""
+"Configuration file structure for direvent.\n"
+"For more information, use `info direvent configuration'."
+msgstr ""
+"A direvent beállítófájl szerkezete.\n"
+"További információkért használja az „info direvent configuration” parancsot."
+
+#: src/direvent.c:141 src/direvent.c:163 src/watcher.c:86 src/watcher.c:182
+#: src/watcher.c:191
+msgid "not enough memory"
+msgstr "nincs elég memória"
+
+#: src/direvent.c:271
+#, c-format
+msgid "cannot open pidfile %s for writing: %s"
+msgstr "nem lehet megnyitni a(z) %s pid fájlt írásra: %s"
+
+#: src/direvent.c:299
+#, fuzzy, c-format
+msgid "no user with UID %lu"
+msgstr "nincs használva a(z) %lu UID-val"
+
+#: src/direvent.c:417
+#, c-format
+msgid "cannot run `%s': fork failed: %s"
+msgstr "nem lehet futtatni: „%s”: elágazás sikertelen: %s"
+
+#: src/direvent.c:477
+msgid "too many arguments"
+msgstr "túl sok argumentum"
+
+#: src/direvent.c:523
+#, c-format
+msgid "%s %s started"
+msgstr "%s %s elindítva"
+
+#: src/direvent.c:544
+#, c-format
+msgid "%s %s stopped"
+msgstr "%s %s leállítva"
+
+#: src/environ.c:25
+msgid "environment: "
+msgstr "környezet: "
+
+#: src/hashtab.c:140 grecs/src/symtab.c:193
+msgid "element not found in table"
+msgstr "az elem nem található a táblában"
+
+#: src/hashtab.c:142 grecs/src/symtab.c:195
+msgid "symbol table is full"
+msgstr "a szimbólumtábla tele van"
+
+#: src/hashtab.c:144
+msgid "out of memory"
+msgstr "nincs elég memória"
+
+#: src/progman.c:142
+#, c-format
+msgid "process %lu exited successfully"
+msgstr "a(z) %lu folyamat sikeresen kilépett"
+
+#: src/progman.c:145
+#, c-format
+msgid "process %lu failed with status %d"
+msgstr "a(z) %lu folyamat meghiúsult ezzel az állapottal: %d"
+
+#: src/progman.c:155
+#, c-format
+msgid "process %lu terminated on signal %d"
+msgstr "a(z) %lu folyamat megszakadt ennél a szignálnál: %d"
+
+#: src/progman.c:158
+#, c-format
+msgid "process %lu stopped on signal %d"
+msgstr "a(z) %lu folyamat leállt ennél a szignálnál: %d"
+
+#: src/progman.c:163
+#, c-format
+msgid "process %lu dumped core"
+msgstr "a(z) %lu folyamat kiírta a magot"
+
+#: src/progman.c:167
+#, c-format
+msgid "process %lu terminated with unrecognized status"
+msgstr "a(z) %lu folyamat megszakadt azonosítatlan állapottal"
+
+#: src/progman.c:228
+msgid "begin scanning process list"
+msgstr "folyamatlista vizsgálatának elkezdése"
+
+#: src/progman.c:232
+#, c-format
+msgid "process %lu timed out"
+msgstr "a(z) %lu folyamat túllépte az időkorlátot"
+
+#: src/progman.c:241
+#, c-format
+msgid "scheduling alarm in %lu seconds"
+msgstr "ütemezett riasztás %lu másodperc múlva"
+
+#: src/progman.c:322
+#, c-format
+msgid "cannot start redirector for %s, pipe failed: %s"
+msgstr ""
+"nem lehet elindítani a(z) %s átirányítóját, az adatcsatorna sikertelen: %s"
+
+#: src/progman.c:354
+#, c-format
+msgid "cannot run redirector `%s': fork failed: %s"
+msgstr "nem lehet a(z) „%s” átirányítót futtatni: elágazás sikertelen: %s"
+
+#: src/progman.c:359
+#, c-format
+msgid "redirector for %s started, pid=%lu"
+msgstr "a(z) %s átirányítója elindult, pid=%lu"
+
+#: src/progman.c:439
+#, c-format
+msgid "starting %s, dir=%s, file=%s"
+msgstr "%s indítása, kvt=%s, fájl=%s"
+
+#: src/progman.c:468
+#, c-format
+msgid "cannot change to %s: %s"
+msgstr "nem lehet erre változtatni: %s: %s"
+
+#: src/progman.c:496
+#, c-format
+msgid "%s running; dir=%s, file=%s, pid=%lu"
+msgstr "%s fut; kvt=%s, fájl=%s, pid=%lu"
+
+#: src/progman.c:518
+#, c-format
+msgid "waiting for %s (%lu) to terminate"
+msgstr "várakozás %s (%lu) befejezésére"
+
+#: src/watcher.c:231
+#, c-format
+msgid "creating watcher %s"
+msgstr "figyelő létrehozása: %s"
+
+#: src/watcher.c:240
+#, c-format
+msgid "cannot set watcher on %s: %s"
+msgstr "nem lehet figyelőt beállítani ezen: %s: %s"
+
+#: src/watcher.c:319
+#, c-format
+msgid "cannot create watcher %s/%s: not enough memory"
+msgstr "nem lehet létrehozni a figyelőt: %s/%s: nincs elég memória"
+
+#: src/watcher.c:326
+#, c-format
+msgid "cannot create watcher %s/%s, stat failed: %s"
+msgstr "nem lehet létrehozni a figyelőt: %s/%s, elérés sikertelen: %s"
+
+#: src/watcher.c:355
+#, c-format
+msgid "cannot open directory %s: %s"
+msgstr "nem lehet megnyitni a(z) %s könyvtárat: %s"
+
+#: src/watcher.c:371
+#, c-format
+msgid "cannot stat %s/%s: not enough memory"
+msgstr "nem lehet elérni: %s/%s: nincs elég memória"
+
+#: src/watcher.c:376
+#, c-format
+msgid "cannot stat %s: %s"
+msgstr "nem lehet elérni: %s: %s"
+
+#: src/watcher.c:412
+msgid "no event handlers configured"
+msgstr "nincsenek eseménykezelők beállítva"
+
+#: src/watcher.c:417
+msgid "no event handlers installed"
+msgstr "nincsenek eseménykezelők telepítve"
+
+#: src/watcher.c:425
+#, c-format
+msgid "removing watcher %s"
+msgstr "figyelő eltávolítása: %s"
+
+#: grecs/src/format.c:133
+msgid "Disabled;"
+msgstr ""
+
+#: grecs/src/opthelp.c:123 grecs/src/opthelp.c:269
+msgid "Usage:"
+msgstr ""
+
+#: grecs/src/opthelp.c:127
+msgid "OPTION"
+msgstr ""
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Aliases"
+msgstr ""
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Alias"
+msgstr ""
+
+#: grecs/src/opthelp.c:186
+msgid ""
+"Mandatory or optional arguments to long options are also mandatory or "
+"optional for any corresponding short options."
+msgstr ""
+
+#. TRANSLATORS: The placeholder indicates the bug-reporting
+#. address for this package.  Please add _another line_ saying
+#. "Report translation bugs to <...>\n" with the address for
+#. translation bugs (typically your translation team's web or
+#. email address).
+#: grecs/src/opthelp.c:202
+#, c-format
+msgid "Report bugs to %s.\n"
+msgstr ""
+
+#: grecs/src/opthelp.c:205
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr ""
+
+#. TRANSLATORS: Translate "(C)" to the copyright symbol
+#. (C-in-a-circle), if this symbol is available in the user's
+#. locale.  Otherwise, do not translate "(C)"; leave it as-is.
+#: grecs/src/opthelp.c:457
+msgid "(C)"
+msgstr ""
+
+#: grecs/src/opthelp.c:466
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+"\n"
+msgstr ""
+
+#: grecs/src/opthelp.c:483
+msgid "Written by "
+msgstr ""
+
+#. TRANSLATORS: This string is used as a delimiter between
+#. authors' names as in:
+#.
+#. Written by Winnie the Pooh, Piglet ...
+#.
+#: grecs/src/opthelp.c:489
+msgid ", "
+msgstr ""
+
+#. TRANSLATORS: This string acts as a delimiter before the
+#. last author's names, e.g.:
+#.
+#. Written by Winnie the Pooh, Piglet and Christopher Robin.
+#.
+#: grecs/src/opthelp.c:495
+msgid " and "
+msgstr ""
+
+#: grecs/src/path-parser.c:62
+#, fuzzy, c-format
+msgid "cannot open `%s'"
+msgstr "nem lehet megnyitni a(z) %s könyvtárat: %s"
+
+#: grecs/src/path-parser.c:108 grecs/src/path-parser.c:123
+#, fuzzy
+msgid "unexpected end of file"
+msgstr "nem várt lista"
+
+#: grecs/src/path-parser.c:143
+msgid "parse error"
+msgstr ""
+
+#: grecs/src/preproc.c:434 grecs/src/preproc.c:456
+#, fuzzy, c-format
+msgid "Cannot stat `%s'"
+msgstr "nem lehet elérni: %s: %s"
+
+#: grecs/src/preproc.c:439 grecs/src/preproc.c:444
+msgid "Recursive inclusion"
+msgstr ""
+
+#: grecs/src/preproc.c:447
+#, c-format
+msgid "`%s' already included here"
+msgstr ""
+
+#: grecs/src/preproc.c:451
+#, c-format
+msgid "`%s' already included at top level"
+msgstr ""
+
+#: grecs/src/preproc.c:466
+#, c-format
+msgid "Cannot open `%s'"
+msgstr ""
+
+#: grecs/src/preproc.c:563
+msgid "Cannot parse include line"
+msgstr ""
+
+#: grecs/src/preproc.c:566
+#, fuzzy
+msgid "invalid include statement"
+msgstr "érvénytelen blokk utasítás használata"
+
+#: grecs/src/preproc.c:586
+#, c-format
+msgid "%s: No such file or directory"
+msgstr ""
+
+#: grecs/src/preproc.c:639
+#, c-format
+msgid "Unable to start external preprocessor `%s'"
+msgstr ""
+
+#: grecs/src/preproc.c:714 grecs/src/preproc.c:734
+#, c-format
+msgid "Cannot run `%s'"
+msgstr ""
+
+#: grecs/src/tree.c:328
+#, c-format
+msgid "%s: not a valid boolean value"
+msgstr ""
+
+#: grecs/src/tree.c:358
+#, c-format
+msgid "%s: UNIX socket name too long"
+msgstr ""
+
+#: grecs/src/tree.c:387 grecs/src/tree.c:611
+#, c-format
+msgid "%s: not a valid IP address or hostname"
+msgstr ""
+
+#: grecs/src/tree.c:411
+#, c-format
+msgid "%s: not a valid port number"
+msgstr ""
+
+#: grecs/src/tree.c:419
+msgid "missing port number"
+msgstr ""
+
+#: grecs/src/tree.c:468
+msgid "numeric overflow"
+msgstr ""
+
+#: grecs/src/tree.c:473
+msgid "value out of allowed range"
+msgstr ""
+
+#: grecs/src/tree.c:508 grecs/src/tree.c:538
+#, c-format
+msgid "not a number (stopped near `%s')"
+msgstr ""
+
+#: grecs/src/tree.c:602
+#, c-format
+msgid "%s: not a valid IP address"
+msgstr ""
+
+#: grecs/src/tree.c:624
+#, c-format
+msgid "INTERNAL ERROR at %s:%d"
+msgstr ""
+
+#: grecs/src/tree.c:728
+#, c-format
+msgid "too many arguments to `%s'; missing semicolon?"
+msgstr ""
+
+#: grecs/src/tree.c:742 grecs/src/tree.c:790
+#, c-format
+msgid "INTERNAL ERROR at %s:%d: unhandled data type %d"
+msgstr ""
+
+#: grecs/src/tree.c:757
+#, c-format
+msgid "%s: incompatible data type in list item #%d"
+msgstr ""
+
+#: grecs/src/tree.c:777
+#, c-format
+msgid "incompatible data type for `%s'"
+msgstr ""
+
+#: grecs/src/tree.c:900 grecs/src/tree.c:910
+msgid "Unknown keyword"
+msgstr ""
+
+#: grecs/src/tree.c:1119
+#, c-format
+msgid "%s: unknown keyword"
+msgstr ""
+
+#: grecs/src/wordsplit.c:57 grecs/src/wordsplit.c:1577
+#: grecs/src/wordsplit.c:1608
+msgid "memory exhausted"
+msgstr ""
+
+#: grecs/src/wordsplit.c:790
+#, c-format
+msgid "warning: undefined variable `%.*s'"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1567 grecs/src/wordsplit.c:1606
+msgid "no error"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1571
+#, c-format
+msgid "missing closing %c (start near #%lu)"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1581 grecs/src/wordsplit.c:1609
+msgid "command substitution is not yet supported"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1585 grecs/src/wordsplit.c:1610
+msgid "invalid wordsplit usage"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1589 grecs/src/wordsplit.c:1611
+msgid "unbalanced curly brace"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1593 grecs/src/wordsplit.c:1612
+msgid "undefined variable"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1597 grecs/src/wordsplit.c:1613
+msgid "input exhausted"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1601 grecs/src/wordsplit.c:1623
+msgid "unknown error"
+msgstr ""
+
+#: grecs/src/wordsplit.c:1607
+msgid "missing closing quote"
+msgstr ""
+
+#~ msgid "ignoring duplicate definition"
+#~ msgstr "kettőzött meghatározás mellőzése"

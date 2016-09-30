@@ -1,0 +1,62 @@
+Direvent README.
+Copyright (C) 2012-2014 Sergey Poznyakoff
+See the end of file for copying conditions.
+
+* Overview
+
+Direvent is a directory content watcher daemon, i.e. a program that
+monitors a set of directories on the file system and reacts when
+their content changes. When a change is detected, the daemon reacts by
+invoking an external command configured for that kind of change.
+
+The program aims to provide a uniform and system-independent
+command-level interface for file system events.  This version
+is known to work on GNU/Linux (kernels starting from
+v. 2.6.13) and BSD systems (FreeBSD, NetBSD, OpenBSD, Darwin). 
+
+* Building and Configuring
+
+The usual incantation applies:
+
+   ./configure [OPTIONS]
+   make
+   make install
+  
+See the file INSTALL for the description of ./configure and its
+generic options.
+
+* Usage Instructions
+
+Complete documentation is included with the package, both in man
+and Texinfo formats. After successful installation, use
+
+   info direvent
+
+to read the Texinfo documentation.  To read the manpages, use:
+
+   man 8 direvent
+   man 5 direvent.conf
+
+An online copy of the documentation in various formats is available
+at http://direvent.man.gnu.org.ua.
+
+
+* Copyright information:
+
+Copyright (C) 2012-2014 Sergey Poznyakoff
+
+   Permission is granted to anyone to make or distribute verbatim copies
+   of this document as received, in any medium, provided that the
+   copyright notice and this permission notice are preserved,
+   thus giving the recipient permission to redistribute in turn.
+
+   Permission is granted to distribute modified versions
+   of this document, or of portions of it,
+   under the above conditions, provided also that they
+   carry prominent notices stating who last changed them.
+
+Local Variables:
+mode: outline
+paragraph-separate: "[ 	]*$"
+version-control: never
+End:

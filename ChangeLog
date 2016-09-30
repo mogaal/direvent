@@ -1,0 +1,1019 @@
+2015-03-01  Sergey Poznyakoff  <gray@gnu.org>
+
+	Switch to Texinfo 5.0
+
+	* doc/Config: Rewrite.
+	* doc/Makefile.am: Use Makeinfo 5 instead of texi2htm
+	* doc/gendocs_template: Ps is not built
+	* imprimatur: Upgrade.
+
+2014-09-18  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Minor documentation fixes.
+
+	* doc/direvent.8: Escape dashes in examples.
+	* doc/direvent.conf.5: Likewise.
+	* doc/direvent.texi: Reword copyright statement (part about covers).
+
+2014-09-06  Sergey Poznyakoff  <gray@gnu.org>
+
+	Version 5.0
+
+2014-09-06  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Add new test
+
+	* tests/samepath.at: New file.
+	* tests/Makefile.am: Add new testcase.
+	* tests/testsuite.at: Likewise.
+
+	* NEWS: Update
+	* README: Update
+
+2014-09-01  Sergey Poznyakoff  <gray@gnu.org>
+
+	Version 4.1.91
+
+	Improve I18N
+
+	* po/POTFILES.in: Add grecs sources.
+	* src/Makefile.am (AM_CPPFLAGS): Add the definition of LOCALEDIR.
+	* src/cmdline.opt (help_hook): Add missing gettext markers.
+	* src/direvent.c (maint): Initialize libintl
+
+2014-09-01  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Improve and document self-test mode
+
+	* src/direvent.c (self_test): Run the program as /bin/sh -c program.
+	* doc/direvent.texi: Document self-test mode and missing options.
+	* doc/direvent.8: Document self-test.
+	* doc/direvent.conf.5: Likewise.
+	* src/cmdline.opt: Fix option declarations.
+
+2014-09-01  Sergey Poznyakoff  <gray@gnu.org>
+
+	bootstrap: add option to get update po files and exit
+
+2014-08-31  Sergey Poznyakoff  <gray@gnu.org>
+
+	Accept multpile watchers for the same path
+
+	* src/direvent.h (dirwatcher)<handler_tail>: New member.
+	* src/config.c (eventconf_flush): Use handler_tail to update
+	the handler list.
+	Remove erroneous check.
+
+2014-08-27  Sergey Poznyakoff  <gray@gnu.org>
+
+	Minor changes
+
+	* src/direvent.c (get_user_groups): Fix typo in a diagnostic
+	message.
+
+	bootstrap: download po files
+
+2014-08-25  Sergey Poznyakoff  <gray@gnu.org>
+
+	Update NEWS
+
+	Upgrade grecs
+
+	I18N
+
+	* .gitignore: Add am
+	* bootstrap: Create am, unless exists.
+	* Makefile.am (SUBDIRS): Add po
+	* acinclude.m4: New file.
+	* configure.ac: Use gettext
+	* doc/direvent.texi: Update
+	* po/.gitignore: New file
+	* po/POTFILES.in: New file.
+	* po/Makevars: New file.
+	* src/Makefile.am (LDADD): Add @LIBINTL@
+	(noinst_HEADERS): Add gettext.h
+	* src/config.c: gettextize
+	* src/direvent.c: Likewise.
+	* src/environ.c: Likewise.
+	* src/hashtab.c: Likewise.
+	* src/progman.c: Likewise.
+	* src/watcher.c: Likewise.
+	* src/gettext.h: New file.
+
+	* src/direvent.h: Add missing prototypes.
+	* tests/re05.at: Remove superfluous quoting.
+
+2014-08-22  Sergey Poznyakoff  <gray@gnu.org>
+
+	Update docs
+
+2014-08-21  Sergey Poznyakoff  <gray@gnu.org>
+
+	Minor fix in docs
+
+	Direvent is dubbed GNU program
+
+	* configure.ac: Change package name to GNU Direvent
+	* doc/direvent.8: Reflect we are GNU
+	* doc/direvent.texi: Likewise.
+	* src/cmdline.opt: Likewise.
+
+2014-08-17  Sergey Poznyakoff  <gray@gnu.org>
+
+	Rewrite testsuite.
+
+	Get rid of the kludgy waitpid; use the built-in self-test mode instead.
+
+	* src/cmdline.opt: New option --self-test.
+	* src/direvent.c (self_test_prog,self_test_pid)
+	(exit_code): New globals.
+	(self_test): New function.
+	(main): Call self_test if required.
+	If stop is set, break the loop immediately.
+	Return exit_code.
+	* src/direvent.h (stop,self_test_pid,exit_code): New externs.
+	* src/environ.c (environ_setup): Always define DIREVENT_SELF_TEST_PID
+	when in self-test mode.
+	* src/progman.c (process_cleanup): Special handling for termination of
+	the self-test script.
+	(runcmd): Define self_test_pid envvar in self-test mode.
+	* tests/Makefile.am: Remove waitpid.
+	* tests/waitfile.c: Removed.
+	* tests/printname: Send HUP to the self-test PID if sentinel file is created.
+	* tests/envdump.c (read_pid_and_sig): Restore arg to its pristine state
+	before exiting.
+	* tests/testsuite.at (AT_DIREVENT_TEST): New macro.
+
+	* tests/attrib.at: Rewrite using AT_DIREVENT_TEST.
+	* tests/cmdexp.at: Likewise.
+	* tests/create.at: Likewise.
+	* tests/createrec.at: Likewise.
+	* tests/delete.at: Likewise.
+	* tests/env00.at: Likewise.
+	* tests/env01.at: Likewise.
+	* tests/env02.at: Likewise.
+	* tests/env03.at: Likewise.
+	* tests/glob01.at: Likewise.
+	* tests/glob02.at: Likewise.
+	* tests/re01.at: Likewise.
+	* tests/re02.at: Likewise.
+	* tests/re03.at: Likewise.
+	* tests/re04.at: Likewise.
+	* tests/re05.at: Likewise.
+	* tests/write.at: Likewise.
+	*   grecs (untracked content)
+
+	Rename project to direvent.
+
+2014-08-10  Sergey Poznyakoff  <gray@gnu.org>
+
+	Version 4.1.90
+
+	* NEWS: Change version number
+	* configure.ac: Likewise.
+	* doc/dircond.conf.5: Update copyright years.
+	* doc/dircond.texi: Update copyright years.
+	* src/config.c: Update copyright years.
+	* src/dircond.h: Update copyright years.
+	* src/fnpat.c: Update copyright years.
+	* tests/envdump.c: Update copyright years.
+
+2014-07-29  Sergey Poznyakoff  <gray@gnu.org>
+
+	Introduce pattern negation.
+
+	* doc/dircond.conf.5: Document negated patterns.
+	* doc/dircond.texi: Likewise.
+	* src/config.c (file_name_pattern): A ! in front of a pattern
+	indicates negation.
+	* src/dircond.h (filename_pattern)<neg>: New member.
+	* src/fnpat.c: Honor neg member.
+	* tests/envdump.c (main): don't depend on the order of command
+	line options.
+	* tests/glob02.at: New test case.
+	* tests/re05.at: Likewise.
+	* tests/Makefile.am: Add new files.
+	* tests/testsuite.at: Include new testcases.
+
+2013-12-27  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Remove trailing tabs in doc/dircond.8
+
+	Update gendocs_template
+
+	Update dircond.conf.5
+
+	Version 4.1
+
+	* NEWS: Document new release.
+
+	* Makefile.am
+	* configure.ac: Enable silent rules. Set version number 4.1
+	* doc/Makefile.am: Add copyleft header.
+	* src/Makefile.am: Likewise.
+	* tests/Makefile.am: Add missing silent rule markers.
+
+	Fix documentation of the "file" statement.
+
+	Implement filename selection
+
+	* NEWS: Update.
+	* doc/dircond.texi: Document the file statement.
+	* src/fnpat.c: New file.
+	* src/Makefile.am (dircond_SOURCES): Add fnpat.c
+	* src/config.c (eventconf) <fnames>: New member.
+	(eventconf_free): Free fnames.
+	(eventconf_flush): Set fnames.
+	(watcher_kw) <file>: New statement.
+	* src/dircond.h (filename_pattern): New struct.
+	(handler) <fnames>: New member.
+	(handler_matches_event): New macro.
+	(filename_pattern_free)
+	(filename_pattern_match): New proto.
+	* src/ev_inotify.c (process_event): Use handler_matches_event.
+	* src/ev_kqueue.c: Likewise.
+	* src/watcher.c (deliver_ev_create): Likewise.
+
+	* tests/Makefile.am: Add new tests.
+	* tests/testsuite.at: Likewise.
+	* tests/create.at: Add a distinctive keyword.
+	* tests/glob01.at: New testcase.
+	* tests/re01.at: New testcase.
+	* tests/re02.at: Likewise.
+	* tests/re03.at: Likewise.
+	* tests/re04.at: Likewise.
+
+2013-12-17  Sergey Poznyakoff  <gray@gnu.org>
+
+	Upgrade grecs
+
+2013-10-02  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Fix the testsuite, bump version number
+
+	* configure.ac: Update version number.
+	* NEWS: Update version number.
+	* tests/Makefile.am: Distribute printname.
+	* tests/printname: New file.
+	* tests/atlocal.in (SRCDIR): New variable.
+	* tests/createrec.at: Fix path to printname.
+
+2013-09-29  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Generate genev_create event for subdirectories.
+
+	A genev_create event is generated for all files and directories below the
+	newly created one, if required by the configuration.  At the same time, new
+	watchers are installed.  This is illustrated by the testcase "createrec.at",
+	which version 4.0 wouldn't pass, because it incorrectly assumed that a
+	notification would arrive for each subdirectory or subfile, once the watcher
+	is installed for the parent directory.
+
+	* src/watcher.c (subwatcher_create): Return integer.
+	Take additional argument (notify).  If it is true, register
+	watchers for the subdirectories.
+	(deliver_ev_create): New function.
+	(watch_subdirs): Return number of watchers installed or -1
+	on error.
+	(watch_pathname): Remove. All callers use subwatcher_create
+	instead.
+	* tests/Makefile.am: Add new test.
+	* tests/testsuite.at: Likewise.
+	* tests/attrib.at: Use pwd -P, instead of plain pwd.
+	* tests/cmdexp.at: Likewise.
+	* tests/create.at: Likewise.
+	* tests/delete.at: Likewise.
+	* tests/env00.at: Likewise.
+	* tests/env01.at: Likewise.
+	* tests/env02.at: Likewise.
+	* tests/env03.at: Likewise.
+	* tests/write.at: Likewise.
+
+2013-09-15  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Minor fixes in the docs.
+
+2013-06-05  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Fix typos in manpages
+
+	Update scripts for generating documentation output.
+
+2013-06-04  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Update dircond manpage
+
+	Finish the docs. Set version number 4.0. Change bug-report address.
+
+	Update docs.
+
+	* NEWS: Update.
+	* doc/dircond.conf.5: Update.
+	* doc/dircond.texi: Update.
+	* src/config.c (cb_watcher): Treat missing "event"
+	statement as "all events".
+	* src/dircond.h (evtsetall): New prototype.
+	* src/event.c (evtsetall): New function.
+	* src/environ.c: Minor fix.
+
+	inotify: fix definition of the generic write event
+
+	* src/ev_inotify.c (genev_xlat): Translate IN_MODIFY|IN_CLOSE_WRITE
+	to GENEV_WRITE.
+
+	Update docs
+
+2013-06-03  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Reorganize namespace.
+
+	Revamp initialization system in a cleaner way.
+
+	* src/Makefile.am: Use the proper detach-*.c source depending
+	on the configuration output.
+	* src/rdaemon.c: Remove.
+	* src/detach-std.c: New file.
+	* src/detach-bsd.c: New file.
+	* src/detach-darwin.c: New file.
+	* src/dircond.c (signal_setup): Use sigv_set_all.
+	(sigmain): Do not reinstall the handler.
+	(main): Use detach() instead of daemon().
+	* src/dircond.h (detach): New proto.
+	(NITEMS): New macro.
+	(sigv_set_action, sigv_set_all)
+	(sigv_set_tab, sigv_set_action_tab): New protos.
+	* src/sigv.c: New file.
+	* tests/waitfile.c: Remove unused variable.
+	* doc/dircond.8: Update.
+	* doc/dircond.texi: Update.
+
+	Improve docs
+
+2013-06-02  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Fix a copy-paste error.
+
+	Write the docs in manpage format:
+
+	* doc/.gitignore
+	* doc/Makefile.am: Add rules for texinfo documents.
+	* doc/dircond.1: Removed.
+	* doc/dircond.8: New file.
+	* doc/dircond.conf.5: New file.
+	* doc/dircond.texi: New file (a placeholder).
+	* doc/fdl.texi: New file.
+	* doc/gendocs_template: New file.
+
+	Rename event variables and the corresponding environment
+	ones:
+
+	* src/environ.c
+	* src/dircond.c
+	* src/progman.c
+	* tests/.gitignore
+	* tests/attrib.at
+	* tests/cmdexp.at
+	* tests/create.at
+	* tests/delete.at
+	* tests/env00.at
+	* tests/env01.at
+	* tests/env03.at
+	* tests/remove.at
+	* tests/write.at
+
+2013-06-01  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Bugfix
+
+	* src/dircond.c (vdiag): Fix memory allocation
+
+	Uograde grecs
+
+	Upgrade grecs
+
+	Initial support for Darwin.
+
+	Basically the same as BSD, except that it lacks rfork, which
+	makes it impossible to initialize watchers before daemonizing.
+
+	* configure.ac: Check for rfork, define the DIRCOND_FORK conditional
+	if present.
+	* src/Makefile.am [DIRCOND_KQUEUE][DIRCOND_RFORK]: Add rdaemon.c
+	to the sources.
+	* src/dircond.c: Define INIT_EARLY if it is safe to initialize
+	the event system before forking.  Currently the only supported
+	system that's not capable of that is Darwin.
+	(main): Call setup_watchers conditionally, before or after the
+	call to daemon.
+	Move call to evsys_init to setup_watchers.
+	Reorganize the main loop.
+	* src/dircond.h (event_mask_init): Change signature. The third
+	argument specifies which mask bits we're interested in.
+	All uses changed.
+	* src/event.c: Ditto.
+	* src/watcher.c (setup_watchers): Call evsys_init.
+
+	Test environment modifications.
+
+	* src/config.c (cb_environ): Accept list argument.
+	* tests/Makefile.am: Add new tests.
+	* tests/testsuite.at: Add new tests.
+	* tests/env00.at: New file.
+	* tests/env01.at: New file.
+	* tests/env02.at: New file.
+	* tests/env03.at: New file.
+
+	Test command line expansions.
+
+	* envdump.c: Accept unrecognized command line parameters.
+	Use -f option to redirect output to a file. All uses updated.
+	* cmdexp.at: New file.
+	* Makefile.am: Add cmdexp.at
+	* testsuite.at: Include cmdexp.at
+
+	Fix CREATE detection with kqueue.
+
+	* src/ev_kqueue.c (check_created): Fall back to hash lookup
+	to see if the file is recently created.
+	* tests/create.at: Remove the sleep. Wait for the pidfile to
+	appear before proceding with the test.
+	* tests/delete.at: Wait for the pidfile to appear before
+	proceding with the test.
+	* tests/remove.at: Likewise.
+	* tests/write.at: Likewise.
+
+	Minor fixes.
+
+	Minor fixes
+
+	Fix daemon mode on BSD. Provide a testsuite.
+
+	* configure.ac: Initialize the testsuite.
+	* src/Makefile.am [DIRCOND_KQUEUE] (dircond_SOURCES): Add rdaemon.c
+	* src/rdaemon.c: New file.
+	* src/cmdline.opt: New option -l.
+	* src/config.c (get_priority): New function.
+	* src/dircond.c (log_to_stderr): New variable.
+	(vdiag): Optionally output the message both to
+	stderr and syslog.
+	(stop): New global.
+	(sigmain): Set stop.
+	(main): Initialize logging early.
+	Loop until stop is set.
+	Remove pidfile before returning.
+	* src/dircond.h (read_facility): Remove.
+	(get_facility,get_priority): New protos.
+	* src/ev_kqueue.c (evsys_select): Fix error handling.
+	* tests/.gitignore: New file.
+	* tests/Makefile.am: Provide autotest framework.
+	* tests/atlocal.in: New file.
+	* tests/attrib.at: New file.
+	* tests/create.at: New file.
+	* tests/delete.at: New file.
+	* tests/remove.at: New file.
+	* tests/testsuite.at: New file.
+	* tests/envdump.c: Add more features.
+	* tests/waitfile.c: New file.
+
+	Add tests directory.
+
+	* Makefile.am (SUBDIRS): Add tests
+	* configure.ac: Build tests/Makefile.
+	* tests/.gitignore: New file
+	* tests/Makefile.am: New file.
+	* tests/envdump.c: New file.
+
+	Minor fixes
+
+	* src/cmdline.opt (help_hook): Change wording.
+	* src/config.c (config_help): Fix a typo.
+	* src/dircond.c (signal_setup): Include SIGCHLD
+	(main): Reset grecs_log_to_stderr.
+	* src/progman.c (run_handler): SIGCHLD is handled
+	by signal_setup.
+
+	Improve command line handling.
+
+	* configure.ac (GRECS_SETUP): Request getopt.
+	* src/.gitignore: Add cmdline.h
+	* src/cmdline.opt: New file.
+	* src/Makefile.am: Add new rules.
+	* src/config.c: New statement "user".
+	* src/dircond.c: Change command line handling.
+
+	Control execution environment and handler arguments.
+
+	* src/environ.c: New file.
+	* src/Makefile.am: Add environ.c
+	* src/config.c: Rename "event" compound statement to "watcher".
+	New statement "environ".
+	* src/dircond.h (handler) <env>: New member.
+	(environ_setup): New proto.
+	* src/progman.c (event_to_env): Remove function.
+	(runcmd): New function.
+	(run_handler): Call runcmd to prepare execution environment and
+	launch the handler.
+
+	Minor improvements
+
+	* /src/dircond.c (vdiag): Implement print-priority.
+	(main): Print version number along with the startup
+	and shutdown messages.
+
+	Upgrade grecs
+
+	Add bootstrap
+
+	Rewrite configuration support using grecs.
+
+	* grecs: Incorporate grecs as a submodule
+	* .gitmodules: New file.
+	* src/config.c: Rewrite.
+	* src/dircond.c: Use grecs.
+	* src/dircond.h (opt_facility): Remove
+	(syslog_include_prio): New global.
+	(pathent) <next>: Remove.
+	* pathdefn.c: Remove.
+
+	Switch to deep structure.
+
+	Change version number. Update THANKS file.  Improve -h output.
+
+	Make sure directory and filename parts are meaningful when calling the handler.
+
+	* dircond.h (dirwatcher) <split_p>: New member.
+	<file_mode>: Change type to mode_t.
+	(run_handler): Change signature.
+	(split_pathname,unsplit_pathname): New protos.
+	* ev_inotify.c (process_event): Use split_pathname
+	to obtain file and directory parts if the watched
+	object is not a directory.
+	* ev_kqueue.c (filename): Remove function.
+	(check_created): Change call to run_handler.
+	(process_event): Use split_pathname
+	to obtain file and directory parts.
+	* progman.c (run_handler): Change signature and
+	calling convention.
+	* watcher.c (watch_subdirs): Fix diagnostics message.
+	(split_pathname,unsplit_pathname): New functions.
+
+	One more fix.
+
+	* dircond.c (trans_strtotok): 2nd arg is const
+	* dircond.h: Ditto.
+
+	Add missing include.
+
+	Keep separate process entries for redirectors.
+
+	* dircond.h: Remove unneeded prototypes.
+	* progman.c (process) <type,v>: New members.
+	(register_process): Take process type as the first argument.
+	(process_cleanup): Update.
+	(open_redirector): Change type of the last argument.
+	(run_handler): Reflect changes in open_redirector.
+
+	Move process management functions into a separate module.
+
+	Minor fixes.
+
+	Introduce system-independent event codes.
+
+	* config.c (parse_event, parse_onevent): Use event_mask structure.
+	* dircond.c (trans_strtotok, trans_toktostr)
+	(trans_toknext,trans_tokfirst)
+	(ev_log): New functions
+	(event_to_env): New static.
+	(run_handler): Take a pointer to event_mask.
+	Use event_to_env to construct the environment.
+	(man): Initialize system-independent events.
+	* dircond.h (SIE_CREATE, SIE_WRITE)
+	(SIE_ATTRIB, SIE_DELETE): System-independent event codes.
+	(event_mask): New typedef.
+	(event): Remove structure.
+	(transtab): New structure.
+	(handler) <ev_mask>: Change type to event_mask.
+	(evsys_filemask): New proto.
+	(evsys_add_watch,run_handler): Change signature.
+	(defevt, getevt): Likewise,
+	(evtnullp, event_mask_init): New protos.
+	(sie_xlat, sie_trans, evsys_transtab): New externs.
+	(trans_strtotok, trans_toktostr)
+	(trans_tokfirst, trans_toknext): New protos.
+	* ev_inotify.c (evsys_transtab): New global.
+	(sie_xlat): New global.
+	(ev_log): Remove.
+	(evsys_filemask): Remove variable, add function.
+	(evsys_add_watch): Change signature.
+	* ev_kqueue.c (events): Remove.
+	(evsys_transtab): New global.
+	(evsys_name_to_code, evsys_code_to_name): Remove.
+	(evsys_filemask): Remove variable, add function.
+	(ev_log): Remove.
+	(sie_xlat): New global.
+	(evsys_add_watch): Change signature.
+	Add NOTE_WRITE to directory flags if SIE_CREATE is requested.
+	(check_created): Deliver the SIE_CREATE event.
+	(process_event): Update.
+	* event.c (symevt) <mask>: Change type to event_mask.
+	(defevt,getevt): Rewrite taking event_mask as additional
+	argument.
+	(evtnullp): New function
+	(sie_trans): New global.
+	(event_mask_init): New function.
+	* watcher.c (dirwatcher_init): Initialize both system-dependent
+	and system-independent event masks.
+	(watch_subdirs): Call evsys_filemask to decide which files to
+	watch.
+
+	Use fd_set capable of keeping sysconf(_SC_OPEN_MAX) descriptors.
+
+	* dircond.c (bigfd_set): New type
+	(BIGFD_SET_COUNT, BIGFD_SET_ALLOC)
+	(BIGFD_SET, BIGFD_ISSET): New macros.
+	(close_fds): Use bigfd_set. All callers updated.
+
+	Bugfix
+
+	* dircond.h (dirwatcher_lookup): New proto.
+	* watcher.c (dirwatcher_lookup): Remove static qualifier.
+
+	kqueue: handle file creates and deletes.
+
+	* dircond.h (dirwatcher) [USE_IFACE == IFACE_KQUEUE] <file_mode>
+	<file_ctime>: New members.
+	(remove_watcher): Remove prototype.
+	(dirwatcher_destroy,watch_pathname): New protos.
+	* ev_inotify.c (remove_watcher): New function (from watcher.c)
+	* ev_kqueue.c (evsys_add_watch): Use EV_CLEAR instead of EV_ONESHOT.
+	Initialize file_mode and file_ctime.
+	(evsys_rm_watch): Fix conditional.
+	(check_created): New function.
+	(process_event): Handle file additions and deletions.
+	* watcher.c (watch_subdirs): Use watch_pathname.
+	(watch_pathname): New function.
+
+	Restore default timeout.
+
+	The default timeout setting was inadvertently lost in 02f27691.
+
+	* config.c (opt_timeout): Initialize.
+	* dircond.h (DEFAILT_TIMEOUT): New constant.
+
+	Bugfix.
+
+	* ev_kqueue.c (process_event): Strip directory prefix off the
+	file name.
+
+	Move commonly used headers to dircond.h
+
+	Change main loop.
+
+	* dircond.c: Change main loop.
+	* dircond.h (evsys_loop): Remove.
+	(evsys_select): New proto.
+	* ev_inotify.c: Likewise.
+	* ev_kqueue.c: Likewise.
+
+	Initial implementation of kqueue support.
+
+	* ev_inotify.c: New file.
+	* ev_kqueue.c: New file.
+	* configure.ac: Set up automake conditionals and defines
+	depending on the selected interface. Bail out if no suitable
+	interface is found.
+	* Makefile.am: Add the right ev_*.c source to dircond_SOURCES.
+	* dircond.c (run_handler): Remove static qualifier.
+	(process_event): Remove.
+	(main): Use evsys_* calls for interface-dependent operations.
+	* dircond.h (event): New struct.
+	(ifd): Remove extern.
+	(signo): New extern.
+	(ev_name_to_code): Rename to evsys_name_to_code.
+	(ev_code_to_name): Rename to evsys_code_to_name.
+	(ev_log): Remove.
+	(evsys_init,evsys_add_watch)
+	(evsys_rm_watch,evsys_loop): New protos.
+	(evsys_filemask): New extern.
+	* event.c: Remove interface-dependent stuff.
+	* watcher.c (dirwatcher_install): Initialize wd to -1.
+	(watch_subdirs): Use evsys_filemask to decide whether to scan the
+	directory.
+	All functions: Use evsys_* calls for interface-dependent operations.
+
+	Autoconfiscate
+
+	* .gitignore: Update
+	* AUTHORS: New file.
+	* Makefile.am: New file.
+	* THANKS: New file.
+	* configure.ac: New file.
+	* Makefile: Remove.
+	* NEWS: Update.
+	* dircond.c: Include config.h
+	* event.c: Likewise.
+	* hashtab.c: Likewise.
+	* pathdefn.c: Likewise.
+	* watcher.c: Likewise.
+
+	Update NEWS
+
+2013-05-30  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Fix a typo
+
+2013-05-29  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Bugfix
+
+	* watcher.c (watch_subdirs): Fix erroneous conversion specifier
+	in the diagnostics message.
+
+2013-05-28  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Bugfix.
+
+	* config.c (parse_option): Fix the sense of the nowait option.
+
+	Fix help output.
+
+2013-05-27  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Restore default timeout.
+
+	The default timeout setting was inadvertently lost in 02f27691.
+
+	* config.c (opt_timeout): Initialize.
+	* dircond.h (DEFAILT_TIMEOUT): New constant.
+
+	Bugfix.
+
+	* pathdefn.c (pathdefn_get): Fix return value.
+
+2013-05-26  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Lint mode
+
+	* dircond.c (main): Use the -L option to introduce syslog tag
+	and the -t option to request "lint" behavior.
+	* dircond.1: Update.
+
+2013-03-22  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Bugfix
+
+	* dircond.c (setuser): Set up supplementary groups of the user.
+
+2013-03-08  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	New feature: run handler as a specified user.
+
+	* config.c (parse_onevent): Change "call" to "run".  Retain
+	the latter for compatibility.
+	Hanlde optional "as USER" clause.
+	Bugfix: initialize hp->next.
+	* dircond.1: Document changes.
+	* dircond.c (run_handler): Switch to the requested user
+	privileges before running the handler.
+	* dircond.h (handler) <uid,gidv,gidc>: New members.
+
+2013-03-07  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Fix syslog vs. stderr inconsistency.
+
+	* config.c (opt_facility): new global.
+	(parse_syslog): Set opt_facility, unless
+	it is already set (in the command line).
+	* dircond.c (main) <opt_facility>: Remove (now global).
+	* dircond.h (opt_facility): New extern.
+
+	* Makefile (clean): add dircond
+
+2013-03-06  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	More fixes.
+
+	* dircond.c (print_status): Take sigset_t* as the
+	second argument.  Mask out diagnostic messages
+	according to it.
+	(process_cleanup): Mask out SIGTERM and SIGKILL
+	as needed.
+	(run_handler): Swap redirectors syslog priorities:
+	stderr goes to LOG_ERR, and stdout to LOG_INFO.
+
+	Bugfixes.
+
+	* config.c (read_facility): Fix return value.
+	* dircond.c: Fix help output.
+	* dircond.1: Fix incorrect example.
+
+2013-02-14  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Update docs.
+
+	New option -V
+
+	* Makefile (CPPFLAGS): Define VERSION
+	* dircond.c: New option -V (print version).
+	* dircond.1: Document new option.
+
+	Bugfixes.
+
+	* Makefile (DISTFILES): Bugfix.
+	* config.c (parse_event): Bugfix.
+	* NEWS: Update (version 3.0, preliminary)
+
+2013-01-29  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Bugfixes.
+
+	* config.c (nextln): Fix out of range read.
+	* dircond.1: Update.
+	* event.c (ev_code_to_name): Find first matching event.
+	Do not rely on exact match, because the even mask may
+	have several bits set.
+
+	Improve error handling.
+
+	* config.c (parse_path): Bail out if incorrect option
+	is given.
+	* dircond.h (hashtab_count): New proto.
+	* hashtab.c (hashtab_count): New function.
+	* watcher.c (setup_watchers): Bail out if no handlers configured
+	or if unable to install any.
+
+	Improve configuration syntax, document the changes.
+
+	* config.c (path statement): New keyword "recursive".
+	* dircond.c (process_event): Provide a detailed
+	event logging.
+	* event.c (ev_log): New function.
+
+	* dircond.1: Document all changes.
+
+	* dircond.h: Add file.
+
+	Major revamp
+
+	All configuration moved to configuration file (default: /etc/dircond.conf).
+	Only a few command line options have been retained.
+
+	Watcher structures are kept in hash tables, which allows for faster
+	lookups, especially if there are many watchers.
+
+	* Makefile: Add new source.
+	* config.c: New file.
+	* dircond.c (conffile): New global.
+	(facility): Default to stderr. Will be changed by main if
+	going daemon.
+	(handler_timeout, autowatch): Remove.
+	Move datatype definitions and macros to dircond.h
+	(ev_name_to_code, ev_code_to_name): Move to event.c
+	(erealloc, estrdup): New functions.
+	(proc_unlink, proc_pop, proc_push): Define explicitly, now
+	that dlist.c is gone.
+	(read_facility): Move to config.c, changing signature.
+	(set_handler): Remove.
+	(dirwatcher_free, dirwatcher_create)
+	(dirwatcher_destroy, dirwatcher_find_wd)
+	(dirwatcher_find_name): Remove. See watcher.c
+	(remove_watcher, subwatcher_create)
+	(check_new_watcher, watch_subdirs): Move to watcher.c
+	(get_facility): New function.
+	(process_event): New function.
+	(main): Parse configuration file. Use command line options
+	to override its settings.
+	* dlist.c: Remove.
+	* event.c: New file.
+	* hashtab.c: New file.
+	* pathdefn.c: New file.
+	* watcher.c: New file.
+
+2013-01-17  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Revamp the event and handler system.
+
+	Events are directly mapped to those of inotify. Handlers are kept in a
+	doubly-linked list; a special field keeps the mask of supported events.
+	The accepted '-p' syntax is changed accordingly. Docs are not yet
+	updated.
+
+	* dircond.c (event): New struct.
+	(evtab): New global.
+	(handler) <prev,next,ev_mask>: New members.
+	(dirwatcher) <handler_list>: New member (instead of the
+	handler array).
+	(handler_list,handler_mask): New globals.
+	(ev_name_to_code,ev_code_to_name): New functions.
+	(set_handler): Change accepted syntax. The new syntax is
+
+	event[,event...][:flag[,flag...]]:pathname
+
+	(dirwatcher_create): Use handler_mask instead of the hardcoded
+	mask.
+	(dirwatcher_destroy): Free the handler list, if this is a top-level
+	watcher.
+	(subwatcher_create): Update to use new variables.
+	(main): Likewise.
+
+2013-01-10  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Improve error reporting.
+
+	* dircond.c (run_handler,set_handler): Check if the handler can
+	be executed.
+
+	Update documentation
+
+	Watch existing subdirectories, as requested by the autowatch option.
+
+	* dircond.c (subwatcher_create): New function.
+	(check_new_watcher): Use subwatcher_create.
+	(watch_subdirs): New function.
+	(main): Recursively add directories after watchpoint if autowatch
+	requests so.
+
+	Make autowatch feature watchpoint-specific.
+
+	Each particular watchpount can have its own setting of autowatch, as
+	specified by the -a option.
+
+	* dircond.c (dirwatcher) <autowatch>: New member.
+	(dirwatcher_create): Fill allocated structure with zeroes.
+	(dirlevel): Remove function.
+	(check_new_watcher): Use dirwatcher->autowatch to determine
+	whether to watch the new directory.  Inherit autowatch setting.
+	(main): Set dirwatcher->autowatch.
+
+	New flag "timeout="
+
+	* dircond.c (set_handler): The timeout=N flag sets timeout
+	for that particular handler (equivalent to -T option used
+	before -p).
+	* dircond.1: Document the new flag.
+
+2013-01-09  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Add documentation files. Raise version to 2.0
+
+	* .gitignore: Update.
+	* Makefile: Add NEWS and ChangeLog, generate the latter.
+	* NEWS: New file.
+	* git2chg.awk: New file.
+
+	Fix help output.
+
+	Support multiple per-directory handlers.
+
+	* dircond.c (handler) <timeout>: New member.
+	(dirwatcher) <handler>: New member.
+	(process) <master>: Remove.
+	<timeout>: New member.
+	Fix comments.
+	(set_handler): Change supported syntax. The program name
+	is separated from the event spec and optional flags by
+	a semicolon. It can be empty, allowing to cancel a prior
+	definition of the same handler.
+	(register_process): Take timeout as the third argument.
+	(process_timeouts): Use per-process timeout.
+	(open_redirector): Fix the use of facility.
+	(run_handler): Change signature.
+	(main): Change option handling, allowing to intermix
+	handler and watchpoint definitions.
+	* README: Update.
+	* dircond.1: Update.
+	* dlist.c: Add copyright header.
+
+	Fix a "fencepost" error in close_fds.
+
+	* dircond.c (close_fds): Start iterating from max_fd-1.
+
+2012-12-31  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Minor fixes.
+
+	* COPYING: New file.
+	* Makefile: Distribute COPYING.
+	* dircond.c (main): tag is now const char *.
+
+	Switch to user privileges only if -u option is explicitly given.
+
+	Improve documentation.
+
+2012-12-24  Sergey Poznyakoff  <gray@gnu.org.ua>
+
+	Add a manpage.
+
+	* Makefile: Add a manpage.
+	* dircond.c (run_handler): Pass event code and
+	event symbolic name to the handler.
+
+	Add support for IN_MOVED_FROM and IN_MOVED_TO.
+
+	Initial commit
+
+Local Variables:
+mode: change-log
+version-control: never
+buffer-read-only: t
+End:

@@ -1,0 +1,774 @@
+# Polish translations for GNU Direvent.
+# This file is distributed under the same license as the direvent package.
+# Copyright (C) 2014 Free Software Foundation, Inc.
+#      
+# Sergey Poznyakoff <gray@gnu.org>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: direvent 4.1.91\n"
+"Report-Msgid-Bugs-To: bug-direvent@gnu.org.ua\n"
+"POT-Creation-Date: 2015-04-16 14:37+0300\n"
+"PO-Revision-Date: 2014-09-02 12:39+0300\n"
+"Last-Translator: Sergey Poznyakoff <gray@gnu.org>\n"
+"Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+
+#: cmdline.opt:26
+msgid "increase debug level"
+msgstr "zwiększenie poziomu diagnostyki"
+
+#: cmdline.opt:32
+msgid "PRIO"
+msgstr "PRIO"
+
+#: cmdline.opt:32
+msgid ""
+"log everything with priority PRIO and higher to the stderr, as well as to "
+"the syslog"
+msgstr ""
+"wyświetla komunikaty o priorytecie PRIO i wyższym na stderr oraz syslog"
+
+#: cmdline.opt:41
+msgid "NAME"
+msgstr "NAZWA"
+
+#: cmdline.opt:41
+msgid "set syslog facility"
+msgstr "ustawia urządzenie syslogu"
+
+#: cmdline.opt:47
+msgid "remain in foreground"
+msgstr "działanie na pierwszym planie"
+
+#: cmdline.opt:53
+msgid "PROG"
+msgstr "PROG"
+
+#: cmdline.opt:53
+msgid "self-test mode"
+msgstr "ustawia tryb samotestowania"
+
+#: cmdline.opt:59
+msgid "FILE"
+msgstr "PLIK"
+
+#: cmdline.opt:59
+msgid "set PID file"
+msgstr "ustawia nazwę pliku PID"
+
+#: cmdline.opt:65
+msgid "check configuration file and exit"
+msgstr "sprawdza jedynie składnię pliku konfiguracyjnego"
+
+#: cmdline.opt:71
+msgid "USER"
+msgstr "UŻYTKOWNIK"
+
+#
+#: cmdline.opt:71
+msgid "run as this user"
+msgstr "przechodzi do uprawnień podanego użytkownika"
+
+#: cmdline.opt:81
+msgid "show configuration file summary"
+msgstr "wyświetla podsumowanie instrukcji konfiguracyjnych"
+
+#: cmdline.opt:75
+msgid "Other options"
+msgstr "Inne opcje"
+
+#: cmdline.opt:87
+msgid "Give this help list"
+msgstr "Wyświetla ten tekst pomocy"
+
+#: cmdline.opt:87
+msgid "Give a short usage message"
+msgstr "Wyświetla krótkie informacje o składni polecenia"
+
+#: cmdline.opt:87
+msgid "Print program version"
+msgstr "Wyświetla wersję programu"
+
+#: cmdline.opt:13
+msgid "GNU direvent monitors changes in directories"
+msgstr "GNU direvent monitoruje zmiany w katalogach"
+
+#: cmdline.opt:15
+msgid "[CONFIG]"
+msgstr "[KONFIG]"
+
+#: cmdline.opt:81
+#, c-format
+msgid ""
+"The optional CONFIG argument supplies the name of the configuration file\n"
+"to use instead of %s.\n"
+"\n"
+msgstr ""
+"Opcjonalny argument KONFIG podaje nazwę pliku konfiguracyjnego\n"
+"(domyślnie %s).\n"
+"\n"
+
+#. TRANSLATORS: %s is one of: inotify, kqueue
+#: cmdline.opt:85
+#, c-format
+msgid ""
+"This direvent uses %s interface.\n"
+"\n"
+msgstr "Ten direvent używa interfejsu %s.\n"
+
+#: src/config.c:63
+#, c-format
+msgid "unknown syslog facility: %s"
+msgstr "nieznane urządzenie syslog `%s'"
+
+#: src/config.c:80
+#, c-format
+msgid "unknown syslog priority: %s"
+msgstr "nieznany priorytet syslog `%s'"
+
+#: src/config.c:88
+msgid "unexpected block statement"
+msgstr "nieoczekiwana instrukcja blokowa"
+
+#: src/config.c:97
+#, c-format
+msgid "expected %s"
+msgstr "oczekiwano %s"
+
+#: src/config.c:102
+#, c-format
+msgid "expected %s, but found %s"
+msgstr "oczekiwano %s, ale znaleziono %s"
+
+#: src/config.c:124
+#, c-format
+msgid "unknown syslog facility `%s'"
+msgstr "nieznane urządzenie syslog `%s'"
+
+#: src/config.c:133 src/config.c:704
+msgid "name"
+msgstr "nazwa"
+
+#: src/config.c:134
+msgid ""
+"Set syslog facility. Arg is one of the following: user, daemon, auth, "
+"authpriv, mail, cron, local0 through local7 (case-insensitive), or a "
+"facility number."
+msgstr ""
+"Ustawia urządzenie syslogu. Dozwolone wartości argumentu: user, daemon, "
+"auth, authpriv, mail, cron, local0 do local7 (bez rozróżniania małych i "
+"wielkich liter), lub numer urządzenia."
+
+#: src/config.c:139
+msgid "string"
+msgstr "łańcuch"
+
+#: src/config.c:139
+msgid "Tag syslog messages with this string"
+msgstr "Ustawia znacznik komunikatów."
+
+#: src/config.c:142 grecs/src/format.c:141
+msgid "arg"
+msgstr "arg"
+
+#: src/config.c:143
+msgid "Prefix each message with its priority"
+msgstr "Dodaje przedrostek priorytety do komunikatów"
+
+#: src/config.c:209
+#, c-format
+msgid "%s: recursion depth does not match previous definition"
+msgstr "%s: głębokość rekurencji nie pasuje do poprzednio zdefiniowanej"
+
+#
+#: src/config.c:247
+msgid "no paths configured"
+msgstr "brak skonfigurowanych ścieżek"
+
+#: src/config.c:252
+msgid "no command configured"
+msgstr "brak skonfigurowanego polecenia"
+
+#: src/config.c:264 grecs/src/tree.c:629
+msgid "invalid use of block statement"
+msgstr "nieprawidłowe użycie instrukcji blokowej"
+
+#: src/config.c:309
+msgid "expected \"recursive\" or end of statement"
+msgstr "oczekiwano \"recursive\" lub końca instrukcji"
+
+#: src/config.c:324
+msgid "surplus argument"
+msgstr "za wiele argumentów"
+
+#: src/config.c:330 src/config.c:481
+msgid "unexpected list"
+msgstr "nieoczekiwana lista"
+
+#: src/config.c:361 src/config.c:376 src/config.c:391
+msgid "unrecognized event code"
+msgstr "nieznany kod wydarzenia"
+
+#: src/config.c:473
+msgid "surplus arguments"
+msgstr "dodatkowe argumenty"
+
+#: src/config.c:487
+msgid "no such user"
+msgstr "nie ma takiego użytkownika"
+
+#: src/config.c:494
+msgid "no such group"
+msgstr "nie ma takiej grupy"
+
+#: src/config.c:533
+msgid "unrecognized flag"
+msgstr "nieznany znacznik"
+
+#: src/config.c:611
+msgid "unterminated regexp"
+msgstr "niezakończone wyrażenie regularne"
+
+#: src/config.c:625
+#, c-format
+msgid "unrecognized flag: %c"
+msgstr "nierozpoznany znacznik: %c"
+
+#: src/config.c:693
+msgid "Pathname to watch"
+msgstr "Ścieżka do obserwacji"
+
+#: src/config.c:696
+msgid "Events to watch for"
+msgstr "Wydarzenia do obserwacji"
+
+#: src/config.c:699
+msgid "regexp"
+msgstr "wyr.reg."
+
+#: src/config.c:699
+msgid "Files to watch for"
+msgstr "Pliki do obserwowania"
+
+#: src/config.c:702
+msgid "Command to execute on event"
+msgstr "Polecenie do wykonania w razie nastąpienia wydarzenia"
+
+#: src/config.c:704
+msgid "Run command as this user"
+msgstr "Wykonywanie poleceń z uprawnieniami podanego użytkownika"
+
+#: src/config.c:707
+msgid "seconds"
+msgstr "sekundy"
+
+#: src/config.c:707
+msgid "Timeout for the command"
+msgstr "Czas oczekiwania na zakończenie wykonania polecenia"
+
+#: src/config.c:709
+msgid "List of additional options"
+msgstr "Lista dodatkowych opcji"
+
+#: src/config.c:712
+msgid "<arg: string> <arg: string>..."
+msgstr "<arg: łańcuch> <arg: łańcuch>..."
+
+#: src/config.c:713
+msgid "Modify environment"
+msgstr "Modyfikacja środowiska"
+
+#: src/config.c:720
+msgid "Run as this user"
+msgstr "Wykonywanie z uprawnieniami podanego użytkownika"
+
+#: src/config.c:722
+msgid "Run in foreground"
+msgstr "Działanie w trybie pierwszoplanowym"
+
+#: src/config.c:724
+msgid "file"
+msgstr "plik"
+
+#: src/config.c:724
+msgid "Set pid file name"
+msgstr "Ustawia nazwę pliku PID"
+
+#: src/config.c:726
+msgid "Configure syslog logging"
+msgstr "Konfiguracja rejestrowania zdarzeń przez syslog"
+
+#: src/config.c:728
+msgid "level"
+msgstr "poziom"
+
+#: src/config.c:728
+msgid "Set debug level"
+msgstr "Ustawienie poziomu diagnostyki"
+
+#: src/config.c:730
+msgid "Configure event watcher"
+msgstr "Konfiguracja obserwatora wydarzeń"
+
+#: src/config.c:741
+msgid ""
+"Configuration file structure for direvent.\n"
+"For more information, use `info direvent configuration'."
+msgstr ""
+"Struktura pliku konfiguracyjnego programu direvent.\n"
+"Żeby otrzymać więcej informacji uruchom `info direvent configuration'."
+
+#: src/direvent.c:141 src/direvent.c:163 src/watcher.c:86 src/watcher.c:182
+#: src/watcher.c:191
+msgid "not enough memory"
+msgstr "brak pamięci"
+
+#: src/direvent.c:271
+#, c-format
+msgid "cannot open pidfile %s for writing: %s"
+msgstr "nie można otworzyć pliku %s do zapisu: %s"
+
+#: src/direvent.c:299
+#, c-format
+msgid "no user with UID %lu"
+msgstr "brak użytkownika o UID %lu"
+
+#: src/direvent.c:417
+#, c-format
+msgid "cannot run `%s': fork failed: %s"
+msgstr "nie udaje się uruchomić `%s': wywołanie fork nie powiodło się: %s"
+
+#: src/direvent.c:477
+msgid "too many arguments"
+msgstr "za dużo argumentów"
+
+#: src/direvent.c:523
+#, c-format
+msgid "%s %s started"
+msgstr "%s %s uruchomiony"
+
+#: src/direvent.c:544
+#, c-format
+msgid "%s %s stopped"
+msgstr "%s %s skończył pracę"
+
+#: src/environ.c:25
+msgid "environment: "
+msgstr "środowisko: "
+
+#: src/hashtab.c:140 grecs/src/symtab.c:193
+msgid "element not found in table"
+msgstr "nie znaleziono elementu w tabeli"
+
+#: src/hashtab.c:142 grecs/src/symtab.c:195
+msgid "symbol table is full"
+msgstr "tabela symboli przepełniona"
+
+#: src/hashtab.c:144
+msgid "out of memory"
+msgstr "brak pamięci"
+
+#: src/progman.c:142
+#, c-format
+msgid "process %lu exited successfully"
+msgstr "proces %lu zakończył się pomyślnie"
+
+#: src/progman.c:145
+#, c-format
+msgid "process %lu failed with status %d"
+msgstr "proces %lu zakończył się ze stanem %d"
+
+#: src/progman.c:155
+#, c-format
+msgid "process %lu terminated on signal %d"
+msgstr "proces %lu zakończył się na sygnał %d"
+
+#: src/progman.c:158
+#, c-format
+msgid "process %lu stopped on signal %d"
+msgstr "proces %lu zatrzymał się na sygnał %d"
+
+#: src/progman.c:163
+#, c-format
+msgid "process %lu dumped core"
+msgstr "proces %lu zrzucił rdzeń"
+
+#: src/progman.c:167
+#, c-format
+msgid "process %lu terminated with unrecognized status"
+msgstr "proces %lu zakończył się z nierozpoznanym kodem"
+
+#: src/progman.c:228
+msgid "begin scanning process list"
+msgstr "skanowanie listy procesów"
+
+#: src/progman.c:232
+#, c-format
+msgid "process %lu timed out"
+msgstr "przekroczenie czasu oczekiwania na proces %lu"
+
+#: src/progman.c:241
+#, c-format
+msgid "scheduling alarm in %lu seconds"
+msgstr "alarm za %lu sekund"
+
+#: src/progman.c:322
+#, c-format
+msgid "cannot start redirector for %s, pipe failed: %s"
+msgstr ""
+"nie można uruchomić urządzenia przekierowywującego %s: zawiódł pipe: %s"
+
+#: src/progman.c:354
+#, c-format
+msgid "cannot run redirector `%s': fork failed: %s"
+msgstr ""
+"nie można uruchomić urządzenia przekierowywującego `%s': zawiódł fork: %s"
+
+#: src/progman.c:359
+#, c-format
+msgid "redirector for %s started, pid=%lu"
+msgstr "uruchomiono urządzenie przekierowywujące %s, pid=%lu"
+
+#: src/progman.c:439
+#, c-format
+msgid "starting %s, dir=%s, file=%s"
+msgstr "rozruch %s, katalog=%s, plik=%s"
+
+#: src/progman.c:468
+#, c-format
+msgid "cannot change to %s: %s"
+msgstr "nie można przejść do katalogu %s: %s"
+
+#: src/progman.c:496
+#, c-format
+msgid "%s running; dir=%s, file=%s, pid=%lu"
+msgstr "uruchomiono %s; katalog=%s, plik=%s, pid=%lu"
+
+#: src/progman.c:518
+#, c-format
+msgid "waiting for %s (%lu) to terminate"
+msgstr "czekanie na zakończenie %s (%lu)"
+
+#: src/watcher.c:231
+#, c-format
+msgid "creating watcher %s"
+msgstr "utworzenie obserwatora %s"
+
+#: src/watcher.c:240
+#, c-format
+msgid "cannot set watcher on %s: %s"
+msgstr "nie można ustawić obserwatora na %s: %s"
+
+#: src/watcher.c:319
+#, c-format
+msgid "cannot create watcher %s/%s: not enough memory"
+msgstr "nie można stworzyć obserwatora %s/%s: brak pamięci"
+
+#: src/watcher.c:326
+#, c-format
+msgid "cannot create watcher %s/%s, stat failed: %s"
+msgstr "cannot create watcher %s/%s: błąd wywołania stat: %s"
+
+#: src/watcher.c:355
+#, c-format
+msgid "cannot open directory %s: %s"
+msgstr "nie można otworzyć katalogu %s: %s"
+
+#: src/watcher.c:371
+#, c-format
+msgid "cannot stat %s/%s: not enough memory"
+msgstr "stat %s/%s: brak pamięci"
+
+#: src/watcher.c:376
+#, c-format
+msgid "cannot stat %s: %s"
+msgstr "stat(%s) nie powiódł się: %s"
+
+#
+#: src/watcher.c:412
+msgid "no event handlers configured"
+msgstr "brak skonfigurowanych programów obsługi wydarzeń"
+
+#: src/watcher.c:417
+msgid "no event handlers installed"
+msgstr "nie zainstalowano żadnych programów obsługi wydarzeń"
+
+#: src/watcher.c:425
+#, c-format
+msgid "removing watcher %s"
+msgstr "usunięcie obserwatora %s"
+
+#: grecs/src/format.c:133
+msgid "Disabled;"
+msgstr "Wyłączono;"
+
+#: grecs/src/opthelp.c:123 grecs/src/opthelp.c:269
+msgid "Usage:"
+msgstr "Składnia:"
+
+#: grecs/src/opthelp.c:127
+msgid "OPTION"
+msgstr "OPCJA"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Aliases"
+msgstr "Aliasy"
+
+#: grecs/src/opthelp.c:132 grecs/src/opthelp.c:427
+msgid "Alias"
+msgstr "Alias"
+
+#: grecs/src/opthelp.c:186
+msgid ""
+"Mandatory or optional arguments to long options are also mandatory or "
+"optional for any corresponding short options."
+msgstr ""
+"Argumenty obowiązkowe lub opcjonalne dla długich opcji są również "
+"obowiązkowe lub opcjonalne dla odpowiednich krótkich opcji."
+
+#. TRANSLATORS: The placeholder indicates the bug-reporting
+#. address for this package.  Please add _another line_ saying
+#. "Report translation bugs to <...>\n" with the address for
+#. translation bugs (typically your translation team's web or
+#. email address).
+#: grecs/src/opthelp.c:202
+#, c-format
+msgid "Report bugs to %s.\n"
+msgstr "Raporty o błędach należy wysyłać do %s.\n"
+
+#: grecs/src/opthelp.c:205
+#, c-format
+msgid "%s home page: <%s>\n"
+msgstr "strona domowa %s: <%s>\n"
+
+#. TRANSLATORS: Translate "(C)" to the copyright symbol
+#. (C-in-a-circle), if this symbol is available in the user's
+#. locale.  Otherwise, do not translate "(C)"; leave it as-is.
+#: grecs/src/opthelp.c:457
+msgid "(C)"
+msgstr "©"
+
+#: grecs/src/opthelp.c:466
+msgid ""
+"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+"html>\n"
+"This is free software: you are free to change and redistribute it.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+"\n"
+msgstr ""
+"Licencja GPLv3+: GNU GPL wersja 3 albo późniejsza  <http://gnu.org/licenses/"
+"gpl.html>\n"
+"To jest wolne oprogramowanie: możesz je modyfikować i rozpowszechniać.\n"
+"Autorzy NIE DAJĄ GWARANCJI w granicach dozwolonych prawem.\n"
+"\n"
+
+#: grecs/src/opthelp.c:483
+msgid "Written by "
+msgstr "Stworzony przez"
+
+#. TRANSLATORS: This string is used as a delimiter between
+#. authors' names as in:
+#.
+#. Written by Winnie the Pooh, Piglet ...
+#.
+#: grecs/src/opthelp.c:489
+msgid ", "
+msgstr ", "
+
+#. TRANSLATORS: This string acts as a delimiter before the
+#. last author's names, e.g.:
+#.
+#. Written by Winnie the Pooh, Piglet and Christopher Robin.
+#.
+#: grecs/src/opthelp.c:495
+msgid " and "
+msgstr " i "
+
+#: grecs/src/path-parser.c:62
+#, c-format
+msgid "cannot open `%s'"
+msgstr "nie można otworzyć `%s'"
+
+#: grecs/src/path-parser.c:108 grecs/src/path-parser.c:123
+msgid "unexpected end of file"
+msgstr "nieoczekiwany koniec pliku"
+
+#: grecs/src/path-parser.c:143
+msgid "parse error"
+msgstr "błąd analizy"
+
+#: grecs/src/preproc.c:434 grecs/src/preproc.c:456
+#, c-format
+msgid "Cannot stat `%s'"
+msgstr "Wywołanie stat(%s) nie powiodło się"
+
+#: grecs/src/preproc.c:439 grecs/src/preproc.c:444
+msgid "Recursive inclusion"
+msgstr "Dołączanie rekurencyjne"
+
+#: grecs/src/preproc.c:447
+#, c-format
+msgid "`%s' already included here"
+msgstr "`%s' już został dołączony tutaj"
+
+#: grecs/src/preproc.c:451
+#, c-format
+msgid "`%s' already included at top level"
+msgstr "`%s' został dołączony na poziomie najwyższym"
+
+#: grecs/src/preproc.c:466
+#, c-format
+msgid "Cannot open `%s'"
+msgstr "Nie można otworzyć `%s'"
+
+#: grecs/src/preproc.c:563
+msgid "Cannot parse include line"
+msgstr "Analiza polecenia dołączania nie powiodła się"
+
+#: grecs/src/preproc.c:566
+msgid "invalid include statement"
+msgstr "nieprawidłowe polecenie dołączania"
+
+#: grecs/src/preproc.c:586
+#, c-format
+msgid "%s: No such file or directory"
+msgstr "%s: Nie ma takiego pliku lub katalogu"
+
+#: grecs/src/preproc.c:639
+#, c-format
+msgid "Unable to start external preprocessor `%s'"
+msgstr "Nie mogę uruchomić preprocesora `%s'"
+
+#: grecs/src/preproc.c:714 grecs/src/preproc.c:734
+#, c-format
+msgid "Cannot run `%s'"
+msgstr "Nie można wykonać `%s'"
+
+#: grecs/src/tree.c:328
+#, c-format
+msgid "%s: not a valid boolean value"
+msgstr "%s nie jest poprawną wartością boole'owską"
+
+#: grecs/src/tree.c:358
+#, c-format
+msgid "%s: UNIX socket name too long"
+msgstr "%s: za długa nazwa gniazda UNIX"
+
+#: grecs/src/tree.c:387 grecs/src/tree.c:611
+#, c-format
+msgid "%s: not a valid IP address or hostname"
+msgstr "%s: niepoprawny adres IP lub nazwa hosta"
+
+#: grecs/src/tree.c:411
+#, c-format
+msgid "%s: not a valid port number"
+msgstr "%s: niepoprawny numer portu"
+
+#: grecs/src/tree.c:419
+msgid "missing port number"
+msgstr "brak numeru portu"
+
+#: grecs/src/tree.c:468
+msgid "numeric overflow"
+msgstr "przepełnienie arytmetyczne"
+
+#: grecs/src/tree.c:473
+msgid "value out of allowed range"
+msgstr "wartość poza dozwolonym zakresem"
+
+#: grecs/src/tree.c:508 grecs/src/tree.c:538
+#, c-format
+msgid "not a number (stopped near `%s')"
+msgstr "nie jest liczbą (zatrzymano przy `%s')"
+
+#: grecs/src/tree.c:602
+#, c-format
+msgid "%s: not a valid IP address"
+msgstr "%s: niepoprawny adres IP"
+
+#: grecs/src/tree.c:624
+#, c-format
+msgid "INTERNAL ERROR at %s:%d"
+msgstr "BŁĄD WEWNĘTRZNY przy %s:%d"
+
+#: grecs/src/tree.c:728
+#, c-format
+msgid "too many arguments to `%s'; missing semicolon?"
+msgstr "zbyt dużo argumentów do `%s': brak średnika?"
+
+#: grecs/src/tree.c:742 grecs/src/tree.c:790
+#, c-format
+msgid "INTERNAL ERROR at %s:%d: unhandled data type %d"
+msgstr "BŁĄD WEWNĘTRZNY przy %s:%d: nieobsługiwany typ danych %d"
+
+#: grecs/src/tree.c:757
+#, c-format
+msgid "%s: incompatible data type in list item #%d"
+msgstr "%s: element listy #%d ma niekompatybilny typ danych"
+
+#: grecs/src/tree.c:777
+#, c-format
+msgid "incompatible data type for `%s'"
+msgstr "niekompatybilny typ danych dla `%s'"
+
+#: grecs/src/tree.c:900 grecs/src/tree.c:910
+msgid "Unknown keyword"
+msgstr "Nieznane słowo kluczowe"
+
+#: grecs/src/tree.c:1119
+#, c-format
+msgid "%s: unknown keyword"
+msgstr "%s: nieznane słowo kluczowe"
+
+#: grecs/src/wordsplit.c:57 grecs/src/wordsplit.c:1577
+#: grecs/src/wordsplit.c:1608
+msgid "memory exhausted"
+msgstr "pamięć wyczerpana"
+
+#: grecs/src/wordsplit.c:790
+#, c-format
+msgid "warning: undefined variable `%.*s'"
+msgstr "ostrzeżenie: niezdefiniowana zmienna `%.*s'"
+
+#: grecs/src/wordsplit.c:1567 grecs/src/wordsplit.c:1606
+msgid "no error"
+msgstr "żadnego błędu"
+
+#: grecs/src/wordsplit.c:1571
+#, c-format
+msgid "missing closing %c (start near #%lu)"
+msgstr "brak zamykającego znaku %c (początek przy #%lu)"
+
+#: grecs/src/wordsplit.c:1581 grecs/src/wordsplit.c:1609
+msgid "command substitution is not yet supported"
+msgstr "rozszerzenie poleceń jeszcze nie jest obsługiwane"
+
+#: grecs/src/wordsplit.c:1585 grecs/src/wordsplit.c:1610
+msgid "invalid wordsplit usage"
+msgstr "niepoprawne użycie funkcji wordsplit"
+
+#: grecs/src/wordsplit.c:1589 grecs/src/wordsplit.c:1611
+msgid "unbalanced curly brace"
+msgstr "niezbilansowany nawias klamrowy"
+
+#: grecs/src/wordsplit.c:1593 grecs/src/wordsplit.c:1612
+msgid "undefined variable"
+msgstr "niezdefiniowana zmienna"
+
+#: grecs/src/wordsplit.c:1597 grecs/src/wordsplit.c:1613
+msgid "input exhausted"
+msgstr "wejście wyczerpane"
+
+#: grecs/src/wordsplit.c:1601 grecs/src/wordsplit.c:1623
+msgid "unknown error"
+msgstr "nieznany błąd"
+
+#: grecs/src/wordsplit.c:1607
+msgid "missing closing quote"
+msgstr "brak cudzysłowu zamykającego"

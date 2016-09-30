@@ -1,0 +1,8 @@
+# @configure_input@                                     -*- shell-script -*-
+# Configurable variable values for Direvent test suite.
+# Copyright (C) 2012-2014 Sergey Poznyakoff
+
+PATH=@abs_builddir@:@abs_top_builddir@/src:@abs_top_srcdir@/build-aux:$top_srcdir:$srcdir:$PATH
+SRCDIR=@abs_top_srcdir@/tests
+TESTDIR=@abs_top_builddir@/tests
+#TESTSUITE_FACILITY=@TESTSUITE_FACILITY@

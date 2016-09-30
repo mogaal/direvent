@@ -1,0 +1,36 @@
+# This file is part of grecs  -*- Autotest -*-
+# Copyright (C) 2007, 2009-2012 Sergey Poznyakoff
+#
+# Grecs is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# Grecs is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Grecs.  If not, see <http://www.gnu.org/licenses/>.
+
+AT_SETUP(Version comparator)
+AT_KEYWORDS(vercmp)
+
+AT_CHECK([gcfver 1.0 1.0], [0])
+AT_CHECK([gcfver 1.1 1.0], [3])
+AT_CHECK([gcfver 2.0 1.0], [3])
+AT_CHECK([gcfver 1.0 1.1], [2])
+AT_CHECK([gcfver 1.0 2.0], [2])
+AT_CHECK([gcfver 1.0a 1.0a], [0])
+AT_CHECK([gcfver 1.0b 1.0a], [3])
+AT_CHECK([gcfver 1.0a 1.0b], [2])
+AT_CHECK([gcfver 1.0.1 1.0], [3])
+AT_CHECK([gcfver 1.0.1 1.0.0], [3])
+AT_CHECK([gcfver 1.0.0 1.0.1], [2])
+AT_CHECK([gcfver 1.0.1a 1.0.0], [3])
+AT_CHECK([gcfver 1.0.1a 1.0.0a], [3])
+AT_CHECK([gcfver 1.0.1a 1.0.0b], [3])
+AT_CHECK([gcfver 1.0.1a 1.0.1b], [2])
+
+AT_CLEANUP

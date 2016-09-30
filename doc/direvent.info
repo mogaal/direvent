@@ -1,0 +1,1545 @@
+This is direvent.info, produced by makeinfo version 5.9.90 from
+direvent.texi.
+
+Copyright (C) 2013-2014 Sergey Poznyakoff
+
+   Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is included in the section entitled "GNU Free
+Documentation License".
+INFO-DIR-SECTION Individual utilities
+START-INFO-DIR-ENTRY
+END-INFO-DIR-ENTRY
+
+
+File: direvent.info,  Node: Top,  Next: Intro,  Up: (dir)
+
+Direvent
+********
+
+This edition of the 'GNU Direvent' manual, last updated 18 September
+2014, documents GNU Direvent Version 5.0.90.
+
+
+File: direvent.info,  Node: Intro,  Next: Overview,  Prev: Top,  Up: Top
+
+1 Introduction
+**************
+
+GNU 'direvent' monitors events in file system directories.  For each
+event that occurs in a set of pre-configured directories, the program
+calls an external program associated with it, supplying it the
+information about the event and the location within the file system
+where it took place.
+
+   GNU 'direvent' provides an easy way to configure your system to react
+immediately if certain files undergo changes.  This may be helpful, for
+example, to track changes in important configuration files.
+
+   Interfaces for tracking changes to file systems are highly
+system-specific.  GNU 'direvent' aims to provide a uniform and
+system-independent command-level interface.  As of version 5.0.90
+'direvent' works with modern Linux kernels (since v.  2.6.13) and BSD
+systems (FreeBSD, NetBSD, OpenBSD, Darwin).
+
+
+File: direvent.info,  Node: Overview,  Next: Quick start,  Prev: Intro,  Up: Top
+
+2 Overview
+**********
+
+GNU 'direvent' monitors a set of directories on the file system and
+reacts when a file system event occurs in any of them.  Directories and
+events to monitor are specified in the configuration file.  When an
+event occurs, the program reacts by invoking an external command
+configured for that event.
+
+   File system events can be divided into two major groups.  The
+"system-dependent events" are specific for each particular kernel
+interface.  In the contrast, "generic events" don't depend on the
+underlying system.  They provide a higher level of abstraction and make
+it possible to port GNU 'direvent' configurations between various
+systems and architectures.
+
+   The generic events are:
+
+create
+     A file was created.
+delete
+     A file was deleted;
+write
+     A file was written to;
+attrib
+     File attributes have changed.  This includes changes in the file
+     ownership, mode, link count, etc.
+
+   A "watcher" is a configuration entity that associates a set of
+directories with a set of events and instructs 'direvent' to run a
+specified external command when any of these events occur in any of
+these directories.  This external command (called a "handler") can
+obtain information about the event that triggered it from the
+environment variables, or from its command line.
+
+   Watchers are defined in the configuration file, which 'direvent'
+reads at startup.  This file has a simple and easy to use syntax.
+
+   Three types of comments are allowed: inline comments, that begin with
+a '#' or '//' and extend to the end of line, and multi-line comments,
+which comprise everything enclosed between '/*' and '*/'.  Comments and
+empty lines are ignored.  Whitespace characters are ignored as well,
+except as they serve to separate tokens.
+
+   A token is a string of consecutive characters from the following
+classes: alphanumeric characters, underscores, dots, asteriscs, slashes,
+semicolons, commercial at's, and dashes.
+
+   Any other sequence of characters must be enclosed in double quotation
+marks in order to represent a single token.
+
+   Adjacent quoted strings are concatenated.
+
+   A configuration statement consists of a keyword and value separated
+by any amount of whitespace and is terminated with a semicolon.  A block
+statement is a collection of statements enclosed in curly braces.
+
+   The following block statement declares a watcher:
+
+     watcher {
+         path PATHNAME [recursive [LEVEL]];
+         file PATTERN-LIST;
+         event  EVENT-LIST;
+         command COMMAND-LINE;
+         user NAME;
+         timeout NUMBER;
+         environ ENV-SPEC;
+         option STRING-LIST;
+     }
+
+   Each 'watcher' statement instructs 'direvent' to monitor events
+listed in EVENT-LIST occurring in the directories specified by PATHNAMEs
+in 'path' statements (any number of 'path' statements can be given).
+When any such event is detected, the supplied COMMAND-LINE will be
+executed.
+
+   Each directory defined with the 'recursive' keyword will be watched
+recursively.  This means that for each subdirectory created in it,
+'direvent' will install a watcher similar to that of its parent
+directory.  Optional LEVEL statement can be used to set up a cut-off
+nesting level, beyond which the recursive operation is disabled.
+
+   The rest of statements are optional.  The 'file' statement instructs
+GNU 'direvent' to react only if the event concerned the file whose name
+matches one of the patterns given in its argument.  The 'user' statement
+can be used to execute the COMMAND-LINE as the user NAME (provided, of
+course, that 'direvent' is started with root privileges).  The 'timeout'
+specifies the maximum amount of time (in seconds) the command is allowed
+to run.  It defaults to 5.  The 'environ' statement modifies the command
+environment.  Finally, the 'option' statement supplies additional
+options.  It can be used, for example, to divert the command's output to
+syslog.
+
+
+File: direvent.info,  Node: Quick start,  Next: Invocation,  Prev: Overview,  Up: Top
+
+3 Quick Start
+*************
+
+Let's suppose you have a directory where users can upload their files
+and you want these files to be processed right after upload, in real
+time.  Let this directory be '/home/ftp/incoming' and the program to
+process the upload be '/usr/bin/upload'.  Let's also suppose that this
+program expects name of the uploaded file as its argument.
+
+   To make 'direvent' handle this task, you would need to create a
+watcher for the upload directory which would handle the 'create' event:
+
+     watcher {
+         path /home/ftp/incoming;
+         event create;
+         # more statements follow...
+
+   On this event, the watcher is to invoke '/usr/bin/upload' with the
+name of the created file as an argument.  To make it possible, the
+'direvent' configuration file provides "macro variables", which can be
+used in the 'command' argument at configuration time and which are
+expanded to the actual values before the command is executed.  Macro
+variables are referred to using the same syntax as shell variables: a
+dollar sign followed by the variable name, optionally enclosed in curly
+braces.  The 'file' variable is expanded to the name of the file for
+which the event is reported.  This name is relative to the current
+working directory which, by the time the handler is executed, is set to
+the directory where the event occurred.  Thus, the handler can be
+configured as:
+
+         command "/usr/bin/upload $file";
+
+   To summarize, the watcher declaration is:
+
+     watcher {
+         path /home/ftp/incoming;
+         event create;
+         command "/usr/bin/upload $file";
+     }
+
+   Before invoking the handler, the following operations are performed:
+
+  1. The current working directory is set to the directory where the
+     event occurred.
+  2. If the 'environ' statement is present in the watcher, the
+     environment is modified according to its rules.  (*note environment
+     modification: environ.)
+  3. The standard input is closed.
+  4. If the 'stdout' option is supplied, the standard output is captured
+     and redirected to the syslog.  Otherwise it is closed.
+  5. If the 'stderr' option is supplied, the standard error is captured
+     and redirected to the syslog.  Otherwise it is closed.
+  6. File descriptors above 2 are closed.
+  7. Macro variables are expanded.  *Note macro expansion::.
+  8. Word splitting is performed on the resulting command line.  The
+     first word is treated as the pathname of the program to be
+     executed.
+  9. The program is invoked.
+
+
+File: direvent.info,  Node: Invocation,  Next: Configuration,  Prev: Quick start,  Up: Top
+
+4 Invocation
+************
+
+The invocation syntax is:
+
+     direvent  [OPTIONS] [CONFIG]
+
+where OPTIONS are command line options discussed below and optional
+CONFIG supplies the configuration file to use instead of the default
+'/etc/direvent.conf'.
+
+   The options are:
+
+'-d'
+'--debug'
+     Increase debug level.
+'-F NAME'
+'--facility=NAME'
+     Set syslog facility.
+'-f'
+'--foreground'
+     Remain in foreground.
+'-l PRIO'
+     While connected to a terminal, 'direvent' outputs its diagnostics
+     messages to stderr and, if configured, to syslog.  This option
+     limits the amount of information output to the standard error.  The
+     PRIO argument is one of the following priorities (in order of
+     increasing severity): 'debug', 'info', 'notice', 'warning', 'err',
+     'crit', 'alert', 'emerg'.  When this option is given, only messages
+     with the priority level equal to or greater than PRIO will be
+     duplicated on the standard error.
+'-P FILE'
+'--pidfile=FILE'
+     Upon successful startup store the PID of the daemon process in
+     FILE.
+'-T COMMAND'
+'--self-test=COMMAND'
+     Run in "self-test mode".  In this mode, 'direvent' starts external
+     command supplied as the argument to this option and continues
+     running until the command exits.  If COMMAND terminates normally,
+     'direvent' exits with the code returned by it.  If COMMAND
+     terminates on signal, 'direvent' exits with code '0' if this signal
+     was 'SIGHUP', and with code '2' otherwise.
+
+     The COMMAND can include any command line options or arguments,
+     provided that it is properly quoted.  It is invoked as '/bin/sh -c
+     COMMAND' in the environment of the parent 'direvent' process.
+
+     This mode is used in 'direvent' test suite.  The idea is to
+     configure the handler (*note handler::) so that it sends 'SIGHUP'
+     to COMMAND before exiting.  To this effect, the special macro
+     variable '$self_test_pid' is defined (*note macro expansion::) to
+     the PID of the running COMMAND process.  For example, consider
+     configuration file 'test.conf', which contains the following:
+
+          watcher {
+              path /tmp;
+              command "/bin/kill -HUP $self_test_pid";
+          }
+
+     Then, the following command can be used to check whether 'direvent'
+     correctly reacts on file creation in the watched directory:
+
+          $ direvent --foreground \
+              --self-test 'touch /tmp/file && /usr/bin/sleep 20 && exit 1' \
+              test.conf
+
+     The command will return '0' if the handler was invoked, and '1' if
+     it was not.
+'-t'
+'--lint'
+     Check configuration file for errors and exit.
+'-u NAME'
+'--user=NAME'
+     Run as this user.  This option overrides the 'user' configuration
+     statement (*note user: general settings.).
+
+   The following options are "informative".  They cause the program to
+display the requested piece of information and terminate:
+
+'-H'
+'--config-help'
+     Show configuration file summary.
+'-h'
+'--help'
+     Give a short usage summary.
+'--usage'
+     Display available command line options.
+'-V'
+'--version'
+     Print program version.
+
+
+File: direvent.info,  Node: Configuration,  Next: System dependencies,  Prev: Invocation,  Up: Top
+
+5 Configuration
+***************
+
+
+File: direvent.info,  Node: syntax,  Next: macro expansion,  Up: Configuration
+
+5.1 Configuration Syntax
+========================
+
+The configuration file consists of statements and comments.
+
+   There are three classes of lexical tokens: keywords, values, and
+separators.  Blanks, tabs, newlines and comments, collectively called
+"white space" are ignored except as they serve to separate tokens.  Some
+white space is required to separate otherwise adjacent keywords and
+values.
+
+
+File: direvent.info,  Node: Comments,  Next: Pragmatic Comments,  Up: syntax
+
+5.1.1 Comments
+--------------
+
+"Comments" may appear anywhere where white space may appear in the
+configuration file.  There are two kinds of comments: single-line and
+multi-line comments.  "Single-line" comments start with '#' or '//' and
+continue to the end of the line:
+
+     # This is a comment
+     // This too is a comment
+
+   "Multi-line" or "C-style" comments start with the two characters '/*'
+(slash, star) and continue until the first occurrence of '*/' (star,
+slash).
+
+   Multi-line comments cannot be nested.  However, single-line comments
+may well appear within multi-line ones.
+
+
+File: direvent.info,  Node: Pragmatic Comments,  Next: Statements,  Prev: Comments,  Up: syntax
+
+5.1.2 Pragmatic Comments
+------------------------
+
+Pragmatic comments are similar to usual single-line comments, except
+that they cause some changes in the way the configuration is parsed.
+Pragmatic comments begin with a '#' sign and end with the next physical
+newline character.
+
+'#include <FILE>'
+'#include FILE'
+     Include the contents of the file FILE.
+
+'#include_once <FILE>'
+'#include_once FILE'
+     Same as '#include', except that, if the FILE has already been
+     included, it will not be included again.
+
+'#line NUM'
+'#line NUM "FILE"'
+     This line causes the parser to believe, for purposes of error
+     diagnostics, that the line number of the next source line is given
+     by NUM and the current input file is named by FILE.  If the latter
+     is absent, the remembered file name does not change.
+
+'# NUM "FILE"'
+     This is a special form of '#line' statement, understood for
+     compatibility with the C preprocessor.
+
+
+File: direvent.info,  Node: Statements,  Prev: Pragmatic Comments,  Up: syntax
+
+5.1.3 Statements
+----------------
+
+A "simple statement" consists of a keyword and value separated by any
+amount of whitespace.  Simple statement is terminated with a semicolon
+(';').
+
+   The following is a simple statement:
+
+     standalone yes;
+     pidfile /var/run/direvent.pid;
+
+   A "keyword" begins with a letter and may contain letters, decimal
+digits, underscores ('_') and dashes ('-').  Examples of keywords are:
+'expression', 'output-file'.
+
+   A "value" can be one of the following:
+
+number
+     A number is a sequence of decimal digits.
+
+boolean
+     A boolean value is one of the following: 'yes', 'true', 't' or '1',
+     meaning "true", and 'no', 'false', 'nil', '0' meaning "false".
+
+unquoted string
+     An unquoted string may contain letters, digits, and any of the
+     following characters: '_', '-', '.', '/', '@', '*', ':'.
+
+quoted string
+     A quoted string is any sequence of characters enclosed in
+     double-quotes ('"').  A backslash appearing within a quoted string
+     introduces an "escape sequence", which is replaced with a single
+     character according to the following rules:
+
+     Sequence               Replaced with
+     \a                     Audible bell character (ASCII 7)
+     \b                     Backspace character (ASCII 8)
+     \f                     Form-feed character (ASCII 12)
+     \n                     Newline character (ASCII 10)
+     \r                     Carriage return character (ASCII
+                            13)
+     \t                     Horizontal tabulation character
+                            (ASCII 9)
+     \v                     Vertical tabulation character
+                            (ASCII 11)
+     \\                     A single backslash ('\')
+     \"                     A double-quote.
+
+     Table 5.1: Backslash escapes
+
+     In addition, the sequence '\NEWLINE' is removed from the string.
+     This allows to split long strings over several physical lines,
+     e.g.:
+
+          "a long string may be\
+           split over several lines"
+
+     If the character following a backslash is not one of those
+     specified above, the backslash is ignored and a warning is issued.
+
+     Two or more adjacent quoted strings are concatenated, which gives
+     another way to split long strings over several lines to improve
+     readability.  The following fragment produces the same result as
+     the example above:
+
+          "a long string may be"
+          " split over several lines"
+
+Here-document
+     A "here-document" is a special construct that allows to introduce
+     strings of text containing embedded newlines.
+
+     The '<<WORD' construct instructs the parser to read all the
+     following lines up to the line containing only WORD, with possible
+     trailing blanks.  Any lines thus read are concatenated together
+     into a single string.  For example:
+
+          <<EOT
+          A multiline
+          string
+          EOT
+
+     The body of a here-document is interpreted the same way as a
+     double-quoted string, unless WORD is preceded by a backslash (e.g.
+     '<<\EOT') or enclosed in double-quotes, in which case the text is
+     read as is, without interpretation of escape sequences.
+
+     If WORD is prefixed with '-' (a dash), then all leading tab
+     characters are stripped from input lines and the line containing
+     WORD.  Furthermore, if '-' is followed by a single space, all
+     leading whitespace is stripped from them.  This allows to indent
+     here-documents in a natural fashion.  For example:
+
+          <<- TEXT
+              The leading whitespace will be
+              ignored when reading these lines.
+          TEXT
+
+     It is important that the terminating delimiter be the only token on
+     its line.  The only exception to this rule is allowed if a
+     here-document appears as the last element of a statement.  In this
+     case a semicolon can be placed on the same line with its
+     terminating delimiter, as in:
+
+          help-text <<-EOT
+                  A sample help text.
+          EOT;
+
+list
+     A "list" is a comma-separated list of values.  Lists are enclosed
+     in parentheses.  The following example shows a statement whose
+     value is a list of strings:
+
+          option (stdout,stderr);
+
+     In any case where a list is appropriate, a single value is allowed
+     without being a member of a list: it is equivalent to a list with a
+     single member.  This means that, e.g.
+
+          option wait;
+
+     is equivalent to
+
+          option (wait);
+
+   A "block statement" introduces a logical group of statements.  It
+consists of a keyword, followed by an optional value, and a sequence of
+statements enclosed in curly braces, as shown in the example below:
+
+     syslog {
+       facility local0;
+       tag "direvent";
+     }
+
+   The closing curly brace may be followed by a semicolon, although this
+is not required.
+
+
+File: direvent.info,  Node: macro expansion,  Next: general settings,  Prev: syntax,  Up: Configuration
+
+5.2 Macro Expansion
+===================
+
+Arguments of some statements undergo macro expansion before use.  During
+the macro expansion any occurrence of '$NAME' is replaced by the value
+of the macro variable NAME.  Variable names follow the usual convention:
+they begin with a letter and contain letters, digits and underscores.
+Curly braces around the NAME are optional.  They are required only if
+the macro reference is followed by a character that is not to be
+interpreted as part of its name, as in '${command}string'.
+
+   The following macros are defined:
+
+file
+     Name of the file that triggered the event.
+
+genev_code
+     Generic (system-independent) event code.  It is a bitwise OR of the
+     event codes represented as a decimal number.
+
+genev_name
+     Generic event name.  If several generic events are reported
+     simultaneously, the value of this variable is a list of event names
+     separated by space characters.  Each name corresponds to a bit in
+     '$genev_code'.
+
+self_test_pid
+     The PID of the external command started with the '--self-test'
+     option (*note self-test mode::).  If 'direvent' is started without
+     this option, this variable is not defined.
+
+sysev_code
+     A system-dependent event code.  It is a bitwise OR of the event
+     codes represented as a decimal number.
+
+sysev_name
+     A system-dependent event name.  If several events are reported, the
+     value of this variable is a list of event names separated by space
+     characters.  Each name corresponds to a bit in 'sysev_code'.  *Note
+     System dependencies::, for a list of system-dependent event names.
+
+
+File: direvent.info,  Node: general settings,  Next: syslog,  Prev: macro expansion,  Up: Configuration
+
+5.3 General Settings
+====================
+
+ -- Config: user NAME
+     Sets the user to run as.  The NAME argument must be a name of an
+     existing user.
+
+ -- Config: foreground BOOL
+     Run in foreground.
+
+ -- Config: pidfile FILE
+     Upon successful startup store the PID of the daemon process in
+     FILE.
+
+ -- Config: debug NUMBER
+     Set debug level.  Valid NUMBER values are '0' (no debug) to '3'
+     (maximum verbosity).
+
+
+File: direvent.info,  Node: syslog,  Next: watcher,  Prev: general settings,  Up: Configuration
+
+5.4 Syslog
+==========
+
+While connected to the terminal, 'direvent' outputs its diagnostics and
+debugging messages to the standard error.  After disconnecting from the
+controlling terminal it closes the first three file descriptors and
+directs all its output to the syslog.  When running in foreground mode,
+its messages are sent both to the standard error and to the syslog.
+
+   The following configuration statement controls the syslog output:
+
+     syslog {
+         facility STRING;
+         tag STRING;
+         print-priority BOOL;
+     }
+
+   The statements are:
+
+ -- Config: facility STRING
+     Set syslog facility.  The argument is one of the following: 'user',
+     'daemon', 'auth' or 'authpriv', 'mail', 'cron', 'local0' through
+     'local7' (case-insensitive), or a facility number.
+
+ -- Config: tag STRING
+     Tag syslog messages with 'string'.  Normally the messages are
+     tagged with the program name.
+
+ -- Config: print-priority 'bool'
+     Prefix each message with its priority.
+
+   An example 'syslog' statement:
+
+     syslog {
+         facility local0;
+         print-priority yes;
+     }
+
+
+File: direvent.info,  Node: watcher,  Prev: syslog,  Up: Configuration
+
+5.5 Watcher
+===========
+
+The 'watcher' statement configures a single event watcher.  A watcher
+can control several events in multiple pathnames.  Any number of
+'watcher' statements is allowed in the configuration file, each one of
+them declaring a separate watcher.
+
+     watcher {
+         path PATHNAME [recursive [LEVEL]];
+         file REGEXP-LIST;
+         event EVENT-LIST;
+         command COMMAND-LINE;
+         user NAME;
+         timeout NUMBER;
+         environ ENV-SPEC;
+         option STRING-LIST;
+     }
+
+   The statements within a 'watcher' block are:
+
+ -- Config: path PATHNAME [recursive [NUMBER]]
+     Defines a pathname to watch.  The PATHNAME argument must be the
+     name of an existing directory in the file system.  The watcher will
+     watch events occurring for all files within that directory.  If the
+     optional 'recursive' clause is specified, this directory will be
+     watched recursively, i.e.  when any subdirectory is created in it,
+     'direvent' will set up a watcher for files in this subdirectory.
+     This new watcher will be an exact copy of the parent watcher,
+     excepting for the pathnames.  The optional NUMBER parameter defines
+     a cut-off nesting level for recursive watching.  If supplied, the
+     recursive behaviour will apply only to the directories that are
+     nested below that level.
+
+     Any number of 'path' statements can appear in a 'watcher' block.
+     At least one 'path' must be defined.
+
+ -- Config: file REGEXP-LIST
+     Selects which files are eligible for monitoring.  The argument is a
+     list of globbing patterns (in the sense of *note fnmatch: (fnmatch
+     manual)fnmatch.) or extended regular expressions (*note Extended
+     regular expressions: (sed)Extended regexps.) one of which must
+     match the file name in order for the watcher to act on it.  A '!'
+     in front of a pattern or regular expression indicates negation.
+     Such construct matches if the file name doesn't match the pattern.
+     Regular expressions must be surrounded by a pair of slashes,
+     optionally followed by the following flags:
+
+     b
+          Use basic regular expressions.
+
+     i
+          Enable case-insensitive matching.
+
+     For example:
+
+          file ("*.cfg", "/.*\\.jpg/i");
+
+     In this statement, the first string ('*.cfg') is treated as a shell
+     globbing pattern.  The second one is a case-sensitive extended
+     regular expression.
+
+ -- Config: event STRING-LIST
+     Configures the filesystem events to watch for in the directories
+     declared by the 'path' statements.  The argument is a list of event
+     names.  Both generic and system-dependent event namess are allowed.
+     Multiple 'event' statements accumulate.
+
+     A missing 'event' statement means "watch all events".
+
+     For example:
+
+          event (open,delete);
+
+ -- Config: command STRING
+     Defines a command to execute on event.  The STRING is a command
+     line just as you would type it in 'sh'.  It may contain macro
+     variables (*note macro expansion::), which will be expanded prior
+     to execution.
+
+     For example:
+
+          command "/bin/prog -event $genev_name -file $file";
+
+     *Note handler environment::, for a detailed discussion of how the
+     command is executed.
+
+ -- Config: user STRING
+     Run command as this user.
+
+ -- Config: timeout NUMBER
+     Terminate the command if it runs longer than NUMBER seconds.  The
+     default is 5 seconds.
+
+ -- Config: option STRING-LIST
+     A list of additional options.  The following options are defined:
+
+     wait
+          Wait for the program to terminate before handling next event
+          from the event queue.  Normally the program runs
+          asynchronously.
+
+     stdout
+          Capture the standard output of the command and redirect it to
+          the syslog with the 'LOG_INFO' priority.
+
+     stderr
+          Capture the standard error of the command and redirect it to
+          the syslog with the 'LOG_ERR' priority.
+
+ -- Config: environ ENV-SPEC
+     Modify command environment.  By default the command inherits the
+     environment of 'direvent' augmented with the following variables:
+
+     'DIREVENT_SYSEV_CODE'
+          The system-dependent event code (*note the $sysev_code
+          variable: $sysev_code.).
+     'DIREVENT_SYSEV_NAME'
+          The system-dependent event name or names (*note the
+          '$sysev_name' variable: $sysev_name.).
+     'DIREVENT_GENEV_CODE'
+          The generic event code (*note the '$genev_code' variable:
+          $genev_code.).
+     'DIREVENT_GENEV_NAME'
+          The generic event name or names (*note the '$genev_name'
+          variable: $genev_name.).
+     'DIREVENT_FILE'
+          The name of the affected file relative to the current working
+          directory (*note the '$file' variable: $file.).
+
+     The 'environ' statement allows for trimming the environment.  Its
+     argument is a list of environment modification directives.  Before
+     applying, each directive undergoes macro expansion (*note macro
+     expansion::).  The following directives are available:
+
+     '-' (a single dash)
+          Clear the inherited environment, but retain the variables
+          added by 'direvent' itself.  The removed environment variables
+          can be selectively restored using the directives discussed
+          below.
+
+          If used, this must be the first directive in the list.
+
+     '--' (double-dash)
+          Clear the entire environment, including the variables added by
+          'direvent'.
+
+          If used, this must be the first directive in the list.
+
+     -NAME
+          Unset the variable NAME.
+
+     -NAME=VAL
+          Unset the environment variable NAME only if its value is VAL.
+
+     NAME
+          Restore the environment variable NAME.  This directive is
+          useful after '-' or '--' to retain some variables from the
+          environment.
+
+     NAME=VALUE
+          Define environment variable NAME to have given VALUE.
+
+     NAME+=VALUE
+          Retain variable NAME and append VALUE to its existing value.
+          If no such variable is present in the environment, it is
+          created and VALUE is assigned to it.  However, if VALUE begins
+          with a punctuation character, this character is removed from
+          it before the assignment.  This is convenient for using this
+          construct with environment variables like 'PATH', e.g.:
+
+               PATH+=:/sbin
+
+          In this example, if 'PATH' exists, ':/sbin' will be appended
+          to it.  Otherwise, it will be created and '/sbin' will be
+          assigned to it.
+
+     NAME=+VALUE
+          Retain variable NAME and prepend VALUE to its existing value.
+          If no such variable is present in the environment, it is
+          created and VALUE is assigned to it.  However, if VALUE ends
+          with a punctuation character, this character is removed from
+          it before assignment.
+
+
+File: direvent.info,  Node: System dependencies,  Next: Reporting Bugs,  Prev: Configuration,  Up: Top
+
+6 System Dependencies
+*********************
+
+'Direvent' relies on the event monitoring API provided by the kernel.
+
+
+File: direvent.info,  Node: linux,  Next: bsd,  Up: System dependencies
+
+6.1 GNU/Linux systems.
+======================
+
+On GNU/Linux the program uses 'inotify'.  *Note monitoring file system
+events: (inotify(7))inotify.
+
+   The maximum number of watches a user process can have is controlled
+by the 'fs.inotify.max_user_watches' system variable.  Normally it is
+set to 8192, which is quite enough for most purposes.  However, if you
+monitor a big number or directories and/or are using recursive watchers,
+you may need to increase this number.  In that case, use 'sysctl' (*note
+configure kernel parameters at runtime: (sysctl(8))sysctl.) to raise the
+limit, e.g.:
+
+     sysctl -w fs.inotify.max_user_watches=16384
+
+Most GNU/Linux distributions provide the file '/etc/sysctl.conf' which
+can be used to set this variable on startup.
+
+   The following system-dependent events are defined on systems that use
+'inotify':
+
+ACCESS
+     A file was accessed.
+ATTRIB
+     A file's metadata changed.
+CLOSE_WRITE
+     A writable file was closed.
+CLOSE_NOWRITE
+     An unwritable file closed.
+CREATE
+     A file was created.
+DELETE
+     A file was deleted.
+MODIFY
+     A file was modified.
+MOVED_FROM
+     A file was moved into a monitored directory.
+MOVED_TO
+     A file was moved out from a monitored directory.
+OPEN
+     A file was opened.
+
+
+File: direvent.info,  Node: bsd,  Next: darwin,  Prev: linux,  Up: System dependencies
+
+6.2 BSD systems
+===============
+
+When compiled on BSD systems (including Darwin), 'direvent' uses
+'kqueue' (*note kernel event notification mechanism:
+(kqueue(2))kqueue.).
+
+   This interface needs an open file handle for each file in a monitored
+directory, which means that the number of watchers is limited by the
+maximum number of open files.  Use 'ulimit -n NUM' in order to raise it
+to a higher number.
+
+   Since it operates on files, 'kqueue' does not provide direct support
+for the 'create' generic event.  'Direvent' works over this disadvantage
+by keeping track of the contents of each monitored directory and
+rescanning it each time a 'WRITE' system event is reported for it.  It
+then generates the 'open' event for each file that appeared after the
+last scan.  Such a rescan can consume considerable time if a directory
+has a very large number of files in it.
+
+   The following system-dependent events are available:
+
+DELETE
+     The 'unlink()' system call was called on the monitored file.
+WRITE
+     A write occurred on the file.
+EXTEND
+     The file was extended.
+ATTRIB
+     The file attributes have changed.
+LINK
+     The link count on the file changed.
+RENAME
+     The file was renamed.
+REVOKE
+     Access to the file was revoked via 'revoke()' (*note revoke file
+     access: (revoke(2))revoke.) or the underlying file system was
+     unmounted.
+
+
+File: direvent.info,  Node: darwin,  Prev: bsd,  Up: System dependencies
+
+6.3 Darwin (Mac OS X)
+=====================
+
+Essentially the same as BSD. The main difference compared to Linux and
+BSD is that on Darwin the watchers are set after disconnecting from the
+controlling terminal, because Darwin lacks the 'rfork' call and the
+event queue cannot be inherited by the child process.
+
+
+File: direvent.info,  Node: Reporting Bugs,  Next: Copying This Manual,  Prev: System dependencies,  Up: Top
+
+7 How to Report a Bug
+*********************
+
+Please, report bugs and suggestions to <bug-direvent@gnu.org.ua>.
+
+   You hit a bug if at least one of the conditions below is met:
+
+   * 'direvent' terminates on signal 11 (SIGSEGV) or 6 (SIGABRT).
+   * The program fails to do its job as described in this manual.
+
+   If you think you've found a bug, please be sure to include maximum
+information available to reliably reproduce it, or at least to analyze
+it.  The information needed is:
+
+   * Version of the package you are using.
+   * Command line options and configuration file.
+   * Conditions under which the bug appears.
+
+   Any errors, typos or omissions found in this manual also qualify as
+bugs.  Please report them, if you happen to find any.
+
+
+File: direvent.info,  Node: Copying This Manual,  Next: Concept Index,  Prev: Reporting Bugs,  Up: Top
+
+Appendix A GNU Free Documentation License
+*****************************************
+
+                      Version 1.2, November 2002
+
+     Copyright (C) 2000, 2001, 2002, 2014 Free Software Foundation,
+     Inc.
+     59 Temple Place, Suite 330, Boston, MA  02111-1307, USA
+
+     Everyone is permitted to copy and distribute verbatim copies
+     of this license document, but changing it is not allowed.
+
+  0. PREAMBLE
+
+     The purpose of this License is to make a manual, textbook, or other
+     functional and useful document "free" in the sense of freedom: to
+     assure everyone the effective freedom to copy and redistribute it,
+     with or without modifying it, either commercially or
+     noncommercially.  Secondarily, this License preserves for the
+     author and publisher a way to get credit for their work, while not
+     being considered responsible for modifications made by others.
+
+     This License is a kind of "copyleft", which means that derivative
+     works of the document must themselves be free in the same sense.
+     It complements the GNU General Public License, which is a copyleft
+     license designed for free software.
+
+     We have designed this License in order to use it for manuals for
+     free software, because free software needs free documentation: a
+     free program should come with manuals providing the same freedoms
+     that the software does.  But this License is not limited to
+     software manuals; it can be used for any textual work, regardless
+     of subject matter or whether it is published as a printed book.  We
+     recommend this License principally for works whose purpose is
+     instruction or reference.
+
+  1. APPLICABILITY AND DEFINITIONS
+
+     This License applies to any manual or other work, in any medium,
+     that contains a notice placed by the copyright holder saying it can
+     be distributed under the terms of this License.  Such a notice
+     grants a world-wide, royalty-free license, unlimited in duration,
+     to use that work under the conditions stated herein.  The
+     "Document", below, refers to any such manual or work.  Any member
+     of the public is a licensee, and is addressed as "you".  You accept
+     the license if you copy, modify or distribute the work in a way
+     requiring permission under copyright law.
+
+     A "Modified Version" of the Document means any work containing the
+     Document or a portion of it, either copied verbatim, or with
+     modifications and/or translated into another language.
+
+     A "Secondary Section" is a named appendix or a front-matter section
+     of the Document that deals exclusively with the relationship of the
+     publishers or authors of the Document to the Document's overall
+     subject (or to related matters) and contains nothing that could
+     fall directly within that overall subject.  (Thus, if the Document
+     is in part a textbook of mathematics, a Secondary Section may not
+     explain any mathematics.)  The relationship could be a matter of
+     historical connection with the subject or with related matters, or
+     of legal, commercial, philosophical, ethical or political position
+     regarding them.
+
+     The "Invariant Sections" are certain Secondary Sections whose
+     titles are designated, as being those of Invariant Sections, in the
+     notice that says that the Document is released under this License.
+     If a section does not fit the above definition of Secondary then it
+     is not allowed to be designated as Invariant.  The Document may
+     contain zero Invariant Sections.  If the Document does not identify
+     any Invariant Sections then there are none.
+
+     The "Cover Texts" are certain short passages of text that are
+     listed, as Front-Cover Texts or Back-Cover Texts, in the notice
+     that says that the Document is released under this License.  A
+     Front-Cover Text may be at most 5 words, and a Back-Cover Text may
+     be at most 25 words.
+
+     A "Transparent" copy of the Document means a machine-readable copy,
+     represented in a format whose specification is available to the
+     general public, that is suitable for revising the document
+     straightforwardly with generic text editors or (for images composed
+     of pixels) generic paint programs or (for drawings) some widely
+     available drawing editor, and that is suitable for input to text
+     formatters or for automatic translation to a variety of formats
+     suitable for input to text formatters.  A copy made in an otherwise
+     Transparent file format whose markup, or absence of markup, has
+     been arranged to thwart or discourage subsequent modification by
+     readers is not Transparent.  An image format is not Transparent if
+     used for any substantial amount of text.  A copy that is not
+     "Transparent" is called "Opaque".
+
+     Examples of suitable formats for Transparent copies include plain
+     ASCII without markup, Texinfo input format, LaTeX input format,
+     SGML or XML using a publicly available DTD, and standard-conforming
+     simple HTML, PostScript or PDF designed for human modification.
+     Examples of transparent image formats include PNG, XCF and JPG.
+     Opaque formats include proprietary formats that can be read and
+     edited only by proprietary word processors, SGML or XML for which
+     the DTD and/or processing tools are not generally available, and
+     the machine-generated HTML, PostScript or PDF produced by some word
+     processors for output purposes only.
+
+     The "Title Page" means, for a printed book, the title page itself,
+     plus such following pages as are needed to hold, legibly, the
+     material this License requires to appear in the title page.  For
+     works in formats which do not have any title page as such, "Title
+     Page" means the text near the most prominent appearance of the
+     work's title, preceding the beginning of the body of the text.
+
+     A section "Entitled XYZ" means a named subunit of the Document
+     whose title either is precisely XYZ or contains XYZ in parentheses
+     following text that translates XYZ in another language.  (Here XYZ
+     stands for a specific section name mentioned below, such as
+     "Acknowledgements", "Dedications", "Endorsements", or "History".)
+     To "Preserve the Title" of such a section when you modify the
+     Document means that it remains a section "Entitled XYZ" according
+     to this definition.
+
+     The Document may include Warranty Disclaimers next to the notice
+     which states that this License applies to the Document.  These
+     Warranty Disclaimers are considered to be included by reference in
+     this License, but only as regards disclaiming warranties: any other
+     implication that these Warranty Disclaimers may have is void and
+     has no effect on the meaning of this License.
+
+  2. VERBATIM COPYING
+
+     You may copy and distribute the Document in any medium, either
+     commercially or noncommercially, provided that this License, the
+     copyright notices, and the license notice saying this License
+     applies to the Document are reproduced in all copies, and that you
+     add no other conditions whatsoever to those of this License.  You
+     may not use technical measures to obstruct or control the reading
+     or further copying of the copies you make or distribute.  However,
+     you may accept compensation in exchange for copies.  If you
+     distribute a large enough number of copies you must also follow the
+     conditions in section 3.
+
+     You may also lend copies, under the same conditions stated above,
+     and you may publicly display copies.
+
+  3. COPYING IN QUANTITY
+
+     If you publish printed copies (or copies in media that commonly
+     have printed covers) of the Document, numbering more than 100, and
+     the Document's license notice requires Cover Texts, you must
+     enclose the copies in covers that carry, clearly and legibly, all
+     these Cover Texts: Front-Cover Texts on the front cover, and
+     Back-Cover Texts on the back cover.  Both covers must also clearly
+     and legibly identify you as the publisher of these copies.  The
+     front cover must present the full title with all words of the title
+     equally prominent and visible.  You may add other material on the
+     covers in addition.  Copying with changes limited to the covers, as
+     long as they preserve the title of the Document and satisfy these
+     conditions, can be treated as verbatim copying in other respects.
+
+     If the required texts for either cover are too voluminous to fit
+     legibly, you should put the first ones listed (as many as fit
+     reasonably) on the actual cover, and continue the rest onto
+     adjacent pages.
+
+     If you publish or distribute Opaque copies of the Document
+     numbering more than 100, you must either include a machine-readable
+     Transparent copy along with each Opaque copy, or state in or with
+     each Opaque copy a computer-network location from which the general
+     network-using public has access to download using public-standard
+     network protocols a complete Transparent copy of the Document, free
+     of added material.  If you use the latter option, you must take
+     reasonably prudent steps, when you begin distribution of Opaque
+     copies in quantity, to ensure that this Transparent copy will
+     remain thus accessible at the stated location until at least one
+     year after the last time you distribute an Opaque copy (directly or
+     through your agents or retailers) of that edition to the public.
+
+     It is requested, but not required, that you contact the authors of
+     the Document well before redistributing any large number of copies,
+     to give them a chance to provide you with an updated version of the
+     Document.
+
+  4. MODIFICATIONS
+
+     You may copy and distribute a Modified Version of the Document
+     under the conditions of sections 2 and 3 above, provided that you
+     release the Modified Version under precisely this License, with the
+     Modified Version filling the role of the Document, thus licensing
+     distribution and modification of the Modified Version to whoever
+     possesses a copy of it.  In addition, you must do these things in
+     the Modified Version:
+
+       A. Use in the Title Page (and on the covers, if any) a title
+          distinct from that of the Document, and from those of previous
+          versions (which should, if there were any, be listed in the
+          History section of the Document).  You may use the same title
+          as a previous version if the original publisher of that
+          version gives permission.
+
+       B. List on the Title Page, as authors, one or more persons or
+          entities responsible for authorship of the modifications in
+          the Modified Version, together with at least five of the
+          principal authors of the Document (all of its principal
+          authors, if it has fewer than five), unless they release you
+          from this requirement.
+
+       C. State on the Title page the name of the publisher of the
+          Modified Version, as the publisher.
+
+       D. Preserve all the copyright notices of the Document.
+
+       E. Add an appropriate copyright notice for your modifications
+          adjacent to the other copyright notices.
+
+       F. Include, immediately after the copyright notices, a license
+          notice giving the public permission to use the Modified
+          Version under the terms of this License, in the form shown in
+          the Addendum below.
+
+       G. Preserve in that license notice the full lists of Invariant
+          Sections and required Cover Texts given in the Document's
+          license notice.
+
+       H. Include an unaltered copy of this License.
+
+       I. Preserve the section Entitled "History", Preserve its Title,
+          and add to it an item stating at least the title, year, new
+          authors, and publisher of the Modified Version as given on the
+          Title Page.  If there is no section Entitled "History" in the
+          Document, create one stating the title, year, authors, and
+          publisher of the Document as given on its Title Page, then add
+          an item describing the Modified Version as stated in the
+          previous sentence.
+
+       J. Preserve the network location, if any, given in the Document
+          for public access to a Transparent copy of the Document, and
+          likewise the network locations given in the Document for
+          previous versions it was based on.  These may be placed in the
+          "History" section.  You may omit a network location for a work
+          that was published at least four years before the Document
+          itself, or if the original publisher of the version it refers
+          to gives permission.
+
+       K. For any section Entitled "Acknowledgements" or "Dedications",
+          Preserve the Title of the section, and preserve in the section
+          all the substance and tone of each of the contributor
+          acknowledgements and/or dedications given therein.
+
+       L. Preserve all the Invariant Sections of the Document, unaltered
+          in their text and in their titles.  Section numbers or the
+          equivalent are not considered part of the section titles.
+
+       M. Delete any section Entitled "Endorsements".  Such a section
+          may not be included in the Modified Version.
+
+       N. Do not retitle any existing section to be Entitled
+          "Endorsements" or to conflict in title with any Invariant
+          Section.
+
+       O. Preserve any Warranty Disclaimers.
+
+     If the Modified Version includes new front-matter sections or
+     appendices that qualify as Secondary Sections and contain no
+     material copied from the Document, you may at your option designate
+     some or all of these sections as invariant.  To do this, add their
+     titles to the list of Invariant Sections in the Modified Version's
+     license notice.  These titles must be distinct from any other
+     section titles.
+
+     You may add a section Entitled "Endorsements", provided it contains
+     nothing but endorsements of your Modified Version by various
+     parties--for example, statements of peer review or that the text
+     has been approved by an organization as the authoritative
+     definition of a standard.
+
+     You may add a passage of up to five words as a Front-Cover Text,
+     and a passage of up to 25 words as a Back-Cover Text, to the end of
+     the list of Cover Texts in the Modified Version.  Only one passage
+     of Front-Cover Text and one of Back-Cover Text may be added by (or
+     through arrangements made by) any one entity.  If the Document
+     already includes a cover text for the same cover, previously added
+     by you or by arrangement made by the same entity you are acting on
+     behalf of, you may not add another; but you may replace the old
+     one, on explicit permission from the previous publisher that added
+     the old one.
+
+     The author(s) and publisher(s) of the Document do not by this
+     License give permission to use their names for publicity for or to
+     assert or imply endorsement of any Modified Version.
+
+  5. COMBINING DOCUMENTS
+
+     You may combine the Document with other documents released under
+     this License, under the terms defined in section 4 above for
+     modified versions, provided that you include in the combination all
+     of the Invariant Sections of all of the original documents,
+     unmodified, and list them all as Invariant Sections of your
+     combined work in its license notice, and that you preserve all
+     their Warranty Disclaimers.
+
+     The combined work need only contain one copy of this License, and
+     multiple identical Invariant Sections may be replaced with a single
+     copy.  If there are multiple Invariant Sections with the same name
+     but different contents, make the title of each such section unique
+     by adding at the end of it, in parentheses, the name of the
+     original author or publisher of that section if known, or else a
+     unique number.  Make the same adjustment to the section titles in
+     the list of Invariant Sections in the license notice of the
+     combined work.
+
+     In the combination, you must combine any sections Entitled
+     "History" in the various original documents, forming one section
+     Entitled "History"; likewise combine any sections Entitled
+     "Acknowledgements", and any sections Entitled "Dedications".  You
+     must delete all sections Entitled "Endorsements."
+
+  6. COLLECTIONS OF DOCUMENTS
+
+     You may make a collection consisting of the Document and other
+     documents released under this License, and replace the individual
+     copies of this License in the various documents with a single copy
+     that is included in the collection, provided that you follow the
+     rules of this License for verbatim copying of each of the documents
+     in all other respects.
+
+     You may extract a single document from such a collection, and
+     distribute it individually under this License, provided you insert
+     a copy of this License into the extracted document, and follow this
+     License in all other respects regarding verbatim copying of that
+     document.
+
+  7. AGGREGATION WITH INDEPENDENT WORKS
+
+     A compilation of the Document or its derivatives with other
+     separate and independent documents or works, in or on a volume of a
+     storage or distribution medium, is called an "aggregate" if the
+     copyright resulting from the compilation is not used to limit the
+     legal rights of the compilation's users beyond what the individual
+     works permit.  When the Document is included an aggregate, this
+     License does not apply to the other works in the aggregate which
+     are not themselves derivative works of the Document.
+
+     If the Cover Text requirement of section 3 is applicable to these
+     copies of the Document, then if the Document is less than one half
+     of the entire aggregate, the Document's Cover Texts may be placed
+     on covers that bracket the Document within the aggregate, or the
+     electronic equivalent of covers if the Document is in electronic
+     form.  Otherwise they must appear on printed covers that bracket
+     the whole aggregate.
+
+  8. TRANSLATION
+
+     Translation is considered a kind of modification, so you may
+     distribute translations of the Document under the terms of section
+     4.  Replacing Invariant Sections with translations requires special
+     permission from their copyright holders, but you may include
+     translations of some or all Invariant Sections in addition to the
+     original versions of these Invariant Sections.  You may include a
+     translation of this License, and all the license notices in the
+     Document, and any Warranty Disclaimers, provided that you also
+     include the original English version of this License and the
+     original versions of those notices and disclaimers.  In case of a
+     disagreement between the translation and the original version of
+     this License or a notice or disclaimer, the original version will
+     prevail.
+
+     If a section in the Document is Entitled "Acknowledgements",
+     "Dedications", or "History", the requirement (section 4) to
+     Preserve its Title (section 1) will typically require changing the
+     actual title.
+
+  9. TERMINATION
+
+     You may not copy, modify, sublicense, or distribute the Document
+     except as expressly provided for under this License.  Any other
+     attempt to copy, modify, sublicense or distribute the Document is
+     void, and will automatically terminate your rights under this
+     License.  However, parties who have received copies, or rights,
+     from you under this License will not have their licenses terminated
+     so long as such parties remain in full compliance.
+
+  10. FUTURE REVISIONS OF THIS LICENSE
+
+     The Free Software Foundation may publish new, revised versions of
+     the GNU Free Documentation License from time to time.  Such new
+     versions will be similar in spirit to the present version, but may
+     differ in detail to address new problems or concerns.  See
+     <http://www.gnu.org/copyleft/>.
+
+     Each version of the License is given a distinguishing version
+     number.  If the Document specifies that a particular numbered
+     version of this License "or any later version" applies to it, you
+     have the option of following the terms and conditions either of
+     that specified version or of any later version that has been
+     published (not as a draft) by the Free Software Foundation.  If the
+     Document does not specify a version number of this License, you may
+     choose any version ever published (not as a draft) by the Free
+     Software Foundation.
+
+A.1 ADDENDUM: How to use this License for your documents
+========================================================
+
+To use this License in a document you have written, include a copy of
+the License in the document and put the following copyright and license
+notices just after the title page:
+
+       Copyright (C)  YEAR  YOUR NAME.
+       Permission is granted to copy, distribute and/or modify this document
+       under the terms of the GNU Free Documentation License, Version 1.2
+       or any later version published by the Free Software Foundation;
+       with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+       Texts.  A copy of the license is included in the section entitled ``GNU
+       Free Documentation License''.
+
+   If you have Invariant Sections, Front-Cover Texts and Back-Cover
+Texts, replace the "with...Texts."  line with this:
+
+         with the Invariant Sections being LIST THEIR TITLES, with
+         the Front-Cover Texts being LIST, and with the Back-Cover Texts
+         being LIST.
+
+   If you have Invariant Sections without Cover Texts, or some other
+combination of the three, merge those two alternatives to suit the
+situation.
+
+   If your document contains nontrivial examples of program code, we
+recommend releasing these examples in parallel under your choice of free
+software license, such as the GNU General Public License, to permit
+their use in free software.
+
+
+File: direvent.info,  Node: Concept Index,  Prev: Copying This Manual,  Up: Top
+
+Concept Index
+*************
+
+This is a general index of all issues discussed in this manual
+
+ [index ]
+* Menu:
+
+* #include:                              Pragmatic Comments.  (line  11)
+* #include_once:                         Pragmatic Comments.  (line  15)
+* #line:                                 Pragmatic Comments.  (line  20)
+* --config-help:                         Invocation.          (line  83)
+* --debug:                               Invocation.          (line  16)
+* --facility:                            Invocation.          (line  18)
+* --foreground:                          Invocation.          (line  21)
+* --help:                                Invocation.          (line  85)
+* --lint:                                Invocation.          (line  71)
+* --pidfile:                             Invocation.          (line  33)
+* --self-test:                           Invocation.          (line  37)
+* --usage:                               Invocation.          (line  88)
+* --user:                                Invocation.          (line  74)
+* --version:                             Invocation.          (line  90)
+* -d:                                    Invocation.          (line  16)
+* -F:                                    Invocation.          (line  18)
+* -f:                                    Invocation.          (line  21)
+* -H:                                    Invocation.          (line  83)
+* -h:                                    Invocation.          (line  85)
+* -l:                                    Invocation.          (line  24)
+* -P:                                    Invocation.          (line  33)
+* -T:                                    Invocation.          (line  37)
+* -t:                                    Invocation.          (line  71)
+* -u:                                    Invocation.          (line  74)
+* -V:                                    Invocation.          (line  90)
+* ACCESS, linux event:                   linux.               (line  25)
+* ATTRIB, BSD:                           bsd.                 (line  30)
+* attrib, generic event:                 Overview.            (line  26)
+* ATTRIB, linux event:                   linux.               (line  26)
+* block statement:                       Statements.          (line 129)
+* boolean value:                         Statements.          (line  25)
+* BSD:                                   bsd.                 (line   6)
+* CLOSE_NOWRITE, linux event:            linux.               (line  30)
+* CLOSE_WRITE, linux event:              linux.               (line  28)
+* command:                               watcher.             (line  77)
+* Comments in a configuration file:      Comments.            (line   6)
+* comments, pragmatic:                   Pragmatic Comments.  (line   6)
+* configuration file statements:         Statements.          (line   6)
+* create, generic event:                 Overview.            (line  21)
+* CREATE, linux event:                   linux.               (line  32)
+* Darwin:                                darwin.              (line   6)
+* debug:                                 general settings.    (line  17)
+* DELETE, BSD:                           bsd.                 (line  25)
+* delete, generic event:                 Overview.            (line  22)
+* DELETE, linux event:                   linux.               (line  34)
+* DIREVENT_FILE, environment variable:   watcher.             (line 128)
+* DIREVENT_GENEV_CODE, environment variable: watcher.         (line 122)
+* DIREVENT_GENEV_NAME, environment variable: watcher.         (line 125)
+* DIREVENT_SYSEV_CODE, environment variable: watcher.         (line 117)
+* DIREVENT_SYSEV_NAME, environment variable: watcher.         (line 119)
+* environ:                               watcher.             (line 113)
+* environment modification:              watcher.             (line 133)
+* environment, handler:                  watcher.             (line 117)
+* escape sequence:                       Statements.          (line  33)
+* event:                                 watcher.             (line  65)
+* events:                                Overview.            (line  12)
+* events, generic:                       Overview.            (line  19)
+* events, system-dependent, on BSD:      bsd.                 (line  23)
+* events, system-dependent, on Darwin:   bsd.                 (line  23)
+* events, system-dependent, on linux:    linux.               (line  22)
+* EXTEND, BSD:                           bsd.                 (line  28)
+* facility:                              syslog.              (line  22)
+* facility, syslog:                      syslog.              (line  23)
+* FDL, GNU Free Documentation License:   Copying This Manual. (line   6)
+* file:                                  watcher.             (line  40)
+* file system events:                    Overview.            (line  12)
+* file, macro variable:                  macro expansion.     (line  16)
+* foreground:                            general settings.    (line  10)
+* fs.inotify.max_user_watches:           linux.               (line   9)
+* generic events:                        Overview.            (line  19)
+* genev_code, macro variable:            macro expansion.     (line  19)
+* genev_name, macro variable:            macro expansion.     (line  23)
+* GNU/Linux:                             linux.               (line   6)
+* Handler environment variables:         watcher.             (line 117)
+* handler execution environment:         Quick start.         (line  43)
+* handler, defining:                     watcher.             (line  78)
+* handler, introduced:                   Overview.            (line  31)
+* here-document:                         Statements.          (line  73)
+* inotify:                               linux.               (line   6)
+* kqueue:                                bsd.                 (line   6)
+* LINK, BSD:                             bsd.                 (line  32)
+* linux kernel:                          linux.               (line   6)
+* list:                                  Statements.          (line 113)
+* logging:                               syslog.              (line   6)
+* Mac OS X:                              darwin.              (line   6)
+* macro expansion:                       macro expansion.     (line   6)
+* MODIFY, linux event:                   linux.               (line  36)
+* MOVED_FROM, linux event:               linux.               (line  38)
+* MOVED_TO, linux event:                 linux.               (line  40)
+* multi-line comments:                   Comments.            (line  14)
+* number of open file descriptors:       bsd.                 (line  10)
+* number of watches, linux:              linux.               (line   9)
+* OPEN, linux event:                     linux.               (line  42)
+* option:                                watcher.             (line  97)
+* path:                                  watcher.             (line  24)
+* pidfile:                               general settings.    (line  13)
+* pragmatic comments:                    Pragmatic Comments.  (line   6)
+* print-priority:                        syslog.              (line  31)
+* quoted string:                         Statements.          (line  33)
+* RENAME, BSD:                           bsd.                 (line  34)
+* self-test mode:                        Invocation.          (line  37)
+* self_test_pid:                         macro expansion.     (line  29)
+* simple statements:                     Statements.          (line   6)
+* single-line comments:                  Comments.            (line   6)
+* statement, block:                      Statements.          (line 129)
+* statement, simple:                     Statements.          (line   6)
+* statements, configuration file:        Statements.          (line   6)
+* string, quoted:                        Statements.          (line  33)
+* string, unquoted:                      Statements.          (line  29)
+* sysctl:                                linux.               (line   9)
+* sysctl.conf:                           linux.               (line  19)
+* sysev_code, macro variable:            macro expansion.     (line  34)
+* sysev_name, macro variable:            macro expansion.     (line  38)
+* syslog:                                syslog.              (line   6)
+* syslog facility:                       syslog.              (line  23)
+* syslog tag:                            syslog.              (line  28)
+* system-dependent events on BSD:        bsd.                 (line  23)
+* system-dependent events on Darwin:     bsd.                 (line  23)
+* system-dependent events, linux:        linux.               (line  22)
+* tag:                                   syslog.              (line  27)
+* tag, syslog:                           syslog.              (line  28)
+* timeout:                               watcher.             (line  93)
+* user:                                  general settings.    (line   6)
+* user <1>:                              watcher.             (line  90)
+* watcher declaration:                   watcher.             (line  11)
+* watcher declaration, summary:          Overview.            (line  60)
+* watcher, complete description:         watcher.             (line   6)
+* watcher, introduced:                   Overview.            (line  31)
+* WRITE, BSD:                            bsd.                 (line  26)
+* write, generic event:                  Overview.            (line  24)
+
+
+
+Tag Table:
+Node: Top574
+Node: Intro769
+Node: Overview1680
+Ref: handler2694
+Node: Quick start5681
+Ref: handler environment7375
+Node: Invocation8284
+Ref: self-test mode9436
+Node: Configuration11511
+Node: syntax11646
+Node: Comments12128
+Node: Pragmatic Comments12802
+Node: Statements13845
+Ref: backslash-interpretation15044
+Ref: here-document16407
+Node: macro expansion18823
+Ref: $file19491
+Ref: $genev_code19545
+Ref: $genev_name19680
+Ref: $sysev_code20124
+Ref: $sysev_name20249
+Node: general settings20551
+Node: syslog21093
+Node: watcher22306
+Ref: environ26375
+Node: System dependencies29340
+Node: linux29562
+Node: bsd30896
+Node: darwin32350
+Node: Reporting Bugs32737
+Node: Copying This Manual33599
+Node: Concept Index56029
+
+End Tag Table
