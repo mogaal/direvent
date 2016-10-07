@@ -5,7 +5,8 @@ direvent (5.1-1) UNRELEASED; urgency=medium
   * d/copyright: update the copyright dates
   * d/control:
      - Push Standard-Version field.
-     - Update github URL with secure URL
+     - Update github URL with secure URL.
+     - Fix spelling error with "occurred"
 
  -- Alejandro Garrido Mota <alejandro@debian.org>  Fri, 30 Sep 2016 15:01:14 +0100
 

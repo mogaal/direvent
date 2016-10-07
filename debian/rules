@@ -1,5 +1,5 @@
 #!/usr/bin/make -f
-export DEB_BUILD_MAINT_OPTIONS = hardening=+pie
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 %:
 	dh $@  --with autotools-dev,systemd

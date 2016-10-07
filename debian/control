@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 9),
                dh-systemd
 Standards-Version: 3.9.8
 Homepage: http://www.gnu.org.ua/software/direvent/
-Vcs-Git: git://github.com/mogaal/direvent.git
+Vcs-Git: https://github.com/mogaal/direvent.git
 Vcs-Browser: https://github.com/mogaal/direvent
 
 Package: direvent
@@ -17,5 +17,5 @@ Description: monitors events in the file system directories
  For each event that occurs in a set of pre-configured directories, the 
  program calls an external program associated with it, supplying it with
  the information about the event and the location within the file system
- where it occured. This may be helpful, for example, to track changes in
+ where it occurred. This may be helpful, for example, to track changes in
  the important configuration files.
