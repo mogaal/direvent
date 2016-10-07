@@ -1,3 +1,11 @@
+Description: Fix Ws_error error
+Author: Sergey Poznyakoff <gray@gnu.org.ua>
+Origin: vendor
+Last-Update: 2016-10-07
+
+Patch to fix the problem FTBFS:
+   error: format not a string literal and no format arguments [-Werror=format-security]
+
 Index: direvent/grecs/src/wordsplit.c
 ===================================================================
 --- direvent.orig/grecs/src/wordsplit.c
