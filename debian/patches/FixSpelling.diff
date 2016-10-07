@@ -1,0 +1,38 @@
+Description: Fix spelling error
+Author: Alejandro Garrido Mota <alejandro@debian.org>
+Origin: vendor
+Last-Update: 2016-10-07
+
+Fix spelling errors
+
+Index: direvent/doc/direvent.conf.5
+===================================================================
+--- direvent.orig/doc/direvent.conf.5
++++ direvent/doc/direvent.conf.5
+@@ -160,7 +160,7 @@ with a single character according to the
+ .fi
+ 
+ In addition, the sequence \fB\\\fInewline\fR is removed from
+-the string.  This allows to split long strings over several
++the string.  This allows one to split long strings over several
+ physical lines, e.g.:
+ .sp
+ .nf
+@@ -186,7 +186,7 @@ example above:
+ .fi
+ .TP
+ .I Here-document
+-A \fIhere-document\fR is a special construct that allows to introduce
++A \fIhere-document\fR is a special construct that allows one to introduce
+ strings of text containing embedded newlines.  
+ 
+ The
+@@ -213,7 +213,7 @@ the text is read as is, without interpre
+ If \fIword\fR is prefixed with \fB\-\fR (a dash), then all leading
+ tab characters are stripped from input lines and the line containing
+ \fIword\fR.  Furthermore, \fB\-\fR is followed by a single space,
+-all leading whitespace is stripped from them.  This allows to indent
++all leading whitespace is stripped from them.  This allows one to indent
+ here-documents in a natural fashion.  For example:
+ .sp
+ .nf
