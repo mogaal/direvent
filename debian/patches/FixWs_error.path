@@ -1,0 +1,22 @@
+Index: direvent/grecs/src/wordsplit.c
+===================================================================
+--- direvent.orig/grecs/src/wordsplit.c
++++ direvent/grecs/src/wordsplit.c
+@@ -59,7 +59,7 @@
+ static void
+ _wsplt_alloc_die (struct wordsplit *wsp)
+ {
+-  wsp->ws_error (_("memory exhausted"));
++  wsp->ws_error ("%s", _("memory exhausted"));
+   abort ();
+ }
+ 
+@@ -2330,7 +2330,7 @@ wordsplit_perror (struct wordsplit *wsp)
+       break;
+ 
+     default:
+-      wsp->ws_error (wordsplit_strerror (wsp));
++      wsp->ws_error ("%s", wordsplit_strerror (wsp));
+     }
+ }
+ 
